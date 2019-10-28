@@ -1,10 +1,8 @@
 /node_modules
 /public/hot
 /public/storage
-/public/css
-/public/js
+/public/installer
 /public/vendor
-/public/themes
 /storage/*.key
 /vendor
 /.idea
@@ -17,6 +15,5 @@ yarn-error.log
 .env
 /ignorables/*
 composer.lock
-yarn.lock
 package-lock.json
 yarn.lock
