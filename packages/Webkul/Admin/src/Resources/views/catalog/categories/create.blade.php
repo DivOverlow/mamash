@@ -89,6 +89,12 @@
                                     <option value="description_only">
                                         {{ __('admin::app.catalog.categories.description-only') }}
                                     </option>
+                                    <option value="products_collection">
+                                        {{ __('admin::app.catalog.categories.products-collection') }}
+                                    </option>
+                                    <option value="products_gift">
+                                        {{ __('admin::app.catalog.categories.products-gift') }}
+                                    </option>
                                 </select>
                                 <span class="control-error" v-if="errors.has('display_mode')">@{{ errors.first('display_mode') }}</span>
                             </div>

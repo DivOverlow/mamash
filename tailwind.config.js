@@ -11,7 +11,7 @@ module.exports = {
          // current: 'currentColor',
          white: theme('colors.white'),
          gray : theme('colors.text-gray-dark'),
-         // 'blue': theme('colors.blue.500'),
+         // orange: theme('colors.text-yellow'),
        }),
 
         fontFamily: {

@@ -1,9 +1,9 @@
 {!! view_render_event('bagisto.shop.products.view.product-add.after', ['product' => $product]) !!}
 
-<div class="add-to-buttons">
+<div class="add-to-buttons my-3">
     @include ('shop::products.add-to-cart', ['product' => $product])
 
-    @include ('shop::products.buy-now')
+{{--    @include ('shop::products.buy-now')--}}
 </div>
 
 {!! view_render_event('bagisto.shop.products.view.product-add.after', ['product' => $product]) !!}

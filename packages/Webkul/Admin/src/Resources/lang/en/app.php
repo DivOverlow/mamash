@@ -579,6 +579,8 @@ return [
             'products-and-description' => 'Products and Description',
             'products-only' => 'Products Only',
             'description-only' => 'Description Only',
+            'products-collection' => 'Products Collection',
+            'products-gift' => 'Products Gift',
             'description-and-images' => 'Description and Images',
             'description' => 'Description',
             'parent-category' => 'Parent Category',

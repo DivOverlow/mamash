@@ -15,7 +15,7 @@
 @section('content-wrapper')
     @inject ('productRepository', 'Webkul\Product\Repositories\ProductRepository')
     <section class="hero-content">
-        @if ($category->display_mode == 'collections')
+        @if ($category->display_mode == 'products_collection')
         <div class="hero-image bg-cover bg-center shadow-lg h-96 sm:h-120 relative" style="background-image: url('/public/themes/custom/assets/images/banner/bg-linear.jpg');">
             <div class="main-container-wrapper max-w-sm sm:max-w-xl px-30 sm:px-0 mx-auto overflow-hidden absolute inset-x-0 top-0 mt-8">
                 @if (!is_null($category->image))
@@ -59,27 +59,23 @@
             </div>
         @endif
     </section>
-    @if ($category->display_mode == 'collections')
+    @if ($category->display_mode == 'products_collection')
         <div class="main">
             {!! view_render_event('bagisto.shop.products.index.before', ['category' => $category]) !!}
 
             <div class="main-container-wrapper category-container">
-                   @if ($category->display_mode == 'description_only') style="width: 100%" @endif
+                <?php $products = $productRepository->getAll($category->id); ?>
+                @if ($products->count())
 
-                    @if ($category->display_mode == 'collections')
-                        <?php $products = $productRepository->getAll($category->id); ?>
-                        @if ($products->count())
-
-                        <div class="product-list">
-                            @foreach ($products as $productFlat)
-                                <div class="product-card bg-white flex flex-col {{($loop->index & 1) ? 'sm:flex-row' : 'sm:flex-row-reverse' }} justify-between items-center my-10 mx-0 sm:-mx-10">
-                                    @include ('shop::products.list.collections', ['product' => $productFlat])
-                                </div>
-                            @endforeach
+                <div class="product-list">
+                    @foreach ($products as $productFlat)
+                        <div class="product-card bg-white flex flex-col {{($loop->index & 1) ? 'sm:flex-row' : 'sm:flex-row-reverse' }} justify-between items-center my-10 mx-0 sm:-mx-10">
+                            @include ('shop::products.list.collections', ['product' => $productFlat])
                         </div>
+                    @endforeach
+                </div>
 
-                        @endif
-                    @endif
+                @endif
             </div>
 
             {!! view_render_event('bagisto.shop.products.index.after', ['category' => $category]) !!}
@@ -124,19 +120,41 @@
             </section>
 
         </div>
+    @elseif ($category->display_mode == 'products_gift')
+        <div class="main">
+            {!! view_render_event('bagisto.shop.products.index.before', ['category' => $category]) !!}
+
+            <div class="main-container-wrapper category-container">
+                <?php $products = $productRepository->getAll($category->id); ?>
+
+                @if ($products->count())
+                    <div class="product-list my-10">
+                        @foreach ($products as $productFlat)
+                            <div class="product-card bg-white flex flex-col {{($loop->index & 1) ? 'sm:flex-row' : 'sm:flex-row-reverse' }} justify-between items-center my-4 sm:my-0">
+                                @include ('shop::products.list.gifts', ['product' => $productFlat])
+                            </div>
+                        @endforeach
+                    </div>
+
+                @endif
+            </div>
+
+            {!! view_render_event('bagisto.shop.products.index.after', ['category' => $category]) !!}
+
+        </div>
     @else
     <div class="main">
         {!! view_render_event('bagisto.shop.products.index.before', ['category' => $category]) !!}
 
         <div class="category-container container flex flex-col sm:flex-row z-10 -mt-12 relative">
-            <div class="w-full sm:w-1/3 bg-gray-dark">
+            <div class="w-full sm:w-1/3 bg-gray-dark text-xs">
                 <div class="hidden p-10 sm:block">
                     <?php
                     $categories = [];
                     $parent_id = $category->parent_id;
                     $current_id = $category->id;
                     while ($parent_id != NULL) {
-                        $result = app('Webkul\Category\Repositories\CategoryRepository')->findByIdOrFail($parent_id);
+                        $result = app('Webkul\Category\Repositories\CategoryRepository')->findOrFail($parent_id);
                         if (isset($result->parent_id)) {
                             if ($result->parent_id != NULL && $result->parent_id > 1) {
                                 $categories[] = $result;
@@ -292,7 +310,6 @@
                 @endif
             </div>
         </div>
-
         {!! view_render_event('bagisto.shop.products.index.after', ['category' => $category]) !!}
     </div>
     @endif

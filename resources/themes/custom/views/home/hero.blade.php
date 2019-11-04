@@ -1,5 +1,5 @@
 <?php
-$category = app('Webkul\Category\Repositories\CategoryRepository')->findByIdOrFail(1);
+$category = app('Webkul\Category\Repositories\CategoryRepository')->findOrFail(1);
 ?>
 
 <section class="hero-content">

@@ -451,7 +451,6 @@ abstract class AbstractType
     public function getPriceHtml()
     {
         if ($this->haveSpecialPrice()) {
-
             $sale = ($this->product->price > $this->getSpecialPrice()) ? '-' .  round((($this->product->price - $this->getSpecialPrice())*100)/$this->product->price) .'%' : '';
 //            $html = '<div class="sticker sale">' . trans('shop::app.products.sale') . '</div>'
 

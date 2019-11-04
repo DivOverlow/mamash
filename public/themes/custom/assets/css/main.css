@@ -10345,7 +10345,6 @@ body {
 }
 
 .breadcrumb {
-  font-size: 0.75rem;
   color: #a3a3a3;
   text-transform: uppercase;
   vertical-align: baseline;
@@ -10421,6 +10420,7 @@ body {
   -webkit-transition: 0.3s;
   transition: 0.3s;
   color: #2f2f2f;
+  border-width: 0;
 }
 
 .button-dark {
@@ -11027,6 +11027,12 @@ body {
   width: 32px;
   height: 32px;
   margin-left: auto;
+}
+
+.checkmark {
+  background-image: url('data:image/svg+xml;charset=utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="Peru" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>');
+  background-repeat: no-repeat;
+  padding-left: 2rem;
 }
 
 /*.grid-view-icon {*/

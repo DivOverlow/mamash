@@ -19,7 +19,7 @@ class Simple extends AbstractType
 
     /**
      * These blade files will be included in product edit page
-     * 
+     *
      * @var array
      */
     protected $additionalViews = [
@@ -34,7 +34,7 @@ class Simple extends AbstractType
      *
      * @var boolean
      */
-    protected $showQuantityBox = true;
+    protected $showQuantityBox = false;
 
     /**
      * Return true if this product type is saleable

@@ -102,6 +102,12 @@
                                     <option value="description_only" {{ $category->display_mode == 'description_only' ? 'selected' : '' }}>
                                         {{ __('admin::app.catalog.categories.description-only') }}
                                     </option>
+                                    <option value="products_collection" {{ $category->display_mode == 'products_collection' ? 'selected' : '' }}>
+                                        {{ __('admin::app.catalog.categories.products-collection') }}
+                                    </option>
+                                    <option value="products_gift" {{ $category->display_mode == 'products_gift' ? 'selected' : '' }}>
+                                        {{ __('admin::app.catalog.categories.products-gift') }}
+                                    </option>
                                 </select>
                                 <span class="control-error" v-if="errors.has('display_mode')">@{{ errors.first('display_mode') }}</span>
                             </div>

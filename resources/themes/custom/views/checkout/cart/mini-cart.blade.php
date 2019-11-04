@@ -9,14 +9,14 @@
 
     <?php $items = $cart->items; ?>
 
-    <div class="dropdown-toggle flex relative w-12">
+    <div class="dropdown-toggle flex relative w-10 items-center">
         <a class="cart-link" href="{{ route('shop.checkout.cart.index') }}">
             <span class="cart-icon"></span>
         </a>
 
-        <span class="name absolute top-0 right-0">
+        <span class="name absolute bottom-0 -z-1">
 {{--            {{ __('shop::app.header.cart') }}--}}
-            <span class="count align-top bg-yellow text-xs text-white rounded-full py-1 px-3"> {{ $cart->items->count() }}</span>
+            <span class="count align-top bg-transparent text-xs text-yellow px-3"> {{ $cart->items->count() }}</span>
         </span>
 
 {{--        <i class="icon arrow-down-icon"></i>--}}
