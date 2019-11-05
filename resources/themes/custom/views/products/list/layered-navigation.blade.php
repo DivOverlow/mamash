@@ -35,7 +35,7 @@
 
     {!! view_render_event('bagisto.shop.products.list.layered-nagigation.before') !!}
 
-    <div class="responsive-layred-filter mb-20 sm:mb-0">
+    <div class="responsive-layred-filter text-base mb-20 sm:mb-0">
         <layered-navigation></layered-navigation>
     </div>
 
@@ -78,7 +78,7 @@
                 </div>
             </div>
 
-            <div class="filter-attributes-content">
+            <div class="filter-attributes-content text-base normal-case">
 
                 <ol class="items" v-if="attribute.type != 'price'">
                     <li class="item" v-for='(option, index) in attribute.options'>

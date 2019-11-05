@@ -10773,6 +10773,10 @@ body {
   text-transform: uppercase;
 }
 
+.details .product-price .sticker {
+  display: none;
+}
+
 .product-card .product-image img {
   /*width: auto !important;*/
   /*height: 100% !important;*/

@@ -333,12 +333,18 @@ body {
     @apply .bg-scarlet .absolute .bottom-0 .right-0 .h-12 .py-2 .px-4 .text-xl .text-white .uppercase;
 }
 
+.details .product-price .sticker {
+    display: none;
+}
+
 .product-card .product-image img {
     /*width: auto !important;*/
     /*height: 100% !important;*/
     /*max-height: 100%;*/
     /*max-width: 100%;*/
 }
+
+
 
 /*section.slider-block {*/
 /*    display: block;*/

@@ -17,7 +17,7 @@
     <?php
     $path = parse_url(\Illuminate\Support\Facades\Request::path(), PHP_URL_PATH);
     $path_slug = explode("/", $path);
-    $category_slug = $path_slug[sizeof($path_slug)-2];
+    $category_slug = $path_slug[sizeof($path_slug) - 2];
 
 
     $categories = [];
@@ -45,10 +45,10 @@
     $categories = array_reverse($categories);
 
     $categoryCollection = null;
-    $categoriesForProduct =  $productRepository->find($product->id);
+    $categoriesForProduct = $productRepository->find($product->id);
     if ($categoriesForProduct) {
-        foreach ($categoriesForProduct->categories()->get() as $categoryProduct ) {
-            if ($categoryProduct->display_mode == "products_collection" ) {
+        foreach ($categoriesForProduct->categories()->get() as $categoryProduct) {
+            if ($categoryProduct->display_mode == "products_collection") {
                 $categoryCollection = $categoryRepository->findByIdOrFail($categoryProduct->id);
                 break;
             }
@@ -56,7 +56,7 @@
     }
     ?>
 
-     {!! view_render_event('bagisto.shop.products.view.before', ['product' => $product]) !!}
+    {!! view_render_event('bagisto.shop.products.view.before', ['product' => $product]) !!}
 
     <section class="product-detail">
 
@@ -66,21 +66,23 @@
                     @csrf()
                     <input type="hidden" name="product_id" value="{{ $product->product_id }}">
 
-                    <div class="w-full bg-cover h-120 relative"
+                    <div class="w-full bg-cover h-132 relative"
                          style="background-image: url('/themes/custom/assets/images/banner/bg_card.jpg');">
-                        <div class="main-container-wrapper flex my-4 absolute inset-x-0">
-                            <div class="w-1/2">
+
+                        <div class="main-container-wrapper flex flex-col sm:flex-row my-4 static sm:absolute inset-x-0">
+                            <div class="w-full sm:w-1/2">
                                 <div class="w-full text-base">
                                     {{ Breadcrumbs::render('categories', $categories,  $category) }}
                                 </div>
                                 @include ('shop::products.view.gallery')
                             </div>
-                            <div class="w-1/2 flex content-center flex-wrap h-112">
+                            <div class="w-full sm:w-1/2 flex content-center flex-wrap h-120">
                                 <div class="details w-full font-serif">
                                     <div class="product-heading font-serif text-gray-dark text-center my-3">
                                         @if ($categoryCollection)
                                             <div class="text-lg font-medium hover:text-gray-silver">
-                                                <a href="{{ route('shop.categories.index', $categoryCollection->slug) }}" title="{{ $categoryCollection->name }}">
+                                                <a href="{{ route('shop.categories.index', $categoryCollection->slug) }}"
+                                                   title="{{ $categoryCollection->name }}">
                                                     {{ $categoryCollection->name }} </a>
                                             </div>
                                         @endif
@@ -100,7 +102,7 @@
 
                                         @include ('shop::products.price', ['product' => $product])
 
-{{--                                        @include ('shop::products.view.stock', ['product' => $product])--}}
+                                        {{--                                        @include ('shop::products.view.stock', ['product' => $product])--}}
                                         @include ('shop::products.view.product-add')
                                         {!! view_render_event('bagisto.shop.products.view.short_description.before', ['product' => $product]) !!}
 
@@ -119,41 +121,55 @@
                                     {!! view_render_event('bagisto.shop.products.view.quantity.after', ['product' => $product]) !!}
 
 
-{{--                                    @include ('shop::products.view.configurable-options')--}}
+                                    {{--                                    @include ('shop::products.view.configurable-options')--}}
 
-{{--                                    @include ('shop::products.view.downloadable')--}}
+                                    {{--                                    @include ('shop::products.view.downloadable')--}}
 
-{{--                                    @include ('shop::products.view.grouped-products')--}}
+                                    {{--                                    @include ('shop::products.view.grouped-products')--}}
 
-{{--                                    @include ('shop::products.view.bundle-options')--}}
+                                    {{--                                    @include ('shop::products.view.bundle-options')--}}
 
-{{--                                    {!! view_render_event('bagisto.shop.products.view.description.before', ['product' => $product]) !!}--}}
+                                    {{--                                    {!! view_render_event('bagisto.shop.products.view.description.before', ['product' => $product]) !!}--}}
 
-{{--                                    <accordian :title="'{{ __('shop::app.products.description') }}'" :active="true">--}}
-{{--                                        <div slot="header">--}}
-{{--                                            {{ __('shop::app.products.description') }}--}}
-{{--                                            <i class="icon expand-icon right"></i>--}}
-{{--                                        </div>--}}
+                                    {{--                                    <accordian :title="'{{ __('shop::app.products.description') }}'" :active="true">--}}
+                                    {{--                                        <div slot="header">--}}
+                                    {{--                                            {{ __('shop::app.products.description') }}--}}
+                                    {{--                                            <i class="icon expand-icon right"></i>--}}
+                                    {{--                                        </div>--}}
 
-{{--                                        <div slot="body">--}}
-{{--                                            <div class="full-description">--}}
-{{--                                                {!! $product->description !!}--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </accordian>--}}
+                                    {{--                                        <div slot="body">--}}
+                                    {{--                                            <div class="full-description">--}}
+                                    {{--                                                {!! $product->description !!}--}}
+                                    {{--                                            </div>--}}
+                                    {{--                                        </div>--}}
+                                    {{--                                    </accordian>--}}
 
-{{--                                    {!! view_render_event('bagisto.shop.products.view.description.after', ['product' => $product]) !!}--}}
-                                   <div class="w-full flex justify-center my-6">
-                                       @include ('shop::products.view.attributes-shipping')
-                                   </div>
+                                    {{--                                    {!! view_render_event('bagisto.shop.products.view.description.after', ['product' => $product]) !!}--}}
+                                    <div class="w-full flex justify-center my-6">
+                                        @include ('shop::products.view.attributes-shipping')
+                                    </div>
 
-{{--                                    @include ('shop::products.view.reviews')--}}
+                                    {{--                                    @include ('shop::products.view.reviews')--}}
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
+                    <div class="relative w-full sm:w-1/2 bg-gray-dark-grey h-132 sm:h-120 flex flex-wrap sm:ml-auto bg-no-repeat bg-center">
+                        <div class="main-container-wrapper flex content-center flex-wrap py-16 sm:ml-12 h-120">
+                            <div class="text-white leading-none">
+                                <img class="content-container h-12 w-auto lg:h-auto sm:mb-10" src="/themes/custom/assets/images/logo.png" />
+                                <div class="mb-10">
+                                    <p class="font-medium italic text-7xl">15%</p><span class="font-serif text-4xl">Витамина С</span>
+                                </div>
+                                <p class="font-medium italic text-7xl">15%</p><span class="font-serif text-4xl">Арбутина</span>
+                            </div>
+                        </div>
+                        <div class="absolute object-contain inset-x-0 bottom-0"><img
+                                src="/themes/custom/assets/images/banner/happy-girl.png" alt="banner image"
+                                class="max-w-sm mx-auto sm:ml-auto sm:mr-10 sm:h-full">
+                        </div>
+                    </div>
+
                 </div>
             </product-view>
         </div>

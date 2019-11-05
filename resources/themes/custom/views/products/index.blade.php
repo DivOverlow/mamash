@@ -16,7 +16,7 @@
     @inject ('productRepository', 'Webkul\Product\Repositories\ProductRepository')
     <section class="hero-content">
         @if ($category->display_mode == 'products_collection')
-        <div class="hero-image bg-cover bg-center shadow-lg h-96 sm:h-120 relative" style="background-image: url('/public/themes/custom/assets/images/banner/bg-linear.jpg');">
+        <div class="hero-image bg-cover bg-center shadow-lg h-96 sm:h-120 relative" style="background-image: url('/themes/custom/assets/images/banner/bg-linear.jpg');">
             <div class="main-container-wrapper max-w-sm sm:max-w-xl px-30 sm:px-0 mx-auto overflow-hidden absolute inset-x-0 top-0 mt-8">
                 @if (!is_null($category->image))
                     <img class="w-full" src="{{ $category->image_url }}" alt="{!! $category->name !!}">
@@ -82,17 +82,17 @@
 
             <section class="banner-container">
                 <div class="flex flex-col sm:flex-row justify-between items-center">
-                    <div class="inline flex items-end w-full sm:w-3/5 h-56 sm:h-120 bg-no-repeat my-4" style="background-image: url('/public/themes/custom/assets/images/banner/bg-panel_md.jpg');">
-                        <img class="max-w-sm sm:max-w-3xl mx-auto sm:ml-40 px-3" src="/public/themes/custom/assets/images/banner/element_1.png" alt="banner">
+                    <div class="inline flex items-end w-full sm:w-3/5 h-56 sm:h-120 bg-no-repeat my-4" style="background-image: url('/themes/custom/assets/images/banner/bg-panel_md.jpg');">
+                        <img class="max-w-sm sm:max-w-3xl mx-auto sm:ml-40 px-3" src="/themes/custom/assets/images/banner/element_1.png" alt="banner">
                     </div>
-                    <div class="inline w-full sm:w-2/5  h-56 sm:h-120 bg-no-repeat ml-0 sm:ml-8 my-4" style="background-image: url('/public/themes/custom/assets/images/banner/bg-panel_sm.jpg');">
-                        <img class="max-w-sm mx-auto sm:ml-32 h-56 sm:h-112 object-contain -mt-6 sm:-mt-8" src="/public/themes/custom/assets/images/banner/element_2.png" alt="banner">
+                    <div class="inline w-full sm:w-2/5  h-56 sm:h-120 bg-no-repeat ml-0 sm:ml-8 my-4" style="background-image: url('/themes/custom/assets/images/banner/bg-panel_sm.jpg');">
+                        <img class="max-w-sm mx-auto sm:ml-32 h-56 sm:h-112 object-contain -mt-6 sm:-mt-8" src="/themes/custom/assets/images/banner/element_2.png" alt="banner">
                     </div>
                 </div>
                 <div class="main-container-wrapper">
                     <div class="max-w-sm w-full sm:max-w-3xl mx-auto flex my-10">
                         <div class="lg:h-auto lg:w-48 flex-none overflow-hidden mr-4">
-                            <img class="h-56 sm:h-112 object-cover" src="/public/themes/custom/assets/images/banner/chevron.jpg" alt="chevron">
+                            <img class="h-56 sm:h-112 object-cover" src="/themes/custom/assets/images/banner/chevron.jpg" alt="chevron">
                         </div>
                         <div class="bg-white flex flex-col justify-between leading-normal -mt-2 sm:-mt-4">
                             <h2 class="font-serif font-bold text-rosy-brown text-2xl sm:text-5xl text-shadow flex items-center uppercase mb-4">
@@ -115,7 +115,7 @@
                     </div>
                 </div>
                 <div class="w-full overflow-hidden">
-                    <img class="h-20 sm:h-32 object-cover" src="/public/themes/custom/assets/images/banner/bar.jpg" alt="footer bar">
+                    <img class="h-20 sm:h-32 object-cover" src="/themes/custom/assets/images/banner/bar.jpg" alt="footer bar">
                 </div>
             </section>
 
@@ -146,7 +146,7 @@
     <div class="main">
         {!! view_render_event('bagisto.shop.products.index.before', ['category' => $category]) !!}
 
-        <div class="category-container container flex flex-col sm:flex-row z-10 -mt-12 relative">
+        <div class="category-container text-xs container flex flex-col sm:flex-row z-10 -mt-12 relative">
             <div class="w-full sm:w-1/3 bg-gray-dark text-xs">
                 <div class="hidden p-10 sm:block">
                     <?php
@@ -186,7 +186,7 @@
                 <div class="main-container-wrapper sm:container bg-gray-snow sm:bg-gray-dark py-3 sm:py-0">
                     @if (count($categories))
                         <div class="list-container px-0 sm:px-6 mb-6">
-                            <ul class="list-group uppercase text-gray-cloud sm:text-white">
+                            <ul class="list-group text-sm uppercase text-gray-cloud sm:text-white">
                                 @foreach ($categories as $key => $value)
                                     <li class="py-1">
                                         <a href="{{ route('shop.categories.index', $value->slug) }}"
@@ -201,7 +201,7 @@
                 <?php $products = $productRepository->getAll($category->id); ?>
                 @if ($products->count())
                     <div
-                        class="inline-block text-gray-light uppercase relative px-10 mb-4 -ml-6 sm:ml-0">{{ __('shop::app.products.layered-nav-title') }}
+                        class="inline-block text-gray-light text-base uppercase relative px-10 mb-4 -ml-6 sm:ml-0">{{ __('shop::app.products.layered-nav-title') }}
                         <div class="icon filter-icon-on absolute cursor-pointer top-0 bottom-0 right-0 py-4"
                              id="filter"></div>
                     </div>

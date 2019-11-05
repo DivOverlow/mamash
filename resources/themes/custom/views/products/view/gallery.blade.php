@@ -38,7 +38,7 @@
 {{--                </li>--}}
 {{--            </ul>--}}
 
-            <div class="product-hero-image fixed max-w-sm sm:max-w-full" id="product-hero-image">
+            <div class="product-hero-image static sm:fixed max-w-sm sm:max-w-full" id="product-hero-image">
                 <img :src="currentLargeImageUrl" id="pro-img" :data-image="currentOriginalImageUrl" class="w-full h-112 object-scale-down"/>
 
                 @auth('customer')
@@ -109,9 +109,9 @@
 
                     this.currentOriginalImageUrl = image.original_image_url;
 
-                    if ($(window).width() > 580) {
-                        $('img#pro-img').data('zoom-image', image.original_image_url).ezPlus();
-                    }
+                    // if ($(window).width() > 580) {
+                    //     $('img#pro-img').data('zoom-image', image.original_image_url).ezPlus();
+                    // }
                 },
 
                 moveThumbs: function(direction) {
@@ -155,9 +155,9 @@
 
     <script>
         $(document).ready(function() {
-            if ($(window).width() > 580) {
-                $('img#pro-img').data('zoom-image', $('img#pro-img').data('image')).ezPlus();
-            }
+            // if ($(window).width() > 580) {
+            //     $('img#pro-img').data('zoom-image', $('img#pro-img').data('image')).ezPlus();
+            // }
 
             var wishlist = " <?php echo $wishListHelper->getWishlistProduct($product);  ?> ";
 
@@ -172,11 +172,11 @@
                     }
                 };
 
-                if ($("body").hasClass("rtl")) {
-                    $(".zoomWindow").addClass("zoom-image-direction");
-                } else {
-                    $(".zoomWindow").removeClass("zoom-image-direction");
-                }
+                // if ($("body").hasClass("rtl")) {
+                //     $(".zoomWindow").addClass("zoom-image-direction");
+                // } else {
+                //     $(".zoomWindow").removeClass("zoom-image-direction");
+                // }
             });
         })
     </script>
