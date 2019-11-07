@@ -47,6 +47,7 @@ return [
         'btn-title' => 'хочу подарок',
         'shopping-btn-title' => 'За покупками',
         'collections-btn-title' => 'Посмортеть в магазине',
+        'btn-more-details' => 'подробно',
     ],
 
     'button' => [
@@ -364,7 +365,7 @@ return [
         'show' => 'Show',
         'show-more' => 'Показать больше товаров',
         'pager-info' => 'Showing :showing of :total Items',
-        'description' => 'Description',
+        'description' => 'Описание',
         'specification' => 'Specification',
         'total-reviews' => ':total Reviews',
         'total-rating' => ':total_rating Ratings & :total_reviews Reviews',

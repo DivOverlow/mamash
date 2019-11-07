@@ -47,6 +47,7 @@ return [
         'btn-title' => 'want a present',
         'shopping-btn-title' => 'Go Shopping',
         'collections-btn-title' => 'shop the collections',
+        'btn-more-details' => 'more details',
     ],
 
     'button' => [

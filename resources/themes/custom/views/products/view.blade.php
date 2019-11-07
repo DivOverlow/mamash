@@ -66,17 +66,17 @@
                     @csrf()
                     <input type="hidden" name="product_id" value="{{ $product->product_id }}">
 
-                    <div class="w-full bg-cover h-132 relative"
+                    <div class="w-full bg-cover h-full sm:h-132"
                          style="background-image: url('/themes/custom/assets/images/banner/bg_card.jpg');">
 
-                        <div class="main-container-wrapper flex flex-col sm:flex-row my-4 static sm:absolute inset-x-0">
+                        <div class="main-container-wrapper flex flex-col sm:flex-row my-4">
                             <div class="w-full sm:w-1/2">
-                                <div class="w-full text-base">
+                                <div class="block text-base">
                                     {{ Breadcrumbs::render('categories', $categories,  $category) }}
                                 </div>
                                 @include ('shop::products.view.gallery')
                             </div>
-                            <div class="w-full sm:w-1/2 flex content-center flex-wrap h-120">
+                            <div class="w-full sm:w-1/2 flex content-center flex-wrap h-132">
                                 <div class="details w-full font-serif">
                                     <div class="product-heading font-serif text-gray-dark text-center my-3">
                                         @if ($categoryCollection)
@@ -93,9 +93,11 @@
                                         </p>
                                     </div>
 
+                                    {!! view_render_event('bagisto.shop.products.view.short_description.before', ['product' => $product]) !!}
                                     <div class="description px-0 sm:px-6 text-center text-gray-dark my-3">
                                         {!! $product->short_description !!}
                                     </div>
+                                    {!! view_render_event('bagisto.shop.products.view.short_description.after', ['product' => $product]) !!}
 
                                     <div class="w-full text-center font-medium my-3">
                                         @include ('shop::products.review', ['product' => $product])
@@ -104,12 +106,8 @@
 
                                         {{--                                        @include ('shop::products.view.stock', ['product' => $product])--}}
                                         @include ('shop::products.view.product-add')
-                                        {!! view_render_event('bagisto.shop.products.view.short_description.before', ['product' => $product]) !!}
 
                                     </div>
-
-                                    {!! view_render_event('bagisto.shop.products.view.short_description.after', ['product' => $product]) !!}
-
 
                                     {!! view_render_event('bagisto.shop.products.view.quantity.before', ['product' => $product]) !!}
 
@@ -121,15 +119,15 @@
                                     {!! view_render_event('bagisto.shop.products.view.quantity.after', ['product' => $product]) !!}
 
 
-                                    {{--                                    @include ('shop::products.view.configurable-options')--}}
+                                    @include ('shop::products.view.configurable-options')
+                                    @include ('shop::products.view.grouped-products')
+                                    @include ('shop::products.view.bundle-options')
 
                                     {{--                                    @include ('shop::products.view.downloadable')--}}
 
-                                    {{--                                    @include ('shop::products.view.grouped-products')--}}
 
-                                    {{--                                    @include ('shop::products.view.bundle-options')--}}
 
-                                    {{--                                    {!! view_render_event('bagisto.shop.products.view.description.before', ['product' => $product]) !!}--}}
+                                    {!! view_render_event('bagisto.shop.products.view.description.before', ['product' => $product]) !!}
 
                                     {{--                                    <accordian :title="'{{ __('shop::app.products.description') }}'" :active="true">--}}
                                     {{--                                        <div slot="header">--}}
@@ -154,196 +152,235 @@
                             </div>
                         </div>
                     </div>
-                    <div class="relative w-full sm:w-1/2 bg-gray-dark-grey h-132 sm:h-120 flex flex-wrap sm:ml-auto bg-no-repeat bg-center">
-                        <div class="main-container-wrapper flex content-center flex-wrap py-16 sm:ml-12 h-120">
-                            <div class="text-white leading-none">
-                                <img class="content-container h-12 w-auto lg:h-auto sm:mb-10" src="/themes/custom/assets/images/logo.png" />
-                                <div class="mb-10">
-                                    <p class="font-medium italic text-7xl">15%</p><span class="font-serif text-4xl">Витамина С</span>
+
+                    <div class="w-full flex flex-col sm:flex-row">
+                        <div class="w-full sm:w-1/2">
+                            @include ('shop::products.view.gallery-2')
+                        </div>
+                        <div class="w-full h-140 sm:h-132 sm:w-1/2 relative bg-gray-dark-grey flex content-start sm:content-center flex-wrap h-140 sm:h-132">
+                            <img  class="content-container h-10 sm:h-12 w-auto absolute inset-x-0 top-0 mx-auto sm:ml-12 my-8"
+                                src="/themes/custom/assets/images/logo.png"/>
+                            <div
+                                class="text-white leading-none sm:ml-12 flex flex-row sm:flex-col block mx-auto mt-20 sm:mt-0">
+                                <div class="sm:mb-10">
+                                    <p class="font-medium italic text-7xl">15%</p><span
+                                        class="font-serif text-2xl sm:text-4xl">Витамина С</span>
                                 </div>
-                                <p class="font-medium italic text-7xl">15%</p><span class="font-serif text-4xl">Арбутина</span>
+                                <div class="ml-8 sm:ml-0">
+                                    <p class="font-medium italic text-7xl">15%</p><span
+                                        class="font-serif text-2xl sm:text-4xl">Арбутина</span>
+                                </div>
+                            </div>
+                            <div class="absolute object-contain inset-x-0 bottom-0"><img
+                                    src="/themes/custom/assets/images/banner/happy-girl.png" alt="banner image"
+                                    class="max-w-sm mx-auto sm:ml-auto sm:mr-10 h-88 sm:h-112">
                             </div>
                         </div>
-                        <div class="absolute object-contain inset-x-0 bottom-0"><img
-                                src="/themes/custom/assets/images/banner/happy-girl.png" alt="banner image"
-                                class="max-w-sm mx-auto sm:ml-auto sm:mr-10 sm:h-full">
-                        </div>
                     </div>
+
 
                 </div>
             </product-view>
         </div>
+        @include('shop::home.jean-niel')
+
+        <div class="w-full flex justify-center mb-6">
+            @include ('shop::products.view.attributes-description')
+        </div>
+
+        @include("shop::home.research")
+
+        <section class="banner-container">
+            <div class="w-full flex flex-col sm:flex-row justify-between items-center">
+                <div class="w-full bg-no-repeat bg-cover bg-center" style="background-image: url('/themes/custom/assets/images/banner/collection.jpg');">
+                    <div class="max-w-sm sm:max-w-xl mx-auto h-132 flex content-center flex-wrap px-3">
+                        <div class="w-full text-white text-center flex flex-col justify-center items-center">
+                            <h2 class="text-4xl uppercase">НАЗВАНИЕ ЛИНЕЙКИ</h2>
+                            <p class="font-serif text-base sm:text-xl my-6">при заказе на сумму от 499 грн. Вы получаете
+                                в подарок “название продукта”</p>
+                            {{--                                                            {!! $product->short_description !!}--}}
+                            {{--                                                            <div class="mt-6"><a href="{{ url()->to('/').'/products/' . $product->url_key }}" class="button-black text-base">{{ __('shop::app.banner.btn-title') }}</a></div>--}}
+                            <a href="#" class="button-decor text-base uppercase py-2 h-10 w-1/3">{{ __('shop::app.banner.btn-more-details') }}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full">
+                    <img class="object-contain h-132 mx-auto" src="/themes/custom/assets/images/banner/cross.jpg" alt="banner image" />
+                </div>
+            </div>
+        </section><!-- end section banner container -->
+
+
 
         @include ('shop::products.view.related-products')
 
         @include ('shop::products.view.up-sells')
 
-    </section>
 
-    {!! view_render_event('bagisto.shop.products.view.after', ['product' => $product]) !!}
-@endsection
+        {!! view_render_event('bagisto.shop.products.view.after', ['product' => $product]) !!}
+        @endsection
 
-@push('scripts')
+        @push('scripts')
 
-    <script type="text/x-template" id="product-view-template">
-        <form method="POST" id="product-form" action="{{ route('cart.add', $product->product_id) }}"
-              @click="onSubmit($event)">
+            <script type="text/x-template" id="product-view-template">
+                <form method="POST" id="product-form" action="{{ route('cart.add', $product->product_id) }}"
+                      @click="onSubmit($event)">
 
-            <input type="hidden" name="is_buy_now" v-model="is_buy_now">
+                    <input type="hidden" name="is_buy_now" v-model="is_buy_now">
 
-            <slot></slot>
+                    <slot></slot>
 
-        </form>
-    </script>
+                </form>
+            </script>
 
-    <script type="text/x-template" id="quantity-changer-template">
-        <div class="quantity control-group" :class="[errors.has(controlName) ? 'has-error' : '']">
-            <label class="required">{{ __('shop::app.products.quantity') }}</label>
+            <script type="text/x-template" id="quantity-changer-template">
+                <div class="quantity control-group" :class="[errors.has(controlName) ? 'has-error' : '']">
+                    <label class="required">{{ __('shop::app.products.quantity') }}</label>
 
-            <button type="button" class="decrease" @click="decreaseQty()">-</button>
+                    <button type="button" class="decrease" @click="decreaseQty()">-</button>
 
-            <input :name="controlName" class="control" :value="qty" :v-validate="validations"
-                   data-vv-as="&quot;{{ __('shop::app.products.quantity') }}&quot;" readonly>
+                    <input :name="controlName" class="control" :value="qty" :v-validate="validations"
+                           data-vv-as="&quot;{{ __('shop::app.products.quantity') }}&quot;" readonly>
 
-            <button type="button" class="increase" @click="increaseQty()">+</button>
+                    <button type="button" class="increase" @click="increaseQty()">+</button>
 
-            <span class="control-error" v-if="errors.has(controlName)">@{{ errors.first(controlName) }}</span>
-        </div>
-    </script>
+                    <span class="control-error" v-if="errors.has(controlName)">@{{ errors.first(controlName) }}</span>
+                </div>
+            </script>
 
-    <script>
+            <script>
 
-        Vue.component('product-view', {
+                Vue.component('product-view', {
 
-            template: '#product-view-template',
+                    template: '#product-view-template',
 
-            inject: ['$validator'],
+                    inject: ['$validator'],
 
-            data: function () {
-                return {
-                    is_buy_now: 0,
-                }
-            },
-
-            methods: {
-                onSubmit: function (e) {
-                    if (e.target.getAttribute('type') != 'submit')
-                        return;
-
-                    e.preventDefault();
-
-                    var this_this = this;
-
-                    this.$validator.validateAll().then(function (result) {
-                        if (result) {
-                            this_this.is_buy_now = e.target.classList.contains('buynow') ? 1 : 0;
-
-                            setTimeout(function () {
-                                document.getElementById('product-form').submit();
-                            }, 0);
+                    data: function () {
+                        return {
+                            is_buy_now: 0,
                         }
-                    });
-                }
-            }
-        });
+                    },
 
-        Vue.component('quantity-changer', {
-            template: '#quantity-changer-template',
+                    methods: {
+                        onSubmit: function (e) {
+                            if (e.target.getAttribute('type') != 'submit')
+                                return;
 
-            inject: ['$validator'],
+                            e.preventDefault();
 
-            props: {
-                controlName: {
-                    type: String,
-                    default: 'quantity'
-                },
+                            var this_this = this;
 
-                quantity: {
-                    type: [Number, String],
-                    default: 1
-                },
+                            this.$validator.validateAll().then(function (result) {
+                                if (result) {
+                                    this_this.is_buy_now = e.target.classList.contains('buynow') ? 1 : 0;
 
-                minQuantity: {
-                    type: [Number, String],
-                    default: 1
-                },
+                                    setTimeout(function () {
+                                        document.getElementById('product-form').submit();
+                                    }, 0);
+                                }
+                            });
+                        }
+                    }
+                });
 
-                validations: {
-                    type: String,
-                    default: 'required|numeric|min_value:1'
-                }
-            },
+                Vue.component('quantity-changer', {
+                    template: '#quantity-changer-template',
 
-            data: function () {
-                return {
-                    qty: this.quantity
-                }
-            },
+                    inject: ['$validator'],
 
-            watch: {
-                quantity: function (val) {
-                    this.qty = val;
+                    props: {
+                        controlName: {
+                            type: String,
+                            default: 'quantity'
+                        },
 
-                    this.$emit('onQtyUpdated', this.qty)
-                }
-            },
+                        quantity: {
+                            type: [Number, String],
+                            default: 1
+                        },
 
-            methods: {
-                decreaseQty: function () {
-                    if (this.qty > this.minQuantity)
-                        this.qty = parseInt(this.qty) - 1;
+                        minQuantity: {
+                            type: [Number, String],
+                            default: 1
+                        },
 
-                    this.$emit('onQtyUpdated', this.qty)
-                },
+                        validations: {
+                            type: String,
+                            default: 'required|numeric|min_value:1'
+                        }
+                    },
 
-                increaseQty: function () {
-                    this.qty = parseInt(this.qty) + 1;
+                    data: function () {
+                        return {
+                            qty: this.quantity
+                        }
+                    },
 
-                    this.$emit('onQtyUpdated', this.qty)
-                }
-            }
-        });
+                    watch: {
+                        quantity: function (val) {
+                            this.qty = val;
 
-        $(document).ready(function () {
-            // var addTOButton = document.getElementsByClassName('add-to-buttons')[0];
-            document.getElementById('loader').style.display = "none";
-            // addTOButton.style.display = "flex";
-        });
+                            this.$emit('onQtyUpdated', this.qty)
+                        }
+                    },
 
-        window.onload = function () {
-            var thumbList = document.getElementsByClassName('thumb-list')[0];
-            var thumbFrame = document.getElementsByClassName('thumb-frame');
-            var productHeroImage = document.getElementsByClassName('product-hero-image')[0];
+                    methods: {
+                        decreaseQty: function () {
+                            if (this.qty > this.minQuantity)
+                                this.qty = parseInt(this.qty) - 1;
 
-            if (thumbList && productHeroImage) {
+                            this.$emit('onQtyUpdated', this.qty)
+                        },
 
-                for (let i = 0; i < thumbFrame.length; i++) {
-                    thumbFrame[i].style.height = (productHeroImage.offsetHeight / 4) + "px";
-                    thumbFrame[i].style.width = (productHeroImage.offsetHeight / 4) + "px";
-                }
+                        increaseQty: function () {
+                            this.qty = parseInt(this.qty) + 1;
 
-                if (screen.width > 720) {
-                    thumbList.style.width = (productHeroImage.offsetHeight / 4) + "px";
-                    thumbList.style.minWidth = (productHeroImage.offsetHeight / 4) + "px";
-                    thumbList.style.height = productHeroImage.offsetHeight + "px";
-                }
-            }
+                            this.$emit('onQtyUpdated', this.qty)
+                        }
+                    }
+                });
 
-            window.onresize = function () {
-                if (thumbList && productHeroImage) {
+                $(document).ready(function () {
+                    // var addTOButton = document.getElementsByClassName('add-to-buttons')[0];
+                    document.getElementById('loader').style.display = "none";
+                    // addTOButton.style.display = "flex";
+                });
 
-                    for (let i = 0; i < thumbFrame.length; i++) {
-                        thumbFrame[i].style.height = (productHeroImage.offsetHeight / 4) + "px";
-                        thumbFrame[i].style.width = (productHeroImage.offsetHeight / 4) + "px";
+                window.onload = function () {
+                    var thumbList = document.getElementsByClassName('thumb-list')[0];
+                    var thumbFrame = document.getElementsByClassName('thumb-frame');
+                    var productHeroImage = document.getElementsByClassName('product-hero-image')[0];
+
+                    if (thumbList && productHeroImage) {
+
+                        for (let i = 0; i < thumbFrame.length; i++) {
+                            thumbFrame[i].style.height = (productHeroImage.offsetHeight / 4) + "px";
+                            thumbFrame[i].style.width = (productHeroImage.offsetHeight / 4) + "px";
+                        }
+
+                        if (screen.width > 720) {
+                            thumbList.style.width = (productHeroImage.offsetHeight / 4) + "px";
+                            thumbList.style.minWidth = (productHeroImage.offsetHeight / 4) + "px";
+                            thumbList.style.height = productHeroImage.offsetHeight + "px";
+                        }
                     }
 
-                    if (screen.width > 720) {
-                        thumbList.style.width = (productHeroImage.offsetHeight / 4) + "px";
-                        thumbList.style.minWidth = (productHeroImage.offsetHeight / 4) + "px";
-                        thumbList.style.height = productHeroImage.offsetHeight + "px";
+                    window.onresize = function () {
+                        if (thumbList && productHeroImage) {
+
+                            for (let i = 0; i < thumbFrame.length; i++) {
+                                thumbFrame[i].style.height = (productHeroImage.offsetHeight / 4) + "px";
+                                thumbFrame[i].style.width = (productHeroImage.offsetHeight / 4) + "px";
+                            }
+
+                            if (screen.width > 720) {
+                                thumbList.style.width = (productHeroImage.offsetHeight / 4) + "px";
+                                thumbList.style.minWidth = (productHeroImage.offsetHeight / 4) + "px";
+                                thumbList.style.height = productHeroImage.offsetHeight + "px";
+                            }
+                        }
                     }
-                }
-            }
-        };
-    </script>
-@endpush
+                };
+            </script>
+    @endpush

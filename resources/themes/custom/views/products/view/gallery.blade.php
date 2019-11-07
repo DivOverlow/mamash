@@ -20,26 +20,26 @@
 @push('scripts')
 
     <script type="text/x-template" id="product-gallery-template">
-        <div>
+        <div class="flex flex-row">
 
-{{--            <ul class="thumb-list">--}}
-{{--                <li class="gallery-control top" @click="moveThumbs('top')" v-if="(thumbs.length > 4) && this.is_move.up">--}}
-{{--                    <span class="overlay"></span>--}}
-{{--                    <i class="icon arrow-up-white-icon"></i>--}}
-{{--                </li>--}}
+            <ul class="thumb-list" v-if="(thumbs.length > 0)">
+                <li class="gallery-control top" @click="moveThumbs('top')" v-if="(thumbs.length > 4) && this.is_move.up">
+                    <span class="overlay"></span>
+                    <i class="icon arrow-up-white-icon"></i>
+                </li>
 
-{{--                <li class="thumb-frame" v-for='(thumb, index) in thumbs' @mouseover="changeImage(thumb)" :class="[thumb.large_image_url == currentLargeImageUrl ? 'active' : '']" id="thumb-frame">--}}
-{{--                    <img :src="thumb.small_image_url"/>--}}
-{{--                </li>--}}
+                <li class="thumb-frame" v-for='(thumb, index) in thumbs' @mouseover="changeImage(thumb)" :class="[thumb.large_image_url == currentLargeImageUrl ? 'active' : '']" id="thumb-frame">
+                    <img :src="thumb.small_image_url"/>
+                </li>
 
-{{--                <li class="gallery-control bottom" @click="moveThumbs('bottom')" v-if="(thumbs.length > 4) && this.is_move.down">--}}
-{{--                    <span class="overlay"></span>--}}
-{{--                    <i class="icon arrow-down-white-icon"></i>--}}
-{{--                </li>--}}
-{{--            </ul>--}}
+                <li class="gallery-control bottom" @click="moveThumbs('bottom')" v-if="(thumbs.length > 4) && this.is_move.down">
+                    <span class="overlay"></span>
+                    <i class="icon arrow-down-white-icon"></i>
+                </li>
+            </ul>
 
-            <div class="product-hero-image static sm:fixed max-w-sm sm:max-w-full" id="product-hero-image">
-                <img :src="currentLargeImageUrl" id="pro-img" :data-image="currentOriginalImageUrl" class="w-full h-112 object-scale-down"/>
+            <div class="product-hero-image max-w-sm sm:max-w-full" id="product-hero-image">
+                <img :src="currentLargeImageUrl" id="pro-img" :data-image="currentOriginalImageUrl" class="w-full sm:w-auto h-auto sm:h-112 object-scale-down"/>
 
                 @auth('customer')
                     <a @if ($wishListHelper->getWishlistProduct($product)) class="add-to-wishlist already" @else class="add-to-wishlist" @endif href="{{ route('customer.wishlist.add', $product->product_id) }}">

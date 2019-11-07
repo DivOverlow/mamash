@@ -24,6 +24,7 @@ foreach (app('Webkul\Category\Repositories\CategoryRepository')->getVisibleCateg
         <ul class="nav flex flex-col sm:flex-row h-24 inline-block items-center">
             <category-item
                 v-for="(item, index) in items"
+                :class="`first-menu-item`"
                 :key="index"
                 :url="url"
                 :item="item"
@@ -76,7 +77,8 @@ foreach (app('Webkul\Category\Repositories\CategoryRepository')->getVisibleCateg
             {{--        <i :class="[show ? 'icon icon-arrow-down mt-15' : 'icon dropdown-right-icon left mt-15']"--}}
             {{--        v-if="haveChildren"  @click="showOrHide"></i>--}}
             <div v-if="haveChildren" class="nav-level">
-            <div>
+                <div>
+{{--            <div class="main-container-wrapper w-1/3">--}}
                 <ul v-if="haveChildren && show">
                     <category-item
                         v-for="(child, index) in item.children"

@@ -38,6 +38,30 @@ body {
     padding-right: 1rem;
 }
 
+
+/*UI*/
+.tabs ul {
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.tabs ul li {
+    display: inline-block;
+}
+
+.tabs ul li a {
+    padding: 10px 20px;
+    cursor: pointer;
+    margin: 0 2px;
+    text-align: center;
+    display: block;
+    @apply .font-serif .font-semibold .text-lg .text-gray-cloud .uppercase;
+}
+
+.tabs ul li.active a {
+    @apply .text-chocolate .border-b-2 .border-chocolate;
+}
+
+
 .border-inline {
     @apply .border-b .border-yellow;
 }
@@ -153,6 +177,8 @@ body {
     background-image: url(/themes/custom/assets/images/banner/bg-faq.jpg);
 }
 
+
+
 .header .header-bottom ul.nav {
     @apply .uppercase .text-white .items-center .block;
 }
@@ -179,7 +205,6 @@ body {
     @apply .capitalize .text-gray-cloud .border-b .border-transparent;
 }
 
-
 .header .header-bottom .nav > li .nav-level > div {
     position: absolute;
 
@@ -194,12 +219,6 @@ body {
 {
     @apply .text-white .border-b .border-white;
 }
-
-/*.header .header-bottom .nav > li .nav-level > div ul li a:hover > div {*/
-/*    right: auto;*/
-
-/*    @apply .block;*/
-/*}*/
 
 .header .header-bottom .nav > li:hover > .nav-level {
     left: auto;
@@ -272,52 +291,6 @@ body {
     @apply .py-8 .border-b .border-transparent;
 }
 
-/*.header .header-bottom .nav > li a {*/
-/*    @apply .py-8 .px-1 .border-b .border-transparent;*/
-/*    transition: 0.5s;*/
-/*}*/
-
-/*.header .header-bottom .nav > li li:hover > ul {*/
-/*    left: 100%;*/
-/*    margin-left: 1px;*/
-/*    top: -2px;*/
-/*    @apply .w-full .bg-white .flex .justify-end .absolute;*/
-/*}*/
-
-/*.header .header-bottom .nav > li:hover > a:first-child:nth-last-child(2):before {*/
-/*    margin-top: -5px;*/
-/*}*/
-
-/*.header .header-bottom .nav li li > a:first-child:nth-last-child(2):before {*/
-/*    margin-top: -5px;*/
-/*}*/
-
-/*.header .header-bottom .nav li li:hover > a:first-child:nth-last-child(2):before {*/
-/*    right: 10px;*/
-/*}*/
-
-/*.header .search-responsive {*/
-/*    display: none;*/
-/*}*/
-
-/*.header .search-responsive .search-content {*/
-/*    !*border-bottom: 1px solid #C7C7C7;*!*/
-/*    !*border-top: 1px solid #C7C7C7;*!*/
-/*    height: 50px;*/
-/*    display: flex;*/
-/*    align-items: center;*/
-/*    justify-content: space-between;*/
-/*}*/
-
-/*.header .search-responsive .search-content .search {*/
-/*    width: 80%;*/
-/*    border: none;*/
-/*    font-size: 16px;*/
-/*}*/
-
-/*.header .search-responsive .search-content .right {*/
-/*    float: right;*/
-/*}*/
 
 .list-group .list-item {
     @apply .border-b .border-transparent .cursor-pointer;
@@ -343,6 +316,64 @@ body {
     /*max-height: 100%;*/
     /*max-width: 100%;*/
 }
+
+section.product-detail div.layouter .form-container div.product-image-group div .thumb-list {
+    display: flex;
+    flex-direction: column;
+    margin-right: 4px;
+    min-width: 120px;
+    overflow: hidden;
+    position: relative;
+    justify-content: flex-start;
+    max-height: 480px;
+}
+
+section.product-detail div.layouter .form-container div.product-image-group div .thumb-list .thumb-frame {
+    border: 2px solid transparent;
+    background: transparent;
+    width: 120px;
+    max-height: 120px;
+}
+
+section.product-detail div.layouter .form-container div.product-image-group div .thumb-list .thumb-frame.active {
+    border-color: #969696;
+}
+
+section.product-detail div.layouter .form-container div.product-image-group div .thumb-list .thumb-frame img {
+    height: 100%;
+    width: 100%;
+}
+
+section.product-detail div.layouter .form-container div.product-image-group div .thumb-list .gallery-control {
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    cursor: pointer;
+    z-index: 1;
+}
+
+section.product-detail div.layouter .form-container div.product-image-group div .thumb-list .gallery-control .overlay {
+    opacity: 0.3;
+    background: #242424;
+    width: 100%;
+    height: 18px;
+    position: absolute;
+    left: 0;
+    z-index: -1;
+}
+
+section.product-detail div.layouter .form-container div.product-image-group div .thumb-list .gallery-control .icon {
+    z-index: 2;
+}
+
+section.product-detail div.layouter .form-container div.product-image-group div .thumb-list .gallery-control.top {
+    top: 0;
+}
+
+section.product-detail div.layouter .form-container div.product-image-group div .thumb-list .gallery-control.bottom {
+    bottom: 0;
+}
+
 
 
 

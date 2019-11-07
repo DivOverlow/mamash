@@ -60,10 +60,13 @@ module.exports = {
             '48': '12rem',
             '56': '14rem',
             '64': '16rem',
-            '96': '20rem',
+            '80': '20rem',
+            '88': '22rem',
+            '96': '24rem',
             '112': '28rem',
             '120': '30rem',
             '132': '34rem',
+            '140': '36rem',
         },
 
         extend: {
@@ -79,6 +82,7 @@ module.exports = {
                 'gray-dim': '#686868',
                 yellow: '#dfa46d',
                 'yellow-unclean': '#352e27',
+                chocolate: '#dfa36d',
                 'rosy-brown': '#bc786b',
                 white: '#fff',
                 'orange-light': "#f5f5f5",
