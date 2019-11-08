@@ -38,8 +38,8 @@
                 </li>
             </ul>
 
-            <div class="product-hero-image max-w-sm sm:max-w-full" id="product-hero-image">
-                <img :src="currentLargeImageUrl" id="pro-img" :data-image="currentOriginalImageUrl" class="w-full sm:w-auto h-auto sm:h-112 object-scale-down"/>
+            <div class="product-hero-image max-w-sm sm:max-w-full px-10" id="product-hero-image">
+                <img :src="currentLargeImageUrl" id="pro-img" :data-image="currentOriginalImageUrl" class="w-full h-auto sm:h-112 object-scale-down"/>
 
                 @auth('customer')
                     <a @if ($wishListHelper->getWishlistProduct($product)) class="add-to-wishlist already" @else class="add-to-wishlist" @endif href="{{ route('customer.wishlist.add', $product->product_id) }}">
