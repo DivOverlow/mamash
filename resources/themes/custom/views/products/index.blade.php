@@ -15,7 +15,7 @@
 @section('content-wrapper')
     @inject ('productRepository', 'Webkul\Product\Repositories\ProductRepository')
     <section class="hero-content">
-        @if ($category->display_mode == 'products_collection')
+        @if ($category->display_mode == 'collections_only')
         <div class="hero-image bg-cover bg-center shadow-lg h-96 sm:h-120 relative" style="background-image: url('/themes/custom/assets/images/banner/bg-linear.jpg');">
             <div class="main-container-wrapper max-w-sm sm:max-w-xl px-30 sm:px-0 mx-auto overflow-hidden absolute inset-x-0 top-0 mt-8">
                 @if (!is_null($category->image))
@@ -27,13 +27,13 @@
                 @if ($category->description)
                     {!! $category->description !!}
                 @endif
-            <div class="mt-12 text-center"><a
 
-
-
-        href="{{ route('shop.categories.index', ['categories'=>'category','line_filter'=>'16']) }}"
-                        class="button-black text-base">{{ __('shop::app.banner.collections-btn-title') }}</a>
+            <?php $products = $productRepository->getAll($category->id); ?>
+            @if ($products->count() > 1)
+                <div class="mt-12 text-center"><a href="{{ route('shop.categories.index', ['categories'=>'category','line_filter'=>'16']) }}"
+                        class="button-black text-base px-6">{{ __('shop::app.banner.collections-btn-title') }}</a>
                 </div>
+            @endif
             </div>
         @else
             <div class="hero-image absolute z-0 w-full mx-auto">
@@ -59,68 +59,12 @@
             </div>
         @endif
     </section>
-    @if ($category->display_mode == 'products_collection')
+    @if ($category->display_mode == 'collections_only')
         <div class="main">
-            {!! view_render_event('bagisto.shop.products.index.before', ['category' => $category]) !!}
-
-            <div class="main-container-wrapper category-container">
-                <?php $products = $productRepository->getAll($category->id); ?>
-                @if ($products->count())
-
-                <div class="product-list">
-                    @foreach ($products as $productFlat)
-                        <div class="product-card bg-white flex flex-col {{($loop->index & 1) ? 'sm:flex-row' : 'sm:flex-row-reverse' }} justify-between items-center my-10 mx-0 sm:-mx-10">
-                            @include ('shop::products.list.collections', ['product' => $productFlat])
-                        </div>
-                    @endforeach
-                </div>
-
-                @endif
-            </div>
-
-            {!! view_render_event('bagisto.shop.products.index.after', ['category' => $category]) !!}
-
-            <section class="banner-container">
-                <div class="flex flex-col sm:flex-row justify-between items-center">
-                    <div class="inline flex items-end w-full sm:w-3/5 h-56 sm:h-120 bg-no-repeat my-4" style="background-image: url('/themes/custom/assets/images/banner/bg-panel_md.jpg');">
-                        <img class="max-w-sm sm:max-w-3xl mx-auto sm:ml-40 px-3" src="/themes/custom/assets/images/banner/element_1.png" alt="banner">
-                    </div>
-                    <div class="inline w-full sm:w-2/5  h-56 sm:h-120 bg-no-repeat ml-0 sm:ml-8 my-4" style="background-image: url('/themes/custom/assets/images/banner/bg-panel_sm.jpg');">
-                        <img class="max-w-sm mx-auto sm:ml-32 h-56 sm:h-112 object-contain -mt-6 sm:-mt-8" src="/themes/custom/assets/images/banner/element_2.png" alt="banner">
-                    </div>
-                </div>
-                <div class="main-container-wrapper">
-                    <div class="max-w-sm w-full sm:max-w-3xl mx-auto flex my-10">
-                        <div class="lg:h-auto lg:w-48 flex-none overflow-hidden mr-4">
-                            <img class="h-56 sm:h-112 object-cover" src="/themes/custom/assets/images/banner/chevron.jpg" alt="chevron">
-                        </div>
-                        <div class="bg-white flex flex-col justify-between leading-normal -mt-2 sm:-mt-4">
-                            <h2 class="font-serif font-bold text-rosy-brown text-2xl sm:text-5xl text-shadow flex items-center uppercase mb-4">
-                                незамедлительный <br/>видимый результат
-                            </h2>
-                            <div class="font-serif font-semibold text-black text-base">
-                                <ul>
-                                    <li>Цвет лица: более сияющий, яркий и ровный</li>
-                                    <li>Кожа: свежая и подтянутая</li>
-                                    <li>Поверхность кожи: более гладкая, подтянутая, отдохнувшый вид</li>
-                                    <li>Морщины минимизируются и сглаживаются</li>
-                                    <li>Контур лица более четкий и подтянутый</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mx-auto w-full max-w-3xl hidden sm:block my-10">
-                        <p class="font-semibold text-2xl uppercase">быстрая программа ухода для придания коже сияния</p>
-                        <p class="font-bold text-3xl uppercase tracking-wider">попробовав однажды, вы полюбите ее!</p>
-                    </div>
-                </div>
-                <div class="w-full overflow-hidden">
-                    <img class="h-20 sm:h-32 object-cover" src="/themes/custom/assets/images/banner/bar.jpg" alt="footer bar">
-                </div>
-            </section>
-
+            @inject ('templateRepository', 'Webkul\CMS\Repositories\TemplateRepository')
+            {!! DbView::make($templateRepository->getTemplate($category->slug))->field('html_content')->render() !!}
         </div>
-    @elseif ($category->display_mode == 'products_gift')
+    @elseif ($category->display_mode == 'gifting_only')
         <div class="main">
             {!! view_render_event('bagisto.shop.products.index.before', ['category' => $category]) !!}
 
@@ -247,7 +191,7 @@
 
                                             <div class="mt-6"><a
                                                     href="{{ route('shop.categories.index', $value->slug) }}"
-                                                    class="button-black text-base">{{ __('shop::app.banner.btn-title') }}</a>
+                                                    class="button-black text-base px-6">{{ __('shop::app.banner.btn-title') }}</a>
                                             </div>
                                         </div>
                                     </div>

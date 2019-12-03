@@ -166,6 +166,7 @@ return [
         'title' => 'Title',
         'layout' => 'Layout',
         'url-key' => 'URL Key',
+        'template-key' => 'Template Key',
         'comment' => 'Comment',
         'product-name' => 'Product',
         'currency-name' => 'Currency Name',
@@ -226,7 +227,7 @@ return [
             'password' => 'Password',
             'confirm-password' => 'Confirm Password',
             'back-link-title' => 'Back to Sign In',
-            'submit-btn-title' => 'Email Password Reset Link'
+            'submit-btn-title' => 'Send Password Reset Email'
         ],
 
         'reset-password' => [
@@ -579,9 +580,9 @@ return [
             'products-and-description' => 'Products and Description',
             'products-only' => 'Products Only',
             'description-only' => 'Description Only',
-            'products-collection' => 'Products Collection',
-            'products-gift' => 'Products Gift',
             'description-and-images' => 'Description and Images',
+            'collections-only' => 'Collections Only',
+            'gifting-only' => 'Gifting Only',
             'description' => 'Description',
             'parent-category' => 'Parent Category',
             'seo' => 'Search Engine Optimization',
@@ -751,7 +752,7 @@ return [
             'locales' => 'Locales',
             'default-locale' => 'Default Locale',
             'currencies' => 'Currencies',
-            'base-currency' => 'Base Currency',
+            'base-currency' => 'Default Currency',
             'root-category' => 'Root Category',
             'inventory_sources' => 'Inventory Sources',
             'design' => 'Design',
@@ -1144,6 +1145,28 @@ return [
             'two-col' => '<div class="mt-10">Use class: <b>"static-container two-column"</b> for two column layout.</div>',
             'three-col' => '<div class="mt-10">Use class: <b>"static-container three-column"</b> for three column layout.</div>',
             'helper-classes' => 'Helper Classes'
+        ],
+        'templates' => [
+            'general' => 'General',
+            'seo' => 'SEO',
+            'pages' => 'Template',
+            'title' => 'template',
+            'add-title' => 'Add Template',
+            'create-btn-title' => 'Save Template',
+            'edit-title' => 'Edit Template',
+            'edit-btn-title' => 'Save Template',
+            'create-success' => 'Template created successfully',
+            'create-partial' => 'Some of the pages requested already exists',
+            'create-failure' => 'All pages requested already exists',
+            'update-success' => 'Template updated successfully',
+            'update-failure' => 'Template cannot be updated',
+            'delete-success' => 'Template deleted successfully',
+            'delete-failure' => 'Template cannot be deleted',
+            'template-title' => 'Template Title',
+            'template-key' => 'Template Key',
+            'channel' => 'Channel',
+            'locale' => 'Locale',
+            'content' => 'Content',
         ]
     ],
 

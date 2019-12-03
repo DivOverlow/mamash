@@ -11,7 +11,9 @@ return [
         'reviews' => 'Reviews',
         'wishlist' => 'Wishlist',
         'orders' => 'Orders',
+        'subscribe-newsletter' => 'Subscribe',
         'downloadable-products' => 'Downloadable Products',
+        'logout' => 'Exit'
     ],
 
     'common' => [
@@ -20,7 +22,6 @@ return [
     ],
 
     'home' => [
-        'name' => 'Home',
         'page-title' => config('app.name') . ' - Home',
         'featured-products' => 'Featured Products',
         'new-products' => 'New Products',
@@ -40,19 +41,19 @@ return [
         'wishlist' => 'Wishlist',
         'cart' => 'Cart',
         'logout' => 'Logout',
-        'search-text' => 'Search'
+        'search-text' => 'Search products here'
     ],
 
     'banner' => [
-        'btn-title' => 'want a present',
+        'btn-title' => 'I want a present',
         'shopping-btn-title' => 'Go Shopping',
-        'collections-btn-title' => 'shop the collections',
-        'btn-more-details' => 'more details',
+        'collections-btn-title' => 'Посмортеть в магазине',
+        'btn-more-details' => 'Detail',
     ],
 
     'button' => [
-        'read' => 'Read',
-        'buy' => 'Buy',
+        'read' => 'Читать',
+        'buy' => 'Купить',
     ],
 
     'minicart' => [
@@ -63,10 +64,7 @@ return [
     ],
 
     'footer' => [
-        'subscribe-newsletter' => 'Stay up to ',
-        'subscribe-newsletter-span' => 'date',
-        'subscribe-newsletter-sub' => 'by clicking on the “subscribe to news” button, you consent to the actions included in ',
-        'subscribe-newsletter-sub-span' => 'Privacy Policy',
+        'subscribe-newsletter' => 'Subscribe Newsletter',
         'subscribe' => 'Subscribe',
         'locale' => 'Locale',
         'currency' => 'Currency',
@@ -74,7 +72,7 @@ return [
 
     'subscription' => [
         'unsubscribe' => 'Unsubcribe',
-        'subscribe' => 'Subscribe to news',
+        'subscribe' => 'Subscribe',
         'subscribed' => 'You are now subscribed to subscription emails.',
         'not-subscribed' => 'You can not be subscribed to subscription emails, please try again later.',
         'already' => 'You are already subscribed to our subscription list.',
@@ -150,13 +148,14 @@ return [
         ],
 
         'login-text' => [
-            'no_account' => 'Do not have account',
+            'no_account' => 'Registration',
             'title' => 'Sign Up',
         ],
 
         'login-form' => [
             'page-title' => 'Customer - Login',
             'title' => 'Sign In',
+            'sub-title' => 'Enter Login and Password',
             'email' => 'Email',
             'password' => 'Password',
             'forgot_pass' => 'Forgot Password?',
@@ -172,7 +171,7 @@ return [
         'forgot-password' => [
             'title' => 'Recover Password',
             'email' => 'Email',
-            'submit' => 'Submit',
+            'submit' => 'Send Password Reset Email',
             'page_title' => 'Customer - Forgot Password Form'
         ],
 
@@ -204,6 +203,7 @@ return [
                 'lname' => 'Last Name',
                 'gender' => 'Gender',
                 'dob' => 'Date Of Birth',
+                'sub-dob' => 'we want to send you a gift',
                 'phone' => 'Phone',
                 'email' => 'Email',
                 'opassword' => 'Old Password',
@@ -323,6 +323,27 @@ return [
                 ]
             ],
 
+            'wishlist' => [
+                'page-title' => 'Customer - Wishlist',
+                'title' => 'Wishlist',
+                'deleteall' => 'Delete All',
+                'moveall' => 'Move All Products To Cart',
+                'move-to-cart' => 'Move To Cart',
+                'error' => 'Cannot add product to wishlist due to unknown problems, please checkback later',
+                'add' => 'Item successfully added to wishlist',
+                'remove' => 'Item successfully removed from wishlist',
+                'moved' => 'Item successfully moved To cart',
+                'option-missing' => 'Product options are missing, so item can not be moved to the wishlist.',
+                'move-error' => 'Item cannot be moved to wishlist, Please try again later',
+                'success' => 'Item successfully added to wishlist',
+                'failure' => 'Item cannot be added to wishlist, Please try again later',
+                'already' => 'Item already present in your wishlist',
+                'removed' => 'Item successfully removed from wishlist',
+                'remove-fail' => 'Item cannot Be removed from wishlist, Please try again later',
+                'empty' => 'You do not have any items in your wishlist',
+                'remove-all-success' => 'All the items from your wishlist have been removed',
+            ],
+
             'downloadable_products' => [
                 'title' => 'Downloadable Products',
                 'order-id' => 'Order Id',
@@ -351,19 +372,17 @@ return [
     ],
 
     'products' => [
-        'layered-nav-title' => 'Filter',
+        'layered-nav-title' => 'Shop By',
         'price-label' => 'As low as',
         'remove-filter-link-title' => 'Clear All',
-        'apply-filter-link-title' => 'Apply',
         'sort-by' => 'Sort By',
         'from-a-z' => 'From A-Z',
         'from-z-a' => 'From Z-A',
-        'newest-first' => 'Bestsellers',
+        'newest-first' => 'Newest First',
         'oldest-first' => 'Oldest First',
         'cheapest-first' => 'Cheapest First',
         'expensive-first' => 'Expensive First',
         'show' => 'Show',
-        'show-more' => 'Show more products',
         'pager-info' => 'Showing :showing of :total Items',
         'description' => 'Description',
         'specification' => 'Specification',
@@ -398,28 +417,7 @@ return [
         'choose-selection' => 'Choose a selection',
         'your-customization' => 'Your Customization',
         'total-amount' => 'Total Amount',
-        'none' => 'None',
-        'weight-unit' => 'ml',
-    ],
-
-    'wishlist' => [
-        'title' => 'Wishlist',
-        'deleteall' => 'Delete All',
-        'moveall' => 'Move All Products To Cart',
-        'move-to-cart' => 'Move To Cart',
-        'error' => 'Cannot add product to wishlist due to unknown problems, please checkback later',
-        'add' => 'Item successfully added to wishlist',
-        'remove' => 'Item successfully removed from wishlist',
-        'moved' => 'Item successfully moved To cart',
-        'option-missing' => 'Product options are missing, so item can not be moved to the wishlist.',
-        'move-error' => 'Item cannot be moved to wishlist, Please try again later',
-        'success' => 'Item successfully added to wishlist',
-        'failure' => 'Item cannot be added to wishlist, Please try again later',
-        'already' => 'Item already present in your wishlist',
-        'removed' => 'Item successfully removed from wishlist',
-        'remove-fail' => 'Item cannot Be removed from wishlist, Please try again later',
-        'empty' => 'You do not have any items in your wishlist',
-        'remove-all-success' => 'All the items from your wishlist have been removed',
+        'none' => 'None'
     ],
 
     // 'reviews' => [
@@ -473,6 +471,7 @@ return [
 
         'onepage' => [
             'title' => 'Checkout',
+            'cart-title' => 'Your order',
             'information' => 'Information',
             'shipping' => 'Shipping',
             'payment' => 'Payment',
@@ -499,8 +498,6 @@ return [
             'summary' => 'Order Summary',
             'price' => 'Price',
             'quantity' => 'Quantity',
-            'billing-address' => 'Billing Address',
-            'shipping-address' => 'Shipping Address',
             'contact' => 'Contact',
             'place-order' => 'Place Order',
             'new-address' => 'Add New Address',

@@ -12,7 +12,6 @@
 
     <product-gallery></product-gallery>
 
-
 </div>
 
 {!! view_render_event('bagisto.shop.products.view.gallery.after', ['product' => $product]) !!}
@@ -22,7 +21,7 @@
     <script type="text/x-template" id="product-gallery-template">
         <div class="flex flex-row">
 
-            <ul class="thumb-list" v-if="(thumbs.length > 0)">
+            <ul class="thumb-list" v-if="(thumbs.length > 2)">
                 <li class="gallery-control top" @click="moveThumbs('top')" v-if="(thumbs.length > 4) && this.is_move.up">
                     <span class="overlay"></span>
                     <i class="icon arrow-up-white-icon"></i>
@@ -38,8 +37,8 @@
                 </li>
             </ul>
 
-            <div class="product-hero-image max-w-sm sm:max-w-full px-10" id="product-hero-image">
-                <img :src="currentLargeImageUrl" id="pro-img" :data-image="currentOriginalImageUrl" class="w-full h-auto sm:h-112 object-scale-down"/>
+            <div class="product-hero-image w-full max-w-xl sm:ml-auto" id="product-hero-image">
+                <img :src="currentLargeImageUrl" id="pro-img" :data-image="currentOriginalImageUrl" class="w-full mx-auto h-auto sm:h-112 object-scale-down"/>
 
                 @auth('customer')
                     <a @if ($wishListHelper->getWishlistProduct($product)) class="add-to-wishlist already" @else class="add-to-wishlist" @endif href="{{ route('customer.wishlist.add', $product->product_id) }}">

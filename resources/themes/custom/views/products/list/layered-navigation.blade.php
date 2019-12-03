@@ -52,7 +52,7 @@
                     </filter-attribute-item>
                 </div>
                 <div class="filter-attribute-button flex justify-between items-center my-6">
-                    <span class="clear-filter button-dark w-full py-3 normal-case mr-1">
+                    <span class="clear-filter button-black w-full py-3 normal-case mr-1">
                         {{ __('shop::app.products.remove-filter-link-title') }}
                     </span>
 

@@ -142,7 +142,7 @@
             tinymce.init({
                 selector: 'textarea#content',
                 height: 200,
-                width: "70%",
+                width: "100%",
                 plugins: 'image imagetools media wordcount save fullscreen code',
                 toolbar1: 'formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat | code',
                 image_advtab: true,

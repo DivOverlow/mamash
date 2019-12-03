@@ -7,6 +7,7 @@ use Konekt\Concord\BaseModuleServiceProvider;
 class ModuleServiceProvider extends BaseModuleServiceProvider
 {
     protected $models = [
-        \Webkul\CMS\Models\CMS::class
+        \Webkul\CMS\Models\CMS::class,
+        \Webkul\CMS\Models\Template::class
     ];
 }

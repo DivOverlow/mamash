@@ -7,7 +7,7 @@
                 <h2 class="font-sans text-white text-4xl sm:text-7xl text-center leading-none">Название статьи</h2>
                 <p class="font-serif text-white text-center text-xl my-8">On selected products. Get them before
                     they're gone!</p>
-                <div class="blog-buttons mt-6"><a href="#" class="button-dark py-3 h-12 w-40">{{ __('shop::app.button.read') }}</a></div>
+                <div class="blog-buttons mt-6"><a href="#" class="button-black py-3 h-12 w-40 px-8">{{ __('shop::app.button.read') }}</a></div>
             </div>
         </div>
     </div>

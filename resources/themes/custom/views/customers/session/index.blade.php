@@ -6,52 +6,91 @@
 
 @section('content-wrapper')
 
-    <div class="auth-content">
-        <div class="sign-up-text">
-            {{ __('shop::app.customer.login-text.no_account') }} - <a href="{{ route('customer.register.index') }}">{{ __('shop::app.customer.login-text.title') }}</a>
-        </div>
+    <div class="auth-content w-full bg-cover h-full relative"
+         style="background-image: url('/themes/custom/assets/images/banner/bg_card.jpg');  min-height: 34rem;">
+        <img src="/themes/custom/assets/images/banner/blooper.png" alt="blooper image" class="h-24 w-auto absolute right-0 mt-20 invisible sm:visible">
+        <div class="main-container-wrapper flex flex-col justify-content-between sm:flex-row">
+            <div class="w-full sm:w-1/2 py-4">
+                {!! view_render_event('bagisto.shop.customers.login.before') !!}
 
-        {!! view_render_event('bagisto.shop.customers.login.before') !!}
+                <form method="POST" action="{{ route('customer.session.create') }}" @submit.prevent="onSubmit">
+                    {{ csrf_field() }}
+                    <div class="login-form flex flex-col content-between flex-wrap max-w-lg">
+                        <div class="py-12">
+                            <div class="login-text text-yellow text-2xl uppercase mb-2">{{ __('shop::app.customer.login-form.title') }}</div>
+                            <p class="font-serif text-gray-dark text-base">{{ __('shop::app.customer.login-form.sub-title') }}</p>
+                        </div>
+                        {!! view_render_event('bagisto.shop.customers.login_form_controls.before') !!}
 
-        <form method="POST" action="{{ route('customer.session.create') }}" @submit.prevent="onSubmit">
-            {{ csrf_field() }}
-            <div class="login-form">
-                <div class="login-text">{{ __('shop::app.customer.login-form.title') }}</div>
+                        <div class="control-group" :class="[errors.has('email') ? 'has-error' : '']">
+                            <div class="mat-div">
+                                <label for="email" class="required mat-label">{{ __('shop::app.customer.login-form.email') }}</label>
+                                <input type="text" class="control mat-input" name="email" v-validate="'required|email'"
+                                       value="{{ old('email') }}"
+                                       data-vv-as="&quot;{{ __('shop::app.customer.login-form.email') }}&quot;">
+                            </div>
+                                <span class="control-error" v-if="errors.has('email')">@{{ errors.first('email') }}</span>
+                        </div>
 
-                {!! view_render_event('bagisto.shop.customers.login_form_controls.before') !!}
+                        <div class="control-group" :class="[errors.has('password') ? 'has-error' : '']">
+                            <div class="mat-div">
+                                <label for="password"
+                                       class="required mat-label">{{ __('shop::app.customer.login-form.password') }}</label>
+                                <input type="password" v-validate="'required|min:6'" class="control mat-input" id="password"
+                                       name="password"
+                                       data-vv-as="&quot;{{ __('admin::app.users.sessions.password') }}&quot;"
+                                       value=""/>
+                            </div>
+                                <span class="control-error"
+                                      v-if="errors.has('password')">@{{ errors.first('password') }}</span>
+                        </div>
 
-                <div class="control-group" :class="[errors.has('email') ? 'has-error' : '']">
-                    <label for="email" class="required">{{ __('shop::app.customer.login-form.email') }}</label>
-                    <input type="text" class="control" name="email" v-validate="'required|email'" value="{{ old('email') }}" data-vv-as="&quot;{{ __('shop::app.customer.login-form.email') }}&quot;">
-                    <span class="control-error" v-if="errors.has('email')">@{{ errors.first('email') }}</span>
-                </div>
+                        {!! view_render_event('bagisto.shop.customers.login_form_controls.after') !!}
 
-                <div class="control-group" :class="[errors.has('password') ? 'has-error' : '']">
-                    <label for="password" class="required">{{ __('shop::app.customer.login-form.password') }}</label>
-                    <input type="password" v-validate="'required|min:6'" class="control" id="password" name="password" data-vv-as="&quot;{{ __('admin::app.users.sessions.password') }}&quot;" value=""/>
-                    <span class="control-error" v-if="errors.has('password')">@{{ errors.first('password') }}</span>
-                </div>
+                        <div class="forgot-password-link font-serif text-gray-cloud text-right py-4">
+                            <a class="underline" href="{{ route('customer.forgot-password.create') }}">{{ __('shop::app.customer.login-form.forgot_pass') }}</a>
 
-                {!! view_render_event('bagisto.shop.customers.login_form_controls.after') !!}
+                            <div class="mt-10">
+                                @if (Cookie::has('enable-resend'))
+                                    @if (Cookie::get('enable-resend') == true)
+                                        <a href="{{ route('customer.resend.verification-email', Cookie::get('email-for-resend')) }}">{{ __('shop::app.customer.login-form.resend-verification') }}</a>
+                                    @endif
+                                @endif
+                            </div>
+                        </div>
 
-                <div class="forgot-password-link">
-                    <a href="{{ route('customer.forgot-password.create') }}">{{ __('shop::app.customer.login-form.forgot_pass') }}</a>
-
-                    <div class="mt-10">
-                        @if (Cookie::has('enable-resend'))
-                            @if (Cookie::get('enable-resend') == true)
-                                <a href="{{ route('customer.resend.verification-email', Cookie::get('email-for-resend')) }}">{{ __('shop::app.customer.login-form.resend-verification') }}</a>
-                            @endif
-                        @endif
+                        <input class="button-black w-full sm:w-1/2 py-3 text-xl capitalize" type="submit"
+                               value="{{ __('shop::app.customer.login-form.button_title') }}">
                     </div>
+                </form>
+
+                {!! view_render_event('bagisto.shop.customers.login.after') !!}
+            </div>
+
+            <div class="w-full sm:w-1/2 flex content-between flex-wrap py-4">
+                <div class="py-6 mt-6">
+                    <div class="text-yellow text-2xl uppercase pb-2">{{ __('shop::app.customer.login-text.no_account') }}</div>
+                    <p class="font-serif text-gray-dark text-base">Создать аккаунт легко. Просто заполните форму ниже и наслаждайтесь преимуществами того, чтобы быть зарегистрированным клиентом</p>
+                </div>
+                <div>
+                    <div class="text-yellow text-2xl uppercase mb-4">Преимущества регистрации</div>
+                    <ul class="font-serif text-gray-dark text-base">
+                        <li class="checkmark block">Приветственный подарок</li>
+                        <li class="checkmark block">Доступ к Ритуалу</li>
+                        <li class="checkmark block">Личные сюрпризы и эксклюзивные предложения</li>
+                        <li class="checkmark block">История заказов</li>
+                    </ul>
+                </div>
+                <div class="w-full py-3">
+                    <a href="#" class="text-yellow font-serif underline">{{ __('shop::app.footer.subscribe-newsletter-sub-span') }}</a>
                 </div>
 
-                <input class="btn btn-primary btn-lg" type="submit" value="{{ __('shop::app.customer.login-form.button_title') }}">
-            </div>
-        </form>
+                <div class="sign-up button-decor w-full sm:w-1/2 py-3 text-xl capitalize">
+                    <a href="{{ route('customer.register.index') }}">{{ __('shop::app.customer.login-text.title') }}</a>
+                </div>
 
-        {!! view_render_event('bagisto.shop.customers.login.after') !!}
+            </div>
+        </div>
     </div>
 
 @stop
-

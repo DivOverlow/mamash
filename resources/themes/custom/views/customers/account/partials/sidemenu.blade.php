@@ -1,7 +1,7 @@
 <div class="sidebar">
     @foreach ($menu->items as $menuItem)
-        <div class="menu-block">
-            <div class="menu-block-title">
+        <div class="menu-block font-serif uppercase mt-6">
+            <div class="menu-block-title font-semibold">
                 {{ trans($menuItem['name']) }}
 
                 <i class="icon icon-arrow-down right" id="down-icon"></i>
@@ -10,12 +10,8 @@
             <div class="menu-block-content">
                 <ul class="menubar">
                     @foreach ($menuItem['children'] as $subMenuItem)
-                        <li class="menu-item {{ $menu->getActive($subMenuItem) }}">
-                            <a href="{{ $subMenuItem['url'] }}">
-                                {{ trans($subMenuItem['name']) }}
-                            </a>
-
-                            <i class="icon angle-right-icon"></i>
+                        <li class="menu-item py-3 block {{ $menu->getActive($subMenuItem) }}">
+                            <i class="{{ trans($subMenuItem['icon'])  .' ' . $menu->getActive($subMenuItem) }} align-middle h-auto w-6"></i><a href="{{ $subMenuItem['url'] }}" class="ml-4"> {{ trans($subMenuItem['name']) }} </a>
                         </li>
                     @endforeach
                 </ul>

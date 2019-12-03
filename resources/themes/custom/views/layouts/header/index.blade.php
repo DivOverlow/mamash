@@ -76,8 +76,8 @@
             <div class="header-bottom w-full block flex-grow lg:flex lg:items-center lg:w-full" id="header-bottom">
                 @include('shop::layouts.header.nav-menu.navmenu')
             </div>
-            <div class="w-auto absolute inset-0 mt-2 ml-20 sm:relative">
-                <ul class="logo-container h-full w-32 sm:w-56 sm:mx-8">
+            <div class="w-auto absolute inset-0 mt-2 ml-20 sm:ml-0 sm:relative">
+                <ul class="logo-container h-full w-32 sm:w-56 sm:mx-2">
                     <li>
                         <a href="{{ route('shop.home.index') }}">
                             @if ($logo = core()->getCurrentChannel()->logo_url)
@@ -112,11 +112,26 @@
                         {!! view_render_event('bagisto.shop.layout.header.account-item.before') !!}
 
                         <li>
-                        @guest
-                            <a href="{{ route('customer.session.index') }}"><div class="cursor-pointer user-icon mr-1"></div></a>
-                        @endguest
+{{--                        @guest--}}
+{{--                            <a href="{{ route('customer.session.index') }}"><div class="cursor-pointer user-icon mr-1"></div></a>--}}
+{{--                        @else--}}
+{{--                            <div>--}}
+{{--                                <label style="color: #9e9e9e; font-weight: 700; text-transform: uppercase; font-size: 15px;">--}}
+{{--                                    {{ auth()->guard('customer')->user()->first_name }}--}}
+{{--                                </label>--}}
+{{--                                <a href="{{ route('customer.profile.index') }}" title="{{ __('shop::app.header.profile') }}"><div class="cursor-pointer user-icon active"></div></a>--}}
+{{--                            </div>--}}
+{{--                        @endguest--}}
                         @auth('customer')
-                            <a href="{{ route('customer.session.index') }}"><div class="cursor-pointer user-icon active"></div></a>
+                            <div class="relative w-12">
+                                <label class="ml-auto -mt-3 bg-chocolate rounded-full h-8 w-8 flex items-center justify-center text-white text-xl">
+                                    {{ substr(auth()->guard('customer')->user()->first_name, 0, 2) }}
+                                </label>
+                                <a href="{{ route('customer.profile.index') }}" title="{{ __('shop::app.header.profile') }}" class="z-10 absolute inset-0 mt-2">
+                                    <span class="user-icon active"></span></a>
+                            </div>
+                            @else
+                                <a href="{{ route('customer.session.index') }}"><span class="user-icon mr-1"></span></a>
                         @endauth
 
 {{--                    <span class="dropdown-toggle">--}}
@@ -190,7 +205,7 @@
 
                         {!! view_render_event('bagisto.shop.layout.header.cart-item.before') !!}
 
-                        <li class="cart-dropdown-container">
+                        <li class="cart-dropdown-container static">
 
                             @include('shop::checkout.cart.mini-cart')
 

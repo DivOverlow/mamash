@@ -90,7 +90,7 @@ class CategoryController extends Controller
             'slug' => ['required', 'unique:category_translations,slug', new \Webkul\Core\Contracts\Validations\Slug],
             'name' => 'required',
             'image.*' => 'mimes:jpeg,jpg,bmp,png',
-            'description' => 'required_if:display_mode,==,description_only,products_and_description,products_collection,products_gift'
+            'description' => 'required_if:display_mode,==,description_only,products_and_description,collections_only,gifting_only'
         ]);
 
         if (strtolower(request()->input('name')) == 'root') {

@@ -89,11 +89,11 @@
                                     <option value="description_only">
                                         {{ __('admin::app.catalog.categories.description-only') }}
                                     </option>
-                                    <option value="products_collection">
-                                        {{ __('admin::app.catalog.categories.products-collection') }}
+                                    <option value="collections_only">
+                                        {{ __('admin::app.catalog.categories.collections-only') }}
                                     </option>
-                                    <option value="products_gift">
-                                        {{ __('admin::app.catalog.categories.products-gift') }}
+                                    <option value="gifting_only">
+                                        {{ __('admin::app.catalog.categories.gifting-only') }}
                                     </option>
                                 </select>
                                 <span class="control-error" v-if="errors.has('display_mode')">@{{ errors.first('display_mode') }}</span>

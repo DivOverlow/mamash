@@ -13,7 +13,7 @@
     if ($categoriesForProduct) {
         foreach ($categoriesForProduct->categories()->get() as $categoryProduct ) {
             if ($categoryProduct->display_mode == "products_collection" ) {
-                $categoryCollection = $categoryRepository->findByIdOrFail($categoryProduct->id);
+                $categoryCollection = $categoryRepository->findOrFail($categoryProduct->id);
                 break;
             }
         }

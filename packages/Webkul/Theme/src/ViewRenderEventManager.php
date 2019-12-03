@@ -59,7 +59,7 @@ class ViewRenderEventManager
     }
 
     /**
-     * Add templates for render
+     * Add template for render
      *
      * @param string $template
      * @return void
@@ -70,14 +70,14 @@ class ViewRenderEventManager
     }
 
     /**
-     * Renders templates
+     * Renders template
      *
      * @return string
      */
     public function render()
     {
         $string = "";
-        
+
         foreach ($this->templates as $template) {
             if (view()->exists($template)) {
                 $string .= view($template , $this->params)->render();
@@ -86,7 +86,7 @@ class ViewRenderEventManager
                 $string .= $template;
             }
         }
-        
+
         return $string;
     }
 }

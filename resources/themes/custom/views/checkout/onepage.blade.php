@@ -10,71 +10,238 @@
 
 @push('scripts')
     <script type="text/x-template" id="checkout-template">
-        <div id="checkout" class="checkout-process">
-            <div class="col-main">
-                <ul class="checkout-steps">
-                    <li class="active" :class="[completed_step >= 0 ? 'active' : '', completed_step > 0 ? 'completed' : '']" @click="navigateToStep(1)">
-                        <div class="decorator address-info"></div>
-                        <span>{{ __('shop::app.checkout.onepage.information') }}</span>
-                    </li>
+        <div id="checkout" class="checkout-process main-container-wrapper">
+            <div class="title w-full h-32 flex items-end text-center">
+                <span
+                    class="text-xl sm:text-5xl uppercase text-gray-dark mx-auto">{{ __('shop::app.checkout.onepage.title') }}</span>
+            </div>
+            <div class="flex flex-col sm:flex-row justify-content-between items-start">
+                <div class="col-main w-full flex flex-col">
+                    <ul class="checkout-steps max-w-lg">
+                        <li class="active" :class="[completed_step >= 0 ? 'active' : '', completed_step > 0 ? 'completed' : '']"
+                            @click="navigateToStep(1)">
+                            <div class=" flex items-center inline-block">
+                                <div class="profile-icon address-info"></div>
+                                <span
+                                    class="text-gray-dark text-xl sm:text-2xl uppercase pl-4">{{ __('shop::app.checkout.onepage.information') }}</span>
+                            </div>
+                            <div class="step-content information w-full" v-show="current_step == 1"
+                                 id="address-section">
+                                @include('shop::checkout.onepage.customer-info')
 
-                    <div class="line mb-25"></div>
-
-                    @if ($cart->haveStockableItems())
-                        <li :class="[current_step == 2 || completed_step > 1 ? 'active' : '', completed_step > 1 ? 'completed' : '']" @click="navigateToStep(2)">
-                            <div class="decorator shipping"></div>
-                            <span>{{ __('shop::app.checkout.onepage.shipping') }}</span>
+                                {{--                    <div class="button-group">--}}
+                                {{--                        <button type="button" class="btn btn-lg btn-primary" @click="validateForm('address-form')" :disabled="disable_button" id="checkout-address-continue-button">--}}
+                                {{--                            {{ __('shop::app.checkout.onepage.continue') }}--}}
+                                {{--                        </button>--}}
+                                {{--                    </div>--}}
+                            </div>
                         </li>
 
                         <div class="line mb-25"></div>
-                    @endif
 
-                    <li :class="[current_step == 3 || completed_step > 2 ? 'active' : '', completed_step > 2 ? 'completed' : '']" @click="navigateToStep(3)">
-                        <div class="decorator payment"></div>
-                        <span>{{ __('shop::app.checkout.onepage.payment') }}</span>
-                    </li>
+                        @if ($cart->haveStockableItems())
+{{--                            <li :class="[current_step == 2 || completed_step > 1 ? 'active' : '', completed_step > 1 ? 'completed' : '']"--}}
+                            <li class="active" :class="[completed_step >= 0 ? 'active' : '', completed_step > 0 ? 'completed' : '']"
+                                @click="navigateToStep(2)">
+                                <div class="flex items-center inline-block">
+                                    <div class="decorator shipping"></div>
+                                    <span
+                                        class="text-gray-dark text-xl sm:text-2xl uppercase pl-4">{{ __('shop::app.checkout.onepage.shipping') }}</span>
+                                </div>
+                            </li>
 
-                    <div class="line mb-25"></div>
+                            <div class="line mb-25"></div>
+                        @endif
 
-                    <li :class="[current_step == 4 ? 'active' : '']">
-                        <div class="decorator review"></div>
-                        <span>{{ __('shop::app.checkout.onepage.complete') }}</span>
-                    </li>
-                </ul>
+{{--                        <li :class="[current_step == 3 || completed_step > 2 ? 'active' : '', completed_step > 2 ? 'completed' : '']"--}}
+                        <li class="active" :class="[completed_step >= 0 ? 'active' : '', completed_step > 0 ? 'completed' : '']"
+                            @click="navigateToStep(3)">
+                            <div class="flex items-center inline-block">
+                                <div class="decorator payment"></div>
+                                <span class="text-gray-dark text-xl sm:text-2xl uppercase pl-4">{{ __('shop::app.checkout.onepage.payment') }}</span>
+                            </div>
+                        </li>
 
-                <div class="step-content information" v-show="current_step == 1" id="address-section">
-                    @include('shop::checkout.onepage.customer-info')
+{{--                        <div class="line mb-25"></div>--}}
+
+{{--                        <li :class="[current_step == 4 ? 'active' : '']">--}}
+{{--                            <div class="decorator review"></div>--}}
+{{--                            <span>{{ __('shop::app.checkout.onepage.complete') }}</span>--}}
+{{--                        </li>--}}
+                    </ul>
+
+                    {{--                <div class="step-content information" v-show="current_step == 1" id="address-section">--}}
+                    {{--                    @include('shop::checkout.onepage.customer-info')--}}
+
+                    {{--                    <div class="button-group">--}}
+                    {{--                        <button type="button" class="btn btn-lg btn-primary" @click="validateForm('address-form')" :disabled="disable_button" id="checkout-address-continue-button">--}}
+                    {{--                            {{ __('shop::app.checkout.onepage.continue') }}--}}
+                    {{--                        </button>--}}
+                    {{--                    </div>--}}
+                    {{--                </div>--}}
+
+{{--                    <div class="step-content shipping" v-show="current_step == 2" id="shipping-section">--}}
+{{--                        <shipping-section v-if="current_step == 2"--}}
+{{--                                          @onShippingMethodSelected="shippingMethodSelected($event)"></shipping-section>--}}
+
+{{--                        <div class="button-group">--}}
+{{--                            <button type="button" class="btn btn-lg btn-primary" @click="validateForm('shipping-form')"--}}
+{{--                                    :disabled="disable_button" id="checkout-shipping-continue-button">--}}
+{{--                                {{ __('shop::app.checkout.onepage.continue') }}--}}
+{{--                            </button>--}}
+
+{{--                        </div>--}}
+{{--                    </div>--}}
+
+{{--                    <div class="step-content payment" v-show="current_step == 3" id="payment-section">--}}
+{{--                        <payment-section v-if="current_step == 3"--}}
+{{--                                         @onPaymentMethodSelected="paymentMethodSelected($event)"></payment-section>--}}
+
+{{--                        <div class="button-group">--}}
+{{--                            <button type="button" class="btn btn-lg btn-primary" @click="validateForm('payment-form')"--}}
+{{--                                    :disabled="disable_button" id="checkout-payment-continue-button">--}}
+{{--                                {{ __('shop::app.checkout.onepage.continue') }}--}}
+{{--                            </button>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+
+{{--                    <div class="step-content review" v-show="current_step == 4" id="summary-section">--}}
+{{--                        <review-section v-if="current_step == 4" :key="reviewComponentKey">--}}
 
                     <div class="button-group">
-                        <button type="button" class="btn btn-lg btn-primary" @click="validateForm('address-form')" :disabled="disable_button" id="checkout-address-continue-button">
-                            {{ __('shop::app.checkout.onepage.continue') }}
+                        <button type="button" class="button-decor w-1/2 py-4 normal-case" @click="placeOrder()"
+                                :disabled="disable_button" id="checkout-place-order-button">
+                            {{ __('shop::app.checkout.onepage.place-order') }}
                         </button>
                     </div>
+
                 </div>
 
-                <div class="step-content shipping" v-show="current_step == 2" id="shipping-section">
-                    <shipping-section v-if="current_step == 2" @onShippingMethodSelected="shippingMethodSelected($event)"></shipping-section>
+            <div class="col-right w-full max-w-md ml-auto mt-2" v-show="current_step != 4">
 
-                    <div class="button-group">
-                        <button type="button" class="btn btn-lg btn-primary" @click="validateForm('shipping-form')" :disabled="disable_button" id="checkout-shipping-continue-button">
-                            {{ __('shop::app.checkout.onepage.continue') }}
-                        </button>
 
+                @inject ('productImageHelper', 'Webkul\Product\Helpers\ProductImage')
+                @inject ('productRepository', 'Webkul\Product\Repositories\ProductRepository')
+                @inject ('categoryRepository', 'Webkul\Category\Repositories\CategoryRepository')
+
+
+                <?php $cart = cart()->getCart(); ?>
+
+                @if ($cart)
+                    <?php $items = $cart->items; ?>
+
+
+                    <div class="w-full">
+                        <div class="bg-gray-snow h-24 flex content-center flex-wrap">
+                            <p class="cart-heading w-full font-medium text-center text-gray-dark text-xl uppercase">
+                                {{ __('shop::app.checkout.onepage.cart-title') }}
+                            </p>
+                        </div>
+
+                            <div class="cart-content my-3">
+                                @foreach ($items as $item)
+                                    <div class="item w-full flex flex-row justify-content-between items-center px-3 py-1 inline-block">
+                                        <div class="item-image w-1/5">
+                                            <?php
+                                            if ($item->type == "configurable")
+                                                $images = $productImageHelper->getProductBaseImage($item->child->product);
+                                            else
+                                                $images = $productImageHelper->getProductBaseImage($item->product);
+                                            ?>
+                                            <img src="{{ $images['small_image_url'] }}"/>
+                                        </div>
+
+                                        <div class="item-details w-3/5 flex content-between flex-wrap px-2 inline-block" style="min-height: 4rem;">
+                                            {!! view_render_event('bagisto.shop.checkout.cart-mini.item.name.before', ['item' => $item]) !!}
+
+                                            <div class="item-title w-full">
+                                                @php
+                                                    $categoryCollection = null;
+                                                    $categoriesForProduct = $productRepository->find($item->product_id);
+                                                    if ($categoriesForProduct) {
+                                                        foreach ($categoriesForProduct->categories()->get() as $categoryProduct) {
+                                                            if ($categoryProduct->display_mode == "products_collection") {
+                                                                $categoryCollection = $categoryRepository->findOrFail($categoryProduct->id);
+                                                                break;
+                                                            }
+                                                        }
+                                                    }
+                                                @endphp
+                                                @if ($categoryCollection)
+                                                    <p>
+                                                        <a href="{{ route('shop.categories.index', $categoryCollection->slug) }}"
+                                                           class="font-serif font-medium text-base text-gray-cloud cursor-pointer hover:text-gray-dark"
+                                                           title="{{ $categoryCollection->name }}">
+                                                            {{ $categoryCollection->name }} </a>
+                                                    </p>
+                                                @endif
+                                                <span class="text-base text-gray-dark uppercase hover:text-gray-cloud">
+                                        <a href="{{ url()->to('/').'/products/'.$item->product->url_key }}">
+                                        {{ $item->product->name }} </a>
+                                    </span>
+                                            </div>
+
+                                            {!! view_render_event('bagisto.shop.checkout.cart-mini.item.name.after', ['item' => $item]) !!}
+
+
+                                            {!! view_render_event('bagisto.shop.checkout.cart-mini.item.options.before', ['item' => $item]) !!}
+
+                                            @if ($item->type == "configurable")
+                                                <div class="item-options">
+                                                    {{ trim(Cart::getProductAttributeOptionDetails($item->child->product)['html']) }}
+                                                </div>
+                                            @endif
+
+                                            {!! view_render_event('bagisto.shop.checkout.cart-mini.item.options.after', ['item' => $item]) !!}
+
+                                            {!! view_render_event('bagisto.shop.checkout.cart-mini.item.quantity.before', ['item' => $item]) !!}
+
+                                            <div
+                                                class="item-qty font-serif text-base text-sm text-gray-cloud block">{{ __('shop::app.checkout.cart.quantity.short') }} {{ $item->quantity }}</div>
+
+                                            {!! view_render_event('bagisto.shop.checkout.cart-mini.item.quantity.after', ['item' => $item]) !!}
+                                        </div>
+                                        {!! view_render_event('bagisto.shop.checkout.cart-mini.item.price.before', ['item' => $item]) !!}
+
+                                        <div class="item-price w-1/5 font-medium">{{ core()->currency($item->base_total) }}</div>
+
+                                        {!! view_render_event('bagisto.shop.checkout.cart-mini.item.price.after', ['item' => $item]) !!}
+                                    </div>
+
+                                @endforeach
+                            </div>
+
+{{--                            <div class="dropdown-footer">--}}
+{{--                                <div class="bg-gray-snow font-medium text-gray-dark h-16 flex content-center flex-wrap">--}}
+{{--                                    <div class="w-2/3 text-center uppercase">--}}
+{{--                                        {{ __('shop::app.checkout.cart.cart-subtotal') }}:--}}
+{{--                                    </div>--}}
+{{--                                    <div class="w-1/3 text-center">--}}
+{{--                                        {!! view_render_event('bagisto.shop.checkout.cart-mini.subtotal.before', ['cart' => $cart]) !!}--}}
+{{--    --}}
+{{--                                        {{ core()->currency($cart->base_sub_total) }}--}}
+{{--    --}}
+{{--                                        {!! view_render_event('bagisto.shop.checkout.cart-mini.subtotal.after', ['cart' => $cart]) !!}--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="flex flex-row justify-content-between items-center">--}}
+{{--                    <span class="button-black w-full py-3 normal-case">--}}
+{{--    --}}{{--                            <a href="{{ route('shop.checkout.cart.index') }}">{{ __('shop::app.checkout.cart.continue-shopping') }}</a>--}}
+{{--                        <a href="{{ route('shop.checkout.cart.index') }}">{{ __('shop::app.minicart.view-cart') }}</a>--}}
+{{--                    </span>--}}
+{{--                                    <span class="button-decor w-full py-3 normal-case">--}}
+{{--    --}}{{--                            <a href="{{ route('shop.checkout.cart.index') }}">{{ __('shop::app.minicart.view-cart') }}</a>--}}
+{{--                        <a  href="{{ route('shop.checkout.onepage.index') }}">{{ __('shop::app.minicart.checkout') }}</a>--}}
+{{--                    </span>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                     </div>
-                </div>
 
-                <div class="step-content payment" v-show="current_step == 3" id="payment-section">
-                    <payment-section v-if="current_step == 3" @onPaymentMethodSelected="paymentMethodSelected($event)"></payment-section>
+                @endif
 
-                    <div class="button-group">
-                        <button type="button" class="btn btn-lg btn-primary" @click="validateForm('payment-form')" :disabled="disable_button" id="checkout-payment-continue-button">
-                            {{ __('shop::app.checkout.onepage.continue') }}
-                        </button>
-                    </div>
-                </div>
 
-                <div class="step-content review" v-show="current_step == 4" id="summary-section">
-                    <review-section v-if="current_step == 4" :key="reviewComponentKey">
+                <div class="step-content review" v-show="current_step >= 0" id="summary-section">
+                    <review-section v-if="current_step >= 0" :key="reviewComponentKey">
                         <div slot="summary-section">
                             <summary-section
                                 discount="1"
@@ -84,17 +251,10 @@
                             ></summary-section>
                         </div>
                     </review-section>
-
-                    <div class="button-group">
-                        <button type="button" class="btn btn-lg btn-primary" @click="placeOrder()" :disabled="disable_button" id="checkout-place-order-button">
-                            {{ __('shop::app.checkout.onepage.place-order') }}
-                        </button>
-                    </div>
                 </div>
-            </div>
-
-            <div class="col-right" v-show="current_step != 4">
-                <summary-section :key="summeryComponentKey"></summary-section>
+                <div class="bg-gray-snow px-8">
+                   <summary-section :key="summeryComponentKey"></summary-section>
+                </div>
             </div>
         </div>
     </script>
@@ -110,18 +270,18 @@
 
         @auth('customer')
             @if(auth('customer')->user()->addresses)
-                customerAddress = @json(auth('customer')->user()->addresses);
-                customerAddress.email = "{{ auth('customer')->user()->email }}";
-                customerAddress.first_name = "{{ auth('customer')->user()->first_name }}";
-                customerAddress.last_name = "{{ auth('customer')->user()->last_name }}";
-            @endif
+            customerAddress = @json(auth('customer')->user()->addresses);
+        customerAddress.email = "{{ auth('customer')->user()->email }}";
+        customerAddress.first_name = "{{ auth('customer')->user()->first_name }}";
+        customerAddress.last_name = "{{ auth('customer')->user()->last_name }}";
+        @endif
         @endauth
 
         Vue.component('checkout', {
             template: '#checkout-template',
             inject: ['$validator'],
 
-            data: function() {
+            data: function () {
                 return {
                     step_numbers: {
                         'information': 1,
@@ -168,10 +328,10 @@
                 }
             },
 
-            created: function() {
+            created: function () {
                 this.getOrderSummary();
 
-                if(! customerAddress) {
+                if (!customerAddress) {
                     this.new_shipping_address = true;
                     this.new_billing_address = true;
                 } else {
@@ -199,21 +359,21 @@
             },
 
             methods: {
-                navigateToStep: function(step) {
+                navigateToStep: function (step) {
                     if (step <= this.completed_step) {
                         this.current_step = step
                         this.completed_step = step - 1;
                     }
                 },
 
-                haveStates: function(addressType) {
+                haveStates: function (addressType) {
                     if (this.countryStates[this.address[addressType].country] && this.countryStates[this.address[addressType].country].length)
                         return true;
 
                     return false;
                 },
 
-                validateForm: function(scope) {
+                validateForm: function (scope) {
                     var this_this = this;
 
                     this.$validator.validateAll(scope).then(function (result) {
@@ -229,26 +389,27 @@
                     });
                 },
 
-                getOrderSummary () {
+                getOrderSummary() {
                     var this_this = this;
 
                     this.$http.get("{{ route('shop.checkout.summary') }}")
-                        .then(function(response) {
+                        .then(function (response) {
                             summaryHtml = Vue.compile(response.data.html)
 
                             this_this.summeryComponentKey++;
                             this_this.reviewComponentKey++;
                         })
-                        .catch(function (error) {})
+                        .catch(function (error) {
+                        })
                 },
 
-                saveAddress: function() {
+                saveAddress: function () {
                     var this_this = this;
 
                     this.disable_button = true;
 
                     this.$http.post("{{ route('shop.checkout.save-address') }}", this.address)
-                        .then(function(response) {
+                        .then(function (response) {
                             this_this.disable_button = false;
 
                             if (this_this.step_numbers[response.data.jump_to_section] == 2)
@@ -268,13 +429,13 @@
                         })
                 },
 
-                saveShipping: function() {
+                saveShipping: function () {
                     var this_this = this;
 
                     this.disable_button = true;
 
                     this.$http.post("{{ route('shop.checkout.save-shipping') }}", {'shipping_method': this.selected_shipping_method})
-                        .then(function(response) {
+                        .then(function (response) {
                             this_this.disable_button = false;
 
                             paymentHtml = Vue.compile(response.data.html)
@@ -290,53 +451,56 @@
                         })
                 },
 
-                savePayment: function() {
+                savePayment: function () {
                     var this_this = this;
 
                     this.disable_button = true;
 
                     this.$http.post("{{ route('shop.checkout.save-payment') }}", {'payment': this.selected_payment_method})
-                    .then(function(response) {
-                        this_this.disable_button = false;
+                        .then(function (response) {
+                            this_this.disable_button = false;
 
-                        reviewHtml = Vue.compile(response.data.html)
-                        this_this.completed_step = this_this.step_numbers[response.data.jump_to_section] + 1;
-                        this_this.current_step = this_this.step_numbers[response.data.jump_to_section];
+                            reviewHtml = Vue.compile(response.data.html)
+                            this_this.completed_step = this_this.step_numbers[response.data.jump_to_section] + 1;
+                            this_this.current_step = this_this.step_numbers[response.data.jump_to_section];
 
-                        this_this.getOrderSummary();
-                    })
-                    .catch(function (error) {
-                        this_this.disable_button = false;
+                            this_this.getOrderSummary();
+                        })
+                        .catch(function (error) {
+                            this_this.disable_button = false;
 
-                        this_this.handleErrorResponse(error.response, 'payment-form')
-                    });
+                            this_this.handleErrorResponse(error.response, 'payment-form')
+                        });
                 },
 
-                placeOrder: function() {
+                placeOrder: function () {
                     var this_this = this;
 
                     this.disable_button = true;
 
                     this.$http.post("{{ route('shop.checkout.save-order') }}", {'_token': "{{ csrf_token() }}"})
-                    .then(function(response) {
-                        if (response.data.success) {
-                            if (response.data.redirect_url) {
-                                window.location.href = response.data.redirect_url;
-                            } else {
-                                window.location.href = "{{ route('shop.checkout.success') }}";
+                        .then(function (response) {
+                            if (response.data.success) {
+                                if (response.data.redirect_url) {
+                                    window.location.href = response.data.redirect_url;
+                                } else {
+                                    window.location.href = "{{ route('shop.checkout.success') }}";
+                                }
                             }
-                        }
-                    })
-                    .catch(function (error) {
-                        this_this.disable_button = true;
+                        })
+                        .catch(function (error) {
+                            this_this.disable_button = true;
 
-                        window.flashMessages = [{'type': 'alert-error', 'message': "{{ __('shop::app.common.error') }}" }];
+                            window.flashMessages = [{
+                                'type': 'alert-error',
+                                'message': "{{ __('shop::app.common.error') }}"
+                            }];
 
-                        this_this.$root.addFlashMessages()
-                    })
+                            this_this.$root.addFlashMessages()
+                        })
                 },
 
-                handleErrorResponse: function(response, scope) {
+                handleErrorResponse: function (response, scope) {
                     if (response.status == 422) {
                         serverErrors = response.data.errors;
                         this.$root.addServerErrors(scope)
@@ -347,27 +511,27 @@
                     }
                 },
 
-                shippingMethodSelected: function(shippingMethod) {
+                shippingMethodSelected: function (shippingMethod) {
                     this.selected_shipping_method = shippingMethod;
                 },
 
-                paymentMethodSelected: function(paymentMethod) {
+                paymentMethodSelected: function (paymentMethod) {
                     this.selected_payment_method = paymentMethod;
                 },
 
-                newBillingAddress: function() {
+                newBillingAddress: function () {
                     this.new_billing_address = true;
                 },
 
-                newShippingAddress: function() {
+                newShippingAddress: function () {
                     this.new_shipping_address = true;
                 },
 
-                backToSavedBillingAddress: function() {
+                backToSavedBillingAddress: function () {
                     this.new_billing_address = false;
                 },
 
-                backToSavedShippingAddress: function() {
+                backToSavedShippingAddress: function () {
                     this.new_shipping_address = false;
                 },
             }
@@ -378,19 +542,19 @@
         Vue.component('shipping-section', {
             inject: ['$validator'],
 
-            data: function() {
+            data: function () {
                 return {
                     templateRender: null,
 
                     selected_shipping_method: '',
 
-                    first_iteration : true,
+                    first_iteration: true,
                 }
             },
 
             staticRenderFns: shippingTemplateRenderFns,
 
-            mounted: function() {
+            mounted: function () {
                 for (method in shippingMethods) {
                     if (this.first_iteration) {
                         for (rate in shippingMethods[method]['rates']) {
@@ -409,16 +573,16 @@
                 eventBus.$emit('after-checkout-shipping-section-added');
             },
 
-            render: function(h) {
+            render: function (h) {
                 return h('div', [
                     (this.templateRender ?
                         this.templateRender() :
                         '')
-                    ]);
+                ]);
             },
 
             methods: {
-                methodSelected: function() {
+                methodSelected: function () {
                     this.$emit('onShippingMethodSelected', this.selected_shipping_method)
 
                     eventBus.$emit('after-shipping-method-selected');
@@ -431,7 +595,7 @@
         Vue.component('payment-section', {
             inject: ['$validator'],
 
-            data: function() {
+            data: function () {
                 return {
                     templateRender: null,
 
@@ -439,13 +603,13 @@
                         method: ""
                     },
 
-                    first_iteration : true,
+                    first_iteration: true,
                 }
             },
 
             staticRenderFns: paymentTemplateRenderFns,
 
-            mounted: function() {
+            mounted: function () {
                 for (method in paymentMethods) {
                     if (this.first_iteration) {
                         this.payment.method = paymentMethods[method]['method'];
@@ -462,16 +626,16 @@
                 eventBus.$emit('after-checkout-payment-section-added');
             },
 
-            render: function(h) {
+            render: function (h) {
                 return h('div', [
                     (this.templateRender ?
                         this.templateRender() :
                         '')
-                    ]);
+                ]);
             },
 
             methods: {
-                methodSelected: function() {
+                methodSelected: function () {
                     this.$emit('onPaymentMethodSelected', this.payment)
 
                     eventBus.$emit('after-payment-method-selected');
@@ -482,7 +646,7 @@
         var reviewTemplateRenderFns = [];
 
         Vue.component('review-section', {
-            data: function() {
+            data: function () {
                 return {
                     templateRender: null,
 
@@ -492,15 +656,15 @@
 
             staticRenderFns: reviewTemplateRenderFns,
 
-            render: function(h) {
+            render: function (h) {
                 return h('div', [
                     (this.templateRender ?
                         this.templateRender() :
                         '')
-                    ]);
+                ]);
             },
 
-            mounted: function() {
+            mounted: function () {
                 this.templateRender = reviewHtml.render;
 
                 for (var i in reviewHtml.staticRenderFns) {
@@ -526,7 +690,7 @@
                 }
             },
 
-            data: function() {
+            data: function () {
                 return {
                     templateRender: null,
 
@@ -542,7 +706,7 @@
 
             staticRenderFns: summaryTemplateRenderFns,
 
-            mounted: function() {
+            mounted: function () {
                 this.templateRender = summaryHtml.render;
 
                 for (var i in summaryHtml.staticRenderFns) {
@@ -553,32 +717,32 @@
                 this.$forceUpdate();
             },
 
-            render: function(h) {
+            render: function (h) {
                 return h('div', [
                     (this.templateRender ?
                         this.templateRender() :
                         '')
-                    ]);
+                ]);
             },
 
             methods: {
-                onSubmit: function() {
+                onSubmit: function () {
                     var this_this = this;
 
                     axios.post('{{ route('shop.checkout.check.coupons') }}', {code: this_this.coupon_code})
-                        .then(function(response) {
+                        .then(function (response) {
                             this_this.$emit('onApplyCoupon');
 
                             this_this.couponChanged = true;
                         })
-                        .catch(function(error) {
+                        .catch(function (error) {
                             this_this.couponChanged = true;
 
                             this_this.error_message = error.response.data.message;
                         });
                 },
 
-                changeCoupon: function() {
+                changeCoupon: function () {
                     if (this.couponChanged == true && this.changeCount == 0) {
                         this.changeCount++;
 
@@ -594,11 +758,11 @@
                     var this_this = this;
 
                     axios.post('{{ route('shop.checkout.remove.coupon') }}')
-                        .then(function(response) {
+                        .then(function (response) {
                             this_this.$emit('onRemoveCoupon')
                         })
-                        .catch(function(error) {
-                            window.flashMessages = [{'type' : 'alert-error', 'message' : error.response.data.message}];
+                        .catch(function (error) {
+                            window.flashMessages = [{'type': 'alert-error', 'message': error.response.data.message}];
 
                             this_this.$root.addFlashMessages();
                         });

@@ -1,35 +1,35 @@
-<div class="order-summary">
-    <h3>{{ __('shop::app.checkout.total.order-summary') }}</h3>
+<div class="order-summary w-full flex content-between flex-wrap">
+{{--    <h3 >{{ __('shop::app.checkout.total.order-summary') }}</h3>--}}
 
-    <div class="item-detail">
+    <div class="item-detail w-full flex text-base sm:text-lg text-gray-dark uppercase">
         <label>
+            {{--            {{ __('shop::app.checkout.total.price') }}--}}
             {{ intval($cart->items_qty) }}
             {{ __('shop::app.checkout.total.sub-total') }}
-            {{ __('shop::app.checkout.total.price') }}
         </label>
-        <label class="right">{{ core()->currency($cart->base_sub_total) }}</label>
+        <label class="right ml-auto">{{ core()->currency($cart->base_sub_total) }}</label>
     </div>
 
     @if ($cart->selected_shipping_rate)
-        <div class="item-detail">
+        <div class="item-detail w-full flex font-serif font-light text-base text-gray-cloud">
             <label>{{ __('shop::app.checkout.total.delivery-charges') }}</label>
-            <label class="right">{{ core()->currency($cart->selected_shipping_rate->base_price) }}</label>
+            <label class="right ml-auto">{{ core()->currency($cart->selected_shipping_rate->base_price) }}</label>
         </div>
     @endif
 
-    @if ($cart->base_tax_total)
-        <div class="item-detail">
+    @if ($cart->base_tax_total > 0)
+        <div class="item-detail w-full flex font-serif font-light text-base text-gray-cloud">
             <label>{{ __('shop::app.checkout.total.tax') }}</label>
-            <label class="right">{{ core()->currency($cart->base_tax_total) }}</label>
+            <label class="right ml-auto">{{ core()->currency($cart->base_tax_total) }}</label>
         </div>
     @endif
 
 
-    <div class="item-detail" id="discount-detail" @if ($cart->base_discount_amount && $cart->base_discount_amount > 0) style="display: block;" @else style="display: none;" @endif>
+    <div class="item-detail w-full flex font-serif font-light text-base text-gray-cloud {{($cart->base_discount_amount && $cart->base_discount_amount > 0) ? 'visible' : 'invisible'}}" id="discount-detail">
         <label>
             <b>{{ __('shop::app.checkout.total.disc-amount') }}</b>
         </label>
-        <label class="right">
+        <label class="right ml-auto">
             <b id="discount-detail-discount-amount">
                 {{ core()->currency($cart->base_discount_amount) }}
             </b>
@@ -37,9 +37,9 @@
     </div>
 
 
-    <div class="payable-amount" id="grand-total-detail">
+    <div class="payable-amount w-full flex text-base sm:text-lg text-gray-dark uppercase" id="grand-total-detail">
         <label>{{ __('shop::app.checkout.total.grand-total') }}</label>
-        <label class="right" id="grand-total-amount-detail">
+        <label class="right ml-auto" id="grand-total-amount-detail">
             {{ core()->currency($cart->base_grand_total) }}
         </label>
     </div>
@@ -62,7 +62,7 @@
                 </div>
             @else
                 <div class="discount-details-group">
-                    <div class="item-detail">
+                    <div class="item-detai ">
                         <label>{{ __('shop::app.checkout.total.coupon-applied') }}</label>
 
                         <label class="right" style="display: inline-flex; align-items: center;">

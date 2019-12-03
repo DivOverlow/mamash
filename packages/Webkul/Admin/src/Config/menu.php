@@ -193,15 +193,13 @@ return [
         'route' => 'admin.cart-rule.index',
         'sort' => 1,
         'icon-class' => ''
-    ],
-    // , [
-    //     'key' => 'promotions.catalog-rule',
-    //     'name' => 'admin::app.promotion.catalog-rule',
-    //     'route' => 'admin.catalog-rule.index',
-    //     'sort' => 1,
-    //     'icon-class' => '',
-    // ],
-    [
+    ], [
+        'key' => 'promotions.catalog-rule',
+        'name' => 'admin::app.promotion.catalog-rule',
+        'route' => 'admin.catalog-rule.index',
+        'sort' => 1,
+        'icon-class' => '',
+    ], [
         'key' => 'cms',
         'name' => 'admin::app.layouts.cms',
         'route' => 'admin.cms.index',
@@ -212,6 +210,13 @@ return [
         'name' => 'admin::app.cms.pages.pages',
         'route' => 'admin.cms.index',
         'sort' => 1,
+        'icon-class' => ''
+    ],
+    [
+        'key' => 'cms.template',
+        'name' => 'admin::app.cms.templates.pages',
+        'route' => 'admin.template.index',
+        'sort' => 2,
         'icon-class' => ''
     ]
 ];

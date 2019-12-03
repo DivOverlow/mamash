@@ -34,6 +34,7 @@ class CMSRepository extends Repository
 
         parent::__construct($app);
     }
+
     /**
      * Specify Model class name
      *
@@ -54,4 +55,5 @@ class CMSRepository extends Repository
             return $result;
         }
     }
+
 }

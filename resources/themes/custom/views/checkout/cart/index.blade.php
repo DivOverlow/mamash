@@ -6,150 +6,219 @@
 
 @section('content-wrapper')
     @inject ('productImageHelper', 'Webkul\Product\Helpers\ProductImage')
+    @inject ('categoryRepository', 'Webkul\Category\Repositories\CategoryRepository')
+    @inject ('productRepository', 'Webkul\Product\Repositories\ProductRepository')
+
+{{--    @php--}}
+{{--        $products = $productRepository->searchProductByAttribute('category?gift_rules=21,20');--}}
+{{--        dd($products);--}}
+{{--    @endphp--}}
+
+
     <section class="cart">
-        @if ($cart)
-            <div class="title">
-                {{ __('shop::app.checkout.cart.title') }}
-            </div>
-
-            <div class="cart-content">
-                <div class="left-side">
-                    <form action="{{ route('shop.checkout.cart.update') }}" method="POST" @submit.prevent="onSubmit">
-
-                        <div class="cart-item-list" style="margin-top: 0">
-                            @csrf
-                            @foreach ($cart->items as $key => $item)
-                                @php
-                                    $productBaseImage = $item->product->getTypeInstance()->getBaseImage($item);
-                                @endphp
-
-                                <div class="item mt-5">
-                                    <div class="item-image" style="margin-right: 15px;">
-                                        <a href="{{ url()->to('/').'/products/'.$item->product->url_key }}"><img src="{{ $productBaseImage['medium_image_url'] }}" /></a>
-                                    </div>
-
-                                    <div class="item-details">
-
-                                        {!! view_render_event('bagisto.shop.checkout.cart.item.name.before', ['item' => $item]) !!}
-
-                                        <div class="item-title">
-                                            <a href="{{ url()->to('/').'/products/'.$item->product->url_key }}">
-                                                {{ $item->product->name }}
-                                            </a>
-                                        </div>
-
-                                        {!! view_render_event('bagisto.shop.checkout.cart.item.name.after', ['item' => $item]) !!}
-
-
-                                        {!! view_render_event('bagisto.shop.checkout.cart.item.price.before', ['item' => $item]) !!}
-
-                                        <div class="price">
-                                            {{ core()->currency($item->base_price) }}
-                                        </div>
-
-                                        {!! view_render_event('bagisto.shop.checkout.cart.item.price.after', ['item' => $item]) !!}
-
-
-                                        {!! view_render_event('bagisto.shop.checkout.cart.item.options.before', ['item' => $item]) !!}
-
-                                        @if (isset($item->additional['attributes']))
-                                            <div class="item-options">
-                                                
-                                                @foreach ($item->additional['attributes'] as $attribute)
-                                                    <b>{{ $attribute['attribute_name'] }} : </b>{{ $attribute['option_label'] }}</br>
-                                                @endforeach
-
-                                            </div>
-                                        @endif
-
-                                        {!! view_render_event('bagisto.shop.checkout.cart.item.options.after', ['item' => $item]) !!}
-
-
-                                        {!! view_render_event('bagisto.shop.checkout.cart.item.quantity.before', ['item' => $item]) !!}
-
-                                        <div class="misc">
-                                            <quantity-changer
-                                                :control-name="'qty[{{$item->id}}]'"
-                                                quantity="{{$item->quantity}}">
-                                            </quantity-changer>
-
-                                            <span class="remove">
-                                                <a href="{{ route('shop.checkout.cart.remove', $item->id) }}" onclick="removeLink('{{ __('shop::app.checkout.cart.cart-remove-action') }}')">{{ __('shop::app.checkout.cart.remove-link') }}</a></span>
-
-                                            @auth('customer')
-                                                <span class="towishlist">
-                                                    @if ($item->parent_id != 'null' ||$item->parent_id != null)
-                                                        <a href="{{ route('shop.movetowishlist', $item->id) }}" onclick="removeLink('{{ __('shop::app.checkout.cart.cart-remove-action') }}')">{{ __('shop::app.checkout.cart.move-to-wishlist') }}</a>
-                                                    @else
-                                                        <a href="{{ route('shop.movetowishlist', $item->child->id) }}" onclick="removeLink('{{ __('shop::app.checkout.cart.cart-remove-action') }}')">{{ __('shop::app.checkout.cart.move-to-wishlist') }}</a>
-                                                    @endif
-                                                </span>
-                                            @endauth
-                                        </div>
-
-                                        {!! view_render_event('bagisto.shop.checkout.cart.item.quantity.after', ['item' => $item]) !!}
-
-                                        @if (! cart()->isItemHaveQuantity($item))
-                                            <div class="error-message mt-15">
-                                                * {{ __('shop::app.checkout.cart.quantity-error') }}
-                                            </div>
-                                        @endif
-                                    </div>
-
-                                </div>
-                            @endforeach
+        <div class="cart-product bg-ghost-white w-full">
+            <div class="main-container-wrapper">
+                @if ($cart)
+                    <div class="title w-full h-32 flex items-end text-center">
+                        <span class="text-xl sm:text-5xl uppercase text-gray-dark mx-auto">{{ __('shop::app.checkout.cart.title') }}</span>
+                    </div>
+                    <div class="w-full invisible sm:visible font-serif text-xs tracking-widest text-gray-dark uppercase flex flex-row justify-content-between items-center mt-12">
+                        <div class="w-1/2">
+                            {{ __('shop::app.checkout.cart.name') }}
                         </div>
-
-                        {!! view_render_event('bagisto.shop.checkout.cart.controls.after', ['cart' => $cart]) !!}
-
-                        <div class="misc-controls">
-                            <a href="{{ route('shop.home.index') }}" class="link">{{ __('shop::app.checkout.cart.continue-shopping') }}</a>
-
-                            <div>
-                                <button type="submit" class="btn btn-lg btn-primary">
-                                    {{ __('shop::app.checkout.cart.update-cart') }}
-                                </button>
-
-                                @if (! cart()->hasError())
-                                    <a href="{{ route('shop.checkout.onepage.index') }}" class="btn btn-lg btn-primary">
-                                        {{ __('shop::app.checkout.cart.proceed-to-checkout') }}
-                                    </a>
-                                @endif
+                        <div class="w-1/2">
+                            <div class="w-1/2 ml-auto flex justify-between items-center">
+                                <span>{{ __('shop::app.products.quantity') }}</span>
+                                <span>{{ __('shop::app.checkout.total.price') }}</span>
                             </div>
                         </div>
+                    </div>
 
-                        {!! view_render_event('bagisto.shop.checkout.cart.controls.after', ['cart' => $cart]) !!}
-                    </form>
-                </div>
+                    <div class="cart-content">
+                        <div class="left-side">
+                            <form action="{{ route('shop.checkout.cart.update') }}" method="POST"
+                                  @submit.prevent="onSubmit">
 
-                <div class="right-side">
-                    {!! view_render_event('bagisto.shop.checkout.cart.summary.after', ['cart' => $cart]) !!}
+                                <div class="cart-item-list">
+                                    @csrf
+                                    @foreach ($cart->items as $key => $item)
+                                        @php
+                                            $productBaseImage = $item->product->getTypeInstance()->getBaseImage($item);
+                                        @endphp
 
-                    @include('shop::checkout.total.summary', ['cart' => $cart])
+                                        <div class="item w-full flex flex-col sm:flex-row justify-content-between items-center py-5">
+                                            <div class="w-full sm:w-1/2 flex justify-content-between items-center inline-block">
+                                                <div class="item-image w-1/5">
+                                                    <a href="{{ url()->to('/').'/products/'.$item->product->url_key }}"><img
+                                                            src="{{ $productBaseImage['small_image_url'] }}"/></a>
+                                                </div>
 
-                    {!! view_render_event('bagisto.shop.checkout.cart.summary.after', ['cart' => $cart]) !!}
-                </div>
+                                                <div class="item-details w-4/5 flex content-between flex-wrap px-2" style="min-height: 6rem;">
+
+                                                    {!! view_render_event('bagisto.shop.checkout.cart.item.name.before', ['item' => $item]) !!}
+
+                                                    <div class="item-title w-full">
+                                                        @php
+                                                            $categoryCollection = null;
+                                                            $categoriesForProduct = $productRepository->find($item->product_id);
+                                                            if ($categoriesForProduct) {
+                                                                foreach ($categoriesForProduct->categories()->get() as $categoryProduct) {
+                                                                    if ($categoryProduct->display_mode == "products_collection") {
+                                                                        $categoryCollection = $categoryRepository->findOrFail($categoryProduct->id);
+                                                                        break;
+                                                                    }
+                                                                }
+                                                            }
+                                                        @endphp
+                                                        @if ($categoryCollection)
+                                                            <p>
+                                                                <a href="{{ route('shop.categories.index', $categoryCollection->slug) }}"
+                                                                   class="font-serif font-medium text-base text-gray-cloud cursor-pointer hover:text-gray-dark"
+                                                                   title="{{ $categoryCollection->name }}">
+                                                                    {{ $categoryCollection->name }} </a>
+                                                            </p>
+                                                        @endif
+
+                                                        <span class="text-base sm:text-lg text-gray-dark uppercase hover:text-gray-cloud">
+                                                            <a href="{{ url()->to('/').'/products/'.$item->product->url_key }}">
+                                                            {{ $item->product->name }} </a>
+                                                        </span>
+                                                    </div>
+
+                                                    {!! view_render_event('bagisto.shop.checkout.cart.item.name.after', ['item' => $item]) !!}
+
+                                                    {!! view_render_event('bagisto.shop.checkout.cart.item.options.before', ['item' => $item]) !!}
+
+                                                    @if (isset($item->additional['attributes']))
+                                                        <div class="item-options">
+
+                                                            @foreach ($item->additional['attributes'] as $attribute)
+                                                                <b>{{ $attribute['attribute_name'] }}
+                                                                    : </b>{{ $attribute['option_label'] }}</br>
+                                                            @endforeach
+
+                                                        </div>
+                                                    @endif
+
+                                                    {!! view_render_event('bagisto.shop.checkout.cart.item.options.after', ['item' => $item]) !!}
+
+                                                    <span class="remove font-serif text-base text-gray-cloud cursor-pointer underline hover:text-gray-dark static">
+                                                        <a href="{{ route('shop.checkout.cart.remove', $item->id) }}"
+                                                       onclick="removeLink('{{ __('shop::app.checkout.cart.cart-remove-action') }}')">{{ __('shop::app.checkout.cart.remove-link') }}</a>
+                                                    </span>
+
+                                                    @auth('customer')
+{{--                                                        <span class="towishlist">--}}
+{{--                                                            @if ($item->parent_id != 'null' ||$item->parent_id != null)--}}
+{{--                                                                <a href="{{ route('shop.movetowishlist', $item->id) }}"--}}
+{{--                                                                   onclick="removeLink('{{ __('shop::app.checkout.cart.cart-remove-action') }}')">{{ __('shop::app.checkout.cart.move-to-wishlist') }}</a>--}}
+{{--                                                            @else--}}
+{{--                                                                <a href="{{ route('shop.movetowishlist', $item->child->id) }}"--}}
+{{--                                                                   onclick="removeLink('{{ __('shop::app.checkout.cart.cart-remove-action') }}')">{{ __('shop::app.checkout.cart.move-to-wishlist') }}</a>--}}
+{{--                                                            @endif--}}
+{{--                                                     </span>--}}
+                                                    @endauth
+                                                </div>
+                                            </div>
+                                            <div class="w-full sm:w-1/2">
+                                                <div class="w-2/3 sm:w-1/2 ml-0 sm:ml-auto flex justify-between items-center">
+
+                                                    {!! view_render_event('bagisto.shop.checkout.cart.item.quantity.before', ['item' => $item]) !!}
+
+                                                    <div class="misc">
+                                                        <quantity-changer
+                                                            :control-name="'qty[{{$item->id}}]'"
+                                                            quantity="{{$item->quantity}}">
+                                                        </quantity-changer>
+                                                    </div>
+
+                                                    {!! view_render_event('bagisto.shop.checkout.cart.item.quantity.after', ['item' => $item]) !!}
+
+                                                    {!! view_render_event('bagisto.shop.checkout.cart.item.price.before', ['item' => $item]) !!}
+
+                                                    <div class="price">
+                                                        {{ core()->currency($item->base_price) }}
+                                                    </div>
+
+                                                    {!! view_render_event('bagisto.shop.checkout.cart.item.price.after', ['item' => $item]) !!}
+
+
+                                                </div>
+                                                @if (! cart()->isItemHaveQuantity($item))
+                                                    <div class="error-message mt-15">
+                                                        * {{ __('shop::app.checkout.cart.quantity-error') }}
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+
+                                <div class="bg-white flex flex-col sm:flex-row justify-content-between items-center">
+                                    <div class="w-full sm:w-1/2">
+                                        @include ('shop::products.view.cross-sells')
+                                    </div>
+                                    <div class="w-full sm: w-1/2">
+                                        <div class="right-side w-full sm:max-w-md ml-0 sm:ml-auto">
+                                            {!! view_render_event('bagisto.shop.checkout.cart.summary.after', ['cart' => $cart]) !!}
+
+                                            @include('shop::checkout.total.summary', ['cart' => $cart])
+
+                                            {!! view_render_event('bagisto.shop.checkout.cart.summary.after', ['cart' => $cart]) !!}
+
+                                            {!! view_render_event('bagisto.shop.checkout.cart.controls.after', ['cart' => $cart]) !!}
+
+                                            <div class="misc-controls my-3">
+                                                <a href="{{ route('shop.home.index') }}"
+                                                   class="link font-serif font-medium text-base text-yellow hover:underline">{{ __('shop::app.checkout.cart.continue-shopping') }}</a>
+
+                                                <div class="flex flex-row justify-content-between items-center mt-8">
+                                                    <button type="submit" class="button-black w-full py-3 normal-case">
+                                                        {{ __('shop::app.checkout.cart.update-cart') }}
+                                                    </button>
+
+                                                    @if (! cart()->hasError())
+                                                        <a href="{{ route('shop.checkout.onepage.index') }}"
+                                                           class="button-decor w-full py-3 normal-case">
+                                                            {{ __('shop::app.checkout.cart.proceed-to-checkout') }}
+                                                        </a>
+                                                    @endif
+                                                </div>
+                                            </div>
+
+                                            {!! view_render_event('bagisto.shop.checkout.cart.controls.after', ['cart' => $cart]) !!}
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+
+
+                @else
+
+
+                    <div class="title w-full h-32 flex items-end text-center">
+                        <span class="text-xl sm:text-5xl uppercase text-gray-dark mx-auto">{{ __('shop::app.checkout.cart.title') }}</span>
+                    </div>
+
+                    <div class="cart-content text-base sm:text-lg text-gray-dark uppercase">
+                        <p>
+                            {{ __('shop::app.checkout.cart.empty') }}
+                        </p>
+
+                        <p class="w-full text-center inline-block my-3">
+                            <a style="display: inline-block;" href="{{ route('shop.home.index') }}"
+                               class="link font-serif font-medium text-base text-yellow hover:underline">{{ __('shop::app.checkout.cart.continue-shopping') }}</a>
+                        </p>
+                    </div>
+
+                @endif
             </div>
-
-            @include ('shop::products.view.cross-sells')
-
-        @else
-
-            <div class="title">
-                {{ __('shop::app.checkout.cart.title') }}
-            </div>
-
-            <div class="cart-content">
-                <p>
-                    {{ __('shop::app.checkout.cart.empty') }}
-                </p>
-
-                <p style="display: inline-block;">
-                    <a style="display: inline-block;" href="{{ route('shop.home.index') }}" class="btn btn-lg btn-primary">{{ __('shop::app.checkout.cart.continue-shopping') }}</a>
-                </p>
-            </div>
-
-        @endif
+        </div>
     </section>
 
 @endsection
@@ -158,14 +227,13 @@
 
     <script type="text/x-template" id="quantity-changer-template">
         <div class="quantity control-group" :class="[errors.has(controlName) ? 'has-error' : '']">
-            <div class="wrap">
-                <label>{{ __('shop::app.products.quantity') }}</label>
+            <div class="wrap font-serif text-gray-dark flex justify-content-between items-center">
+                <button type="button" class="decrease outline-none" @click="decreaseQty()"><span class="font-semibold text-xl px-4">-</span></button>
 
-                <button type="button" class="decrease" @click="decreaseQty()">-</button>
+                <input :name="controlName" class="control focus:border-gray-cloud font-semibold text-xl rounded-full h-12 w-12 flex items-center justify-center text-center" :value="qty" v-validate="'required|numeric|min_value:1'"
+                       data-vv-as="&quot;{{ __('shop::app.products.quantity') }}&quot;" readonly>
 
-                <input :name="controlName" class="control" :value="qty" v-validate="'required|numeric|min_value:1'" data-vv-as="&quot;{{ __('shop::app.products.quantity') }}&quot;" readonly>
-
-                <button type="button" class="increase" @click="increaseQty()">+</button>
+                <button type="button" class="increase outline-none" @click="increaseQty()"><span class="font-semibold text-xl px-4">+</span></button></button>
 
                 <span class="control-error" v-if="errors.has(controlName)">@{{ errors.first(controlName) }}</span>
             </div>
@@ -190,7 +258,7 @@
                 }
             },
 
-            data: function() {
+            data: function () {
                 return {
                     qty: this.quantity
                 }
@@ -205,14 +273,14 @@
             },
 
             methods: {
-                decreaseQty: function() {
+                decreaseQty: function () {
                     if (this.qty > 1)
                         this.qty = parseInt(this.qty) - 1;
 
                     this.$emit('onQtyUpdated', this.qty)
                 },
 
-                increaseQty: function() {
+                increaseQty: function () {
                     this.qty = parseInt(this.qty) + 1;
 
                     this.$emit('onQtyUpdated', this.qty)
@@ -222,11 +290,11 @@
 
         function removeLink(message) {
             if (!confirm(message))
-            event.preventDefault();
+                event.preventDefault();
         }
 
         function updateCartQunatity(operation, index) {
-            var quantity = document.getElementById('cart-quantity'+index).value;
+            var quantity = document.getElementById('cart-quantity' + index).value;
 
             if (operation == 'add') {
                 quantity = parseInt(quantity) + 1;
@@ -237,7 +305,7 @@
                     alert('{{ __('shop::app.products.less-quantity') }}');
                 }
             }
-            document.getElementById('cart-quantity'+index).value = quantity;
+            document.getElementById('cart-quantity' + index).value = quantity;
             event.preventDefault();
         }
     </script>

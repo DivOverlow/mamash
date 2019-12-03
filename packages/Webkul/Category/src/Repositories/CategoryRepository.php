@@ -152,25 +152,6 @@ class CategoryRepository extends Repository
     }
 
     /**
-     * Retrive category from id
-     *
-     * @param string $id
-     * @return mixed
-     */
-    public function findByIdOrFail($id)
-    {
-        $category = $this->model->where('id', $id)->first();
-
-        if ($category) {
-            return $category;
-        }
-
-        throw (new ModelNotFoundException)->setModel(
-            get_class($this->model), $id
-        );
-    }
-
-    /**
      * @param array $data
      * @param $id
      * @param string $attribute

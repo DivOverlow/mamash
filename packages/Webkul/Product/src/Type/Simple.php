@@ -19,13 +19,14 @@ class Simple extends AbstractType
 
     /**
      * These blade files will be included in product edit page
-     *
+     * 
      * @var array
      */
     protected $additionalViews = [
         'admin::catalog.products.accordians.inventories',
         'admin::catalog.products.accordians.images',
         'admin::catalog.products.accordians.categories',
+        'admin::catalog.products.accordians.channels',
         'admin::catalog.products.accordians.product-links'
     ];
 
@@ -34,7 +35,7 @@ class Simple extends AbstractType
      *
      * @var boolean
      */
-    protected $showQuantityBox = false;
+    protected $showQuantityBox = true;
 
     /**
      * Return true if this product type is saleable

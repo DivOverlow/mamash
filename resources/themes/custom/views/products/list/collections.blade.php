@@ -28,4 +28,5 @@
             <img class="h-full object-cover" src="{{ $productBaseImage['medium_image_url'] }}" onerror="this.src='{{ asset('vendor/webkul/ui/assets/images/product/meduim-product-placeholder.png') }}'"/>
         @endif
     </div>
+
 {!! view_render_event('bagisto.shop.products.list.collections.after', ['product' => $product]) !!}

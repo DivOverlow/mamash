@@ -37,11 +37,11 @@ return array(
 
     /*
     |--------------------------------------------------------------------------
-    | Manipulation templates
+    | Manipulation template
     |--------------------------------------------------------------------------
     |
-    | Here you may specify your own manipulation filter templates.
-    | The keys of this array will define which templates
+    | Here you may specify your own manipulation filter template.
+    | The keys of this array will define which template
     | are available in the URI:
     |
     | {route}/{template}/{filename}
@@ -51,7 +51,7 @@ return array(
     |
     */
 
-    'templates' => array(
+    'template' => array(
         'small' => 'Webkul\Product\CacheFilters\Small',
         'medium' => 'Webkul\Product\CacheFilters\Medium',
         'large' => 'Webkul\Product\CacheFilters\Large',

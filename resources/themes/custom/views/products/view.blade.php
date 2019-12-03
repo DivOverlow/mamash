@@ -49,7 +49,7 @@
     if ($categoriesForProduct) {
         foreach ($categoriesForProduct->categories()->get() as $categoryProduct) {
             if ($categoryProduct->display_mode == "products_collection") {
-                $categoryCollection = $categoryRepository->findByIdOrFail($categoryProduct->id);
+                $categoryCollection = $categoryRepository->findOrFail($categoryProduct->id);
                 break;
             }
         }
@@ -234,15 +234,15 @@
             </script>
 
             <script type="text/x-template" id="quantity-changer-template">
-                <div class="quantity control-group" :class="[errors.has(controlName) ? 'has-error' : '']">
+                <div class="quantity control-group invisible" :class="[errors.has(controlName) ? 'has-error' : '']">
                     <label class="required">{{ __('shop::app.products.quantity') }}</label>
 
-                    <button type="button" class="decrease" @click="decreaseQty()">-</button>
+                    <button type="button outline-none" class="decrease" @click="decreaseQty()">-</button>
 
                     <input :name="controlName" class="control" :value="qty" :v-validate="validations"
                            data-vv-as="&quot;{{ __('shop::app.products.quantity') }}&quot;" readonly>
 
-                    <button type="button" class="increase" @click="increaseQty()">+</button>
+                    <button type="button" class="increase outline-none" @click="increaseQty()">+</button>
 
                     <span class="control-error" v-if="errors.has(controlName)">@{{ errors.first(controlName) }}</span>
                 </div>

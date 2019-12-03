@@ -14,6 +14,7 @@ class Small implements FilterInterface
         $image->resize($width, $height, function ($constraint) {
             $constraint->aspectRatio();
         });
+
         return $image->resizeCanvas($width, $height, 'center', false, '#fff');
     }
 }

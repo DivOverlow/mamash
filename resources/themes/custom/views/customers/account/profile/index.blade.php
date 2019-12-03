@@ -6,29 +6,41 @@
 
 @section('content-wrapper')
 
-<div class="account-content">
-
-    @include('shop::customers.account.partials.sidemenu')
-
-    <div class="account-layout">
-
-        <div class="account-head">
-
-            <span class="back-icon"><a href="{{ route('customer.account.index') }}"><i class="icon icon-menu-back"></i></a></span>
-
-            <span class="account-heading">{{ __('shop::app.customer.account.profile.index.title') }}</span>
-
-            <span class="account-action">
-                <a href="{{ route('customer.profile.edit') }}">{{ __('shop::app.customer.account.profile.index.edit') }}</a>
-            </span>
-
-            <div class="horizontal-rule"></div>
+<div class="account-content main-container-wrapper flex flex-col sm:flex-row">
+    <div class="w-full sm:w-1/2">
+        <div class="flex items-end inline-block h-20">
+            <div class="user-icon active mb-1"></div>
+            <span class="text-yellow text-xl sm:text-2xl uppercase pl-4">{{ $customer->first_name .' ' .  $customer->last_name  }}</span>
         </div>
+
+        @include('shop::customers.account.partials.sidemenu')
+        @include('shop::customers.account.partials.mini-gift')
+
+    </div>
+
+    <div class="account-layout w-full sm:w-1/2">
+
+        <div class="account-head flex items-end h-20">
+
+{{--            <span class="back-icon"><a href="{{ route('customer.account.index') }}"><i class="icon icon-menu-back"></i></a></span>--}}
+
+            <div class="w-full flex justify-content-between items-center">
+                <div class=" flex items-end inline-block">
+                    <div class="profile-icon address-info mb-2"></div>
+                    <span class="account-heading text-gray-dark text-xl sm:text-2xl uppercase pl-4">{{ __('shop::app.customer.account.profile.index.title') }}</span>
+                </div>
+
+                <span class="account-action border-b border-transparent ml-auto font-serif text-yellow hover:border-b hover:border-yellow">
+                    <a href="{{ route('customer.profile.edit') }}">{{ __('shop::app.customer.account.profile.index.edit') }}</a>
+                </span>
+            </div>
+        </div>
+        <div class="horizontal-rule"></div>
 
          {!! view_render_event('bagisto.shop.customers.account.profile.view.before', ['customer' => $customer]) !!}
 
-        <div class="account-table-content" style="width: 50%;">
-            <table style="color: #5E5E5E;">
+        <div class="account-table-content">
+            <table>
                 <tbody>
                     <tr>
                         <td>{{ __('shop::app.customer.account.profile.fname') }}</td>
@@ -70,7 +82,7 @@
         <accordian :title="'{{ __('shop::app.customer.account.profile.index.title') }}'" :active="true">
             <div slot="body">
                 <div class="page-action">
-                    <button type="submit" @click="showModal('deleteProfile')" class="btn btn-lg btn-primary mt-10">
+                    <button type="submit" @click="showModal('deleteProfile')" class="button-black mt-10 px-6 py-4 normal-case">
                         {{ __('shop::app.customer.account.address.index.delete') }}
                     </button>
                 </div>
@@ -82,13 +94,15 @@
 
                         <div slot="body">
                             <div class="control-group" :class="[errors.has('password') ? 'has-error' : '']">
-                                <label for="password" class="required">{{ __('admin::app.users.users.password') }}</label>
-                                <input type="password" v-validate="'required|min:6|max:18'" class="control" id="password" name="password" data-vv-as="&quot;{{ __('admin::app.users.users.password') }}&quot;"/>
+                                <div class="mat-div is-completed">
+                                    <label for="password" class="required mat-label">{{ __('shop::app.customer.account.profile.password') }}</label>
+                                    <input type="password" v-validate="'required|min:6|max:18'" class="control mat-input" id="password" name="password" data-vv-as="&quot;{{ __('admin::app.users.users.password') }}&quot;"/>
+                                </div>
                                 <span class="control-error" v-if="errors.has('password')">@{{ errors.first('password') }}</span>
                             </div>
 
                             <div class="page-action">
-                                <button type="submit"  class="btn btn-lg btn-primary mt-10">
+                                <button type="submit"  class="button-decor px-4 py-3 mt-10">
                                 {{ __('shop::app.customer.account.address.index.delete') }}
                                 </button>
                             </div>

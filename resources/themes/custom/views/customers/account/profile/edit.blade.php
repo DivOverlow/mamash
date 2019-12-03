@@ -5,98 +5,118 @@
 @endsection
 
 @section('content-wrapper')
-    <div class="account-content">
-
-        @include('shop::customers.account.partials.sidemenu')
-
-        <div class="account-layout">
-
-            <div class="account-head mb-10">
-                <span class="back-icon"><a href="{{ route('customer.account.index') }}"><i class="icon icon-menu-back"></i></a></span>
-
-                <span class="account-heading">{{ __('shop::app.customer.account.profile.edit-profile.title') }}</span>
-
-                <span></span>
+    <div class="account-content main-container-wrapper flex flex-col sm:flex-row">
+        <div class="w-full sm:w-1/2">
+            <div class="flex items-end inline-block h-20">
+                <div class="user-icon active mb-1"></div>
+                <span class="text-yellow text-xl sm:text-2xl uppercase pl-4">{{ $customer->first_name .' ' .  $customer->last_name  }}</span>
             </div>
 
-            {!! view_render_event('bagisto.shop.customers.account.profile.edit.before', ['customer' => $customer]) !!}
+            @include('shop::customers.account.partials.sidemenu')
+            @include('shop::customers.account.partials.mini-gift')
 
-            <form method="post" action="{{ route('customer.profile.edit') }}" @submit.prevent="onSubmit">
+        </div>
 
-                <div class="edit-form">
-                    @csrf
+        <div class="account-layout w-full sm:w-1/2 flex flex-col">
+            <div class="account-head w-full flex items-end h-20">
+{{--                <span class="back-icon"><a href="{{ route('customer.account.index') }}"><i class="icon icon-menu-back"></i></a></span>--}}
+                <div class=" flex items-end inline-block">
+                    <div class="profile-icon address-info mb-2"></div>
+                    <span class="account-heading text-gray-dark text-xl sm:text-2xl uppercase pl-4">{{ __('shop::app.customer.account.profile.edit-profile.title') }}</span>
+                </div>
+            </div>
 
-                    {!! view_render_event('bagisto.shop.customers.account.profile.edit_form_controls.before', ['customer' => $customer]) !!}
+            <div class="w-full max-w-lg mt-6">
+              {!! view_render_event('bagisto.shop.customers.account.profile.edit.before', ['customer' => $customer]) !!}
 
-                    <div class="control-group" :class="[errors.has('first_name') ? 'has-error' : '']">
-                        <label for="first_name" class="required">{{ __('shop::app.customer.account.profile.fname') }}</label>
+                <form method="post" action="{{ route('customer.profile.edit') }}" @submit.prevent="onSubmit">
 
-                        <input type="text" class="control" name="first_name" value="{{ old('first_name') ?? $customer->first_name }}" v-validate="'required'" data-vv-as="&quot;{{ __('shop::app.customer.account.profile.fname') }}&quot;">
-                        <span class="control-error" v-if="errors.has('first_name')">@{{ errors.first('first_name') }}</span>
-                    </div>
+                <div class="edit-form flex flex-col">
+                        @csrf
 
-                    <div class="control-group" :class="[errors.has('last_name') ? 'has-error' : '']">
-                        <label for="last_name" class="required">{{ __('shop::app.customer.account.profile.lname') }}</label>
+                        {!! view_render_event('bagisto.shop.customers.account.profile.edit_form_controls.before', ['customer' => $customer]) !!}
+                       <div class="control-group" :class="[errors.has('first_name') ? 'has-error' : '']">
+                            <div class="mat-div is-completed">
+                                <label for="first_name" class="required mat-label">{{ __('shop::app.customer.account.profile.fname') }}</label>
 
-                        <input type="text" class="control" name="last_name" value="{{ old('last_name') ?? $customer->last_name }}" v-validate="'required'" data-vv-as="&quot;{{ __('shop::app.customer.account.profile.lname') }}&quot;">
-                        <span class="control-error" v-if="errors.has('last_name')">@{{ errors.first('last_name') }}</span>
-                    </div>
+                                <input type="text" class="control mat-input" name="first_name" value="{{ old('first_name') ?? $customer->first_name }}" v-validate="'required'" data-vv-as="&quot;{{ __('shop::app.customer.account.profile.fname') }}&quot;">
+                            </div>
+                            <span class="control-error" v-if="errors.has('first_name')">@{{ errors.first('first_name') }}</span>
+                        </div>
+                        <div class="control-group" :class="[errors.has('last_name') ? 'has-error' : '']">
+                            <div class="mat-div is-completed">
+                                <label for="last_name" class="required mat-label">{{ __('shop::app.customer.account.profile.lname') }}</label>
 
-                    <div class="control-group" :class="[errors.has('gender') ? 'has-error' : '']">
-                        <label for="email" class="required">{{ __('shop::app.customer.account.profile.gender') }}</label>
-
-                        <select name="gender" class="control" v-validate="'required'" data-vv-as="&quot;{{ __('shop::app.customer.account.profile.gender') }}&quot;">
-                            <option value=""  @if ($customer->gender == "") selected @endif></option>
-                            <option value="Other"  @if ($customer->gender == "Other") selected @endif>Other</option>
-                            <option value="Male"  @if ($customer->gender == "Male") selected @endif>Male</option>
-                            <option value="Female" @if ($customer->gender == "Female") selected @endif>Female</option>
-                        </select>
-                        <span class="control-error" v-if="errors.has('gender')">@{{ errors.first('gender') }}</span>
-                    </div>
-
-                    <div class="control-group"  :class="[errors.has('date_of_birth') ? 'has-error' : '']">
-                        <label for="date_of_birth">{{ __('shop::app.customer.account.profile.dob') }}</label>
-                        <input type="date" class="control" name="date_of_birth" value="{{ old('date_of_birth') ?? $customer->date_of_birth }}" v-validate="" data-vv-as="&quot;{{ __('shop::app.customer.account.profile.dob') }}&quot;">
-                        <span class="control-error" v-if="errors.has('date_of_birth')">@{{ errors.first('date_of_birth') }}</span>
-                    </div>
-
-                    <div class="control-group" :class="[errors.has('email') ? 'has-error' : '']">
-                        <label for="email" class="required">{{ __('shop::app.customer.account.profile.email') }}</label>
-                        <input type="email" class="control" name="email" value="{{ old('email') ?? $customer->email }}" v-validate="'required'" data-vv-as="&quot;{{ __('shop::app.customer.account.profile.email') }}&quot;">
+                                <input type="text" class="control mat-input" name="last_name" value="{{ old('last_name') ?? $customer->last_name }}" v-validate="'required'" data-vv-as="&quot;{{ __('shop::app.customer.account.profile.lname') }}&quot;">
+                            </div>
+                            <span class="control-error" v-if="errors.has('last_name')">@{{ errors.first('last_name') }}</span>
+                        </div>
+                        <div class="control-group" :class="[errors.has('email') ? 'has-error' : '']">
+                        <div class="mat-div is-completed">
+                            <label for="email" class="required mat-label">{{ __('shop::app.customer.account.profile.email') }}</label>
+                            <input type="email" class="control mat-input" name="email" value="{{ old('email') ?? $customer->email }}" v-validate="'required'" data-vv-as="&quot;{{ __('shop::app.customer.account.profile.email') }}&quot;">
+                        </div>
                         <span class="control-error" v-if="errors.has('email')">@{{ errors.first('email') }}</span>
                     </div>
+                        <div class="control-group" :class="[errors.has('gender') ? 'has-error' : '']">
+                            <div class="mat-div is-completed">
+                                <label for="email" class="required mat-label">{{ __('shop::app.customer.account.profile.gender') }}</label>
 
-                    <div class="control-group" :class="[errors.has('oldpassword') ? 'has-error' : '']">
-                        <label for="password">{{ __('shop::app.customer.account.profile.opassword') }}</label>
-                        <input type="password" class="control" name="oldpassword" data-vv-as="&quot;{{ __('shop::app.customer.account.profile.opassword') }}&quot;" v-validate="'min:6'">
-                        <span class="control-error" v-if="errors.has('oldpassword')">@{{ errors.first('oldpassword') }}</span>
-                    </div>
+                                <select name="gender" class="control mat-input" v-validate="'required'" data-vv-as="&quot;{{ __('shop::app.customer.account.profile.gender') }}&quot;">
+                                    <option value=""  @if ($customer->gender == "") selected @endif></option>
+                                    <option value="Other"  @if ($customer->gender == "Other") selected @endif>Other</option>
+                                    <option value="Male"  @if ($customer->gender == "Male") selected @endif>Male</option>
+                                    <option value="Female" @if ($customer->gender == "Female") selected @endif>Female</option>
+                                </select>
+                            </div>
+                            <span class="control-error" v-if="errors.has('gender')">@{{ errors.first('gender') }}</span>
+                        </div>
+                        <div class="control-group"  :class="[errors.has('date_of_birth') ? 'has-error' : '']">
+                            <div class="mat-div is-completed">
+                                <label for="date_of_birth" class="text-gray-silver uppercase">{{ __('shop::app.customer.account.profile.dob') }}</label>
+                                <input type="date" class="control mat-input" name="date_of_birth" value="{{ old('date_of_birth') ?? $customer->date_of_birth }}" v-validate="" data-vv-as="&quot;{{ __('shop::app.customer.account.profile.dob') }}&quot;">
+                            </div>
+                            <span class="control-error" v-if="errors.has('date_of_birth')">@{{ errors.first('date_of_birth') }}</span>
+                            <span>{{ __('shop::app.customer.account.profile.sub-dob') }}</span>
+                        </div>
 
-                    <div class="control-group" :class="[errors.has('password') ? 'has-error' : '']">
-                        <label for="password">{{ __('shop::app.customer.account.profile.password') }}</label>
 
-                        <input type="password" id="password" class="control" name="password" data-vv-as="&quot;{{ __('shop::app.customer.account.profile.password') }}&quot;" v-validate="'min:6'">
-                        <span class="control-error" v-if="errors.has('password')">@{{ errors.first('password') }}</span>
-                    </div>
+                        <div class="control-group mt-20" :class="[errors.has('oldpassword') ? 'has-error' : '']">
+                            <div class="mat-div">
+                                <label for="password" class="mat-label">{{ __('shop::app.customer.account.profile.opassword') }}</label>
+                                <input type="password" class="control mat-input" name="oldpassword" data-vv-as="&quot;{{ __('shop::app.customer.account.profile.opassword') }}&quot;" v-validate="'min:6'">
+                            </div>
+                            <span class="control-error" v-if="errors.has('oldpassword')">@{{ errors.first('oldpassword') }}</span>
+                        </div>
+                        <div class="control-group" :class="[errors.has('password') ? 'has-error' : '']">
+                            <div class="mat-div">
 
-                    <div class="control-group" :class="[errors.has('password_confirmation') ? 'has-error' : '']">
-                        <label for="password">{{ __('shop::app.customer.account.profile.cpassword') }}</label>
+                                <label for="password" class="mat-label">{{ __('shop::app.customer.account.profile.password') }}</label>
 
-                        <input type="password" id="password_confirmation" class="control" name="password_confirmation" data-vv-as="&quot;{{ __('shop::app.customer.account.profile.cpassword') }}&quot;" v-validate="'min:6|confirmed:password'">
-                        <span class="control-error" v-if="errors.has('password_confirmation')">@{{ errors.first('password_confirmation') }}</span>
-                    </div>
+                                <input type="password" id="password" class="control mat-input" name="password" data-vv-as="&quot;{{ __('shop::app.customer.account.profile.password') }}&quot;" v-validate="'min:6'">
+                            </div>
+                            <span class="control-error" v-if="errors.has('password')">@{{ errors.first('password') }}</span>
+                        </div>
+                        <div class="control-group" :class="[errors.has('password_confirmation') ? 'has-error' : '']">
+                            <div class="mat-div">
+                                <label for="password" class="mat-label">{{ __('shop::app.customer.account.profile.cpassword') }}</label>
 
-                    {!! view_render_event('bagisto.shop.customers.account.profile.edit_form_controls.after', ['customer' => $customer]) !!}
+                                <input type="password" id="password_confirmation" class="control mat-input" name="password_confirmation" data-vv-as="&quot;{{ __('shop::app.customer.account.profile.cpassword') }}&quot;" v-validate="'min:6|confirmed:password'">
+                            </div>
+                            <span class="control-error" v-if="errors.has('password_confirmation')">@{{ errors.first('password_confirmation') }}</span>
+                        </div>
 
-                    <div class="button-group">
-                        <input class="btn btn-primary btn-lg" type="submit" value="{{ __('shop::app.customer.account.profile.submit') }}">
+                        {!! view_render_event('bagisto.shop.customers.account.profile.edit_form_controls.after', ['customer' => $customer]) !!}
+
+                        <div class="button-group mt-12">
+                            <input class="button-decor w-full sm:w-1/2 py-3 text-xl capitalize" type="submit" value="{{ __('shop::app.customer.account.profile.submit') }}">
+                        </div>
                     </div>
                 </div>
+                </form>
 
-            </form>
-
-            {!! view_render_event('bagisto.shop.customers.account.profile.edit.after', ['customer' => $customer]) !!}
-
+                {!! view_render_event('bagisto.shop.customers.account.profile.edit.after', ['customer' => $customer]) !!}
+            </div>
         </div>
 
     </div>

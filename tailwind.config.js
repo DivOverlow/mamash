@@ -85,6 +85,8 @@ module.exports = {
                 chocolate: '#dfa36d',
                 'rosy-brown': '#bc786b',
                 white: '#fff',
+                'ghost-white': '#f8f8f8',
+                'old-lace': '#fdfdfd',
                 'orange-light': "#f5f5f5",
                 orange: "#ea9f57",
                 scarlet: '#f91154',

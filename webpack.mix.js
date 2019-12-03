@@ -16,12 +16,11 @@ const tailwindcss = require('tailwindcss');
 mix.postCss('resources/css/main.css', 'public/themes/custom/assets/css', [
     require('tailwindcss'),
 ])
-    .browserSync('mamash');
+    .browserSync('mamash-old');
 
 
 
 
-// let mix = require('laravel-mix');
 
 /*
  |--------------------------------------------------------------------------
@@ -34,5 +33,30 @@ mix.postCss('resources/css/main.css', 'public/themes/custom/assets/css', [
  |
  */
 
-// mix.js('resources/assets/js/app.js', 'public/js')
-//    .sass('resources/assets/sass/app.scss', 'public/css');
+
+// const mix = require("laravel-mix");
+//
+// if (mix == 'undefined') {
+//     const { mix } = require("laravel-mix");
+// }
+//
+// require("laravel-mix-merge-manifest");
+//
+// if (mix.inProduction()) {
+//     var publicPath = 'packages/Webkul/Shop/publishable/assets';
+// } else {
+//     var publicPath = "public/themes/custom/assets";
+// }
+//
+// mix.setPublicPath(publicPath).mergeManifest();
+// mix.disableNotifications();
+//
+// mix.js([__dirname + "/resources/assets/js/app.js"], "public/themes/custom/assets/js/shop.js");
+//     // .sass(__dirname + "/src/Resources/assets/sass/app.scss", "css/shop.css")
+//     // .options({
+//     //     processCssUrls: false
+//     // });
+//
+// if (mix.inProduction()) {
+//     mix.version();
+// }

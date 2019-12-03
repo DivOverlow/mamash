@@ -278,7 +278,7 @@ Route::group(['middleware' => ['web']], function () {
                 Route::post('/products/upload-file/{id}', 'Webkul\Product\Http\Controllers\ProductController@uploadLink')->name('admin.catalog.products.upload_link');
 
                 Route::post('/products/upload-sample/{id}', 'Webkul\Product\Http\Controllers\ProductController@uploadSample')->name('admin.catalog.products.upload_sample');
-                
+
                 //product delete
                 Route::post('/products/delete/{id}', 'Webkul\Product\Http\Controllers\ProductController@destroy')->name('admin.catalog.products.delete');
 
@@ -726,39 +726,68 @@ Route::group(['middleware' => ['web']], function () {
             });
 
             Route::prefix('cms')->group(function () {
-                Route::get('/', 'Webkul\CMS\Http\Controllers\Admin\PageController@index')->defaults('_config', [
+                Route::get('/page', 'Webkul\CMS\Http\Controllers\Admin\PageController@index')->defaults('_config', [
                     'view' => 'admin::cms.index'
                 ])->name('admin.cms.index');
 
                 Route::get('preview/{url_key}', 'Webkul\CMS\Http\Controllers\Admin\PageController@preview')->name('admin.cms.preview');
 
-                Route::get('create', 'Webkul\CMS\Http\Controllers\Admin\PageController@create')->defaults('_config', [
+                Route::get('/page/create', 'Webkul\CMS\Http\Controllers\Admin\PageController@create')->defaults('_config', [
                     'view' => 'admin::cms.create'
                 ])->name('admin.cms.create');
 
-                Route::post('create', 'Webkul\CMS\Http\Controllers\Admin\PageController@store')->defaults('_config', [
+                Route::post('/page/create', 'Webkul\CMS\Http\Controllers\Admin\PageController@store')->defaults('_config', [
                     'redirect' => 'admin.cms.index'
                 ])->name('admin.cms.store');
 
-                Route::get('update/{id}', 'Webkul\CMS\Http\Controllers\Admin\PageController@edit')->defaults('_config', [
+                Route::get('/page/update/{id}', 'Webkul\CMS\Http\Controllers\Admin\PageController@edit')->defaults('_config', [
                     'view' => 'admin::cms.edit'
                 ])->name('admin.cms.edit');
 
-                Route::post('update/{id}', 'Webkul\CMS\Http\Controllers\Admin\PageController@update')->defaults('_config', [
+                Route::post('/page/update/{id}', 'Webkul\CMS\Http\Controllers\Admin\PageController@update')->defaults('_config', [
                     'redirect' => 'admin.cms.index'
                 ])->name('admin.cms.update');
 
-                Route::post('/delete/{id}', 'Webkul\CMS\Http\Controllers\Admin\PageController@delete')->defaults('_config', [
+                Route::post('/page/delete/{id}', 'Webkul\CMS\Http\Controllers\Admin\PageController@delete')->defaults('_config', [
                     'redirect' => 'admin.cms.index'
                 ])->name('admin.cms.delete');
 
-                Route::post('/massdelete', 'Webkul\CMS\Http\Controllers\Admin\PageController@massDelete')->defaults('_config', [
+                Route::post('/page/massdelete', 'Webkul\CMS\Http\Controllers\Admin\PageController@massDelete')->defaults('_config', [
                     'redirect' => 'admin.cms.index'
                 ])->name('admin.cms.mass-delete');
 
                 // Route::post('/delete/{id}', 'Webkul\CMS\Http\Controllers\Admin\PageController@delete')->defaults('_config', [
                 //     'redirect' => 'admin.cms.index'
                 // ])->name('admin.cms.delete');
+
+                Route::get('/template', 'Webkul\CMS\Http\Controllers\Admin\TemplateController@index')->defaults('_config', [
+                    'view' => 'admin::cms.template.index'
+                ])->name('admin.template.index');
+
+                Route::get('/template/create', 'Webkul\CMS\Http\Controllers\Admin\TemplateController@create')->defaults('_config', [
+                    'view' => 'admin::cms.template.create'
+                ])->name('admin.template.create');
+
+                Route::post('/template/create', 'Webkul\CMS\Http\Controllers\Admin\TemplateController@store')->defaults('_config', [
+                    'redirect' => 'admin.template.index'
+                ])->name('admin.template.store');
+
+                Route::get('/template/update/{id}', 'Webkul\CMS\Http\Controllers\Admin\TemplateController@edit')->defaults('_config', [
+                    'view' => 'admin::cms.template.edit'
+                ])->name('admin.template.edit');
+
+                Route::post('/template/update/{id}', 'Webkul\CMS\Http\Controllers\Admin\TemplateController@update')->defaults('_config', [
+                    'redirect' => 'admin.template.index'
+                ])->name('admin.template.update');
+
+                Route::post('/template/delete/{id}', 'Webkul\CMS\Http\Controllers\Admin\TemplateController@delete')->defaults('_config', [
+                    'redirect' => 'admin.template.index'
+                ])->name('admin.template.delete');
+
+                Route::post('/template/massdelete', 'Webkul\CMS\Http\Controllers\Admin\TemplateController@massDelete')->defaults('_config', [
+                    'redirect' => 'admin.cms.template.index'
+                ])->name('admin.template.mass-delete');
+
             });
         });
     });
