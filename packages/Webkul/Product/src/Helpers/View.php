@@ -16,11 +16,12 @@ class View extends AbstractProduct
      * @param Product $product
      * @return integer
      */
-    public function getAdditionalData($product)
+    public function getAdditionalData($product, $is_visible_on_front = 1)
     {
         $data = [];
 
-        $attributes = $product->attribute_family->custom_attributes()->where('attributes.is_visible_on_front', 1)->get();
+//        $attributes = $product->attribute_family->custom_attributes()->where('attributes.is_visible_on_front', 1)->get();
+        $attributes = $product->attribute_family->custom_attributes()->where('attributes.is_visible_on_front', $is_visible_on_front)->get();
 
         $attributeOptionReposotory = app('Webkul\Attribute\Repositories\AttributeOptionRepository');
 

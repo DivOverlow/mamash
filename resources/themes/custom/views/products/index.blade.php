@@ -15,27 +15,7 @@
 @section('content-wrapper')
     @inject ('productRepository', 'Webkul\Product\Repositories\ProductRepository')
     <section class="hero-content">
-        @if ($category->display_mode == 'collections_only')
-        <div class="hero-image bg-cover bg-center shadow-lg h-96 sm:h-120 relative" style="background-image: url('/themes/custom/assets/images/banner/bg-linear.jpg');">
-            <div class="main-container-wrapper max-w-sm sm:max-w-xl px-30 sm:px-0 mx-auto overflow-hidden absolute inset-x-0 top-0 mt-8">
-                @if (!is_null($category->image))
-                    <img class="w-full" src="{{ $category->image_url }}" alt="{!! $category->name !!}">
-                @endif
-            </div>
-        </div>
-            <div class="max-w-sm sm:max-w-2xl mx-auto my-10 sm:my-16">
-                @if ($category->description)
-                    {!! $category->description !!}
-                @endif
-
-            <?php $products = $productRepository->getAll($category->id); ?>
-            @if ($products->count() > 1)
-                <div class="mt-12 text-center"><a href="{{ route('shop.categories.index', ['categories'=>'category','line_filter'=>'16']) }}"
-                        class="button-black text-base px-6">{{ __('shop::app.banner.collections-btn-title') }}</a>
-                </div>
-            @endif
-            </div>
-        @else
+        @if ($category->display_mode != 'collections_only')
             <div class="hero-image absolute z-0 w-full mx-auto">
                 <div class="container">
                     @if (!is_null($category->image))
@@ -60,10 +40,22 @@
         @endif
     </section>
     @if ($category->display_mode == 'collections_only')
-        <div class="main">
-            @inject ('templateRepository', 'Webkul\CMS\Repositories\TemplateRepository')
-            {!! DbView::make($templateRepository->getTemplate($category->slug))->field('html_content')->render() !!}
-        </div>
+        @inject ('templateRepository', 'Webkul\CMS\Repositories\TemplateRepository')
+        <?php $products = $productRepository->getAll($category->id);
+            $more_one =  ($products->count() > 1);
+            if (!is_null($category->image)) {
+                $category_image_url = $category->image_url;
+            }
+            else {
+                $category_image_url = null;
+            }
+        ?>
+        {!! DbView::make($templateRepository->getTemplate($category->slug))
+                ->field('html_content')
+                ->with(['category_name' => $category->name, 'category_description' => $category->description,
+                            'category_image_url'=> $category->image_url, 'more_one' => $more_one, 'category_image_url' => $category_image_url ])
+                ->render() !!}
+
     @elseif ($category->display_mode == 'gifting_only')
         <div class="main">
             {!! view_render_event('bagisto.shop.products.index.before', ['category' => $category]) !!}

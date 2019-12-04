@@ -1,31 +1,34 @@
 
 @inject ('productRepository', 'Webkul\Product\Repositories\ProductRepository')
+
 <?php
-$products = $productRepository->getAll(4)->random(1);
+    $products = $productRepository->getAll(4)->random(1);
 ?>
 
 @if (count($products))
     @inject ('productImageHelper', 'Webkul\Product\Helpers\ProductImage')
+    @inject ('templateRepository', 'Webkul\CMS\Repositories\TemplateRepository')
+    @inject ('productViewHelper', 'Webkul\Product\Helpers\View')
 
+    <?php $evaluation = 0; ?>
     @foreach ($products as $product)
-        <?php $productBaseImage = $productImageHelper->getProductBaseImage($product); ?>
-        <section class="banner-container">
-            <div class="my-16 bg-no-repeat bg-right-top bg-white"
-                 style="background-image: url('/themes/custom/assets/images/banner/blooper.png');">
-                <div class="main-container-wrapper flex flex-col-reverse sm:flex-row justify-between">
-                    <div class="left-banner h-112 w-full bg-cover flex items-center justify-center" style="background-image: url('/themes/custom/assets/images/banner/bg_gift.jpg');">
-                        <a href="{{ route('shop.products.index', $product->url_key) }}" title="{{ $product->name }}">
-                            <img class="h-96 w-full object-scale-down" src="{{ $productBaseImage['large_image_url'] }}" onerror="this.src='{{ asset('vendor/webkul/ui/assets/images/product/meduim-product-placeholder.png') }}'"/>
-                        </a>
-                    </div>
-                    <div class="right-banner w-full h-112 px-0 sm:px-6">
-                        <div class="banner-content text-3xl sm:text-4xl w-full flex flex-col justify-center items-center h-112 mx-auto px-6">
-                            {!! $product->short_description !!}
-                            <div class="mt-6"><a href="{{ url()->to('/').'/products/' . $product->url_key }}" class="button-black text-base px-6">{{ __('shop::app.banner.btn-title') }}</a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section><!-- end section banner container -->
+        <?php  $productBaseImage = $productImageHelper->getProductBaseImage($product); ?>
+        @if ($customAttributeValues = $productViewHelper->getAdditionalData($product, 0))
+            @foreach ($customAttributeValues as $attribute)
+                <?php
+                    if($attribute['code'] == 'gift_rules') {
+                           $evaluation = $attribute['value'];
+                    }
+                ?>
+            @endforeach
+        @endif
+
+
+            {!! DbView::make($templateRepository
+                    ->getTemplate('banner-gift'))
+                    ->field('html_content')
+                    ->with( ['product_url_key' => $product->url_key,'product_name' => $product->name, 'evaluation'=> $evaluation, 'large_image_url' => $productBaseImage['large_image_url']])
+                    ->render() !!}
+
     @endforeach
 @endif
