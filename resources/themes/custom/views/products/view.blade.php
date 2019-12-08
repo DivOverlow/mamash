@@ -76,7 +76,7 @@
                                 </div>
                                 @include ('shop::products.view.gallery')
                             </div>
-                            <div class="w-full sm:w-1/2 flex content-center flex-wrap h-132">
+                            <div class="w-full sm:w-1/2 flex content-center flex-wrap">
                                 <div class="details w-full font-serif">
                                     <div class="product-heading font-serif text-gray-dark text-center my-3">
                                         @if ($categoryCollection)
@@ -190,27 +190,7 @@
 
         @include("shop::home.research")
 
-        <section class="banner-container">
-            <div class="w-full flex flex-col sm:flex-row justify-between items-center">
-                <div class="w-full bg-no-repeat bg-cover bg-center" style="background-image: url('/themes/custom/assets/images/banner/collection.jpg');">
-                    <div class="max-w-sm sm:max-w-xl mx-auto h-132 flex content-center flex-wrap px-3">
-                        <div class="w-full text-white text-center flex flex-col justify-center items-center">
-                            <h2 class="text-4xl uppercase">НАЗВАНИЕ ЛИНЕЙКИ</h2>
-                            <p class="font-serif text-base sm:text-xl my-6">при заказе на сумму от 499 грн. Вы получаете
-                                в подарок “название продукта”</p>
-                            {{--                                                            {!! $product->short_description !!}--}}
-                            {{--                                                            <div class="mt-6"><a href="{{ url()->to('/').'/products/' . $product->url_key }}" class="button-black text-base">{{ __('shop::app.banner.btn-title') }}</a></div>--}}
-                            <a href="#" class="button-decor text-base uppercase py-2 h-10 w-1/3">{{ __('shop::app.banner.btn-more-details') }}</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="w-full">
-                    <img class="object-contain h-132 mx-auto" src="/themes/custom/assets/images/banner/cross.jpg" alt="banner image" />
-                </div>
-            </div>
-        </section><!-- end section banner container -->
-
-
+        @include("shop::products.view.gift")
 
         @include ('shop::products.view.related-products')
 

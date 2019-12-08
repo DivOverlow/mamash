@@ -1,6 +1,6 @@
 {!! view_render_event('bagisto.shop.products.list.card.before', ['product' => $product]) !!}
 
-<div class="product-card bg-orange-light border border-orange px-4 py-3 relative">
+<div class="product-card max-w-md bg-orange-light border border-orange px-4 py-3 relative">
 
     @inject ('productImageHelper', 'Webkul\Product\Helpers\ProductImage')
     @inject ('productRepository', 'Webkul\Product\Repositories\ProductRepository')

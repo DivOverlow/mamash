@@ -13,7 +13,7 @@ return [
         'orders' => 'Orders',
         'subscribe-newsletter' => 'Subscribe',
         'downloadable-products' => 'Downloadable Products',
-        'logout' => 'Exit'
+        'logout' => 'Exit',
     ],
 
     'common' => [
@@ -24,9 +24,10 @@ return [
     'home' => [
         'page-title' => config('app.name') . ' - Home',
         'featured-products' => 'Featured Products',
-        'new-products' => 'New Products',
+        'new-products' => 'New Products and Related Products',
+        'bestsellers' => 'Bestsellers',
         'verify-email' => 'Verify your email account',
-        'resend-verify-email' => 'Resend Verification Email'
+        'resend-verify-email' => 'Resend Verification Email',
     ],
 
     'header' => [
@@ -390,7 +391,8 @@ return [
         'total-rating' => ':total_rating Ratings & :total_reviews Reviews',
         'by' => 'By :name',
         'up-sell-title' => 'We found other products you might like!',
-        'related-product-title' => 'Related Products',
+        'related-product-title' => 'You may also ',
+        'related-product-bottom' => 'like it',
         'cross-sell-title' => 'More choices',
         'reviews-title' => 'Ratings & Reviews',
         'write-review-btn' => 'Write Review',
@@ -671,3 +673,4 @@ return [
         'submit-success' => ':name submitted successfully.'
     ],
 ];
+

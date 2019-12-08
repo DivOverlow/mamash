@@ -33,7 +33,7 @@ mix.postCss('resources/css/main.css', 'public/themes/custom/assets/css', [
  |
  */
 
-
+//
 // const mix = require("laravel-mix");
 //
 // if (mix == 'undefined') {

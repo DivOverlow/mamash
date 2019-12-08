@@ -88,7 +88,7 @@ module.exports = {
                 'ghost-white': '#f8f8f8',
                 'old-lace': '#fdfdfd',
                 'orange-light': "#f5f5f5",
-                orange: "#ea9f57",
+                orange: "#eba057",
                 scarlet: '#f91154',
             },
             spacing: {

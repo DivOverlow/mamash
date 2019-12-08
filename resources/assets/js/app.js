@@ -41,8 +41,35 @@ $(document).ready(function () {
             HooperNavigation,
             HooperPagination
         },
-        data: {
-            modalIds: {}
+        data() {
+            return {
+                hooperSettings: {
+                    infiniteScroll: true,
+                    centerMode: true,
+                    autoPlay: true,
+                    playSpeed: 7000,
+                    breakpoints: {
+                        2400: { // 2400px ~
+                            itemsToShow: 5.5
+                        },
+                        1800: { // 1800px ~ 2400px
+                            itemsToShow: 4.5
+                        },
+                        1500: { // 1500px ~ 1800px
+                            itemsToShow: 3.5
+                        },
+                        1100: { // 1100px ~ 1500px
+                            itemsToShow: 2.5
+                        },
+                        600: { // 600px ~ 1100px
+                            itemsToShow: 1.5
+                        },
+                        0: { // 0px ~ 600px
+                            itemsToShow: 1
+                        }
+                    }
+                }
+            }
         },
 
         mounted: function () {
