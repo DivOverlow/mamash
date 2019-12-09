@@ -33,7 +33,7 @@ mix.postCss('resources/css/main.css', 'public/themes/custom/assets/css', [
  |
  */
 
-//
+
 // const mix = require("laravel-mix");
 //
 // if (mix == 'undefined') {
@@ -43,7 +43,8 @@ mix.postCss('resources/css/main.css', 'public/themes/custom/assets/css', [
 // require("laravel-mix-merge-manifest");
 //
 // if (mix.inProduction()) {
-//     var publicPath = 'packages/Webkul/Shop/publishable/assets';
+//     // var publicPath = 'packages/Webkul/Shop/publishable/assets';
+//     var publicPath = __dirname + '/';
 // } else {
 //     var publicPath = "public/themes/custom/assets";
 // }
