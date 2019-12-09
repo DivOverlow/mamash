@@ -31,6 +31,7 @@ import {
     Navigation as HooperNavigation,
     Pagination as HooperPagination
 } from 'hooper';
+import 'hooper/dist/hooper.css';
 
 $(document).ready(function () {
     const app = new Vue({
@@ -47,6 +48,7 @@ $(document).ready(function () {
                     infiniteScroll: true,
                     centerMode: true,
                     autoPlay: true,
+                    wheelControl: false,
                     playSpeed: 7000,
                     breakpoints: {
                         2400: { // 2400px ~

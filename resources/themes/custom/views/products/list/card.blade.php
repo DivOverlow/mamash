@@ -29,12 +29,12 @@
     @endif
 
     <div class="product-information">
-        @if ($categoryCollection)
-            <div class="text-base text-center text-gray-dark my-1 hover:text-gray-silver">
+        <div class="text-base text-center text-gray-dark my-1 hover:text-gray-silver">
+            @if ($categoryCollection)
                 <a href="{{ route('shop.categories.index', $categoryCollection->slug) }}" title="{{ $categoryCollection->name }}">
                     {{ $categoryCollection->name }} </a>
-            </div>
-        @endif
+            @endif
+        </div>
 
         <div class="product-name cursor-pointer text-gray-dark uppercase text-xl text-center mb-2">
             <a href="{{ url()->to('/').'/products/' . $product->url_key }}" title="{{ $product->name }}">
@@ -49,7 +49,7 @@
         @include('shop::products.add-buttons', ['product' => $product])
     </div>
 
-    <div class="product-image flex justify-content-center items-center p-10">
+    <div class="product-image flex justify-content-center items-center px-10">
         <a href="{{ route('shop.products.index', $product->url_key) }}" title="{{ $product->name }}" class="my-auto mx-auto">
             <img class="w-full object-scale-down" src="{{ $productBaseImage['medium_image_url'] }}" onerror="this.src='{{ asset('vendor/webkul/ui/assets/images/product/meduim-product-placeholder.png') }}'"/>
         </a>

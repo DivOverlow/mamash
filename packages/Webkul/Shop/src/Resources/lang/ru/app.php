@@ -355,7 +355,7 @@ return [
         'layered-nav-title' => 'Фильтр',
         'price-label' => 'As low as',
         'remove-filter-link-title' => 'Очистить',
-        'apply-filter-link-title' => 'Підтвердити',
+        'apply-filter-link-title' => 'Подтвердить',
         'sort-by' => 'Sort By',
         'from-a-z' => 'From A-Z',
         'from-z-a' => 'From Z-A',

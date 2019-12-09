@@ -12,7 +12,6 @@
 @import 'base/ui.css';
 
  /*Components*/
-@import 'components/hooper.css';
 @import 'components/slider.css';
 
 
@@ -365,11 +364,16 @@ body {
     display: none;
 }
 
-.product-card .product-image img {
-    /*width: auto !important;*/
-    /*height: 100% !important;*/
-    /*max-height: 100%;*/
-    /*max-width: 100%;*/
+.product-card .product-information div {
+    min-height: 1.5rem;
+}
+
+.product-card .product-information .product-name {
+    min-height: 4rem;
+}
+
+.product-card .product-image {
+    min-height: 19rem;
 }
 
 section.product-detail div.layouter .form-container div.product-image-group div .thumb-list {
