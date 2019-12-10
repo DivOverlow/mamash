@@ -31,7 +31,7 @@
         $filterAttributes = $attributeRepository->getFilterAttributes();
     }
 ?>
-<div class="layered-filter-wrapper">
+<div class="layered-filter-wrapper z-20">
 
     {!! view_render_event('bagisto.shop.products.list.layered-nagigation.before') !!}
 
