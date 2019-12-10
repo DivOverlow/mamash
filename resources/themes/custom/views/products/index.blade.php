@@ -317,32 +317,32 @@
                                                         ?>
 
                                                         @if (count($categories))
-                                                            <section class="banner-container">
-                                                                <div class="bg-white py-4">
-                                                                    @foreach($categories as $value)
-                                                                        <div class="container flex flex-col justify-between items-center">
-                                                                            <div class="left-banner w-full">
-                                                                                @if (!is_null($value->image))
-                                                                                    <img src="{{ $value->image_url }}" alt="{!! $value->name !!}"/>
-                                                                                @endif
-                                                                            </div>
-                                                                            <div class="right-banner w-full">
-                                                                                <div
-                                                                                    class="banner-content text-3xl w-full flex flex-col justify-center items-center h-96 mx-auto">
-                                                                                    @if ($value->description)
-                                                                                        {!! $value->description !!}
-                                                                                    @endif
+{{--                                                            <section class="banner-container">--}}
+{{--                                                                <div class="bg-white py-4">--}}
+{{--                                                                    @foreach($categories as $value)--}}
+{{--                                                                        <div class="container flex flex-col justify-between items-center">--}}
+{{--                                                                            <div class="left-banner w-full">--}}
+{{--                                                                                @if (!is_null($value->image))--}}
+{{--                                                                                    <img src="{{ $value->image_url }}" alt="{!! $value->name !!}"/>--}}
+{{--                                                                                @endif--}}
+{{--                                                                            </div>--}}
+{{--                                                                            <div class="right-banner w-full">--}}
+{{--                                                                                <div--}}
+{{--                                                                                    class="banner-content text-3xl w-full flex flex-col justify-center items-center h-96 mx-auto">--}}
+{{--                                                                                    @if ($value->description)--}}
+{{--                                                                                        {!! $value->description !!}--}}
+{{--                                                                                    @endif--}}
 
-                                                                                    <div class="mt-6"><a
-                                                                                            href="{{ route('shop.categories.index', $value->slug) }}"
-                                                                                            class="button-black text-base px-6">{{ __('shop::app.banner.btn-title') }}</a>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    @endforeach
-                                                                </div>
-                                                            </section><!-- end section banner container -->
+{{--                                                                                    <div class="mt-6"><a--}}
+{{--                                                                                            href="{{ route('shop.categories.index', $value->slug) }}"--}}
+{{--                                                                                            class="button-black text-base px-6">{{ __('shop::app.banner.btn-title') }}</a>--}}
+{{--                                                                                    </div>--}}
+{{--                                                                                </div>--}}
+{{--                                                                            </div>--}}
+{{--                                                                        </div>--}}
+{{--                                                                    @endforeach--}}
+{{--                                                                </div>--}}
+{{--                                                            </section><!-- end section banner container -->--}}
                                                         @endif
 
 
