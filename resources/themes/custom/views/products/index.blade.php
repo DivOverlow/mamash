@@ -83,119 +83,12 @@
         {!! view_render_event('bagisto.shop.products.index.before', ['category' => $category]) !!}
 
         <div class="category-container text-xs container flex flex-col sm:flex-row z-10 -mt-12 relative">
-            <div class="w-full sm:w-1/3 bg-gray-dark text-xs">
-                <div class="hidden p-10 sm:block">
-                    <?php
-                    $categories = [];
-                    $parent_id = $category->parent_id;
-                    $current_id = $category->id;
-                    while ($parent_id != NULL) {
-                        $result = app('Webkul\Category\Repositories\CategoryRepository')->findOrFail($parent_id);
-                        if (isset($result->parent_id)) {
-                            if ($result->parent_id != NULL && $result->parent_id > 1) {
-                                $categories[] = $result;
-                                $parent_id = $result->parent_id;
-                                $current_id = $result->id;
-                            } else {
-                                break;
-                            }
-                        } else {
-                            break;
-                        }
-                    }
-                    $categories = array_reverse($categories);
-                    ?>
 
-                    {{ Breadcrumbs::render('categories', $categories,  $category) }}
-                </div>
-                <?php
-                $categories = [];
-
-                foreach (app('Webkul\Category\Repositories\CategoryRepository')->getVisibleCategoryTree($parent_id) as $value) {
-                    if ($value->slug) {
-                        $categories[] = $value;
-                    }
-                }
-                ?>
-
-                <div class="w-1/2 bg-black text-white text-sm uppercase p-3 sm:hidden">{{$category->name}}</div>
-                <div class="main-container-wrapper sm:container bg-gray-snow sm:bg-gray-dark py-3 sm:py-0">
-                    @if (count($categories))
-                        <div class="list-container px-0 sm:px-6 mb-6">
-                            <ul class="list-group text-sm uppercase text-gray-cloud sm:text-white">
-                                @foreach ($categories as $key => $value)
-                                    <li class="py-1">
-                                        <a href="{{ route('shop.categories.index', $value->slug) }}"
-                                           class="list-item {{ ($current_id == $value->id) ? 'text-gray-dark sm:text-white border-b border-gray-smoke sm:border-b sm:border-white' :''}}">{{ $value->name }}</a>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                </div>
-
-                <?php $products = $productRepository->getAll($category->id); ?>
-                @if ($products->count())
-                    <div
-                        class="inline-block text-gray-light text-base uppercase relative px-10 mb-4 -ml-6 sm:ml-0">{{ __('shop::app.products.layered-nav-title') }}
-                        <div class="icon filter-icon-on absolute cursor-pointer top-0 bottom-0 right-0 py-4"
-                             id="filter"></div>
-                    </div>
-                @endif
-                @if (in_array($category->display_mode, [null, 'products_only', 'products_and_description']))
-                    @include ('shop::products.list.layered-navigation')
-                @endif
+            <?php $products = $productRepository->getAll($category->id); ?>
+            {{--            <div class="category-block w-full sm:w-2/3"--}}
 
 
-                <?php
-                $categories = [];
-
-                foreach (app('Webkul\Category\Repositories\CategoryRepository')->getVisibleCategoryTree(6) as $value) {
-                    if ($value->slug) {
-                        $categories[] = $value;
-                    }
-                }
-                if (count($categories) > 3) {
-                    $rand_keys = array_rand($categories, count($categories) - 3);
-                    foreach ($rand_keys as $key) {
-                        unset($categories[$key]);
-                    }
-                }
-
-                ?>
-
-                @if (count($categories))
-                    <section class="banner-container">
-                        <div class="bg-white py-4">
-                            @foreach($categories as $value)
-                                <div class="container flex flex-col justify-between items-center">
-                                    <div class="left-banner w-full">
-                                        @if (!is_null($value->image))
-                                            <img src="{{ $value->image_url }}" alt="{!! $value->name !!}"/>
-                                        @endif
-                                    </div>
-                                    <div class="right-banner w-full">
-                                        <div
-                                            class="banner-content text-3xl w-full flex flex-col justify-center items-center h-96 mx-auto">
-                                            @if ($value->description)
-                                                {!! $value->description !!}
-                                            @endif
-
-                                            <div class="mt-6"><a
-                                                    href="{{ route('shop.categories.index', $value->slug) }}"
-                                                    class="button-black text-base px-6">{{ __('shop::app.banner.btn-title') }}</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
-                    </section><!-- end section banner container -->
-                @endif
-
-
-            </div>
-            <div class="category-block w-full sm:w-2/3"
+            <div class="category-block w-full"
                  @if ($category->display_mode == 'description_only') style="width: 100%" @endif>
 
                 @if (in_array($category->display_mode, [null, 'products_only', 'products_and_description']))
@@ -209,9 +102,126 @@
                         @if ($toolbarHelper->getCurrentMode() == 'grid')
                             <div class="product-grid-3 flex flex-wrap">
                                 @foreach ($products as $productFlat)
-                                    <div class="w-full sm:w-1/2 pl-0 sm:pl-6 pb-0 sm:pb-6">
+                                    @if ($loop->index == 0)
+
+                                        <div class="w-full max-w-md sm:w-1/3 bg-gray-dark text-xs mb-6">
+                                                        <div class="hidden p-10 sm:block">
+                                                            <?php
+                                                            $categories = [];
+                                                            $parent_id = $category->parent_id;
+                                                            $current_id = $category->id;
+                                                            while ($parent_id != NULL) {
+                                                                $result = app('Webkul\Category\Repositories\CategoryRepository')->findOrFail($parent_id);
+                                                                if (isset($result->parent_id)) {
+                                                                    if ($result->parent_id != NULL && $result->parent_id > 1) {
+                                                                        $categories[] = $result;
+                                                                        $parent_id = $result->parent_id;
+                                                                        $current_id = $result->id;
+                                                                    } else {
+                                                                        break;
+                                                                    }
+                                                                } else {
+                                                                    break;
+                                                                }
+                                                            }
+                                                            $categories = array_reverse($categories);
+                                                            ?>
+
+                                                            {{ Breadcrumbs::render('categories', $categories,  $category) }}
+                                                        </div>
+                                                        <?php
+                                                        $categories = [];
+
+                                                        foreach (app('Webkul\Category\Repositories\CategoryRepository')->getVisibleCategoryTree($parent_id) as $value) {
+                                                            if ($value->slug) {
+                                                                $categories[] = $value;
+                                                            }
+                                                        }
+                                                        ?>
+
+                                                        <div class="w-1/2 bg-black text-white text-sm uppercase p-3 sm:hidden">{{$category->name}}</div>
+                                                        <div class="main-container-wrapper sm:container bg-gray-snow sm:bg-gray-dark py-3 sm:py-0">
+                                                            @if (count($categories))
+                                                                <div class="list-container px-0 sm:px-6 mb-6">
+                                                                    <ul class="list-group text-sm uppercase text-gray-cloud sm:text-white">
+                                                                        @foreach ($categories as $key => $value)
+                                                                            <li class="py-1">
+                                                                                <a href="{{ route('shop.categories.index', $value->slug) }}"
+                                                                                   class="list-item {{ ($current_id == $value->id) ? 'text-gray-dark sm:text-white border-b border-gray-smoke sm:border-b sm:border-white' :''}}">{{ $value->name }}</a>
+                                                                            </li>
+                                                                        @endforeach
+                                                                    </ul>
+                                                                </div>
+                                                            @endif
+                                                        </div>
+
+                                                        <?php $products = $productRepository->getAll($category->id); ?>
+                                                        @if ($products->count())
+                                                            <div
+                                                                class="inline-block text-gray-light text-base uppercase relative px-10 mb-4 -ml-6 sm:ml-0">{{ __('shop::app.products.layered-nav-title') }}
+                                                                <div class="icon filter-icon-on absolute cursor-pointer top-0 bottom-0 right-0 py-4"
+                                                                     id="filter"></div>
+                                                            </div>
+                                                        @endif
+                                                        @if (in_array($category->display_mode, [null, 'products_only', 'products_and_description']))
+                                                            @include ('shop::products.list.layered-navigation')
+                                                        @endif
+
+
+                                                        <?php
+                                                        $categories = [];
+
+                                                        foreach (app('Webkul\Category\Repositories\CategoryRepository')->getVisibleCategoryTree(6) as $value) {
+                                                            if ($value->slug) {
+                                                                $categories[] = $value;
+                                                            }
+                                                        }
+                                                        if (count($categories) > 3) {
+                                                            $rand_keys = array_rand($categories, count($categories) - 3);
+                                                            foreach ($rand_keys as $key) {
+                                                                unset($categories[$key]);
+                                                            }
+                                                        }
+
+                                                        ?>
+
+                                                        @if (count($categories))
+                                                            <section class="banner-container">
+                                                                <div class="bg-white py-4">
+                                                                    @foreach($categories as $value)
+                                                                        <div class="container flex flex-col justify-between items-center">
+                                                                            <div class="left-banner w-full">
+                                                                                @if (!is_null($value->image))
+                                                                                    <img src="{{ $value->image_url }}" alt="{!! $value->name !!}"/>
+                                                                                @endif
+                                                                            </div>
+                                                                            <div class="right-banner w-full">
+                                                                                <div
+                                                                                    class="banner-content text-3xl w-full flex flex-col justify-center items-center h-96 mx-auto">
+                                                                                    @if ($value->description)
+                                                                                        {!! $value->description !!}
+                                                                                    @endif
+
+                                                                                    <div class="mt-6"><a
+                                                                                            href="{{ route('shop.categories.index', $value->slug) }}"
+                                                                                            class="button-black text-base px-6">{{ __('shop::app.banner.btn-title') }}</a>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    @endforeach
+                                                                </div>
+                                                            </section><!-- end section banner container -->
+                                                        @endif
+                                                    </div>
+
+                                    @endif
+
+
+                                    <div class="w-full sm:w-1/3 pl-0 sm:pl-6 pb-0 sm:pb-6">
                                         @include ('shop::products.list.card', ['product' => $productFlat])
                                     </div>
+
                                 @endforeach
                                 {!! view_render_event('bagisto.shop.products.index.pagination.before', ['category' => $category]) !!}
 
@@ -225,9 +235,119 @@
                         @else
                             <div class="product-list">
                                 @foreach ($products as $productFlat)
+                                    <div class="w-full sm:w-1/3 bg-gray-dark text-xs">
+                                                        <div class="hidden p-10 sm:block">
+                                                            <?php
+                                                            $categories = [];
+                                                            $parent_id = $category->parent_id;
+                                                            $current_id = $category->id;
+                                                            while ($parent_id != NULL) {
+                                                                $result = app('Webkul\Category\Repositories\CategoryRepository')->findOrFail($parent_id);
+                                                                if (isset($result->parent_id)) {
+                                                                    if ($result->parent_id != NULL && $result->parent_id > 1) {
+                                                                        $categories[] = $result;
+                                                                        $parent_id = $result->parent_id;
+                                                                        $current_id = $result->id;
+                                                                    } else {
+                                                                        break;
+                                                                    }
+                                                                } else {
+                                                                    break;
+                                                                }
+                                                            }
+                                                            $categories = array_reverse($categories);
+                                                            ?>
 
-                                    @include ('shop::products.list.card', ['product' => $productFlat])
+                                                            {{ Breadcrumbs::render('categories', $categories,  $category) }}
+                                                        </div>
+                                                        <?php
+                                                        $categories = [];
 
+                                                        foreach (app('Webkul\Category\Repositories\CategoryRepository')->getVisibleCategoryTree($parent_id) as $value) {
+                                                            if ($value->slug) {
+                                                                $categories[] = $value;
+                                                            }
+                                                        }
+                                                        ?>
+
+                                                        <div class="w-1/2 bg-black text-white text-sm uppercase p-3 sm:hidden">{{$category->name}}</div>
+                                                        <div class="main-container-wrapper sm:container bg-gray-snow sm:bg-gray-dark py-3 sm:py-0">
+                                                            @if (count($categories))
+                                                                <div class="list-container px-0 sm:px-6 mb-6">
+                                                                    <ul class="list-group text-sm uppercase text-gray-cloud sm:text-white">
+                                                                        @foreach ($categories as $key => $value)
+                                                                            <li class="py-1">
+                                                                                <a href="{{ route('shop.categories.index', $value->slug) }}"
+                                                                                   class="list-item {{ ($current_id == $value->id) ? 'text-gray-dark sm:text-white border-b border-gray-smoke sm:border-b sm:border-white' :''}}">{{ $value->name }}</a>
+                                                                            </li>
+                                                                        @endforeach
+                                                                    </ul>
+                                                                </div>
+                                                            @endif
+                                                        </div>
+
+                                                        <?php $products = $productRepository->getAll($category->id); ?>
+                                                        @if ($products->count())
+                                                            <div
+                                                                class="inline-block text-gray-light text-base uppercase relative px-10 mb-4 -ml-6 sm:ml-0">{{ __('shop::app.products.layered-nav-title') }}
+                                                                <div class="icon filter-icon-on absolute cursor-pointer top-0 bottom-0 right-0 py-4"
+                                                                     id="filter"></div>
+                                                            </div>
+                                                        @endif
+                                                        @if (in_array($category->display_mode, [null, 'products_only', 'products_and_description']))
+                                                            @include ('shop::products.list.layered-navigation')
+                                                        @endif
+
+
+                                                        <?php
+                                                        $categories = [];
+
+                                                        foreach (app('Webkul\Category\Repositories\CategoryRepository')->getVisibleCategoryTree(6) as $value) {
+                                                            if ($value->slug) {
+                                                                $categories[] = $value;
+                                                            }
+                                                        }
+                                                        if (count($categories) > 3) {
+                                                            $rand_keys = array_rand($categories, count($categories) - 3);
+                                                            foreach ($rand_keys as $key) {
+                                                                unset($categories[$key]);
+                                                            }
+                                                        }
+
+                                                        ?>
+
+                                                        @if (count($categories))
+                                                            <section class="banner-container">
+                                                                <div class="bg-white py-4">
+                                                                    @foreach($categories as $value)
+                                                                        <div class="container flex flex-col justify-between items-center">
+                                                                            <div class="left-banner w-full">
+                                                                                @if (!is_null($value->image))
+                                                                                    <img src="{{ $value->image_url }}" alt="{!! $value->name !!}"/>
+                                                                                @endif
+                                                                            </div>
+                                                                            <div class="right-banner w-full">
+                                                                                <div
+                                                                                    class="banner-content text-3xl w-full flex flex-col justify-center items-center h-96 mx-auto">
+                                                                                    @if ($value->description)
+                                                                                        {!! $value->description !!}
+                                                                                    @endif
+
+                                                                                    <div class="mt-6"><a
+                                                                                            href="{{ route('shop.categories.index', $value->slug) }}"
+                                                                                            class="button-black text-base px-6">{{ __('shop::app.banner.btn-title') }}</a>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    @endforeach
+                                                                </div>
+                                                            </section><!-- end section banner container -->
+                                                        @endif
+
+
+                                                    </div>
+                                        @include ('shop::products.list.card', ['product' => $productFlat])
                                 @endforeach
                             </div>
                         @endif
