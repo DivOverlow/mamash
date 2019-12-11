@@ -52,7 +52,7 @@ $(document).ready(function () {
                     playSpeed: 7000,
                     breakpoints: {
                         2400: { // 2400px ~
-                            itemsToShow: 5.0
+                            itemsToShow: 5.5
                         },
                         1800: { // 1800px ~ 2400px
                             itemsToShow: 4.5
@@ -70,7 +70,8 @@ $(document).ready(function () {
                             itemsToShow: 1
                         }
                     }
-                }
+                },
+                modalIds: {}
             }
         },
 
