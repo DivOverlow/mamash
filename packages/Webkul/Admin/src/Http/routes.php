@@ -723,6 +723,28 @@ Route::group(['middleware' => ['web']], function () {
                 ])->name('admin.cart-rule.update');
 
                 Route::post('cart-rules/delete/{id}', 'Webkul\Discount\Http\Controllers\CartRuleController@destroy')->name('admin.cart-rule.delete');
+
+                Route::get('gift-rules', 'Webkul\Discount\Http\Controllers\GiftRuleController@index')->defaults('_config', [
+                    'view' => 'admin::promotions.gift-rule.index'
+                ])->name('admin.gift-rule.index');
+
+                Route::get('gift-rules/create', 'Webkul\Discount\Http\Controllers\GiftRuleController@create')->defaults('_config', [
+                    'view' => 'admin::promotions.gift-rule.create'
+                ])->name('admin.gift-rule.create');
+
+                Route::post('gift-rules/store', 'Webkul\Discount\Http\Controllers\GiftRuleController@store')->defaults('_config', [
+                    'redirect' => 'admin.gift-rule.index'
+                ])->name('admin.gift-rule.store');
+
+                Route::get('gift-rules/edit/{id}', 'Webkul\Discount\Http\Controllers\GiftRuleController@edit')->defaults('_config', [
+                    'view' => 'admin::promotions.gift-rule.edit'
+                ])->name('admin.gift-rule.edit');
+
+                Route::post('gift-rules/update/{id}', 'Webkul\Discount\Http\Controllers\GiftRuleController@update')->defaults('_config', [
+                    'redirect' => 'admin.gift-rule.index'
+                ])->name('admin.gift-rule.update');
+
+                Route::post('gift-rules/delete/{id}', 'Webkul\Discount\Http\Controllers\GiftRuleController@destroy')->name('admin.gift-rule.delete');
             });
 
             Route::prefix('cms')->group(function () {

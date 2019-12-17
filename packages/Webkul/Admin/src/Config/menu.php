@@ -200,6 +200,12 @@ return [
         'sort' => 1,
         'icon-class' => '',
     ], [
+        'key' => 'promotions.gift-rule',
+        'name' => 'admin::app.promotion.gift-rule',
+        'route' => 'admin.gift-rule.index',
+        'sort' => 1,
+        'icon-class' => '',
+    ], [
         'key' => 'cms',
         'name' => 'admin::app.layouts.cms',
         'route' => 'admin.cms.index',

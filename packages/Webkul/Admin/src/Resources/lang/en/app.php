@@ -110,7 +110,8 @@ return [
         'create' => 'Add',
         'delete' => 'Delete',
         'promotions' => 'Promotions',
-        'cart-rules' => 'Cart Rules'
+        'cart-rules' => 'Cart Rules',
+        'gift-rules' => 'Правила подарков'
     ],
 
     'dashboard' => [
@@ -951,12 +952,17 @@ return [
         'zero-unlimited' => 'Zero denotes unlimited usage here',
         'catalog-rule' => 'Catalog Rules',
         'cart-rule' => 'Cart Rules',
+        'gift-rule' => 'Правила Подарков',
+        'product-link' => 'Linked Products',
         'add-catalog-rule' => 'Add Rule',
         'add-cart-rule' => 'Add Cart Rule',
+        'add-gift-rule' => 'Добавить правило',
         'edit-cart-rule' => 'Edit Cart Rule',
+        'edit-gift-rule' => 'Редактирование правила',
         'edit-catalog-rule' => 'Edit Catalog Rule',
         'create-catalog-rule' => 'Create Catalog Rule',
         'create-cart-rule' => 'Create Cart Rule',
+        'create-gift-rule' => 'Создать правило',
         'save-btn-title' => 'Create',
         'edit-btn-title' => 'Save',
         'save' => 'Save',
@@ -1011,8 +1017,6 @@ return [
             'status' => 'Is Active',
             'all-conditions-true' => 'Assuming all conditions are true',
             'assuming' => 'Assuming',
-            'any' => 'Any',
-            'all' => 'All',
             'conditions' => 'Conditions',
             'apply' => 'Apply',
             'are' => 'are',
@@ -1029,7 +1033,8 @@ return [
             'suffix' => 'Suffix',
             'code' => 'Code',
             'global-label' => 'Global Label',
-            'label' => 'Label'
+            'label' => 'Label',
+            'amount' => 'Amount'
         ],
 
         'status' => [
