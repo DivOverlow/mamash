@@ -184,7 +184,7 @@
                                                     <div class="w-full max-w-md sm:w-1/3 my-3 sm:my-0">
                                                       @include ('shop::products.list.gift', ['product' => $product, 'evaluation' => $action_amount ])
 
-                                                    @if (($gift_index < count($gift_products)) && (count($products) - $loop->index) < 2)
+                                                    @if (($gift_index < count($gift_products)) && (count($products) - $loop->index) < 3)
                                                             @for( $gift_index; $gift_index < count($gift_products); $gift_index++)
                                                                 @if (isset($gift_products[$gift_index]->related_products()->first()->product_id))
                                                                     <?php
