@@ -83,17 +83,20 @@
         {!! view_render_event('bagisto.shop.products.index.before', ['category' => $category]) !!}
 
         <div class="category-container text-xs container flex flex-col sm:flex-row z-10 -mt-12 relative">
-
-            <?php $products = $productRepository->getAll($category->id); ?>
-            {{--            <div class="category-block w-full sm:w-2/3"--}}
-
-
             <div class="category-block w-full"
                  @if ($category->display_mode == 'description_only') style="width: 100%" @endif>
 
                 @if (in_array($category->display_mode, [null, 'products_only', 'products_and_description']))
 
-                    @if ($products->count())
+                    @inject ('giftRepository', 'Webkul\Discount\Repositories\GiftRuleRepository')
+                    <?php
+                        $gift_products = $giftRepository->getGiftsProduct();
+                        $gift_index = 0;
+
+                        $products = $productRepository->getAll($category->id);
+                    ?>
+
+                @if ($products->count())
 
                         @include ('shop::products.list.toolbar')
 
@@ -167,62 +170,44 @@
                                                             @include ('shop::products.list.layered-navigation')
                                                         @endif
 
-
-                                                        <?php
-                                                        $categories = [];
-
-                                                        foreach (app('Webkul\Category\Repositories\CategoryRepository')->getVisibleCategoryTree(6) as $value) {
-                                                            if ($value->slug) {
-                                                                $categories[] = $value;
-                                                            }
-                                                        }
-                                                        if (count($categories) > 3) {
-                                                            $rand_keys = array_rand($categories, count($categories) - 3);
-                                                            foreach ($rand_keys as $key) {
-                                                                unset($categories[$key]);
-                                                            }
-                                                        }
-
-                                                        ?>
-
-                                                        @if (count($categories))
-{{--                                                            <section class="banner-container">--}}
-{{--                                                                <div class="bg-white py-4">--}}
-{{--                                                                    @foreach($categories as $value)--}}
-{{--                                                                        <div class="container flex flex-col justify-between items-center">--}}
-{{--                                                                            <div class="left-banner w-full">--}}
-{{--                                                                                @if (!is_null($value->image))--}}
-{{--                                                                                    <img src="{{ $value->image_url }}" alt="{!! $value->name !!}"/>--}}
-{{--                                                                                @endif--}}
-{{--                                                                            </div>--}}
-{{--                                                                            <div class="right-banner w-full">--}}
-{{--                                                                                <div--}}
-{{--                                                                                    class="banner-content text-3xl w-full flex flex-col justify-center items-center h-96 mx-auto">--}}
-{{--                                                                                    @if ($value->description)--}}
-{{--                                                                                        {!! $value->description !!}--}}
-{{--                                                                                    @endif--}}
-
-{{--                                                                                    <div class="mt-6"><a--}}
-{{--                                                                                            href="{{ route('shop.categories.index', $value->slug) }}"--}}
-{{--                                                                                            class="button-black text-base px-6">{{ __('shop::app.banner.btn-title') }}</a>--}}
-{{--                                                                                    </div>--}}
-{{--                                                                                </div>--}}
-{{--                                                                            </div>--}}
-{{--                                                                        </div>--}}
-{{--                                                                    @endforeach--}}
-{{--                                                                </div>--}}
-{{--                                                            </section><!-- end section banner container -->--}}
-                                                        @endif
                                                     </div>
 
                                     @endif
 
+                                    @if (!($loop->index & 1) && ($gift_index < count($gift_products)) && ($loop->index != 0))
+                                            @if (isset($gift_products[$gift_index]->related_products()->first()->product_id))
+                                                <?php
+                                                    $product = $productRepository->find($gift_products[$gift_index]->related_products()->first()->product_id);
+                                                    $action_amount = $gift_products[$gift_index]->action_amount;
+                                                    $gift_index++;
+                                                ?>
+                                                    <div class="w-full max-w-md sm:w-1/3 my-3 sm:my-0">
+                                                      @include ('shop::products.list.gift', ['product' => $product, 'evaluation' => $action_amount ])
+
+                                                    @if (($gift_index < count($gift_products)) && (count($products) - $loop->index) <= 1)
+                                                            @for( $gift_index; $gift_index < count($gift_products); $gift_index++)
+                                                                @if (isset($gift_products[$gift_index]->related_products()->first()->product_id))
+                                                                    <?php
+                                                                    $product = $productRepository->find($gift_products[$gift_index]->related_products()->first()->product_id);
+                                                                    $action_amount = $gift_products[$gift_index]->action_amount;
+                                                                    $gift_index++;
+                                                                    ?>
+                                                                    <div class="w-full my-6">
+                                                                        @include ('shop::products.list.gift', ['product' => $product, 'evaluation' => $action_amount ])
+                                                                    </div>
+                                                                @endif
+                                                            @endfor
+                                                    @endif
+                                                    </div>
+                                            @endif
+                                    @endif
 
                                     <div class="w-full sm:w-1/3 pl-0 sm:pl-6 pb-0 sm:pb-6">
                                         @include ('shop::products.list.card', ['product' => $productFlat])
                                     </div>
 
                                 @endforeach
+
                                 {!! view_render_event('bagisto.shop.products.index.pagination.before', ['category' => $category]) !!}
 
                                 <div class="bottom-toolbar w-full sm:w-1/2 text-center">
@@ -317,32 +302,6 @@
                                                         ?>
 
                                                         @if (count($categories))
-{{--                                                            <section class="banner-container">--}}
-{{--                                                                <div class="bg-white py-4">--}}
-{{--                                                                    @foreach($categories as $value)--}}
-{{--                                                                        <div class="container flex flex-col justify-between items-center">--}}
-{{--                                                                            <div class="left-banner w-full">--}}
-{{--                                                                                @if (!is_null($value->image))--}}
-{{--                                                                                    <img src="{{ $value->image_url }}" alt="{!! $value->name !!}"/>--}}
-{{--                                                                                @endif--}}
-{{--                                                                            </div>--}}
-{{--                                                                            <div class="right-banner w-full">--}}
-{{--                                                                                <div--}}
-{{--                                                                                    class="banner-content text-3xl w-full flex flex-col justify-center items-center h-96 mx-auto">--}}
-{{--                                                                                    @if ($value->description)--}}
-{{--                                                                                        {!! $value->description !!}--}}
-{{--                                                                                    @endif--}}
-
-{{--                                                                                    <div class="mt-6"><a--}}
-{{--                                                                                            href="{{ route('shop.categories.index', $value->slug) }}"--}}
-{{--                                                                                            class="button-black text-base px-6">{{ __('shop::app.banner.btn-title') }}</a>--}}
-{{--                                                                                    </div>--}}
-{{--                                                                                </div>--}}
-{{--                                                                            </div>--}}
-{{--                                                                        </div>--}}
-{{--                                                                    @endforeach--}}
-{{--                                                                </div>--}}
-{{--                                                            </section><!-- end section banner container -->--}}
                                                         @endif
 
 
