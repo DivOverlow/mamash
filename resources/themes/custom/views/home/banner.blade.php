@@ -4,7 +4,6 @@
 
 <?php
     $gift_products = $giftRepository->getGiftsProduct();
-    dd($gift_products);
     $product = null;
     $product_id = null;
     $evaluation = 0;
