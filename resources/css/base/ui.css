@@ -1031,10 +1031,10 @@ dropdown-list
 }
 
 .radio .radio-view {
-    background-image: url("../images/controls.svg");
-    background-position: -21px 0;
-    height: 20px;
-    width: 20px;
+    background-image: url("../images/unselected.svg");
+    background-repeat: no-repeat;
+    height: 32px;
+    width: 32px;
     margin: 0;
     display: inline-block !important;
     vertical-align: middle;
@@ -1042,11 +1042,11 @@ dropdown-list
 }
 
 .radio input:checked + .radio-view {
-    background-position: -21px -21px
+    background-image: url("../images/selected.svg");
 }
 
 .radio input:disabled + .radio-view {
-    opacity: .5;
+    background-image: url("../images/disabled.svg");
     cursor: not-allowed
 }
 

@@ -474,6 +474,13 @@ return [
             'partial-cart-update' => 'Only some of the product(s) were updated',
             'link-missing' => ''
         ],
+        'gift' => [
+            'title' => 'Ваш подарок',
+            'free' => 'Бесплатный подарок',
+            'premium' => 'Премиальный подарок',
+            'free-message' => 'Вы можете вибрать этот бесплатный подарок для заказа.',
+            'premium-message' => 'Купите еще на %s и получите этот бесплатный подарок',
+        ],
 
         'onepage' => [
             'title' => 'Оформление заказа',

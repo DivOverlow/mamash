@@ -470,7 +470,13 @@ return [
             'partial-cart-update' => 'Only some of the product(s) were updated',
             'link-missing' => ''
         ],
-
+        'gift' => [
+            'title' => 'Your Gift',
+            'free' => 'Free Gift',
+            'premium' => 'Premium Gift',
+            'free-message' => 'Вы можете вибрать этот товар в подарок при оплате заказа.',
+            'premium-message' => 'Купите еще на %s и получите этот бесплатный подарок',
+        ],
         'onepage' => [
             'title' => 'Checkout',
             'cart-title' => 'Your order',

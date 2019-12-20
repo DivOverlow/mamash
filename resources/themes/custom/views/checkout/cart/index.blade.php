@@ -8,6 +8,7 @@
     @inject ('productImageHelper', 'Webkul\Product\Helpers\ProductImage')
     @inject ('categoryRepository', 'Webkul\Category\Repositories\CategoryRepository')
     @inject ('productRepository', 'Webkul\Product\Repositories\ProductRepository')
+    @inject ('giftRepository', 'Webkul\Discount\Repositories\GiftRuleRepository')
 
 {{--    @php--}}
 {{--        $products = $productRepository->searchProductByAttribute('category?gift_rules=21,20');--}}
@@ -22,7 +23,7 @@
                     <div class="title w-full h-32 flex items-end text-center">
                         <span class="text-xl sm:text-5xl uppercase text-gray-dark mx-auto">{{ __('shop::app.checkout.cart.title') }}</span>
                     </div>
-                    <div class="w-full invisible sm:visible font-serif text-xs tracking-widest text-gray-dark uppercase flex flex-row justify-content-between items-center mt-12">
+                    <div class="w-full invisible sm:visible font-serif text-xs tracking-widest text-gray-dark uppercase flex flex-row justify-between items-center mt-12">
                         <div class="w-1/2">
                             {{ __('shop::app.checkout.cart.name') }}
                         </div>
@@ -46,8 +47,8 @@
                                             $productBaseImage = $item->product->getTypeInstance()->getBaseImage($item);
                                         @endphp
 
-                                        <div class="item w-full flex flex-col sm:flex-row justify-content-between items-center py-5">
-                                            <div class="w-full sm:w-1/2 flex justify-content-between items-center inline-block">
+                                        <div class="item w-full flex flex-col sm:flex-row justify-between items-center py-5">
+                                            <div class="w-full sm:w-1/2 flex justify-between items-center inline-block">
                                                 <div class="item-image w-1/5">
                                                     <a href="{{ url()->to('/').'/products/'.$item->product->url_key }}"><img
                                                             src="{{ $productBaseImage['small_image_url'] }}"/></a>
@@ -154,7 +155,69 @@
                                     @endforeach
                                 </div>
 
-                                <div class="bg-white flex flex-col sm:flex-row justify-content-between items-center">
+                                <?php $gift_products = $giftRepository->getGiftsProduct(); ?>
+                                @if (count($gift_products))
+                                    @inject ('productImageHelper', 'Webkul\Product\Helpers\ProductImage')
+
+                                <div class="gift-item-list bg-old-lace my-6">
+                                    <div class="font-serif text-xs tracking-widest text-gray-dark uppercase">{{ __('shop::app.checkout.gift.title') }}</div>
+                                    @foreach($gift_products as $gift_product)
+                                        @if(isset($gift_product->related_products()->first()->product_id))
+                                            <?php $product = $productRepository->find($gift_product->related_products()->first()->product_id); ?>
+                                            @if($product)
+                                                    @php
+                                                        $productBaseImage = $productImageHelper->getProductBaseImage($product);
+                                                    @endphp
+                                            <div class="item w-full flex flex-row">
+                                                <div class="w-5/6 flex flex-col sm:flex-row justify-between items-center py-5">
+                                                    <div class="item-image w-1/5 h-56 flex items-center justify-center">
+                                                        <a href="{{ url()->to('/').'/products/'.$product->url_key }}"><img  class="object-scale-down h-48 w-auto"
+                                                                src="{{ $productBaseImage['medium_image_url'] }}"/></a>
+                                                    </div>
+                                                    <div class="item-title w-2/5 flex flex-col justify-start">
+                                                        <div class="text-base sm:text-lg text-gray-dark uppercase hover:text-gray-cloud">
+                                                            <a href="{{ url()->to('/').'/products/'.$product->url_key }}">
+                                                            {{ $product->name }} </a>
+                                                        </div>
+                                                        <div class="font-serif font-medium text-base text-gray-cloud text-left mt-3">
+                                                            {{ ($cart->base_sub_total < $gift_product->action_amount) ? __('shop::app.checkout.gift.premium') : __('shop::app.checkout.gift.free') }}
+                                                        </div>
+                                                    </div>
+                                                    <div class="item-title w-2/5 flex flex-col justify-end">
+                                                        <div class="w-2/3 ml-auto font-normal font-medium text-lg text-gray-cloud text-left">
+
+                                                            {{ ($cart->base_sub_total < $gift_product->action_amount) ? sprintf(__('shop::app.checkout.gift.premium-message'), core()->convertPrice($gift_product->action_amount - $cart->base_sub_total) . core()->currencySymbol(core()->getBaseCurrencyCode()) ) : __('shop::app.checkout.gift.free-message') }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="w-1/6 flex justify-center items-center">
+                                                    <span class="radio"><input type="radio" id="{{ $product->id }}" @if($cart->base_sub_total < $gift_product->action_amount) disabled @elseif($loop->index == 0) checked @endif name="product_gift_id" value="{{ $product->id }}"> <label for="{{ $product->id }}" class="radio-view"></label></span>
+                                                </div>
+                                            </div>
+                                            @endif
+                                        @endif
+                                    @endforeach
+                                </div>
+                                @endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                <div class="bg-white flex flex-col sm:flex-row justify-between items-center">
                                     <div class="w-full sm:w-1/2">
                                         @include ('shop::products.view.cross-sells')
                                     </div>
@@ -172,7 +235,7 @@
                                                 <a href="{{ route('shop.home.index') }}"
                                                    class="link font-serif font-medium text-base text-yellow hover:underline">{{ __('shop::app.checkout.cart.continue-shopping') }}</a>
 
-                                                <div class="flex flex-row justify-content-between items-center mt-8">
+                                                <div class="flex flex-row justify-between items-center mt-8">
                                                     <button type="submit" class="button-black w-full py-3 normal-case">
                                                         {{ __('shop::app.checkout.cart.update-cart') }}
                                                     </button>
@@ -227,7 +290,7 @@
 
     <script type="text/x-template" id="quantity-changer-template">
         <div class="quantity control-group" :class="[errors.has(controlName) ? 'has-error' : '']">
-            <div class="wrap font-serif text-gray-dark flex justify-content-between items-center">
+            <div class="wrap font-serif text-gray-dark flex justify-between items-center">
                 <button type="button" class="decrease outline-none" @click="decreaseQty()"><span class="font-semibold text-xl px-4">-</span></button>
 
                 <input :name="controlName" class="control focus:border-gray-cloud font-semibold text-xl rounded-full h-12 w-12 flex items-center justify-center text-center" :value="qty" v-validate="'required|numeric|min_value:1'"

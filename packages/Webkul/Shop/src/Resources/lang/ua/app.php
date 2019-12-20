@@ -476,6 +476,13 @@ return [
             'partial-cart-update' => 'Only some of the product(s) were updated',
             'link-missing' => ''
         ],
+        'gift' => [
+            'title' => 'Ваш подарунок',
+            'free' => 'Безкоштовний подарунок',
+            'free_message' => 'Ви можете вибрати цей безкоштовний подарунок до свого замовлення.',
+            'premium' => 'Преміальний подарунок',
+            'premium-message' => 'Купіть ще на %s і отримаєте цей безкоштовний подарунок',
+        ],
 
         'onepage' => [
             'title' => 'Оформлення замовлення',
