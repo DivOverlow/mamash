@@ -1,7 +1,7 @@
 @inject ('productImageHelper', 'Webkul\Product\Helpers\ProductImage')
 @inject ('productRepository', 'Webkul\Product\Repositories\ProductRepository')
 @inject ('categoryRepository', 'Webkul\Category\Repositories\CategoryRepository')
-
+@inject ('giftRepository', 'Webkul\Discount\Repositories\GiftRuleRepository')
 
 <?php $cart = cart()->getCart(); ?>
 
@@ -100,6 +100,48 @@
 
                 @endforeach
             </div>
+
+            <?php $gift_products = $giftRepository->getGiftsProduct(); ?>
+            @if (count($gift_products))
+                @inject ('productImageHelper', 'Webkul\Product\Helpers\ProductImage')
+
+                <div class="gift-content my-3">
+                    <div class="w-4/5 ml-auto tracking-widest">{{ __('shop::app.checkout.gift.title') }}</div>
+                    @foreach($gift_products as $gift_product)
+                        @if(isset($gift_product->related_products()->first()->product_id))
+                            <?php $product = $productRepository->find($gift_product->related_products()->first()->product_id); ?>
+                            @if($product)
+                                @php
+                                    $productBaseImage = $productImageHelper->getProductBaseImage($product);
+                                @endphp
+                                <div class="w-full flex flex-row justify-between items-center text-left py-2">
+                                    <div class="item-image h-28 w-1/2 flex items-center justify-center">
+                                        <a href="{{ url()->to('/').'/products/'.$product->url_key }}"><img  class="object-scale-down h-24 w-auto"
+                                                                                                            src="{{ $productBaseImage['small_image_url'] }}"/></a>
+                                    </div>
+                                    <div class="item-title flex flex-col justify-start">
+                                        <div class="text-base text-gray-dark uppercase hover:text-gray-cloud">
+                                            <a href="{{ url()->to('/').'/products/'.$product->url_key }}">
+                                                {{ $product->name }} </a>
+                                        </div>
+                                        <div class="font-serif font-medium text-base text-gray-cloud">
+                                            {{ ($cart->base_sub_total < $gift_product->action_amount) ? __('shop::app.checkout.gift.premium') : __('shop::app.checkout.gift.free') }}
+                                        </div>
+                                        <div class="font-normal font-medium text-base text-gray-cloud leading-tight">
+                                            {{ ($cart->base_sub_total < $gift_product->action_amount) ? sprintf(__('shop::app.checkout.gift.premium-message'), core()->convertPrice($gift_product->action_amount - $cart->base_sub_total) . core()->currencySymbol(core()->getBaseCurrencyCode()) ) : __('shop::app.checkout.gift.free-message') }}
+                                        </div>
+                                    </div>
+                                    <div class="w-auto flex items-start">
+                                        <span class="radio"><input type="radio" id="{{ $product->id }}" @if($cart->base_sub_total < $gift_product->action_amount) disabled @elseif($loop->index == 0) checked @endif name="product_gift_id" value="{{ $product->id }}"> <label for="{{ $product->id }}" class="radio-view"></label></span>
+                                    </div>
+                                </div>
+                            @endif
+                        @endif
+                    @endforeach
+                </div>
+            @endif
+
+
 
             <div class="cart-footer w-full absolute inset-x-0 bottom-0">
                 <div class="bg-gray-snow w-full font-medium text-gray-dark h-16 flex content-center flex-wrap">

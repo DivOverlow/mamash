@@ -29,24 +29,22 @@
                                  id="address-section">
                                 @include('shop::checkout.onepage.customer-info')
 
-                                {{--                    <div class="button-group">--}}
-                                {{--                        <button type="button" class="btn btn-lg btn-primary" @click="validateForm('address-form')" :disabled="disable_button" id="checkout-address-continue-button">--}}
-                                {{--                            {{ __('shop::app.checkout.onepage.continue') }}--}}
-                                {{--                        </button>--}}
-                                {{--                    </div>--}}
                             </div>
                         </li>
 
                         <div class="line mb-25"></div>
 
                         @if ($cart->haveStockableItems())
-{{--                            <li :class="[current_step == 2 || completed_step > 1 ? 'active' : '', completed_step > 1 ? 'completed' : '']"--}}
                             <li class="active" :class="[completed_step >= 0 ? 'active' : '', completed_step > 0 ? 'completed' : '']"
                                 @click="navigateToStep(2)">
+
                                 <div class="flex items-center inline-block">
                                     <div class="decorator shipping"></div>
                                     <span
                                         class="text-gray-dark text-xl sm:text-2xl uppercase pl-4">{{ __('shop::app.checkout.onepage.shipping') }}</span>
+                                </div>
+                                <div class="step-content shipping" v-show="current_step == 2" id="shipping-section">
+                                    <shipping-section @onShippingMethodSelected="shippingMethodSelected($event)"></shipping-section>
                                 </div>
                             </li>
 

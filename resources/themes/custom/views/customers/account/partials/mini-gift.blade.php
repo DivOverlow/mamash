@@ -1,27 +1,25 @@
+
 @inject ('productRepository', 'Webkul\Product\Repositories\ProductRepository')
+@inject ('giftRepository', 'Webkul\Discount\Repositories\GiftRuleRepository')
+
 <?php
-$products = $productRepository->getAll(4)->random(1);
+    $gift_products = $giftRepository->getGiftsProduct();
+    $product = null;
+    $product_id = null;
+    $evaluation = 0;
+    foreach ($gift_products as $gift_product) {
+        $evaluation = $gift_product->action_amount;
+        if (isset($gift_product->related_products()->first()->product_id)) {
+            $product_id = $gift_product->related_products()->first()->product_id;
+            break;
+        }
+    }
+if ($product_id) {
+    $product = $productRepository->find($product_id);
+}
+
 ?>
-@if (count($products))
-    @foreach ($products as $product)
-        <div class="w-full sm:w-1/2 flex flex-col justify-content-between items-center my-8">
-            @inject ('productImageHelper', 'Webkul\Product\Helpers\ProductImage')
 
-            <?php $productBaseImage = $productImageHelper->getProductBaseImage($product); ?>
-            <div class="w-full bg-cover" style="background-image: url('/themes/custom/assets/images/banner/bg_gift.jpg');">
-                <a href="{{ route('shop.products.index', $product->url_key) }}" title="{{ $product->name }}" class="my-auto mx-auto">
-                    <img class="h-64 w-full object-scale-down" src="{{ $productBaseImage['large_image_url'] }}" onerror="this.src='{{ asset('vendor/webkul/ui/assets/images/product/meduim-product-placeholder.png') }}'"/>
-                </a>
-            </div>
-
-            <div class="w-full product-information flex content-center flex-wrap h-64">
-
-                <div class="product-description font-serif text-gray-dark text-lg text-center mx-auto">
-                    {!! $product->short_description !!}
-                    <div class="mt-6"><a href="{{ url()->to('/').'/products/' . $product->url_key }}" class="button-black text-sm px-6">{{ __('shop::app.banner.btn-title') }}</a></div>
-                </div>
-
-            </div>
-        </div>
-    @endforeach
-@endif
+<div class="w-full sm:w-1/2 my-6">
+    @include ('shop::products.list.gift', ['product' => $product, 'evaluation' => $evaluation, 'class' => 'mini' ])
+</div>

@@ -182,7 +182,7 @@
                                                     $gift_index++;
                                                 ?>
                                                     <div class="w-full max-w-md sm:w-1/3 my-3 sm:my-0">
-                                                      @include ('shop::products.list.gift', ['product' => $product, 'evaluation' => $action_amount ])
+                                                      @include ('shop::products.list.gift', ['product' => $product, 'evaluation' => $action_amount, 'class' => 'medium' ])
 
                                                     @if (($gift_index < count($gift_products)) && (count($products) - $loop->index) < 3)
                                                             @for( $gift_index; $gift_index < count($gift_products); $gift_index++)
@@ -193,7 +193,7 @@
                                                                     $gift_index++;
                                                                     ?>
                                                                     <div class="w-full my-6">
-                                                                        @include ('shop::products.list.gift', ['product' => $product, 'evaluation' => $action_amount ])
+                                                                        @include ('shop::products.list.gift', ['product' => $product, 'evaluation' => $action_amount, 'class' => 'medium'])
                                                                     </div>
                                                                 @endif
                                                             @endfor

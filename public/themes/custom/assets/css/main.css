@@ -1786,7 +1786,7 @@ modal {
   margin: 0.25rem;
 }
 
-.account-layout. .modal-container .modal-body {
+.account-layout .modal-container .modal-body {
   padding: 20px
 }
 
@@ -1794,12 +1794,21 @@ modal {
   height: 100%;
 }
 
+.cart-dropdown-container .modal-container .modal-body .cart-content {
+  overflow-y: auto;
+  max-height: 290px;
+}
+
 .modal-container .modal-body .control-group .control {
   width: 100%
 }
 
 @media only screen and (max-width: 770px) {
-  .modal-container {
+  .cart-dropdown-container .modal-container {
+    max-width: 100%;
+  }
+
+  .account-layout .modal-container {
     max-width: 80%;
     left: 10%;
     margin-left: 0

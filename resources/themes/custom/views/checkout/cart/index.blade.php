@@ -168,29 +168,29 @@
                                                     @php
                                                         $productBaseImage = $productImageHelper->getProductBaseImage($product);
                                                     @endphp
-                                            <div class="item w-full flex flex-row">
-                                                <div class="w-5/6 flex flex-col sm:flex-row justify-between items-center py-5">
-                                                    <div class="item-image w-1/5 h-56 flex items-center justify-center">
+                                            <div class="item w-full flex flex-row justify-between">
+                                                <div class="w-full sm:w-5/6 flex flex-col sm:flex-row justify-between items-center text-center sm:text-left py-5">
+                                                    <div class="item-image w-full sm:w-1/5 h-56 flex items-center justify-center">
                                                         <a href="{{ url()->to('/').'/products/'.$product->url_key }}"><img  class="object-scale-down h-48 w-auto"
                                                                 src="{{ $productBaseImage['medium_image_url'] }}"/></a>
                                                     </div>
-                                                    <div class="item-title w-2/5 flex flex-col justify-start">
+                                                    <div class="item-title w-full sm:w-2/5 flex flex-col justify-start">
                                                         <div class="text-base sm:text-lg text-gray-dark uppercase hover:text-gray-cloud">
                                                             <a href="{{ url()->to('/').'/products/'.$product->url_key }}">
                                                             {{ $product->name }} </a>
                                                         </div>
-                                                        <div class="font-serif font-medium text-base text-gray-cloud text-left mt-3">
+                                                        <div class="font-serif font-medium text-base text-gray-cloud my-3">
                                                             {{ ($cart->base_sub_total < $gift_product->action_amount) ? __('shop::app.checkout.gift.premium') : __('shop::app.checkout.gift.free') }}
                                                         </div>
                                                     </div>
-                                                    <div class="item-title w-2/5 flex flex-col justify-end">
-                                                        <div class="w-2/3 ml-auto font-normal font-medium text-lg text-gray-cloud text-left">
+                                                    <div class="item-title w-full sm:w-2/5 flex flex-col justify-end">
+                                                        <div class="w-full sm:w-2/3 sm:ml-auto font-normal font-medium text-lg text-gray-cloud">
 
                                                             {{ ($cart->base_sub_total < $gift_product->action_amount) ? sprintf(__('shop::app.checkout.gift.premium-message'), core()->convertPrice($gift_product->action_amount - $cart->base_sub_total) . core()->currencySymbol(core()->getBaseCurrencyCode()) ) : __('shop::app.checkout.gift.free-message') }}
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="w-1/6 flex justify-center items-center">
+                                                <div class="w-auto sm:w-1/6 flex sm:justify-center items-start sm:items-center">
                                                     <span class="radio"><input type="radio" id="{{ $product->id }}" @if($cart->base_sub_total < $gift_product->action_amount) disabled @elseif($loop->index == 0) checked @endif name="product_gift_id" value="{{ $product->id }}"> <label for="{{ $product->id }}" class="radio-view"></label></span>
                                                 </div>
                                             </div>
@@ -199,22 +199,6 @@
                                     @endforeach
                                 </div>
                                 @endif
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
                                 <div class="bg-white flex flex-col sm:flex-row justify-between items-center">

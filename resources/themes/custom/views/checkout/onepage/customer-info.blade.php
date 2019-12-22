@@ -77,7 +77,7 @@
         </div>
 
         <div class="control-group" :class="[errors.has('address-form.billing[first_name]') ? 'has-error' : '']">
-            <div class="mat-div">
+            <div class="mat-div" :class="address.billing.first_name ? 'is-completed' : ''">
                 <label for="billing[first_name]" class="required mat-label">
                     {{ __('shop::app.checkout.onepage.first-name') }}
                 </label>
@@ -91,7 +91,7 @@
         </div>
 
         <div class="control-group" :class="[errors.has('address-form.billing[last_name]') ? 'has-error' : '']">
-            <div class="mat-div">
+            <div class="mat-div" :class="address.billing.last_name ? 'is-completed' : ''">
                 <label for="billing[last_name]" class="required mat-label">
                     {{ __('shop::app.checkout.onepage.last-name') }}
                 </label>
@@ -107,7 +107,7 @@
         </div>
 
         <div class="control-group" :class="[errors.has('address-form.billing[phone]') ? 'has-error' : '']">
-            <div class="mat-div">
+            <div class="mat-div" :class="address.billing.phone ? 'is-completed' : ''">
 
                 <label for="billing[phone]" class="required mat-label">
                     {{ __('shop::app.checkout.onepage.phone') }}
@@ -124,8 +124,7 @@
         </div>
 
         <div class="control-group" :class="[errors.has('address-form.billing[email]') ? 'has-error' : '']">
-            <div class="mat-div">
-                {{--                <label for="billing[email]" class="required mat-label">--}}
+            <div class="mat-div" :class="address.billing.email ? 'is-completed' : ''">
                 <label for="billing[email]" class="mat-label">
                     {{ __('shop::app.checkout.onepage.email') }}
                 </label>
@@ -170,7 +169,7 @@
 {{--        @endif--}}
 
         <div class="control-group" :class="[errors.has('address-form.billing[country]') ? 'has-error' : '']">
-            <div class="mat-div">
+            <div class="mat-div" :class="address.billing.country ? 'is-completed' : ''">
 
 {{--                <label for="billing[country]" class="required mat-label">--}}
                 <label for="billing[country]" class="mat-label">
@@ -195,7 +194,7 @@
         </div>
 
         <div class="control-group" :class="[errors.has('address-form.billing[city]') ? 'has-error' : '']">
-            <div class="mat-div">
+            <div class="mat-div" :class="address.billing.city ? 'is-completed' : ''">
                 <label for="billing[city]" class="mat-label">
                     {{ __('shop::app.checkout.onepage.city') }}
                 </label>
