@@ -7,9 +7,7 @@
 
 @if ($cart)
     <?php $items = $cart->items;
-//    if (session()->has('gift_product_id'))
-//            dd(session()->get('gift_product_id'));
-//    ?>
+    ?>
 
     <div class="dropdown-toggle flex relative w-12 inline-block" @click="exampleModalShowing = true">
         <a class="cart-link z-10 w-full" href="{{ route('shop.checkout.cart.index') }}" title="{{ __('shop::app.header.cart') }}">
@@ -22,7 +20,7 @@
                 class="count align-top bg-chocolate text-xs text-white rounded-full h-6 w-6 flex items-center justify-center"> {{ $cart->items->count() }}</span>
         </span>
 
-        {{--        <i class="icon arrow-down-icon"></i>--}}
+{{--        <i class="icon arrow-down-icon"></i>--}}
     </div>
 
     <card-modal :showing="exampleModalShowing" @close="exampleModalShowing = false">
@@ -31,94 +29,93 @@
             </p>
         </div>
         <div slot="body">
-            <div class="cart-content my-3">
-                @foreach ($items as $item)
-                    <div class="item w-full flex flex-row justify-content-between items-center px-3 py-1 inline-block">
-                        <div class="item-image w-1/5">
-                            <?php
-                            if ($item->type == "configurable")
-                                $images = $productImageHelper->getProductBaseImage($item->child->product);
-                            else
-                                $images = $productImageHelper->getProductBaseImage($item->product);
-                            ?>
-                            <img src="{{ $images['small_image_url'] }}"/>
-                        </div>
+                <div class="cart-content my-3">
+                    @foreach ($items as $item)
+                        <div class="item w-full flex flex-row justify-content-between items-center px-3 py-1 inline-block">
+                            <div class="item-image w-1/5">
+                                <?php
+                                if ($item->type == "configurable")
+                                    $images = $productImageHelper->getProductBaseImage($item->child->product);
+                                else
+                                    $images = $productImageHelper->getProductBaseImage($item->product);
+                                ?>
+                                <img src="{{ $images['small_image_url'] }}"/>
+                            </div>
 
-                        <div class="item-details w-3/5 flex content-between flex-wrap px-2 inline-block" style="min-height: 4rem;">
-                            {!! view_render_event('bagisto.shop.checkout.cart-mini.item.name.before', ['item' => $item]) !!}
+                            <div class="item-details w-3/5 flex content-between flex-wrap px-2 inline-block" style="min-height: 4rem;">
+                                {!! view_render_event('bagisto.shop.checkout.cart-mini.item.name.before', ['item' => $item]) !!}
 
-                            <div class="item-title w-full">
-                                @php
-                                    $categoryCollection = null;
-                                    $categoriesForProduct = $productRepository->find($item->product_id);
-                                    if ($categoriesForProduct) {
-                                    foreach ($categoriesForProduct->categories()->get() as $categoryProduct) {
-                                    if ($categoryProduct->display_mode == "products_collection") {
-                                    $categoryCollection = $categoryRepository->findOrFail($categoryProduct->id);
-                                    break;
-                                    }
-                                    }
-                                    }
-                                @endphp
-                                @if ($categoryCollection)
-                                    <p>
-                                        <a href="{{ route('shop.categories.index', $categoryCollection->slug) }}"
-                                           class="font-serif font-medium text-base text-gray-cloud cursor-pointer hover:text-gray-dark"
-                                           title="{{ $categoryCollection->name }}">
-                                            {{ $categoryCollection->name }} </a>
-                                    </p>
-                                @endif
-                                <span class="text-base text-gray-dark uppercase hover:text-gray-cloud">
+                                <div class="item-title w-full">
+                                    @php
+                                        $categoryCollection = null;
+                                        $categoriesForProduct = $productRepository->find($item->product_id);
+                                        if ($categoriesForProduct) {
+                                        foreach ($categoriesForProduct->categories()->get() as $categoryProduct) {
+                                        if ($categoryProduct->display_mode == "products_collection") {
+                                        $categoryCollection = $categoryRepository->findOrFail($categoryProduct->id);
+                                        break;
+                                        }
+                                        }
+                                        }
+                                    @endphp
+                                    @if ($categoryCollection)
+                                        <p>
+                                            <a href="{{ route('shop.categories.index', $categoryCollection->slug) }}"
+                                               class="font-serif font-medium text-base text-gray-cloud cursor-pointer hover:text-gray-dark"
+                                               title="{{ $categoryCollection->name }}">
+                                                {{ $categoryCollection->name }} </a>
+                                        </p>
+                                    @endif
+                                    <span class="text-base text-gray-dark uppercase hover:text-gray-cloud">
                                                 <a href="{{ url()->to('/').'/products/'.$item->product->url_key }}">
                                                 {{ $item->product->name }} </a>
                                             </span>
-                            </div>
-
-                            {!! view_render_event('bagisto.shop.checkout.cart-mini.item.name.after', ['item' => $item]) !!}
-
-
-                            {!! view_render_event('bagisto.shop.checkout.cart-mini.item.options.before', ['item' => $item]) !!}
-
-                            @if ($item->type == "configurable")
-                                <div class="item-options">
-                                    {{ trim(Cart::getProductAttributeOptionDetails($item->child->product)['html']) }}
                                 </div>
-                            @endif
 
-                            {!! view_render_event('bagisto.shop.checkout.cart-mini.item.options.after', ['item' => $item]) !!}
+                                {!! view_render_event('bagisto.shop.checkout.cart-mini.item.name.after', ['item' => $item]) !!}
 
-                            {!! view_render_event('bagisto.shop.checkout.cart-mini.item.quantity.before', ['item' => $item]) !!}
 
-                            <div
-                                class="item-qty font-serif text-base text-sm text-gray-cloud block">{{ __('shop::app.checkout.cart.quantity.short') }} {{ $item->quantity }}</div>
+                                {!! view_render_event('bagisto.shop.checkout.cart-mini.item.options.before', ['item' => $item]) !!}
 
-                            {!! view_render_event('bagisto.shop.checkout.cart-mini.item.quantity.after', ['item' => $item]) !!}
+                                @if ($item->type == "configurable")
+                                    <div class="item-options">
+                                        {{ trim(Cart::getProductAttributeOptionDetails($item->child->product)['html']) }}
+                                    </div>
+                                @endif
+
+                                {!! view_render_event('bagisto.shop.checkout.cart-mini.item.options.after', ['item' => $item]) !!}
+
+                                {!! view_render_event('bagisto.shop.checkout.cart-mini.item.quantity.before', ['item' => $item]) !!}
+
+                                <div
+                                    class="item-qty font-serif text-base text-sm text-gray-cloud block">{{ __('shop::app.checkout.cart.quantity.short') }} {{ $item->quantity }}</div>
+
+                                {!! view_render_event('bagisto.shop.checkout.cart-mini.item.quantity.after', ['item' => $item]) !!}
+                            </div>
+                            {!! view_render_event('bagisto.shop.checkout.cart-mini.item.price.before', ['item' => $item]) !!}
+
+                            <div class="item-price w-1/5 font-medium">{{ core()->currency($item->base_total) }}</div>
+
+                            {!! view_render_event('bagisto.shop.checkout.cart-mini.item.price.after', ['item' => $item]) !!}
                         </div>
-                        {!! view_render_event('bagisto.shop.checkout.cart-mini.item.price.before', ['item' => $item]) !!}
 
-                        <div class="item-price w-1/5 font-medium">{{ core()->currency($item->base_total) }}</div>
+                    @endforeach
+                </div>
 
-                        {!! view_render_event('bagisto.shop.checkout.cart-mini.item.price.after', ['item' => $item]) !!}
-                    </div>
-
-                @endforeach
-            </div>
-
-            <div class="w-full absolute inset-x-0 bottom-0">
+                <div class="w-full absolute inset-x-0 bottom-0">
                 <?php $gift_products = $giftRepository->getGiftsProduct(); ?>
                 @if (count($gift_products))
                     @inject ('productImageHelper', 'Webkul\Product\Helpers\ProductImage')
 
                     <div class="gift-content my-3 ">
                         <div class="w-4/5 ml-auto tracking-widest">{{ __('shop::app.checkout.gift.title') }}</div>
-                        {{session()->get('gift_product_id') }}
+
                         @if (session()->has('gift_product_id'))
                             <?php $product = $productRepository->find(session()->get('gift_product_id')); ?>
                             @if($product)
                                 @php
                                     $productBaseImage = $productImageHelper->getProductBaseImage($product);
                                 @endphp
-
                                 <div class="w-full flex flex-row justify-between items-center text-left py-2">
                                     <div class="item-image h-28 w-1/2 flex items-center justify-center">
                                         <a href="{{ url()->to('/').'/products/'.$product->url_key }}"><img  class="object-scale-down h-24 w-auto"
@@ -138,7 +135,7 @@
                                     </div>
                                 </div>
                             @endif
-                        @else
+                         @else
                             @foreach($gift_products as $gift_product)
                                 @if(isset($gift_product->related_products()->first()->product_id))
                                     <?php $product = $productRepository->find($gift_product->related_products()->first()->product_id); ?>
@@ -174,30 +171,30 @@
                     </div>
                 @endif
 
-                <div class="cart-footer">
-                    <div class="bg-gray-snow w-full font-medium text-gray-dark h-16 flex content-center flex-wrap">
-                        <div class="w-2/3 text-center uppercase">
-                            {{ __('shop::app.checkout.cart.cart-subtotal') }}:
-                        </div>
-                        <div class="w-1/3 text-center">
-                            {!! view_render_event('bagisto.shop.checkout.cart-mini.subtotal.before', ['cart' => $cart]) !!}
-
-                            {{ core()->currency($cart->base_sub_total) }}
-
-                            {!! view_render_event('bagisto.shop.checkout.cart-mini.subtotal.after', ['cart' => $cart]) !!}
-                        </div>
+            <div class="cart-footer">
+                <div class="bg-gray-snow w-full font-medium text-gray-dark h-16 flex content-center flex-wrap">
+                    <div class="w-2/3 text-center uppercase">
+                        {{ __('shop::app.checkout.cart.cart-subtotal') }}:
                     </div>
-                    <div class="w-full flex flex-row items-center">
+                    <div class="w-1/3 text-center">
+                        {!! view_render_event('bagisto.shop.checkout.cart-mini.subtotal.before', ['cart' => $cart]) !!}
+
+                        {{ core()->currency($cart->base_sub_total) }}
+
+                        {!! view_render_event('bagisto.shop.checkout.cart-mini.subtotal.after', ['cart' => $cart]) !!}
+                    </div>
+                </div>
+                <div class="w-full flex flex-row items-center">
                         <span class="button-black w-full py-3 normal-case">
 {{--                            <a href="{{ route('shop.checkout.cart.index') }}">{{ __('shop::app.checkout.cart.continue-shopping') }}</a>--}}
                             <a href="{{ route('shop.checkout.cart.index') }}">{{ __('shop::app.minicart.view-cart') }}</a>
                         </span>
-                        <span class="button-decor w-full py-3 normal-case">
+                    <span class="button-decor w-full py-3 normal-case">
 {{--                            <a href="{{ route('shop.checkout.cart.index') }}">{{ __('shop::app.minicart.view-cart') }}</a>--}}
                             <a  href="{{ route('shop.checkout.onepage.index') }}">{{ __('shop::app.minicart.checkout') }}</a>
                         </span>
-                    </div>
                 </div>
+            </div>
             </div>
         </div>
     </card-modal>

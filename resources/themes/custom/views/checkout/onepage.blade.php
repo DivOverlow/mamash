@@ -18,35 +18,46 @@
             <div class="flex flex-col sm:flex-row justify-content-between items-start">
                 <div class="col-main w-full flex flex-col">
                     <ul class="checkout-steps max-w-lg">
-                        <li class="active" :class="[completed_step >= 0 ? 'active' : '', completed_step > 0 ? 'completed' : '']"
-                            @click="navigateToStep(1)">
+                        <li class="active" :class="[completed_step >= 0 ? 'active' : '', completed_step > 0 ? 'completed' : '']" @click="navigateToStep(1)">
                             <div class=" flex items-center inline-block">
                                 <div class="profile-icon address-info"></div>
                                 <span
                                     class="text-gray-dark text-xl sm:text-2xl uppercase pl-4">{{ __('shop::app.checkout.onepage.information') }}</span>
                             </div>
-                            <div class="step-content information w-full" v-show="current_step == 1"
-                                 id="address-section">
-                                @include('shop::checkout.onepage.customer-info')
+{{--                            <div class="step-content information w-full" v-show="current_step == 1"--}}
+{{--                                 id="address-section">--}}
+{{--                                @include('shop::checkout.onepage.customer-info')--}}
 
-                            </div>
+{{--                            </div>--}}
                         </li>
 
                         <div class="line mb-25"></div>
 
                         @if ($cart->haveStockableItems())
-                            <li class="active" :class="[completed_step >= 0 ? 'active' : '', completed_step > 0 ? 'completed' : '']"
-                                @click="navigateToStep(2)">
-
+                            <li :class="[current_step == 3 || completed_step > 2 ? 'active' : '', completed_step > 2 ? 'completed' : '']" @click="navigateToStep(3)">
                                 <div class="flex items-center inline-block">
                                     <div class="decorator shipping"></div>
                                     <span
                                         class="text-gray-dark text-xl sm:text-2xl uppercase pl-4">{{ __('shop::app.checkout.onepage.shipping') }}</span>
                                 </div>
-                                <div class="step-content shipping" v-show="current_step == 2" id="shipping-section">
-                                    <shipping-section @onShippingMethodSelected="shippingMethodSelected($event)"></shipping-section>
-                                </div>
                             </li>
+
+{{--                            <div class="line mb-25"></div>--}}
+
+
+
+{{--                            <li class="active" :class="[completed_step >= 0 ? 'active' : '', completed_step > 0 ? 'completed' : '']"--}}
+{{--                                @click="navigateToStep(2)">--}}
+
+{{--                                <div class="flex items-center inline-block">--}}
+{{--                                    <div class="decorator shipping"></div>--}}
+{{--                                    <span--}}
+{{--                                        class="text-gray-dark text-xl sm:text-2xl uppercase pl-4">{{ __('shop::app.checkout.onepage.shipping') }}</span>--}}
+{{--                                </div>--}}
+{{--                                <div class="step-content shipping" v-show="current_step == 2" id="shipping-section">--}}
+{{--                                    <shipping-section @onShippingMethodSelected="shippingMethodSelected($event)"></shipping-section>--}}
+{{--                                </div>--}}
+{{--                            </li>--}}
 
                             <div class="line mb-25"></div>
                         @endif
@@ -68,28 +79,28 @@
 {{--                        </li>--}}
                     </ul>
 
-                    {{--                <div class="step-content information" v-show="current_step == 1" id="address-section">--}}
-                    {{--                    @include('shop::checkout.onepage.customer-info')--}}
+                    <div class="step-content information" v-show="current_step == 1" id="address-section">
+                        @include('shop::checkout.onepage.customer-info')
 
-                    {{--                    <div class="button-group">--}}
-                    {{--                        <button type="button" class="btn btn-lg btn-primary" @click="validateForm('address-form')" :disabled="disable_button" id="checkout-address-continue-button">--}}
-                    {{--                            {{ __('shop::app.checkout.onepage.continue') }}--}}
-                    {{--                        </button>--}}
-                    {{--                    </div>--}}
-                    {{--                </div>--}}
+                        <div class="button-group">
+                            <button type="button" class="btn btn-lg btn-primary" @click="validateForm('address-form')" :disabled="disable_button" id="checkout-address-continue-button">
+                                {{ __('shop::app.checkout.onepage.continue') }}
+                            </button>
+                        </div>
+                    </div>
 
-{{--                    <div class="step-content shipping" v-show="current_step == 2" id="shipping-section">--}}
-{{--                        <shipping-section v-if="current_step == 2"--}}
-{{--                                          @onShippingMethodSelected="shippingMethodSelected($event)"></shipping-section>--}}
+                    <div class="step-content shipping" v-show="current_step == 2" id="shipping-section">
+                        <shipping-section v-if="current_step == 2"
+                                          @onShippingMethodSelected="shippingMethodSelected($event)"></shipping-section>
 
-{{--                        <div class="button-group">--}}
-{{--                            <button type="button" class="btn btn-lg btn-primary" @click="validateForm('shipping-form')"--}}
-{{--                                    :disabled="disable_button" id="checkout-shipping-continue-button">--}}
-{{--                                {{ __('shop::app.checkout.onepage.continue') }}--}}
-{{--                            </button>--}}
+                        <div class="button-group">
+                            <button type="button" class="btn btn-lg btn-primary" @click="validateForm('shipping-form')"
+                                    :disabled="disable_button" id="checkout-shipping-continue-button">
+                                {{ __('shop::app.checkout.onepage.continue') }}
+                            </button>
 
-{{--                        </div>--}}
-{{--                    </div>--}}
+                        </div>
+                    </div>
 
 {{--                    <div class="step-content payment" v-show="current_step == 3" id="payment-section">--}}
 {{--                        <payment-section v-if="current_step == 3"--}}
@@ -375,7 +386,8 @@
                     var this_this = this;
 
                     this.$validator.validateAll(scope).then(function (result) {
-                        if (result) {
+
+                       if (result) {
                             if (scope == 'address-form') {
                                 this_this.saveAddress();
                             } else if (scope == 'shipping-form') {
@@ -417,12 +429,10 @@
 
                             this_this.completed_step = this_this.step_numbers[response.data.jump_to_section] + 1;
                             this_this.current_step = this_this.step_numbers[response.data.jump_to_section];
-
                             this_this.getOrderSummary();
                         })
                         .catch(function (error) {
                             this_this.disable_button = false;
-
                             this_this.handleErrorResponse(error.response, 'address-form')
                         })
                 },

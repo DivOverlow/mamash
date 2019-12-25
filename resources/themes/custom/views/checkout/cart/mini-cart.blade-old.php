@@ -7,11 +7,9 @@
 
 @if ($cart)
     <?php $items = $cart->items;
-//    if (session()->has('gift_product_id'))
-//            dd(session()->get('gift_product_id'));
-//    ?>
+    ?>
 
-    <div class="dropdown-toggle flex relative w-12 inline-block" @click="exampleModalShowing = true">
+    <div class="dropdown-toggle flex relative w-12 inline-block"  @click="showModal('deleteCart')">
         <a class="cart-link z-10 w-full" href="{{ route('shop.checkout.cart.index') }}" title="{{ __('shop::app.header.cart') }}">
             <span class="cart-icon"></span>
         </a>
@@ -25,7 +23,7 @@
         {{--        <i class="icon arrow-down-icon"></i>--}}
     </div>
 
-    <card-modal :showing="exampleModalShowing" @close="exampleModalShowing = false">
+    <modal id="deleteCart" :is-open="modalIds.deleteCart">
         <div slot="header" class="dropdown-header bg-gray-snow h-24 flex content-center flex-wrap"> <p class="heading w-full font-medium text-center text-gray-dark text-xl uppercase">
                 {{ __('shop::app.checkout.cart.title') }}
             </p>
@@ -111,14 +109,13 @@
 
                     <div class="gift-content my-3 ">
                         <div class="w-4/5 ml-auto tracking-widest">{{ __('shop::app.checkout.gift.title') }}</div>
-                        {{session()->get('gift_product_id') }}
+
                         @if (session()->has('gift_product_id'))
                             <?php $product = $productRepository->find(session()->get('gift_product_id')); ?>
                             @if($product)
                                 @php
                                     $productBaseImage = $productImageHelper->getProductBaseImage($product);
                                 @endphp
-
                                 <div class="w-full flex flex-row justify-between items-center text-left py-2">
                                     <div class="item-image h-28 w-1/2 flex items-center justify-center">
                                         <a href="{{ url()->to('/').'/products/'.$product->url_key }}"><img  class="object-scale-down h-24 w-auto"
@@ -200,7 +197,7 @@
                 </div>
             </div>
         </div>
-    </card-modal>
+    </modal>
 @else
 
     <div class="dropdown-toggle ml-6">

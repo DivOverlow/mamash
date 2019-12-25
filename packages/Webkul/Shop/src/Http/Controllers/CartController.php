@@ -61,7 +61,7 @@ class CartController extends Controller
     /**
      * Method to populate the cart page which will be populated before the checkout process.
      *
-     * @return \Illuminate\View\View 
+     * @return \Illuminate\View\View
      */
     public function index()
     {
@@ -81,7 +81,28 @@ class CartController extends Controller
             $result = Cart::addProduct($id, request()->all());
 
             if ($result) {
+//                $gift_products = app('Webkul\Discount\Repositories\GiftRuleRepository')->getGiftsProduct();
+//                if(count($gift_products)) {
+//                    $gift_product_id = null;
+//                    foreach ($gift_products as $gift_product) {
+//                        if( $result->base_sub_total < $gift_product->action_amount) {
+//                            break;
+//                        }
+//
+//                        if(isset($gift_product->related_products()->first()->product_id)) {
+//                            $gift_product_id = $gift_product->related_products()->first()->product_id;
+//                        }
+//                    }
+//                    if ($gift_product_id) {
+//                        if (session()->has('gift_product_id')) {
+//                                session()->forget('gift_product_id');
+//                        }
+//                        session()->put('gift_product_id', $gift_product_id);
+//                    }
+//                }
+
                 session()->flash('success', trans('shop::app.checkout.cart.item.success'));
+//                session()->flash('cart-update', trans('shop::app.checkout.cart.item.success'));
 
                 if ($customer = auth()->guard('customer')->user())
                     $this->wishlistRepository->deleteWhere(['product_id' => $id, 'customer_id' => $customer->id]);
@@ -113,6 +134,7 @@ class CartController extends Controller
         $result = Cart::removeItem($itemId);
 
         if ($result)
+
             session()->flash('success', trans('shop::app.checkout.cart.item.success-remove'));
 
         return redirect()->back();

@@ -20,6 +20,7 @@ Vue.prototype.$http = axios
 window.eventBus = new Vue();
 
 Vue.component("image-slider", require("./components/image-slider.vue"));
+Vue.component("card-modal", require("./components/CardModal"));
 Vue.component("vue-slider", require("vue-slider-component"));
 Vue.filter('currency', function (value, argument) {
     return accounting.formatMoney(value, argument);
@@ -44,6 +45,7 @@ $(document).ready(function () {
         },
         data() {
             return {
+                exampleModalShowing: false,
                 hooperSettings: {
                     infiniteScroll: true,
                     centerMode: true,

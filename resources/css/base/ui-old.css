@@ -1405,7 +1405,7 @@ modal {
     display: block
 }
 
-.modal-container {
+.account-layout .modal-container {
     background: #fff;
     top: 100px;
     width: 600px;
@@ -1425,7 +1425,22 @@ modal {
     max-height: 80%
 }
 
-.modal-container .modal-header {
+.cart-dropdown-container .modal-container {
+    background: #fff;
+    margin-left: -300px;
+    position: fixed;
+    -webkit-box-shadow: 0 15px 25px 0 rgba(0, 0, 0, .03), 0 20px 45px 5px rgba(0, 0, 0, .2);
+    box-shadow: 0 15px 25px 0 rgba(0, 0, 0, .03), 0 20px 45px 5px rgba(0, 0, 0, .2);
+    -webkit-animation: fade-in-white .3s ease-in-out;
+    animation: fade-in-white .3s ease-in-out;
+    -webkit-animation: jelly .5s ease-in-out;
+    animation: jelly .5s ease-in-out;
+    height: 100%;
+
+    @apply  .right-0 .max-w-md .w-full .z-20 .-mt-32;
+}
+
+.account-layout .modal-container .modal-header {
     padding: 20px
 }
 
@@ -1436,31 +1451,35 @@ modal {
     margin: 0
 }
 
-.modal-container .modal-header .icon {
+.account-layout .modal-container .modal-header .icon {
     float: right;
     cursor: pointer;
 }
 
-.modal-container .modal-body {
+.cart-dropdown-container .modal-container .modal-header .icon {
+    cursor: pointer;
+    @apply .absolute .top-0 .bottom-0 .left-0 .px-4 .py-4 .m-1;
+}
+
+.account-layout .modal-container .modal-body {
     padding: 20px
+}
+
+.cart-dropdown-container .modal-container .modal-body {
+    height: 100%;
+}
+
+.cart-dropdown-container .modal-container .modal-body .cart-content {
+    overflow-y: auto;
+    max-height: 290px;
 }
 
 .modal-container .modal-body .control-group .control {
     width: 100%
 }
 
-.modal-content {
-    height: 100%;
-}
-
-.modal-content .modal-body .cart-content {
-    overflow-y: auto;
-    max-height: 450px;
-}
-
-
 @media only screen and (max-width: 770px) {
-    .modal-content {
+    .cart-dropdown-container .modal-container {
         max-width: 100%;
     }
     .account-layout .modal-container {

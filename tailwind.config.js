@@ -91,6 +91,7 @@ module.exports = {
                 'orange-light': "#f5f5f5",
                 orange: "#eba057",
                 scarlet: '#f91154',
+                'bg-semi-75': 'rgba(0, 0, 0, 0.75)',
             },
             spacing: {
                 '96': '24rem',
