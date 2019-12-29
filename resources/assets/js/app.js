@@ -45,7 +45,7 @@ $(document).ready(function () {
         },
         data() {
             return {
-                exampleModalShowing: false,
+                showCardModal: false,
                 hooperSettings: {
                     infiniteScroll: true,
                     centerMode: true,

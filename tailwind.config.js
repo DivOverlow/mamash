@@ -68,6 +68,8 @@ module.exports = {
             '120': '30rem',
             '132': '34rem',
             '140': '36rem',
+            '264': '68rem',
+            'screen': '100vh',
         },
 
         extend: {
@@ -91,7 +93,7 @@ module.exports = {
                 'orange-light': "#f5f5f5",
                 orange: "#eba057",
                 scarlet: '#f91154',
-                'bg-semi-75': 'rgba(0, 0, 0, 0.75)',
+                'semi-75': 'rgba(0, 0, 0, 0.75)',
             },
             spacing: {
                 '96': '24rem',

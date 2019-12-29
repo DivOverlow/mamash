@@ -480,6 +480,37 @@
     cursor: pointer
 }
 
+
+
+@-webkit-keyframes move-in {
+    0% {
+        -webkit-transform: translateX(28rem);
+        transform: translateX(28rem);
+        opacity: 0
+    }
+    to {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+        opacity: 1
+    }
+}
+
+@keyframes move-in {
+    0% {
+        -webkit-transform: translateX(28rem);
+        transform: translateX(28rem);
+        opacity: 0
+    }
+    to {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+        opacity: 1
+    }
+}
+
+
+
+
 @-webkit-keyframes jelly {
     0% {
         -webkit-transform: translateY(0) scale(.7);
@@ -1381,7 +1412,7 @@ dropdown-list
 }
 
 modal {
-    display: none
+    display: none;
 }
 
 .modal-open {
@@ -1426,15 +1457,17 @@ modal {
 }
 
 .cart-dropdown-container .modal-container {
+    right: 100%;
     background: #fff;
-    margin-left: -300px;
     position: fixed;
     -webkit-box-shadow: 0 15px 25px 0 rgba(0, 0, 0, .03), 0 20px 45px 5px rgba(0, 0, 0, .2);
     box-shadow: 0 15px 25px 0 rgba(0, 0, 0, .03), 0 20px 45px 5px rgba(0, 0, 0, .2);
     -webkit-animation: fade-in-white .3s ease-in-out;
     animation: fade-in-white .3s ease-in-out;
-    -webkit-animation: jelly .5s ease-in-out;
-    animation: jelly .5s ease-in-out;
+    -webkit-animation: move-in .5s cubic-bezier(0.3, 0.5, 0.8, 1.0);
+    animation: move-in .5s cubic-bezier(0.3, 0.5, 0.8, 1.0);
+    /*transform: translateZ(0);*/
+    /*transition: right .5s ease-in-out;*/
     height: 100%;
 
     @apply  .right-0 .max-w-md .w-full .z-20 .-mt-32;

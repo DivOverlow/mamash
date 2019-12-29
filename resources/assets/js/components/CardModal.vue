@@ -1,7 +1,7 @@
 <template>
     <Transition name="slide-fade">
-        <div v-if="showing" class="card-modal fixed inset-0 w-full h-screen flex items-center justify-end bg-semi-75 z-20">
-            <div class="modal-content relative max-w-md h-full bg-white shadow-lg">
+        <div v-if="showing" class="fixed inset-0 w-full h-screen flex items-center justify-end z-20">
+            <div class="card-modal-container relative max-w-md h-full bg-white shadow-lg">
                 <div class="modal-header">
                     <i class="icon remove-icon absolute m-2 p-4 cursor-pointer" @click="$emit('close')"></i>
                     <slot name="header">

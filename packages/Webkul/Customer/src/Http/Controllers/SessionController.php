@@ -102,6 +102,7 @@ class SessionController extends Controller
 
         Event::fire('customer.after.logout', $id);
 
-        return redirect()->route($this->_config['redirect']);
+//        return redirect()->route($this->_config['redirect']);
+        return redirect()->route('shop.cms.page', 'leaving');
     }
 }

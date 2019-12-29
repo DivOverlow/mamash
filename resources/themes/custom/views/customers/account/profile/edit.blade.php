@@ -52,12 +52,12 @@
                             <span class="control-error" v-if="errors.has('last_name')">@{{ errors.first('last_name') }}</span>
                         </div>
                         <div class="control-group" :class="[errors.has('email') ? 'has-error' : '']">
-                        <div class="mat-div is-completed">
-                            <label for="email" class="required mat-label">{{ __('shop::app.customer.account.profile.email') }}</label>
-                            <input type="email" class="control mat-input" name="email" value="{{ old('email') ?? $customer->email }}" v-validate="'required'" data-vv-as="&quot;{{ __('shop::app.customer.account.profile.email') }}&quot;">
+                            <div class="mat-div is-completed">
+                                <label for="email" class="required mat-label">{{ __('shop::app.customer.account.profile.email') }}</label>
+                                <input type="email" class="control mat-input" name="email" value="{{ old('email') ?? $customer->email }}" v-validate="'required'" data-vv-as="&quot;{{ __('shop::app.customer.account.profile.email') }}&quot;">
+                            </div>
+                            <span class="control-error" v-if="errors.has('email')">@{{ errors.first('email') }}</span>
                         </div>
-                        <span class="control-error" v-if="errors.has('email')">@{{ errors.first('email') }}</span>
-                    </div>
                         <div class="control-group" :class="[errors.has('gender') ? 'has-error' : '']">
                             <div class="mat-div is-completed">
                                 <label for="email" class="required mat-label">{{ __('shop::app.customer.account.profile.gender') }}</label>

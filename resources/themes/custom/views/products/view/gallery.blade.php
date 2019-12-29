@@ -1,11 +1,12 @@
 @inject ('productImageHelper', 'Webkul\Product\Helpers\ProductImage')
 @inject ('wishListHelper', 'Webkul\Customer\Helpers\Wishlist')
 
-<?php $images = $productImageHelper->getGalleryImages($product); ?>
+<?php $images = $productImageHelper->getGalleryImages($product);?>
 
 {!! view_render_event('bagisto.shop.products.view.gallery.before', ['product' => $product]) !!}
 
-<div class="product-image-group">
+
+<div class="product-image-group {{ (count($images) == 1) ? 'sm:z-20 sm:h-264' :'' }}">
 
     <div class="cp-spinner cp-round" id="loader">
     </div>
@@ -19,7 +20,7 @@
 @push('scripts')
 
     <script type="text/x-template" id="product-gallery-template">
-        <div class="flex flex-row">
+        <div class="flex flex-row  {{ (count($images) == 1) ? 'sm:sticky sm:top-0' :'' }}">
 
             <ul class="thumb-list" v-if="(thumbs.length > 2)">
                 <li class="gallery-control top" @click="moveThumbs('top')" v-if="(thumbs.length > 4) && this.is_move.up">

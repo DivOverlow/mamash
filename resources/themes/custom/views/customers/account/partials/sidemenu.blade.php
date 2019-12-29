@@ -1,16 +1,34 @@
 <div class="sidebar">
     @foreach ($menu->items as $menuItem)
         <div class="menu-block font-serif uppercase mt-6">
-            <div class="menu-block-title font-semibold">
-                {{ trans($menuItem['name']) }}
+            <div class="menu-block-title block sm:hidden max-w-md flex justify-between items-center">
+                @foreach ($menuItem['children'] as $subMenuItem)
+                    @if ($menu->getActive($subMenuItem))
+                        <div>
+                            <i class="{{ trans($subMenuItem['icon'])  .' ' . $menu->getActive($subMenuItem) }} align-middle h-auto w-6"></i><span class="ml-4 border-b border-yellow text-yellow"> {{ trans($subMenuItem['name']) }} </span>
+                        </div>
+                        @break
+                    @endif
+                @endforeach
 
-                <i class="icon icon-arrow-down right" id="down-icon"></i>
+                <i class="icon icon-arrow-down right p-3" id="down-icon"></i>
             </div>
 
+            <?php
+                $menu_title = '';
+
+                foreach ($menuItem['children'] as $subMenuItem)  {
+                    if ($menu->getActive($subMenuItem) == 'active') {
+                        $menu_title = '<i class="' .  trans($subMenuItem['icon'])  .' ' . $menu->getActive($subMenuItem) .'" align-middle h-auto w-6"></i>';
+                        break;
+                    }
+                }
+            ?>
+
             <div class="menu-block-content">
-                <ul class="menubar">
+                <ul class="menubar relative">
                     @foreach ($menuItem['children'] as $subMenuItem)
-                        <li class="menu-item py-3 block {{ $menu->getActive($subMenuItem) }}">
+                        <li class="menu-item py-3 {{ ($menu->getActive($subMenuItem) == 'active') ? 'hidden sm:block' : '' }} {{ $menu->getActive($subMenuItem) }}">
                             <i class="{{ trans($subMenuItem['icon'])  .' ' . $menu->getActive($subMenuItem) }} align-middle h-auto w-6"></i><a href="{{ $subMenuItem['url'] }}" class="ml-4"> {{ trans($subMenuItem['name']) }} </a>
                         </li>
                     @endforeach

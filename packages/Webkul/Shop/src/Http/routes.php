@@ -259,6 +259,12 @@ Route::group(['middleware' => ['web', 'locale', 'theme', 'currency']], function 
                     'view' => 'shop::customers.account.wishlist.wishlist'
                 ])->name('customer.wishlist.index');
 
+                /* Subscribe route */
+                //Customer Subscribe Show
+                Route::get('subscribe', 'Webkul\Customer\Http\Controllers\SubscriptionController@index')->defaults('_config', [
+                    'view' => 'shop::customers.account.subscribe.index'
+                ])->name('customer.subscribe.index');
+
                 /* Orders route */
                 //Customer orders(listing)
                 Route::get('orders', 'Webkul\Shop\Http\Controllers\OrderController@index')->defaults('_config', [

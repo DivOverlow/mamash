@@ -1449,21 +1449,21 @@ modal {
     width: 100%
 }
 
-.modal-content {
+.card-modal-container {
     height: 100%;
 }
 
-.modal-content .modal-body .cart-content {
+.card-modal-container .modal-body {
     overflow-y: auto;
     max-height: 450px;
 }
 
 
 @media only screen and (max-width: 770px) {
-    .modal-content {
+    .card-modal-container {
         max-width: 100%;
     }
-    .account-layout .modal-container {
+    .modal-container {
         max-width: 80%;
         left: 10%;
         margin-left: 0

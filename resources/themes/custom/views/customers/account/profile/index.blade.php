@@ -6,7 +6,7 @@
 
 @section('content-wrapper')
 
-<div class="account-content main-container-wrapper flex flex-col sm:flex-row">
+<div class="account-content main-container-wrapper flex content-start flex-wrap">
     <div class="w-full sm:w-1/2">
         <div class="flex items-end inline-block h-20">
             <div class="user-icon active mb-1"></div>
@@ -14,7 +14,6 @@
         </div>
 
         @include('shop::customers.account.partials.sidemenu')
-        @include('shop::customers.account.partials.mini-gift')
 
     </div>
 
@@ -66,15 +65,6 @@
                         <td>{{ __('shop::app.customer.account.profile.email') }}</td>
                         <td>{{ $customer->email }}</td>
                     </tr>
-
-                    {{-- @if ($customer->subscribed_to_news_letter == 1)
-                        <tr>
-                            <td> {{ __('shop::app.footer.subscribe-newsletter') }}</td>
-                            <td>
-                                <a class="btn btn-sm btn-primary" href="{{ route('shop.unsubscribe', $customer->email) }}">{{ __('shop::app.subscription.unsubscribe') }} </a>
-                            </td>
-                        </tr>
-                    @endif --}}
                 </tbody>
             </table>
         </div>
@@ -114,5 +104,10 @@
 
          {!! view_render_event('bagisto.shop.customers.account.profile.view.after', ['customer' => $customer]) !!}
     </div>
+    <div class="w-full sm:w-1/2 mt-0 sm:-mt-20">
+        @include('shop::customers.account.partials.mini-gift')
+    </div>
+
 </div>
+
 @endsection

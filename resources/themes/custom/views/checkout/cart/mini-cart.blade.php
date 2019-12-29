@@ -7,11 +7,11 @@
 
 @if ($cart)
     <?php $items = $cart->items;
-//    if (session()->has('gift_product_id'))
-//            dd(session()->get('gift_product_id'));
-//    ?>
+    //    if (session()->has('gift_product_id'))
+    //            dd(session()->get('gift_product_id'));
+    //    ?>
 
-    <div class="dropdown-toggle flex relative w-12 inline-block" @click="exampleModalShowing = true">
+    <div class="dropdown-toggle flex relative w-12 inline-block" @click="showCardModal = true">
         <a class="cart-link z-10 w-full" href="{{ route('shop.checkout.cart.index') }}" title="{{ __('shop::app.header.cart') }}">
             <span class="cart-icon"></span>
         </a>
@@ -25,7 +25,7 @@
         {{--        <i class="icon arrow-down-icon"></i>--}}
     </div>
 
-    <card-modal :showing="exampleModalShowing" @close="exampleModalShowing = false">
+    <card-modal :showing="showCardModal" @close="showCardModal = false">
         <div slot="header" class="dropdown-header bg-gray-snow h-24 flex content-center flex-wrap"> <p class="heading w-full font-medium text-center text-gray-dark text-xl uppercase">
                 {{ __('shop::app.checkout.cart.title') }}
             </p>
