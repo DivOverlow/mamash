@@ -14,7 +14,7 @@
 
     <div class="pager flex flex-row">
 
-        <div class="sorter text-yellow ml-12">
+        <div class="sorter text-gold ml-12">
 
             <select onchange="window.location.href = this.value" class="bg-transparent uppercase">
 

@@ -1611,7 +1611,7 @@ modal {
 }
 
 .mat-div {
-    @apply .pt-2 .relative;
+    @apply .pt-1 .relative;
 }
 
 .mat-div:after, .mat-div:before {

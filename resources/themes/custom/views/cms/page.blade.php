@@ -65,7 +65,7 @@
 
 {{--                <div class="w-full flex justify-content-between items-center">--}}
 {{--                    <div class=" flex items-end inline-block">--}}
-{{--                        <span class="account-heading text-yellow text-xl sm:text-2xl uppercase pl-4">Доставка</span>--}}
+{{--                        <span class="account-heading text-gold text-xl sm:text-2xl uppercase pl-4">Доставка</span>--}}
 {{--                    </div>--}}
 
 {{--                </div>--}}

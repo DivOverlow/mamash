@@ -7,9 +7,23 @@
 
 @if ($cart)
     <?php $items = $cart->items;
-    //    if (session()->has('gift_product_id'))
-    //            dd(session()->get('gift_product_id'));
-    //    ?>
+        if(count($items) > 0 && !session()->has('gift_product_id')) {
+            $gift_products = app('Webkul\Discount\Repositories\GiftRuleRepository')->getGiftsProduct();
+            $gifts = [];
+            foreach ($gift_products as $gift_product) {
+                if( $cart->base_sub_total < $gift_product->action_amount) {
+                    break;
+                }
+
+                if(isset($gift_product->related_products()->first()->product_id)) {
+                    $gifts[] = $gift_product->related_products()->first()->product_id;
+                }
+            }
+            if (count($gifts) > 0) {
+                session()->put('gift_product_id', end($gifts));
+            }
+        }
+    ?>
 
     <div class="dropdown-toggle flex relative w-12 inline-block" @click="showCardModal = true">
         <a class="cart-link z-10 w-full" href="{{ route('shop.checkout.cart.index') }}" title="{{ __('shop::app.header.cart') }}">
@@ -105,20 +119,18 @@
             </div>
 
             <div class="w-full absolute inset-x-0 bottom-0">
-                <?php $gift_products = $giftRepository->getGiftsProduct(); ?>
+            <?php $gift_products = $giftRepository->getGiftsProduct(); ?>
                 @if (count($gift_products))
                     @inject ('productImageHelper', 'Webkul\Product\Helpers\ProductImage')
 
                     <div class="gift-content my-3 ">
                         <div class="w-4/5 ml-auto tracking-widest">{{ __('shop::app.checkout.gift.title') }}</div>
-                        {{session()->get('gift_product_id') }}
                         @if (session()->has('gift_product_id'))
-                            <?php $product = $productRepository->find(session()->get('gift_product_id')); ?>
+                        <?php $product = $productRepository->find(session()->get('gift_product_id')); ?>
                             @if($product)
                                 @php
                                     $productBaseImage = $productImageHelper->getProductBaseImage($product);
                                 @endphp
-
                                 <div class="w-full flex flex-row justify-between items-center text-left py-2">
                                     <div class="item-image h-28 w-1/2 flex items-center justify-center">
                                         <a href="{{ url()->to('/').'/products/'.$product->url_key }}"><img  class="object-scale-down h-24 w-auto"
@@ -139,6 +151,9 @@
                                 </div>
                             @endif
                         @else
+                            <div class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4" role="alert">
+                                <p>{{__('shop::app.checkout.gift.gift-not-available')}}</p>
+                            </div>
                             @foreach($gift_products as $gift_product)
                                 @if(isset($gift_product->related_products()->first()->product_id))
                                     <?php $product = $productRepository->find($gift_product->related_products()->first()->product_id); ?>

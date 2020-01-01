@@ -7,7 +7,7 @@
 
         <div class="title text-black text-4xl sm:text-5xl text-center uppercase my-10">
             {{ __('shop::app.products.related-product-title') }}
-            <span class="border-bottom text-orange">{{ __('shop::app.products.related-product-bottom') }}</span>
+            <span class="border-bottom text-orange-orange">{{ __('shop::app.products.related-product-bottom') }}</span>
         </div>
 
         <div class="product-grid-4">

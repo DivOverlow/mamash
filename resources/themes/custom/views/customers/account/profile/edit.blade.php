@@ -9,7 +9,7 @@
         <div class="w-full sm:w-1/2">
             <div class="flex items-end inline-block h-20">
                 <div class="user-icon active mb-1"></div>
-                <span class="text-yellow text-xl sm:text-2xl uppercase pl-4">{{ $customer->first_name .' ' .  $customer->last_name  }}</span>
+                <span class="text-gold text-xl sm:text-2xl uppercase pl-4">{{ $customer->first_name .' ' .  $customer->last_name  }}</span>
             </div>
 
             @include('shop::customers.account.partials.sidemenu')

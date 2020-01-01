@@ -10,7 +10,7 @@
     <div class="w-full sm:w-1/2">
         <div class="flex items-end inline-block h-20">
             <div class="user-icon active mb-1"></div>
-            <span class="text-yellow text-xl sm:text-2xl uppercase pl-4">{{ $customer->first_name .' ' .  $customer->last_name  }}</span>
+            <span class="text-gold text-xl sm:text-2xl uppercase pl-4">{{ $customer->first_name .' ' .  $customer->last_name  }}</span>
         </div>
 
         @include('shop::customers.account.partials.sidemenu')
@@ -29,7 +29,7 @@
                     <span class="account-heading text-gray-dark text-xl sm:text-2xl uppercase pl-4">{{ __('shop::app.customer.account.profile.index.title') }}</span>
                 </div>
 
-                <span class="account-action border-b border-transparent ml-auto font-serif text-yellow hover:border-b hover:border-yellow">
+                <span class="account-action border-b border-transparent ml-auto font-serif text-gold hover:border-b hover:border-gold">
                     <a href="{{ route('customer.profile.edit') }}">{{ __('shop::app.customer.account.profile.index.edit') }}</a>
                 </span>
             </div>

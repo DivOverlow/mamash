@@ -5,7 +5,7 @@
                 @foreach ($menuItem['children'] as $subMenuItem)
                     @if ($menu->getActive($subMenuItem))
                         <div>
-                            <i class="{{ trans($subMenuItem['icon'])  .' ' . $menu->getActive($subMenuItem) }} align-middle h-auto w-6"></i><span class="ml-4 border-b border-yellow text-yellow"> {{ trans($subMenuItem['name']) }} </span>
+                            <i class="{{ trans($subMenuItem['icon'])  .' ' . $menu->getActive($subMenuItem) }} align-middle h-auto w-6"></i><span class="ml-4 border-b border-gold text-gold"> {{ trans($subMenuItem['name']) }} </span>
                         </div>
                         @break
                     @endif

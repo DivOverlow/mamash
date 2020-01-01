@@ -168,30 +168,30 @@
 {{--            </div>--}}
 {{--        @endif--}}
 
-        <div class="control-group" :class="[errors.has('address-form.billing[country]') ? 'has-error' : '']">
-            <div class="mat-div" :class="address.billing.country ? 'is-completed' : ''">
+{{--        <div class="control-group" :class="[errors.has('address-form.billing[country]') ? 'has-error' : '']">--}}
+{{--            <div class="mat-div" :class="address.billing.country ? 'is-completed' : ''">--}}
 
 {{--                <label for="billing[country]" class="required mat-label">--}}
-                <label for="billing[country]" class="mat-label">
-                    {{ __('shop::app.checkout.onepage.country') }}
-                </label>
+{{--                <label for="billing[country]" class="mat-label">--}}
+{{--                    {{ __('shop::app.checkout.onepage.country') }}--}}
+{{--                </label>--}}
 
 {{--                <select type="text" v-validate="'required'" class="control mat-input" id="billing[country]" name="billing[country]" v-model="address.billing.country" data-vv-as="&quot;{{ __('shop::app.checkout.onepage.country') }}&quot;">--}}
-                <select type="text" class="control mat-input" id="billing[country]" name="billing[country]" v-model="address.billing.country" data-vv-as="&quot;{{ __('shop::app.checkout.onepage.country') }}&quot;">
-                    <option value=""></option>
+{{--                <select type="text" class="control mat-input" id="billing[country]" name="billing[country]" v-model="address.billing.country" data-vv-as="&quot;{{ __('shop::app.checkout.onepage.country') }}&quot;">--}}
+{{--                    <option value=""></option>--}}
 
-                    @foreach (core()->countries() as $country)
+{{--                    @foreach (core()->countries() as $country)--}}
 
-                        <option value="{{ $country->code }}">{{ $country->name }}</option>
+{{--                        <option value="{{ $country->code }}">{{ $country->name }}</option>--}}
 
-                    @endforeach
-                </select>
-            </div>
+{{--                    @endforeach--}}
+{{--                </select>--}}
+{{--            </div>--}}
 
-            <span class="control-error" v-if="errors.has('address-form.billing[country]')">
-                @{{ errors.first('address-form.billing[country]') }}
-            </span>
-        </div>
+{{--            <span class="control-error" v-if="errors.has('address-form.billing[country]')">--}}
+{{--                @{{ errors.first('address-form.billing[country]') }}--}}
+{{--            </span>--}}
+{{--        </div>--}}
 
         <div class="control-group" :class="[errors.has('address-form.billing[city]') ? 'has-error' : '']">
             <div class="mat-div" :class="address.billing.city ? 'is-completed' : ''">

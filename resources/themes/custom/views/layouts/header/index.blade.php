@@ -1,10 +1,10 @@
 <div class="header" id="header">
-    <div class="header-top bg-gray">
+    <div class="header-top bg-gray-grey">
 {{--        <span class="menu-box hidden" ><span class="icon icon-menu" id="hammenu"></span></span>--}}
         <div class="main-container-wrapper flex justify-between sm:justify-end py-3">
             <span class="menu-box visible sm:invisible"><span class="icon icon-menu" id="hammenu"></span></span>
             <div class="left-content mx-8 mt-1 leading-none relative">
-            <a href="#" class="invisible sm:visible inline-block align-top text-white text-sm hover:text-yellow cursor-pointer">{{ __('shop::app.header.help') }}</a>
+            <a href="#" class="invisible sm:visible inline-block align-top text-white text-sm hover:text-gold cursor-pointer">{{ __('shop::app.header.help') }}</a>
         </div>
 
         <?php
@@ -25,7 +25,7 @@
                     @foreach (core()->getCurrentChannel()->locales as $locale)
                         <li class="px-1 {{($loop->index > 0) ? 'border-l-2 border-solid border-gray-light' : 'border-0'}}">
                             @if( $locale->code == app()->getLocale())
-                                <span class="inline-block align-top text-yellow">{{$locale->code}}</span>
+                                <span class="inline-block align-top text-gold">{{$locale->code}}</span>
                             @else
                                 @if(isset($serachQuery))
                                     <a href="?{{ $serachQuery }}?locale={{ $locale->code }}" class="inline-block align-top text-white hover:underline">{{$locale->code}}</a>
@@ -93,11 +93,11 @@
                 <div class="w-full right-content flex justify-between items-center">
                     <div class="search-container mr-10 items-center w-full flex justify-end relative">
                         <form role="search" action="{{ route('shop.search.index') }}" method="GET" >
-                            <input type="text" class="bg-transparent font-serif font-light text-white text-sm h-8 w-20 border-b border-gray-light relative focus:w-48 focus:border-yellow"
+                            <input type="text" class="bg-transparent font-serif font-light text-white text-sm h-8 w-20 border-b border-gray-light relative focus:w-48 focus:border-gold"
                                    placeholder="{{ __('shop::app.header.search-text') }}" required>
                                     <div class="search-icon-wrapper flex items-center absolute right-0 inset-y-0">
                                         <button class="pl-2 -mr-5 pb-1">
-                                            <svg class="fill-current text-white hover:text-yellow inline-block h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/></svg>
+                                            <svg class="fill-current text-white hover:text-gold inline-block h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/></svg>
                                         </button>
                                 </div>
                         </form>

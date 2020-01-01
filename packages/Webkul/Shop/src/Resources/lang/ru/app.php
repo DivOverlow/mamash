@@ -80,7 +80,8 @@ return [
         'already' => 'You are already subscribed to our subscription list.',
         'unsubscribed' => 'You are unsubscribed from subscription mails.',
         'already-unsub' => 'You are already unsubscribed.',
-        'not-subscribed' => 'Error! Mail can not be sent currently, please try again later.'
+        'not-subscribed' => 'Error! Mail can not be sent currently, please try again later.',
+        'privacy-policy' => 'Политика конфиденциальности',
     ],
 
     'search' => [
@@ -456,7 +457,7 @@ return [
             'quantity' => [
                 'quantity' => 'Количество',
                 'short' => 'кол-во:',
-                'success' => 'Содержание корзині успешно обновлено.',
+                'success' => 'Содержание корзины успешно обновлено.',
                 'illegal' => 'Quantity cannot be lesser than one.',
                 'inventory_warning' => 'The requested quantity is not available, please try again later.',
                 'error' => 'Cannot update the item(s) at the moment, please try again later.'
@@ -478,8 +479,12 @@ return [
             'title' => 'Ваш подарок',
             'free' => 'Бесплатный подарок',
             'premium' => 'Премиальный подарок',
-            'free-message' => 'Вы можете вибрать этот бесплатный подарок для заказа.',
+            'free-message' => 'Вы можете выбрать этот бесплатный подарок для заказа.',
             'premium-message' => 'Купите еще на %s и получите этот бесплатный подарок',
+            'gift-change' => 'У Вас сменился подарок от суммы заказа.',
+            'gift-selected' => 'Вами был выбран другой подарок.',
+            'gift-available' => 'Поздравляем, теперь у Вас есть подарок.',
+            'gift-not-available' => 'Очень жаль, но суммы заказа не хватает для получения подарка.',
         ],
 
         'onepage' => [

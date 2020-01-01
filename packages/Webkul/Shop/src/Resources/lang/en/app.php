@@ -79,7 +79,8 @@ return [
         'already' => 'You are already subscribed to our subscription list.',
         'unsubscribed' => 'You are unsubscribed from subscription mails.',
         'already-unsub' => 'You are already unsubscribed.',
-        'not-subscribed' => 'Error! Mail can not be sent currently, please try again later.'
+        'not-subscribed' => 'Error! Mail can not be sent currently, please try again later.',
+        'privacy-policy' => 'Privacy Policy',
     ],
 
     'search' => [
@@ -474,8 +475,13 @@ return [
             'title' => 'Your Gift',
             'free' => 'Free Gift',
             'premium' => 'Premium Gift',
-            'free-message' => 'Вы можете вибрать этот товар в подарок при оплате заказа.',
-            'premium-message' => 'Купите еще на %s и получите этот бесплатный подарок',
+            'free-message' => 'You can choose this product as a gift when paying for the order.',
+            'premium-message' => 'Buy another at %s and get this free gift.',
+            'gift-change' => 'You have changed a gift from the order amount.',
+            'gift-selected' => 'You have chosen another gift.',
+            'gift-available' => 'Congratulations, you now have a gift.',
+            'gift-not-available' => 'It\'s a pity, but the order amount is not enough to receive a gift.',
+
         ],
         'onepage' => [
             'title' => 'Checkout',

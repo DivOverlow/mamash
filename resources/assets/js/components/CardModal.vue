@@ -36,6 +36,9 @@
                 document.querySelector('body').classList.remove('modal-open');
             }
         },
+        created() {
+          window.events.$on('checkout.cart.add.after')
+        },
         methods: {
             close() {
                 this.$emit('close');

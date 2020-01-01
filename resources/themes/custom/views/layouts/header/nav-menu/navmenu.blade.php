@@ -67,7 +67,8 @@ foreach (app('Webkul\Category\Repositories\CategoryRepository')->getVisibleCateg
 
     <script type="text/x-template" id="category-item-template">
         <li>
-            {{--        <a :href="url+'/categories/'+this.item['translations'][0].slug" class="block text-white uppercase border-b border-transparent tracking-wide flex items-center bg-transparent relative hover:text-yellow hover:border-b hover:border-yellow">--}}
+            {{--        <a :href="url+'/categories/'+this.item['translations'][0].slug" class="block text-white uppercase border-b border-transparent tracking-wide flex items-center bg-transparent relative hover:text-gold hover:border-b hover:border-gold">--}}
+            {{--        <a :href="url+'/categories/'+this.item['translations'][0].slug" class="block text-white uppercase border-b border-transparent tracking-wide flex items-center bg-transparent relative hover:text-gold hover:border-b hover:border-gold">--}}
             <a :href="url+'/categories/'+this.item['translations'][0].slug" class="nav-item">
                 @{{ name }}&emsp;
                 {{--            <i class="icon dropdown-right-icon" v-if="haveChildren && item.parent_id != null"></i>--}}

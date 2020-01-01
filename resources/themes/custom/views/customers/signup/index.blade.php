@@ -18,7 +18,7 @@
             {{ csrf_field() }}
 
             <div class="login-form flex flex-col content-between flex-wrap max-w-lg">
-                <div class="login-text text-yellow text-2xl uppercase mt-6">{{ __('shop::app.customer.signup-form.title') }}</div>
+                <div class="login-text text-gold text-2xl uppercase mt-6">{{ __('shop::app.customer.signup-form.title') }}</div>
 
                 {!! view_render_event('bagisto.shop.customers.signup_form_controls.before') !!}
 
@@ -75,7 +75,7 @@
         </div>
 
         <div class="w-full sm:w-1/2 flex content-between flex-wrap py-4">
-            <div class="w-full text-yellow text-2xl uppercase mt-6">{{ __('shop::app.customer.signup-text.account_exists') }}</div>
+            <div class="w-full text-gold text-2xl uppercase mt-6">{{ __('shop::app.customer.signup-text.account_exists') }}</div>
             <div class="sign-up button-decor w-full sm:w-1/3 py-3 text-xl capitalize">
                 <a href="{{ route('customer.session.index') }}">{{ __('shop::app.customer.signup-text.title') }}</a>
             </div>

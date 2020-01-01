@@ -81,7 +81,8 @@ return [
         'already' => 'You are already subscribed to our subscription list.',
         'unsubscribed' => 'You are unsubscribed from subscription mails.',
         'already-unsub' => 'You are already unsubscribed.',
-        'not-subscribed' => 'Error! Mail can not be sent currently, please try again later.'
+        'not-subscribed' => 'Error! Mail can not be sent currently, please try again later.',
+        'privacy-policy' => 'Політика конфіденційності',
     ],
 
     'search' => [
@@ -482,6 +483,10 @@ return [
             'free_message' => 'Ви можете вибрати цей безкоштовний подарунок до свого замовлення.',
             'premium' => 'Преміальний подарунок',
             'premium-message' => 'Купіть ще на %s і отримаєте цей безкоштовний подарунок',
+            'gift-change' => 'У Вас змінився подарунок від суми замовлення.',
+            'gift-selected' => 'Вами був вибраний інший подарунок.',
+            'gift-available' => 'Вітаємо, тепер у Вас є подарунок.',
+            'gift-not-available' => 'Дуже шкода, але суми замовлення не хватає для отримання подарунка.',
         ],
 
         'onepage' => [

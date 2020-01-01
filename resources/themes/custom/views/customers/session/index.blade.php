@@ -5,6 +5,7 @@
 @endsection
 
 @section('content-wrapper')
+    @inject ('templateRepository', 'Webkul\CMS\Repositories\TemplateRepository')
 
     <div class="auth-content w-full bg-cover h-full relative"
          style="background-image: url('/themes/custom/assets/images/banner/bg_card.jpg');  min-height: 34rem;">
@@ -17,7 +18,7 @@
                     {{ csrf_field() }}
                     <div class="login-form flex flex-col content-between flex-wrap max-w-lg">
                         <div class="py-12">
-                            <div class="login-text text-yellow text-2xl uppercase mb-2">{{ __('shop::app.customer.login-form.title') }}</div>
+                            <div class="login-text text-gold text-2xl uppercase mb-2">{{ __('shop::app.customer.login-form.title') }}</div>
                             <p class="font-serif text-gray-dark text-base">{{ __('shop::app.customer.login-form.sub-title') }}</p>
                         </div>
                         {!! view_render_event('bagisto.shop.customers.login_form_controls.before') !!}
@@ -67,29 +68,11 @@
                 {!! view_render_event('bagisto.shop.customers.login.after') !!}
             </div>
 
-            <div class="w-full sm:w-1/2 flex content-between flex-wrap py-4">
-                <div class="py-6 mt-6">
-                    <div class="text-yellow text-2xl uppercase pb-2">{{ __('shop::app.customer.login-text.no_account') }}</div>
-                    <p class="font-serif text-gray-dark text-base">Создать аккаунт легко. Просто заполните форму ниже и наслаждайтесь преимуществами того, чтобы быть зарегистрированным клиентом</p>
-                </div>
-                <div>
-                    <div class="text-yellow text-2xl uppercase mb-4">Преимущества регистрации</div>
-                    <ul class="font-serif text-gray-dark text-base">
-                        <li class="checkmark block">Приветственный подарок</li>
-                        <li class="checkmark block">Доступ к Ритуалу</li>
-                        <li class="checkmark block">Личные сюрпризы и эксклюзивные предложения</li>
-                        <li class="checkmark block">История заказов</li>
-                    </ul>
-                </div>
-                <div class="w-full py-3">
-                    <a href="#" class="text-yellow font-serif underline">{{ __('shop::app.footer.subscribe-newsletter-sub-span') }}</a>
-                </div>
+            {!! DbView::make($templateRepository
+                    ->getTemplate('login-right-block'))
+                    ->field('html_content')
+                    ->render() !!}
 
-                <div class="sign-up button-decor w-full sm:w-1/2 py-3 text-xl capitalize">
-                    <a href="{{ route('customer.register.index') }}">{{ __('shop::app.customer.login-text.title') }}</a>
-                </div>
-
-            </div>
         </div>
     </div>
 

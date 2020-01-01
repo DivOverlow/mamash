@@ -155,12 +155,20 @@
                                     @endforeach
                                 </div>
 
+
+
                                 <?php $gift_products = $giftRepository->getGiftsProduct(); ?>
                                 @if (count($gift_products))
                                     @inject ('productImageHelper', 'Webkul\Product\Helpers\ProductImage')
 
                                 <div class="gift-item-list bg-old-lace my-6">
                                     <div class="font-serif text-xs tracking-widest text-gray-dark uppercase">{{ __('shop::app.checkout.gift.title') }}</div>
+                                    @if (!session()->has('gift_product_id'))
+                                        <div class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4">
+                                            <p>{{__('shop::app.checkout.gift.gift-not-available')}}</p>
+                                        </div>
+                                    @endif
+
                                     @foreach($gift_products as $gift_product)
                                         @if(isset($gift_product->related_products()->first()->product_id))
                                             <?php $product = $productRepository->find($gift_product->related_products()->first()->product_id); ?>
@@ -191,7 +199,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="w-auto sm:w-1/6 flex sm:justify-center items-start sm:items-center">
-                                                    <span class="radio"><input type="radio" id="{{ $product->id }}" @if($cart->base_sub_total < $gift_product->action_amount) disabled @elseif($loop->index == 0) checked @endif name="product_gift_id" value="{{ $product->id }}"> <label for="{{ $product->id }}" class="radio-view"></label></span>
+                                                    <span class="radio"><input type="radio" id="{{$product->id}}" @if($cart->base_sub_total < $gift_product->action_amount) disabled @elseif(session()->get('gift_product_id') == $product->id) checked @endif name="product_gift_id" value="{{ $product->id }}"> <label for="{{ $product->id }}" class="radio-view"></label></span>
                                                 </div>
                                             </div>
                                             @endif
@@ -217,7 +225,7 @@
 
                                             <div class="misc-controls my-3">
                                                 <a href="{{ route('shop.home.index') }}"
-                                                   class="link font-serif font-medium text-base text-yellow hover:underline">{{ __('shop::app.checkout.cart.continue-shopping') }}</a>
+                                                   class="link font-serif font-medium text-base text-gold hover:underline">{{ __('shop::app.checkout.cart.continue-shopping') }}</a>
 
                                                 <div class="flex flex-row justify-between items-center mt-8">
                                                     <button type="submit" class="button-black w-full py-3 normal-case">
@@ -259,7 +267,7 @@
 
                         <p class="w-full text-center inline-block my-3">
                             <a style="display: inline-block;" href="{{ route('shop.home.index') }}"
-                               class="link font-serif font-medium text-base text-yellow hover:underline">{{ __('shop::app.checkout.cart.continue-shopping') }}</a>
+                               class="link font-serif font-medium text-base text-gold hover:underline">{{ __('shop::app.checkout.cart.continue-shopping') }}</a>
                         </p>
                     </div>
 

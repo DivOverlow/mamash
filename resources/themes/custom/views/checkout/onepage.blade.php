@@ -17,90 +17,32 @@
             </div>
             <div class="flex flex-col sm:flex-row justify-content-between items-start">
                 <div class="col-main w-full flex flex-col">
-                    <ul class="checkout-steps max-w-lg">
-                        <li class="active" :class="[completed_step >= 0 ? 'active' : '', completed_step > 0 ? 'completed' : '']" @click="navigateToStep(1)">
+                    <ul class="checkout-steps w-full sm:max-w-lg">
+                        <li class="active" :class="[completed_step >= 0 ? 'active' : '', completed_step > 0 ? 'completed' : '']">
                             <div class=" flex items-center inline-block">
                                 <div class="profile-icon address-info"></div>
                                 <span
                                     class="text-gray-dark text-xl sm:text-2xl uppercase pl-4">{{ __('shop::app.checkout.onepage.information') }}</span>
                             </div>
-{{--                            <div class="step-content information w-full" v-show="current_step == 1"--}}
-{{--                                 id="address-section">--}}
-{{--                                @include('shop::checkout.onepage.customer-info')--}}
-
-{{--                            </div>--}}
+                            <div class="step-content information" v-show="current_step == 1" id="address-section">
+                                @include('shop::checkout.onepage.customer-info')
+                           </div>
                         </li>
-
-                        <div class="line mb-25"></div>
-
-                        @if ($cart->haveStockableItems())
-                            <li :class="[current_step == 3 || completed_step > 2 ? 'active' : '', completed_step > 2 ? 'completed' : '']" @click="navigateToStep(3)">
-                                <div class="flex items-center inline-block">
-                                    <div class="decorator shipping"></div>
-                                    <span
-                                        class="text-gray-dark text-xl sm:text-2xl uppercase pl-4">{{ __('shop::app.checkout.onepage.shipping') }}</span>
-                                </div>
-                            </li>
-
-{{--                            <div class="line mb-25"></div>--}}
-
-
-
-{{--                            <li class="active" :class="[completed_step >= 0 ? 'active' : '', completed_step > 0 ? 'completed' : '']"--}}
-{{--                                @click="navigateToStep(2)">--}}
-
-{{--                                <div class="flex items-center inline-block">--}}
-{{--                                    <div class="decorator shipping"></div>--}}
-{{--                                    <span--}}
-{{--                                        class="text-gray-dark text-xl sm:text-2xl uppercase pl-4">{{ __('shop::app.checkout.onepage.shipping') }}</span>--}}
-{{--                                </div>--}}
-{{--                                <div class="step-content shipping" v-show="current_step == 2" id="shipping-section">--}}
-{{--                                    <shipping-section @onShippingMethodSelected="shippingMethodSelected($event)"></shipping-section>--}}
-{{--                                </div>--}}
-{{--                            </li>--}}
-
-                            <div class="line mb-25"></div>
-                        @endif
-
-{{--                        <li :class="[current_step == 3 || completed_step > 2 ? 'active' : '', completed_step > 2 ? 'completed' : '']"--}}
-                        <li class="active" :class="[completed_step >= 0 ? 'active' : '', completed_step > 0 ? 'completed' : '']"
-                            @click="navigateToStep(3)">
+{{--                        <li :class="[current_step >= 0 || completed_step > 0 ? 'completed' : '']" @click="navigateToStep(2)">--}}
+                        <li :class="[completed_step >= 0 ? 'active' : '', completed_step > 0 ? 'completed' : '']">
                             <div class="flex items-center inline-block">
-                                <div class="decorator payment"></div>
-                                <span class="text-gray-dark text-xl sm:text-2xl uppercase pl-4">{{ __('shop::app.checkout.onepage.payment') }}</span>
+                                <div class="decorator shipping"></div>
+                                <span
+                                    class="text-gray-dark text-xl sm:text-2xl uppercase pl-4">{{ __('shop::app.checkout.onepage.shipping') }}</span>
+                            </div>
+                            <div class="step-content shipping" v-show="current_step == 0" id="shipping-section">
+{{--                                <shipping-section v-if="current_step == 0" @onShippingMethodSelected="shippingMethodSelected($event)"></shipping-section>--}}
+                                <shipping-section v-if="current_step == 0" @onShippingMethodSelected="shippingMethodSelected($event)"></shipping-section>
                             </div>
                         </li>
 
-{{--                        <div class="line mb-25"></div>--}}
-
-{{--                        <li :class="[current_step == 4 ? 'active' : '']">--}}
-{{--                            <div class="decorator review"></div>--}}
-{{--                            <span>{{ __('shop::app.checkout.onepage.complete') }}</span>--}}
-{{--                        </li>--}}
                     </ul>
 
-                    <div class="step-content information" v-show="current_step == 1" id="address-section">
-                        @include('shop::checkout.onepage.customer-info')
-
-                        <div class="button-group">
-                            <button type="button" class="btn btn-lg btn-primary" @click="validateForm('address-form')" :disabled="disable_button" id="checkout-address-continue-button">
-                                {{ __('shop::app.checkout.onepage.continue') }}
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="step-content shipping" v-show="current_step == 2" id="shipping-section">
-                        <shipping-section v-if="current_step == 2"
-                                          @onShippingMethodSelected="shippingMethodSelected($event)"></shipping-section>
-
-                        <div class="button-group">
-                            <button type="button" class="btn btn-lg btn-primary" @click="validateForm('shipping-form')"
-                                    :disabled="disable_button" id="checkout-shipping-continue-button">
-                                {{ __('shop::app.checkout.onepage.continue') }}
-                            </button>
-
-                        </div>
-                    </div>
 
 {{--                    <div class="step-content payment" v-show="current_step == 3" id="payment-section">--}}
 {{--                        <payment-section v-if="current_step == 3"--}}
@@ -126,7 +68,7 @@
 
                 </div>
 
-            <div class="col-right w-full max-w-md ml-auto mt-2" v-show="current_step != 4">
+            <div class="col-right w-full bg-old-lace sm:bg-white sm:max-w-md ml-auto mt-2" v-show="current_step != 4">
 
 
                 @inject ('productImageHelper', 'Webkul\Product\Helpers\ProductImage')
@@ -141,7 +83,7 @@
 
 
                     <div class="w-full">
-                        <div class="bg-gray-snow h-24 flex content-center flex-wrap">
+                        <div class="sm:bg-gray-snow h-24 flex content-center flex-wrap">
                             <p class="cart-heading w-full font-medium text-center text-gray-dark text-xl uppercase">
                                 {{ __('shop::app.checkout.onepage.cart-title') }}
                             </p>
@@ -220,7 +162,76 @@
                                 @endforeach
                             </div>
 
-{{--                            <div class="dropdown-footer">--}}
+                        <div class="w-full my-3">
+                            @inject ('giftRepository', 'Webkul\Discount\Repositories\GiftRuleRepository')
+                            <?php $gift_products = $giftRepository->getGiftsProduct(); ?>
+                            @if (count($gift_products))
+                                @inject ('productImageHelper', 'Webkul\Product\Helpers\ProductImage')
+
+                                <div class="gift-content my-3">
+                                        @if (session()->has('gift_product_id'))
+                                        <?php $product = $productRepository->find(session()->get('gift_product_id')); ?>
+                                        @if($product)
+                                            @php
+                                                $productBaseImage = $productImageHelper->getProductBaseImage($product);
+                                            @endphp
+                                            <div class="w-full flex flex-col sm:flex-row justify-between items-center text-center sm:text-left py-2">
+                                                <div class="item-image h-56 sm:h-28 w-full sm:w-1/3 sm:ml-auto flex items-center justify-center">
+                                                    <a href="{{ url()->to('/').'/products/'.$product->url_key }}"><img  class="object-scale-down h-48 sm:h-24 w-auto"
+                                                                                                                        src="{{ $productBaseImage['medium_image_url'] }}"/></a>
+                                                </div>
+                                                <div class="item-title flex flex-col justify-start">
+                                                    <div class="text-base text-gray-dark uppercase hover:text-gray-cloud">
+                                                        <a href="{{ url()->to('/').'/products/'.$product->url_key }}">
+                                                            {{ $product->name }} </a>
+                                                    </div>
+                                                    <div class="font-serif font-medium text-base text-gray-cloud">
+                                                        {{  __('shop::app.checkout.gift.free') }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    @else
+                                        <div class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4" role="alert">
+                                            <p>{{__('shop::app.checkout.gift.gift-not-available')}}</p>
+                                        </div>
+                                        @foreach($gift_products as $gift_product)
+                                            @if(isset($gift_product->related_products()->first()->product_id))
+                                                <?php $product = $productRepository->find($gift_product->related_products()->first()->product_id); ?>
+                                                @if($product)
+                                                    @php
+                                                        $productBaseImage = $productImageHelper->getProductBaseImage($product);
+                                                    @endphp
+                                                    <div class="w-full flex flex-row justify-between items-center text-left py-2">
+                                                        <div class="item-image h-28 w-1/2 flex items-center justify-center">
+                                                            <a href="{{ url()->to('/').'/products/'.$product->url_key }}"><img  class="object-scale-down h-24 w-auto"
+                                                                                                                                src="{{ $productBaseImage['small_image_url'] }}"/></a>
+                                                        </div>
+                                                        <div class="item-title flex flex-col justify-start">
+                                                            <div class="text-base text-gray-dark uppercase hover:text-gray-cloud">
+                                                                <a href="{{ url()->to('/').'/products/'.$product->url_key }}">
+                                                                    {{ $product->name }} </a>
+                                                            </div>
+                                                            <div class="font-serif font-medium text-base text-gray-cloud">
+                                                                {{ ($cart->base_sub_total < $gift_product->action_amount) ? __('shop::app.checkout.gift.premium') : __('shop::app.checkout.gift.free') }}
+                                                            </div>
+                                                            <div class="font-normal font-medium text-base text-gray-cloud leading-tight">
+                                                                {{ ($cart->base_sub_total < $gift_product->action_amount) ? sprintf(__('shop::app.checkout.gift.premium-message'), core()->convertPrice($gift_product->action_amount - $cart->base_sub_total) . core()->currencySymbol(core()->getBaseCurrencyCode()) ) : __('shop::app.checkout.gift.free-message') }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endif
+                                                @break
+                                            @endif
+                                        @endforeach
+
+                                    @endif
+
+                                </div>
+                            @endif
+                        </div>
+
+                            {{--                            <div class="dropdown-footer">--}}
 {{--                                <div class="bg-gray-snow font-medium text-gray-dark h-16 flex content-center flex-wrap">--}}
 {{--                                    <div class="w-2/3 text-center uppercase">--}}
 {{--                                        {{ __('shop::app.checkout.cart.cart-subtotal') }}:--}}
@@ -261,10 +272,11 @@
                         </div>
                     </review-section>
                 </div>
-                <div class="bg-gray-snow px-8">
+                <div class="sm:bg-gray-snow px-8">
                    <summary-section :key="summeryComponentKey"></summary-section>
                 </div>
             </div>
+        </div>
         </div>
     </script>
 
@@ -294,14 +306,14 @@
                 return {
                     step_numbers: {
                         'information': 1,
-                        'shipping': 2,
+                        'shipping': 1,
                         'payment': 3,
                         'review': 4
                     },
 
                     current_step: 1,
 
-                    completed_step: 0,
+                    completed_step: 1,
 
                     address: {
                         billing: {

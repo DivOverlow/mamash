@@ -81,28 +81,8 @@ class CartController extends Controller
             $result = Cart::addProduct($id, request()->all());
 
             if ($result) {
-//                $gift_products = app('Webkul\Discount\Repositories\GiftRuleRepository')->getGiftsProduct();
-//                if(count($gift_products)) {
-//                    $gift_product_id = null;
-//                    foreach ($gift_products as $gift_product) {
-//                        if( $result->base_sub_total < $gift_product->action_amount) {
-//                            break;
-//                        }
-//
-//                        if(isset($gift_product->related_products()->first()->product_id)) {
-//                            $gift_product_id = $gift_product->related_products()->first()->product_id;
-//                        }
-//                    }
-//                    if ($gift_product_id) {
-//                        if (session()->has('gift_product_id')) {
-//                                session()->forget('gift_product_id');
-//                        }
-//                        session()->put('gift_product_id', $gift_product_id);
-//                    }
-//                }
-
-                session()->flash('success', trans('shop::app.checkout.cart.item.success'));
-//                session()->flash('cart-update', trans('shop::app.checkout.cart.item.success'));
+                $message = $this->checkedGift($result->base_sub_total);
+                session()->flash('success', trans('shop::app.checkout.cart.item.success') . ' ' . $message );
 
                 if ($customer = auth()->guard('customer')->user())
                     $this->wishlistRepository->deleteWhere(['product_id' => $id, 'customer_id' => $customer->id]);
@@ -133,9 +113,18 @@ class CartController extends Controller
     {
         $result = Cart::removeItem($itemId);
 
-        if ($result)
+        if ($result)  {
+            $cart = Cart::getCart();
+            $message = '';
+            if($cart) {
+                $message = $this->checkedGift($cart->base_sub_total);
+            }
+            else $this->checkedGift(0);
 
-            session()->flash('success', trans('shop::app.checkout.cart.item.success-remove'));
+            session()->flash('success', trans('shop::app.checkout.cart.item.success-remove') . ' ' . $message );
+
+        }
+
 
         return redirect()->back();
     }
@@ -150,8 +139,22 @@ class CartController extends Controller
         try {
             $result = Cart::updateItems(request()->all());
 
-            if ($result)
-                session()->flash('success', trans('shop::app.checkout.cart.quantity.success'));
+
+            if ($result) {
+
+                $request = request()->all();
+
+                if (isset($request['product_gift_id']))
+                    $new_product_gift_id = (int) $request['product_gift_id'];
+                else
+                    $new_product_gift_id = null;
+
+                $cart = Cart::getCart();
+                $message = $this->checkedGift($cart->base_sub_total, $new_product_gift_id);
+                session()->flash('success', trans('shop::app.checkout.cart.quantity.success') . ' ' . $message );
+
+            }
+
         } catch(\Exception $e) {
             session()->flash('error', trans($e->getMessage()));
         }
@@ -177,4 +180,53 @@ class CartController extends Controller
 
         return redirect()->back();
     }
+
+    public function checkedGift($cart_base_sub_total, $new_product_gift_id = null)
+    {
+        if ($cart_base_sub_total > 0) {
+            $gift_products = app('Webkul\Discount\Repositories\GiftRuleRepository')->getGiftsProduct();
+
+            if(count($gift_products)) {
+                $gifts = [];
+                foreach ($gift_products as $gift_product) {
+                    if( $cart_base_sub_total < $gift_product->action_amount) {
+                        break;
+                    }
+
+                    if(isset($gift_product->related_products()->first()->product_id)) {
+                        $gifts[] = $gift_product->related_products()->first()->product_id;
+                    }
+                }
+                if (count($gifts) > 0) {
+                    if (in_array($new_product_gift_id, $gifts)
+                        && ((int) session()->has('gift_product_id') != $new_product_gift_id)) {
+                        if (session()->has('gift_product_id')) {
+                            session()->forget('gift_product_id');
+                        }
+                        session()->put('gift_product_id', $new_product_gift_id);
+                        return trans('shop::app.checkout.gift.gift-selected');
+                    }
+                    if (session()->has('gift_product_id')) {
+                        if (!in_array(session()->get('gift_product_id'), $gifts) ) {
+                            session()->forget('gift_product_id');
+                            session()->put('gift_product_id', end($gifts));
+                            return trans('shop::app.checkout.gift.gift-change');
+                        }
+                    }
+                    else {
+                        session()->put('gift_product_id', end($gifts));
+                        return trans('shop::app.checkout.gift.gift-available');
+                    }
+                }
+                elseif (session()->has('gift_product_id')) {
+                    session()->forget('gift_product_id');
+                    return trans('shop::app.checkout.gift.gift-not-available');
+                }
+            }
+        }
+        elseif (session()->has('gift_product_id')) {
+            session()->forget('gift_product_id');
+        }
+    }
+
 }

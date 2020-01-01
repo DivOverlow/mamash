@@ -74,7 +74,7 @@ module.exports = {
 
         extend: {
             colors: {
-                'gray': '#242424',
+                'gray-grey': '#242424',
                 'gray-dark': '#212121',
                 'gray-dark-light': '#2f2f2f',
                 'gray-dark-grey': '#353535',
@@ -83,7 +83,7 @@ module.exports = {
                 'gray-light': '#a3a3a3',
                 'gray-snow': '#e8e8e8',
                 'gray-dim': '#686868',
-                yellow: '#dfa46d',
+                gold: '#dfa46d',
                 'yellow-unclean': '#352e27',
                 chocolate: '#dfa36d',
                 'rosy-brown': '#bc786b',
@@ -91,7 +91,7 @@ module.exports = {
                 'ghost-white': '#f8f8f8',
                 'old-lace': '#fdfdfd',
                 'orange-light': "#f5f5f5",
-                orange: "#eba057",
+                'orange-orange': "#eba057",
                 scarlet: '#f91154',
                 'semi-75': 'rgba(0, 0, 0, 0.75)',
             },
