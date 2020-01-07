@@ -1,7 +1,7 @@
 <form data-vv-scope="shipping-form">
     <div class="form-container">
-        <div class="form-header mb-30">
-            <span class="checkout-step-heading">{{ __('shop::app.checkout.onepage.shipping-method') }}</span>
+        <div class="form-header mb-30 flex justify-center">
+            <span class="checkout-step-heading font-serif text-gray-cloud font-medium text-lg">{{ __('shop::app.checkout.onepage.shipping-method') }}</span>
         </div>
 
         <div class="shipping-methods">
@@ -11,12 +11,12 @@
                 @foreach ($shippingRateGroups as $rateGroup)
                     {!! view_render_event('bagisto.shop.checkout.shipping-method.before', ['rateGroup' => $rateGroup]) !!}
 
-                    <span class="carrier-title" id="carrier-title" style="font-size:18px; font-weight: bold;">
-                        {{ $rateGroup['carrier_title'] }}
-                    </span>
+{{--                    <span class="carrier-title" id="carrier-title" style="font-size:18px; font-weight: bold;">--}}
+{{--                        {{ $rateGroup['carrier_title'] }}--}}
+{{--                    </span>--}}
 
                     @foreach ($rateGroup['rates'] as $rate)
-                        <div class="checkout-method-group mb-20">
+                        <div class="checkout-method-group mb-20 text-gray-dark">
                             <div class="line-one">
                                 <label class="radio-container">
                                     <input v-validate="'required'" type="radio" id="{{ $rate->method }}" name="shipping_method" data-vv-as="&quot;{{ __('shop::app.checkout.onepage.shipping-method') }}&quot;" value="{{ $rate->method }}" v-model="selected_shipping_method" @change="methodSelected()">

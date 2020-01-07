@@ -11,124 +11,124 @@
 }
 
 /*.dashboard-icon {*/
-/*    background-image: url("../images/Icon-Dashboard.svg")*/
+/*    background-image: url("/themes/default/assets/images/Icon-Dashboard.svg")*/
 /*}*/
 
 /*.sales-icon {*/
-/*    background-image: url("../images/Icon-Sales.svg")*/
+/*    background-image: url("/themes/default/assets/images/Icon-Sales.svg")*/
 /*}*/
 
 /*.catalog-icon {*/
-/*    background-image: url("../images/Icon-Catalog.svg")*/
+/*    background-image: url("/themes/default/assets/images/Icon-Catalog.svg")*/
 /*}*/
 
 /*.customer-icon {*/
-/*    background-image: url("../images/Icon-Customers.svg")*/
+/*    background-image: url("/themes/default/assets/images/Icon-Customers.svg")*/
 /*}*/
 
 /*.configuration-icon {*/
-/*    background-image: url("../images/Icon-Configure.svg")*/
+/*    background-image: url("/themes/default/assets/images/Icon-Configure.svg")*/
 /*}*/
 
 /*.settings-icon {*/
-/*    background-image: url("../images/Icon-Settings.svg")*/
+/*    background-image: url("/themes/default/assets/images/Icon-Settings.svg")*/
 /*}*/
 
 /*.promotion-icon {*/
-/*    background-image: url("../images/icon-promotion.svg")*/
+/*    background-image: url("/themes/default/assets/images/icon-promotion.svg")*/
 /*}*/
 
 /*.cms-icon {*/
-/*    background-image: url("../images/Icon-CMS.svg")*/
+/*    background-image: url("/themes/default/assets/images/Icon-CMS.svg")*/
 /*}*/
 
 /*.angle-right-icon {*/
-/*    background-image: url("../images/Angle-Right.svg");*/
+/*    background-image: url("/themes/default/assets/images/Angle-Right.svg");*/
 /*    width: 17px;*/
 /*    height: 17px*/
 /*}*/
 
 /*.angle-left-icon {*/
-/*    background-image: url("../images/Angle-Left.svg");*/
+/*    background-image: url("/themes/default/assets/images/Angle-Left.svg");*/
 /*    width: 17px;*/
 /*    height: 17px*/
 /*}*/
 
 /*.arrow-down-icon {*/
-/*    background-image: url("../images/Arrow-Down-Light.svg");*/
+/*    background-image: url("/themes/default/assets/images/Arrow-Down-Light.svg");*/
 /*    width: 14px;*/
 /*    height: 8px*/
 /*}*/
 
 /*.arrow-right-icon {*/
-/*    background-image: url("../images/Arrow-Right.svg");*/
+/*    background-image: url("/themes/default/assets/images/Arrow-Right.svg");*/
 /*    width: 18px;*/
 /*    height: 18px*/
 /*}*/
 
 .white-cross-sm-icon {
-    background-image: url("../images/Icon-Sm-Cross-White.svg");
+    background-image: url("/themes/default/assets/images/Icon-Sm-Cross-White.svg");
     width: 18px;
     height: 18px
 }
 
 /*.accordian-up-icon {*/
-/*    background-image: url("../images/Accordion-Arrow-Up.svg");*/
+/*    background-image: url("/themes/default/assets/images/Accordion-Arrow-Up.svg");*/
 /*    width: 24px;*/
 /*    height: 24px*/
 /*}*/
 
 /*.accordian-down-icon {*/
-/*    background-image: url("../images/Accordion-Arrow-Down.svg");*/
+/*    background-image: url("/themes/default/assets/images/Accordion-Arrow-Down.svg");*/
 /*    width: 24px;*/
 /*    height: 24px*/
 /*}*/
 
 /*.cross-icon {*/
-/*    background-image: url("../images/Icon-Crossed.svg");*/
+/*    background-image: url("/themes/default/assets/images/Icon-Crossed.svg");*/
 /*    width: 18px;*/
 /*    height: 18px*/
 /*}*/
 
 /*.trash-icon {*/
-/*    background-image: url("../images/Icon-Trash.svg");*/
+/*    background-image: url("/themes/default/assets/images/Icon-Trash.svg");*/
 /*    width: 24px;*/
 /*    height: 24px*/
 /*}*/
 
 .remove-icon {
-    /*background-image: url("../images/Icon-remove.svg");*/
+    /*background-image: url("/themes/default/assets/images/Icon-remove.svg");*/
     background-image: url('data:image/svg+xml;utf8,<svg class="fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18"><path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"/></svg>');
     width: 24px;
     height: 24px
 }
 
-/*.pencil-lg-icon {*/
-/*    background-image: url("../images/Icon-Pencil-Large.svg");*/
-/*    width: 24px;*/
-/*    height: 24px*/
-/*}*/
+.pencil-lg-icon {
+    background-image: url("/themes/default/assets/images/Icon-Pencil-Large.svg");
+    width: 24px;
+    height: 24px
+}
 
-/*.eye-icon {*/
-/*    background-image: url("../images/Icon-eye.svg");*/
-/*    width: 24px;*/
-/*    height: 24px*/
-/*}*/
+.eye-icon {
+    background-image: url("/themes/default/assets/images/Icon-eye.svg");
+    width: 24px;
+    height: 24px
+}
 
-/*.search-icon {*/
-/*    background-image: url("../images/icon-search.svg");*/
-/*    width: 24px;*/
-/*    height: 24px*/
-/*}*/
+.search-icon {
+    background-image: url("/themes/default/assets/images/icon-search.svg");
+    width: 24px;
+    height: 24px
+}
 
 /*.sortable-icon {*/
-/*    background-image: url("../images/Icon-Sortable.svg");*/
+/*    background-image: url("/themes/default/assets/images/Icon-Sortable.svg");*/
 /*    width: 24px;*/
 /*    height: 24px*/
 /*}*/
 
 /*.sort-down-icon, .sort-up-icon {*/
-/*    background-image: url("../images/Icon-Sort-Down.svg");*/
+/*    background-image: url("/themes/default/assets/images/Icon-Sort-Down.svg");*/
 /*    width: 18px;*/
 /*    height: 18px*/
 /*}*/
@@ -139,97 +139,97 @@
 /*}*/
 
 /*.primary-back-icon {*/
-/*    background-image: url("../images/Icon-Back-Primary.svg");*/
+/*    background-image: url("/themes/default/assets/images/Icon-Back-Primary.svg");*/
 /*    width: 24px;*/
 /*    height: 24px*/
 /*}*/
 
 /*.checkbox-dash-icon {*/
-/*    background-image: url("../images/Checkbox-Dash.svg");*/
+/*    background-image: url("/themes/default/assets/images/Checkbox-Dash.svg");*/
 /*    width: 24px;*/
 /*    height: 24px*/
 /*}*/
 
 /*.account-icon {*/
-/*    background-image: url("../images/icon-account.svg");*/
+/*    background-image: url("/themes/default/assets/images/icon-account.svg");*/
 /*    width: 24px;*/
 /*    height: 24px*/
 /*}*/
 
 /*.expand-icon {*/
-/*    background-image: url("../images/Expand-Light.svg");*/
+/*    background-image: url("/themes/default/assets/images/Expand-Light.svg");*/
 /*    width: 18px;*/
 /*    height: 18px*/
 /*}*/
 
 /*.expand-on-icon {*/
-/*    background-image: url("../images/Expand-Light-On.svg");*/
+/*    background-image: url("/themes/default/assets/images/Expand-Light-On.svg");*/
 /*    width: 18px;*/
 /*    height: 18px*/
 /*}*/
 
 /*.dark-left-icon {*/
-/*    background-image: url("../images/arrow-left-dark.svg");*/
+/*    background-image: url("/themes/default/assets/images/arrow-left-dark.svg");*/
 /*    width: 18px;*/
 /*    height: 18px*/
 /*}*/
 
 /*.light-right-icon {*/
-/*    background-image: url("../images/arrow-right-light.svg");*/
+/*    background-image: url("/themes/default/assets/images/arrow-right-light.svg");*/
 /*    width: 18px;*/
 /*    height: 18px*/
 /*}*/
 
 /*.folder-icon {*/
-/*    background-image: url("../images/Folder-Icon.svg");*/
+/*    background-image: url("/themes/default/assets/images/Folder-Icon.svg");*/
 /*    width: 24px;*/
 /*    height: 24px*/
 /*}*/
 
 /*.star-icon {*/
-/*    background-image: url("../images/Star-Icon.svg");*/
+/*    background-image: url("/themes/default/assets/images/Star-Icon.svg");*/
 /*    width: 24px;*/
 /*    height: 24px*/
 /*}*/
 
 /*.arrow-down-white-icon {*/
-/*    background-image: url("../images/down-arrow-white.svg");*/
+/*    background-image: url("/themes/default/assets/images/down-arrow-white.svg");*/
 /*    width: 17px;*/
 /*    height: 13px*/
 /*}*/
 
 /*.arrow-up-white-icon {*/
-/*    background-image: url("../images/up-arrow-white.svg");*/
+/*    background-image: url("/themes/default/assets/images/up-arrow-white.svg");*/
 /*    width: 17px;*/
 /*    height: 13px*/
 /*}*/
 
 /*.profile-pic-icon {*/
-/*    background-image: url("../images/Profile-Pic.svg");*/
+/*    background-image: url("/themes/default/assets/images/Profile-Pic.svg");*/
 /*    width: 60px;*/
 /*    height: 60px*/
 /*}*/
 
 /*.graph-up-icon {*/
-/*    background-image: url("../images/Icon-Graph-Green.svg");*/
+/*    background-image: url("/themes/default/assets/images/Icon-Graph-Green.svg");*/
 /*    width: 24px;*/
 /*    height: 24px*/
 /*}*/
 
 /*.graph-down-icon {*/
-/*    background-image: url("../images/Icon-Graph-Red.svg");*/
+/*    background-image: url("/themes/default/assets/images/Icon-Graph-Red.svg");*/
 /*    width: 24px;*/
 /*    height: 24px*/
 /*}*/
 
 /*.no-result-icon {*/
-/*    background-image: url("../images/limited-icon.svg");*/
+/*    background-image: url("/themes/default/assets/images/limited-icon.svg");*/
 /*    width: 52px;*/
 /*    height: 47px*/
 /*}*/
 
 /*.note-icon {*/
-/*    background-image: url("../images/icon-note.svg")*/
+/*    background-image: url("/themes/default/assets/images/icon-note.svg")*/
 /*}*/
 
 /*.list-icon, .note-icon {*/
@@ -238,95 +238,95 @@
 /*}*/
 
 /*.list-icon {*/
-/*    background-image: url("../images/Icon-Listing.svg")*/
+/*    background-image: url("/themes/default/assets/images/Icon-Listing.svg")*/
 /*}*/
 
 /*.active .dashboard-icon {*/
-/*    background-image: url("../images/Icon-Dashboard-Active.svg")*/
+/*    background-image: url("/themes/default/assets/images/Icon-Dashboard-Active.svg")*/
 /*}*/
 
 /*.active .sales-icon {*/
-/*    background-image: url("../images/Icon-Sales-Active.svg")*/
+/*    background-image: url("/themes/default/assets/images/Icon-Sales-Active.svg")*/
 /*}*/
 
 /*.active .catalog-icon {*/
-/*    background-image: url("../images/Icon-Catalog-Active.svg")*/
+/*    background-image: url("/themes/default/assets/images/Icon-Catalog-Active.svg")*/
 /*}*/
 
 /*.active .customer-icon {*/
-/*    background-image: url("../images/Icon-Customers-Active.svg")*/
+/*    background-image: url("/themes/default/assets/images/Icon-Customers-Active.svg")*/
 /*}*/
 
 /*.active .settings-icon {*/
-/*    background-image: url("../images/Icon-Settings-Active.svg")*/
+/*    background-image: url("/themes/default/assets/images/Icon-Settings-Active.svg")*/
 /*}*/
 
 /*.active .configuration-icon {*/
-/*    background-image: url("../images/Icon-Configure-Active.svg")*/
+/*    background-image: url("/themes/default/assets/images/Icon-Configure-Active.svg")*/
 /*}*/
 
 /*.active .promotion-icon {*/
-/*    background-image: url("../images/icon-promotion-active.svg")*/
+/*    background-image: url("/themes/default/assets/images/icon-promotion-active.svg")*/
 /*}*/
 
 /*.active .cms-icon {*/
-/*    background-image: url("../images/Icon-CMS-Active.svg")*/
+/*    background-image: url("/themes/default/assets/images/Icon-CMS-Active.svg")*/
 /*}*/
 
 /*.active > .arrow-down-icon {*/
-/*    background-image: url("../images/Arrow-Down.svg");*/
+/*    background-image: url("/themes/default/assets/images/Arrow-Down.svg");*/
 /*    width: 14px;*/
 /*    height: 8px*/
 /*}*/
 
 /*.active > .expand-icon {*/
-/*    background-image: url("../images/Expand-Light-On.svg")*/
+/*    background-image: url("/themes/default/assets/images/Expand-Light-On.svg")*/
 /*}*/
 
 /*.active.dashboard-icon {*/
-/*    background-image: url("../images/Icon-Dashboard-Active.svg")*/
+/*    background-image: url("/themes/default/assets/images/Icon-Dashboard-Active.svg")*/
 /*}*/
 
 /*.active.customer-icon {*/
-/*    background-image: url("../images/Icon-Customers-Active.svg")*/
+/*    background-image: url("/themes/default/assets/images/Icon-Customers-Active.svg")*/
 /*}*/
 
 /*.active.sales-icon {*/
-/*    background-image: url("../images/Icon-Sales-Active.svg")*/
+/*    background-image: url("/themes/default/assets/images/Icon-Sales-Active.svg")*/
 /*}*/
 
 /*.active.settings-icon {*/
-/*    background-image: url("../images/Icon-Settings-Active.svg")*/
+/*    background-image: url("/themes/default/assets/images/Icon-Settings-Active.svg")*/
 /*}*/
 
 /*.active.configuration-icon {*/
-/*    background-image: url("../images/Icon-Configure-Active.svg")*/
+/*    background-image: url("/themes/default/assets/images/Icon-Configure-Active.svg")*/
 /*}*/
 
 /*.active.arrow-down-icon {*/
-/*    background-image: url("../images/Arrow-Down.svg");*/
+/*    background-image: url("/themes/default/assets/images/Arrow-Down.svg");*/
 /*    width: 14px;*/
 /*    height: 8px*/
 /*}*/
 
 /*.active.expand-icon {*/
-/*    background-image: url("../images/Expand-Light-On.svg")*/
+/*    background-image: url("/themes/default/assets/images/Expand-Light-On.svg")*/
 /*}*/
 
 /*.icon-404 {*/
-/*    background-image: url("../images/404-image.svg");*/
+/*    background-image: url("/themes/default/assets/images/404-image.svg");*/
 /*    width: 255px;*/
 /*    height: 255px*/
 /*}*/
 
 /*.export-icon {*/
-/*    background-image: url("../images/Icon-Export.svg");*/
+/*    background-image: url("/themes/default/assets/images/Icon-Export.svg");*/
 /*    width: 32px;*/
 /*    height: 32px*/
 /*}*/
 
 /*.import-icon {*/
-/*    background-image: url("../images/Icon-Import.svg");*/
+/*    background-image: url("/themes/default/assets/images/Icon-Import.svg");*/
 /*    width: 32px;*/
 /*    height: 32px*/
 /*}*/
@@ -334,13 +334,13 @@
 /*.star-blue-icon {*/
 /*    width: 17px;*/
 /*    height: 17px;*/
-/*    background-image: url("../images/Icon-star.svg")*/
+/*    background-image: url("/themes/default/assets/images/Icon-star.svg")*/
 /*}*/
 
-/*.grid-container {*/
-/*    display: block;*/
-/*    width: 100%*/
-/*}*/
+.grid-container {
+    display: block;
+    width: 100%
+}
 
 .filter-row-one {
     display: -webkit-inline-box;
@@ -768,16 +768,16 @@ dropdown-list
 }
 
 .dropdown-list {
-    /*width: 200px;*/
-    /*margin-bottom: 20px;*/
-    /*-webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .16), 0 0 9px 0 rgba(0, 0, 0, .16);*/
-    /*box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .16), 0 0 9px 0 rgba(0, 0, 0, .16);*/
-    /*border-radius: 3px;*/
-    /*background-color: #fff;*/
-    /*position: absolute;*/
-    /*display: none;*/
-    /*z-index: 10;*/
-    /*text-align: left*/
+    width: 200px;
+    margin-bottom: 20px;
+    -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .16), 0 0 9px 0 rgba(0, 0, 0, .16);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .16), 0 0 9px 0 rgba(0, 0, 0, .16);
+    border-radius: 3px;
+    background-color: #fff;
+    position: absolute;
+    display: none;
+    z-index: 10;
+    text-align: left
 }
 
 .dropdown-list.bottom-left {
@@ -998,7 +998,7 @@ dropdown-list
 }
 
 .checkbox .checkbox-view {
-    background-image: url("../images/Checkbox.svg");
+    background-image: url("/themes/default/assets/images/Checkbox.svg");
     height: 24px;
     width: 24px;
     margin: 0;
@@ -1008,7 +1008,7 @@ dropdown-list
 }
 
 .checkbox input:checked + .checkbox-view {
-    background-image: url("../images/Checkbox-Checked.svg")
+    background-image: url("/themes/default/assets/images/Checkbox-Checked.svg")
 }
 
 .checkbox input:disabled + .checkbox-view {
@@ -1031,7 +1031,7 @@ dropdown-list
 }
 
 .radio .radio-view {
-    background-image: url("../images/unselected.svg");
+    background-image: url("/themes/default/assets/images/unselected.svg");
     background-repeat: no-repeat;
     height: 32px;
     width: 32px;
@@ -1042,11 +1042,11 @@ dropdown-list
 }
 
 .radio input:checked + .radio-view {
-    background-image: url("../images/selected.svg");
+    background-image: url("/themes/default/assets/images/selected.svg");
 }
 
 .radio input:disabled + .radio-view {
-    background-image: url("../images/disabled.svg");
+    background-image: url("/themes/default/assets/images/disabled.svg");
     cursor: not-allowed
 }
 
@@ -1093,7 +1093,7 @@ dropdown-list
 }
 
 .control-group.date:after, .control-group.datetime:after {
-    background-image: url("../images/Icon-Calendar.svg");
+    background-image: url("/themes/default/assets/images/Icon-Calendar.svg");
     width: 24px;
     height: 24px;
     content: "";
@@ -1286,7 +1286,7 @@ dropdown-list
 }
 
 .accordian .accordian-header .expand-icon, .accordian div[slot*=header] .expand-icon, accordian .accordian-header .expand-icon, accordian div[slot*=header] .expand-icon {
-    background-image: url("../images/Expand-Light.svg");
+    background-image: url("/themes/default/assets/images/Expand-Light.svg");
     margin-right: 10px;
     margin-top: 3px
 }
@@ -1323,7 +1323,7 @@ dropdown-list
 }
 
 .accordian.active > .accordian-header .expand-icon, accordian.active > .accordian-header .expand-icon {
-    background-image: url("../images/Expand-Light-On.svg")
+    background-image: url("/themes/default/assets/images/Expand-Light-On.svg")
 }
 
 .tree-container .tree-item {
@@ -1350,7 +1350,7 @@ dropdown-list
     display: inline-block;
     margin-right: 10px;
     cursor: pointer;
-    background-image: url("../images/Expand-Light.svg");
+    background-image: url("/themes/default/assets/images/Expand-Light.svg");
     width: 18px;
     height: 18px;
     vertical-align: middle
@@ -1362,7 +1362,7 @@ dropdown-list
 }
 
 .tree-container .tree-item.active > .expand-icon {
-    background-image: url("../images/Expand-Light-On.svg")
+    background-image: url("/themes/default/assets/images/Expand-Light-On.svg")
 }
 
 .tree-container > .tree-item {
@@ -1548,7 +1548,7 @@ modal {
     border-radius: 3px;
     display: inline-block;
     position: relative;
-    background-image: url("../images/placeholder-icon.svg");
+    background-image: url("/themes/default/assets/images/placeholder-icon.svg");
     background-repeat: no-repeat;
     background-position: 50%;
     margin-bottom: 20px;

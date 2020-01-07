@@ -17,8 +17,8 @@ return [
     ],
 
     'common' => [
-        'error' => 'Something went wrong, please try again later.',
-        'no-result-found' => 'We could not find any records.'
+        'error' => 'Щось пішло не так. Повторіть спробу пізніше.',
+        'no-result-found' => 'Не вдалося знайти жодних записів.'
     ],
 
     'home' => [
@@ -225,10 +225,10 @@ return [
                 'index' => [
                     'page-title' => 'Customer - Address',
                     'title' => 'Address',
-                    'add' => 'Add Address',
+                    'add' => 'Додати адресу',
                     'edit' => 'Edit',
-                    'empty' => 'You do not have any saved addresses here, please try to create it by clicking the link below',
-                    'create' => 'Create Address',
+                    'empty' => 'Тут у вас немає збережених адрес, спробуйте створити їх, натиснувши посилання нижче',
+                    'create' => 'Зтворити адресу',
                     'delete' => 'Видалити',
                     'make-default' => 'Make Default',
                     'default' => 'Default',
@@ -239,18 +239,18 @@ return [
                 ],
 
                 'create' => [
-                    'page-title' => 'Customer - Add Address Form',
-                    'title' => 'Add Address',
-                    'street-address' => 'Street Address',
-                    'country' => 'Country',
-                    'state' => 'State',
-                    'select-state' => 'Select a region, state or province',
-                    'city' => 'City',
-                    'postcode' => 'Postal Code',
-                    'phone' => 'Phone',
-                    'submit' => 'Save Address',
-                    'success' => 'Address have been successfully added.',
-                    'error' => 'Address cannot be added.'
+                    'page-title' => 'Клієнт - додайте форму адреси',
+                    'title' => 'Додати адресу',
+                    'street-address' => 'Адреса вулиці',
+                    'country' => 'Країна',
+                    'state' => 'Область',
+                    'select-state' => 'Виберіть регіон, штат чи провінцію',
+                    'city' => 'Місто',
+                    'postcode' => 'Поштовий індекс',
+                    'phone' => 'Телефон',
+                    'submit' => 'Зберегти адресу',
+                    'success' => 'Адресу успішно додано.',
+                    'error' => 'Адреса не можна додати.'
                 ],
 
                 'edit' => [
@@ -269,13 +269,13 @@ return [
 
             'order' => [
                 'index' => [
-                    'page-title' => 'Customer - Orders',
-                    'title' => 'Orders',
-                    'order_id' => 'Order ID',
-                    'date' => 'Date',
-                    'status' => 'Status',
-                    'total' => 'Total',
-                    'order_number' => 'Order Number'
+                    'page-title' => 'Клієнт - Замовлення',
+                    'title' => 'Історія замовлень',
+                    'order_id' => 'ID Замовлення',
+                    'date' => 'Дата',
+                    'status' => 'Статус',
+                    'total' => 'Загальна сума',
+                    'order_number' => 'Номер замовлення'
                 ],
 
                 'view' => [
@@ -329,13 +329,13 @@ return [
 
             'downloadable_products' => [
                 'title' => 'Downloadable Products',
-                'order-id' => 'Order Id',
-                'date' => 'Date',
+                'order-id' => 'ID замовлення',
+                'date' => 'Дата',
                 'name' => 'Title',
-                'status' => 'Status',
-                'pending' => 'Pending',
-                'available' => 'Available',
-                'expired' => 'Expired',
+                'status' => 'Статус',
+                'pending' => 'В очікування',
+                'available' => 'Доступний',
+                'expired' => 'Минулий',
                 'remaining-downloads' => 'Remaining Downloads',
                 'unlimited' => 'Unlimited',
                 'download-error' => 'Download link has been expired.'
@@ -495,7 +495,7 @@ return [
             'information' => 'Дані',
             'shipping' => 'Доставка',
             'payment' => 'Оплата',
-            'complete' => 'Complete',
+            'complete' => 'Завершення',
             'billing-address' => 'Платіжна адреса',
             'sign-in' => 'Увійти',
             'first-name' => 'Ім\'я',
@@ -511,47 +511,48 @@ return [
             'order-summary' => 'Загальна сума',
             'shipping-address' => 'Shipping Address',
             'use_for_shipping' => 'Доставка на цю адресу',
-            'continue' => 'Continue',
-            'shipping-method' => 'Select Shipping Method',
-            'payment-methods' => 'Select Payment Method',
-            'payment-method' => 'Payment Method',
-            'summary' => 'Загальна сумма',
-            'price' => 'Price',
-            'quantity' => 'Quantity',
-            'contact' => 'Contact',
+            'continue' => 'Продовжити',
+            'shipping-method' => 'Виберіть спосіб доставки',
+            'payment-methods' => 'Виберіть спосіб оплати',
+            'payment-method' => 'Спосіб оплати',
+            'summary' => 'Підсумок Замовлення',
+            'price' => 'Ціна',
+            'quantity' => 'Количество',
+            'contact' => 'Контакт',
             'place-order' => 'Розмістити замовлення',
-            'new-address' => 'Add New Address',
-            'save_as_address' => 'Save as Address',
-            'apply-coupon' => 'Apply Coupon',
+            'new-address' => 'Додати нову адресу',
+            'save_as_address' => 'Зберегти як адресу',
+            'apply-coupon' => 'Примінити купон',
+            'enter-coupon' => 'Введіть код купона',
             'amt-payable' => 'Amount Payable',
             'got' => 'Got',
             'free' => 'Free',
-            'coupon-used' => 'Coupon Used',
-            'applied' => 'Applied',
+            'coupon-used' => 'Купон використаний',
+            'applied' => 'Застосовується',
             'back' => 'Back',
-            'cash-desc' => 'Cash On Delivery',
-            'money-desc' => 'Money Transfer',
+            'cash-desc' => 'Оплата при доставці',
+            'money-desc' => 'Грошовий переказ',
             'paypal-desc' => 'Paypal Standard',
-            'free-desc' => 'This is a free shipping',
-            'flat-desc' => 'This is a flat rate',
-            'password' => 'Password',
-            'login-exist-message' => 'You already have an account with us, Sign in or continue as guest.'
+            'free-desc' => 'Це безкоштовна доставка',
+            'flat-desc' => 'Це єдина ставка',
+            'password' => 'Пароль',
+            'login-exist-message' => 'Ви вже маєте обліковий запис у нас, увійдіть або продовжте як гість.'
         ],
 
         'total' => [
-            'order-summary' => 'Order Summary',
-            'sub-total' => 'Загальна сума',
-            'grand-total' => 'Сума з доставкою',
+            'order-summary' => 'Пыдсумок замовлення',
+            'sub-total' => 'Сума замовлення',
+            'grand-total' => 'Загальна сума',
             'delivery-charges' => 'Вартість доставки',
             'tax' => 'Податок',
-            'discount' => 'Discount',
+            'discount' => 'Знижка',
             'price' => 'ціна',
             'disc-amount' => 'Сума зі знижкою',
             'new-grand-total' => 'New Grand Total',
-            'coupon' => 'Coupon',
-            'coupon-applied' => 'Coupon Applied',
-            'remove-coupon' => 'Remove Coupon',
-            'cannot-apply-coupon' => 'Cannot Apply Coupon'
+            'coupon' => 'Купон',
+            'coupon-applied' => 'Купон застосовано',
+            'remove-coupon' => 'Видаліть купон',
+            'cannot-apply-coupon' => 'Неможливо застосувати купон'
         ],
 
         'success' => [

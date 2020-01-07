@@ -123,7 +123,7 @@
                 @if (count($gift_products))
                     @inject ('productImageHelper', 'Webkul\Product\Helpers\ProductImage')
 
-                    <div class="gift-content my-3 ">
+                    <div class="gift-content my-3 pr-3">
                         <div class="w-4/5 ml-auto tracking-widest">{{ __('shop::app.checkout.gift.title') }}</div>
                         @if (session()->has('gift_product_id'))
                         <?php $product = $productRepository->find(session()->get('gift_product_id')); ?>
@@ -202,7 +202,7 @@
                             {!! view_render_event('bagisto.shop.checkout.cart-mini.subtotal.after', ['cart' => $cart]) !!}
                         </div>
                     </div>
-                    <div class="w-full flex flex-row items-center">
+                    <div class="w-full flex flex-row items-center text-sm sm:text-base">
                         <span class="button-black w-full py-3 normal-case">
 {{--                            <a href="{{ route('shop.checkout.cart.index') }}">{{ __('shop::app.checkout.cart.continue-shopping') }}</a>--}}
                             <a href="{{ route('shop.checkout.cart.index') }}">{{ __('shop::app.minicart.view-cart') }}</a>

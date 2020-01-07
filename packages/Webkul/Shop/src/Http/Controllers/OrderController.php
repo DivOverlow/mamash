@@ -60,18 +60,19 @@ class OrderController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\View\View 
+     * @return \Illuminate\View\View
     */
     public function index()
     {
-        return view($this->_config['view']);
+        $this->customer = auth()->guard('customer')->user();
+        return view($this->_config['view'])->with('customer', $this->customer);
     }
 
     /**
      * Show the view for the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\View\View 
+     * @return \Illuminate\View\View
      */
     public function view($id)
     {

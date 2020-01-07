@@ -1,7 +1,7 @@
 <template>
     <Transition name="slide-fade">
         <div v-if="showing" class="fixed inset-0 w-full h-screen flex items-center justify-end z-20">
-            <div class="card-modal-container relative max-w-md h-full bg-white shadow-lg">
+            <div class="card-modal-container relative sm:max-w-md h-full bg-white shadow-lg">
                 <div class="modal-header">
                     <i class="icon remove-icon absolute m-2 p-4 cursor-pointer" @click="$emit('close')"></i>
                     <slot name="header">
@@ -35,9 +35,6 @@
 
                 document.querySelector('body').classList.remove('modal-open');
             }
-        },
-        created() {
-          window.events.$on('checkout.cart.add.after')
         },
         methods: {
             close() {

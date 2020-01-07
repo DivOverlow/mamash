@@ -21,8 +21,6 @@
 
         <div class="account-head flex items-end h-20">
 
-{{--            <span class="back-icon"><a href="{{ route('customer.account.index') }}"><i class="icon icon-menu-back"></i></a></span>--}}
-
             <div class="w-full flex justify-content-between items-center">
                 <div class=" flex items-end inline-block">
                     <div class="profile-icon address-info mb-2"></div>

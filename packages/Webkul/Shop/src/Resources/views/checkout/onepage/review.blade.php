@@ -113,7 +113,7 @@
 
                     @if (isset($item->additional['attributes']))
                         <div class="item-options">
-                            
+
                             @foreach ($item->additional['attributes'] as $attribute)
                                 <b>{{ $attribute['attribute_name'] }} : </b>{{ $attribute['option_label'] }}</br>
                             @endforeach
@@ -157,7 +157,7 @@
 
         </div>
 
-        <div class="pull-right" style="width: 40%; float: left;">
+        <div class="pull-right">
             <slot name="summary-section"></slot>
         </div>
     </div>

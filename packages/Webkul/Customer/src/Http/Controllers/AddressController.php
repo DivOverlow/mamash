@@ -31,6 +31,7 @@ class AddressController extends Controller
      */
     protected $customerAddressRepository;
 
+
     public function __construct(CustomerAddressRepository $customerAddressRepository)
     {
         $this->middleware('customer');
@@ -49,7 +50,7 @@ class AddressController extends Controller
      */
     public function index()
     {
-        return view($this->_config['view'])->with('addresses', $this->customer->addresses);
+        return view($this->_config['view'])->with(['addresses' => $this->customer->addresses, 'customer' => $this->customer]);
     }
 
     /**
@@ -59,7 +60,7 @@ class AddressController extends Controller
      */
     public function create()
     {
-        return view($this->_config['view']);
+        return view($this->_config['view'])->with('customer', $this->customer);
     }
 
     /**
@@ -115,7 +116,7 @@ class AddressController extends Controller
         if (! $address)
             abort(404);
 
-        return view($this->_config['view'], compact('address'));
+        return view($this->_config['view'])->with(['addresses' => $address, 'customer' => $this->customer]);
     }
 
     /**

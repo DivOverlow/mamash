@@ -1,7 +1,7 @@
 <form data-vv-scope="payment-form">
     <div class="form-container">
-        <div class="form-header mb-30">
-            <span class="checkout-step-heading">{{ __('shop::app.checkout.onepage.payment-methods') }}</span>
+        <div class="form-header mb-10 flex justify-center inline-block">
+            <span class="checkout-step-heading font-serif text-gray-cloud font-medium text-lg">{{ __('shop::app.checkout.onepage.payment-methods') }}</span>
         </div>
 
         <div class="payment-methods">
@@ -12,7 +12,7 @@
 
                     {!! view_render_event('bagisto.shop.checkout.payment-method.before', ['payment' => $payment]) !!}
 
-                    <div class="checkout-method-group mb-20">
+                    <div class="checkout-method-group mb-10">
                         <div class="line-one">
                             <label class="radio-container">
                                 <input v-validate="'required'" type="radio" id="{{ $payment['method'] }}" name="payment[method]" value="{{ $payment['method'] }}" v-model="payment.method" @change="methodSelected()" data-vv-as="&quot;{{ __('shop::app.checkout.onepage.payment-method') }}&quot;">

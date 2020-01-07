@@ -17,8 +17,8 @@ return [
     ],
 
     'common' => [
-        'error' => 'Something went wrong, please try again later.',
-        'no-result-found' => 'We could not find any records.'
+        'error' => 'Что-то пошло не так. Пожалуйста, повторите попытку позже.',
+        'no-result-found' => 'Мы не смогли найти никаких записей.'
     ],
 
     'home' => [
@@ -223,10 +223,10 @@ return [
                 'index' => [
                     'page-title' => 'Customer - Address',
                     'title' => 'Address',
-                    'add' => 'Add Address',
+                    'add' => 'Добавить адрес',
                     'edit' => 'Edit',
-                    'empty' => 'You do not have any saved addresses here, please try to create it by clicking the link below',
-                    'create' => 'Create Address',
+                    'empty' => 'У вас нет сохраненных адресов здесь, попробуйте создать его, нажав на ссылку ниже',
+                    'create' => 'Создать адрес',
                     'delete' => 'Удалить',
                     'make-default' => 'Make Default',
                     'default' => 'Default',
@@ -237,23 +237,23 @@ return [
                 ],
 
                 'create' => [
-                    'page-title' => 'Customer - Add Address Form',
-                    'title' => 'Add Address',
-                    'street-address' => 'Street Address',
-                    'country' => 'Country',
-                    'state' => 'State',
-                    'select-state' => 'Select a region, state or province',
-                    'city' => 'City',
-                    'postcode' => 'Postal Code',
-                    'phone' => 'Phone',
-                    'submit' => 'Save Address',
-                    'success' => 'Address have been successfully added.',
-                    'error' => 'Address cannot be added.'
+                    'page-title' => 'Клиент - Добавить адресную форму',
+                    'title' => 'Добавить адрес',
+                    'street-address' => 'Адрес улицы',
+                    'country' => 'Страна',
+                    'state' => 'Область',
+                    'select-state' => 'Выберите регион, штат или провинцию',
+                    'city' => 'Город',
+                    'postcode' => 'Почтовый код',
+                    'phone' => 'Телефон',
+                    'submit' => 'Сохранить адрес',
+                    'success' => 'Адрес был успешно добавлен.',
+                    'error' => 'Адрес не может быть добавлен.'
                 ],
 
                 'edit' => [
                     'page-title' => 'Customer - Edit Address',
-                    'title' => 'Edit Address',
+                    'title' => 'Редактировать адрес',
                     'street-address' => 'Street Address',
                     'submit' => 'Save Address',
                     'success' => 'Address updated successfully.',
@@ -267,13 +267,13 @@ return [
 
             'order' => [
                 'index' => [
-                    'page-title' => 'Customer - Orders',
-                    'title' => 'Orders',
-                    'order_id' => 'Order ID',
-                    'date' => 'Date',
-                    'status' => 'Status',
-                    'total' => 'Total',
-                    'order_number' => 'Order Number'
+                    'page-title' => 'Клиент - Заказы',
+                    'title' => 'История заказов',
+                    'order_id' => 'ID Заказа',
+                    'date' => 'Дата',
+                    'status' => 'Статус',
+                    'total' => 'Общая сумма',
+                    'order_number' => 'Номер заказа'
                 ],
 
                 'view' => [
@@ -327,13 +327,13 @@ return [
 
             'downloadable_products' => [
                 'title' => 'Downloadable Products',
-                'order-id' => 'Order Id',
-                'date' => 'Date',
+                'order-id' => 'ID заказа',
+                'date' => 'Дата',
                 'name' => 'Title',
-                'status' => 'Status',
-                'pending' => 'Pending',
-                'available' => 'Available',
-                'expired' => 'Expired',
+                'status' => 'Статус',
+                'pending' => 'В ожидании',
+                'available' => 'Доступниый',
+                'expired' => 'Истекший',
                 'remaining-downloads' => 'Remaining Downloads',
                 'unlimited' => 'Unlimited',
                 'download-error' => 'Download link has been expired.'
@@ -493,7 +493,7 @@ return [
             'information' => 'Данные',
             'shipping' => 'Доставка',
             'payment' => 'Оплата',
-            'complete' => 'Complete',
+            'complete' => 'Завершение',
             'billing-address' => 'Адрес для выставления счета',
             'sign-in' => 'Войти',
             'first-name' => 'Имя',
@@ -507,49 +507,50 @@ return [
             'phone' => 'Телефон',
             'country' => 'Страна',
             'order-summary' => 'Общая сумма',
-            'shipping-address' => 'Shipping Address',
+            'shipping-address' => 'Адреса доставки',
             'use_for_shipping' => 'Отправьте по этому адресу',
-            'continue' => 'Continue',
-            'shipping-method' => 'Select Shipping Method',
-            'payment-methods' => 'Select Payment Method',
-            'payment-method' => 'Payment Method',
-            'summary' => 'Общая сумма',
-            'price' => 'Price',
-            'quantity' => 'Quantity',
-            'contact' => 'Contact',
+            'continue' => 'Продолжить',
+            'shipping-method' => 'Выберите способ доставки',
+            'payment-methods' => 'Выберите способ оплаты',
+            'payment-method' => 'Способ оплаты',
+            'summary' => 'Итог заказа',
+            'price' => 'Цена',
+            'quantity' => 'Количество',
+            'contact' => 'Контакт',
             'place-order' => 'Разместить заказ',
-            'new-address' => 'Add New Address',
-            'save_as_address' => 'Save as Address',
-            'apply-coupon' => 'Apply Coupon',
+            'new-address' => 'Добавить новый адрес',
+            'save_as_address' => 'Сохранить как адрес',
+            'apply-coupon' => 'Применить купон',
+            'enter-coupon' => 'Введите код купона',
             'amt-payable' => 'Amount Payable',
             'got' => 'Got',
             'free' => 'Free',
-            'coupon-used' => 'Coupon Used',
-            'applied' => 'Applied',
+            'coupon-used' => 'Купон используется',
+            'applied' => 'Применяется',
             'back' => 'Back',
-            'cash-desc' => 'Cash On Delivery',
-            'money-desc' => 'Money Transfer',
+            'cash-desc' => 'Оплата при доставке',
+            'money-desc' => 'Денежный перевод',
             'paypal-desc' => 'Paypal Standard',
-            'free-desc' => 'This is a free shipping',
-            'flat-desc' => 'This is a flat rate',
-            'password' => 'Password',
-            'login-exist-message' => 'You already have an account with us, Sign in or continue as guest.'
+            'free-desc' => 'Это бесплатная доставка',
+            'flat-desc' => 'Это фиксированная ставка',
+            'password' => 'Пароль',
+            'login-exist-message' => 'У вас уже есть учетная запись, войдите или зарегистрируйтесь как гость.'
         ],
 
         'total' => [
-            'order-summary' => 'Order Summary',
-            'sub-total' => 'Общая сумма',
-            'grand-total' => 'Сумма с доставкой',
+            'order-summary' => 'Итог заказа',
+            'sub-total' => 'Сумма заказа',
+            'grand-total' => 'Общая сумма',
             'delivery-charges' => 'Расходы за доставку',
             'tax' => 'Налог',
-            'discount' => 'Discount',
+            'discount' => 'Скидка',
             'price' => 'цена',
             'disc-amount' => 'Сумма со скидкой',
             'new-grand-total' => 'New Grand Total',
-            'coupon' => 'Coupon',
-            'coupon-applied' => 'Coupon Applied',
-            'remove-coupon' => 'Remove Coupon',
-            'cannot-apply-coupon' => 'Cannot Apply Coupon'
+            'coupon' => 'Купон',
+            'coupon-applied' => 'Купон применяется',
+            'remove-coupon' => 'Удалить купон',
+            'cannot-apply-coupon' => 'Не возможно применить купон'
         ],
 
         'success' => [

@@ -18,57 +18,97 @@
             <div class="flex flex-col sm:flex-row justify-content-between items-start">
                 <div class="col-main w-full flex flex-col">
                     <ul class="checkout-steps w-full sm:max-w-lg">
-                        <li class="active" :class="[completed_step >= 0 ? 'active' : '', completed_step > 0 ? 'completed' : '']">
+                        <li class="active" :class="[completed_step >= 0 ? 'active' : '', completed_step > 0 ? 'completed' : '']" @click="navigateToStep(1)">
                             <div class=" flex items-center inline-block">
-                                <div class="profile-icon address-info"></div>
+                                <div class="profile-icon w-8"></div>
                                 <span
-                                    class="text-gray-dark text-xl sm:text-2xl uppercase pl-4">{{ __('shop::app.checkout.onepage.information') }}</span>
+                                    class="title text-xl sm:text-2xl uppercase pl-4">{{ __('shop::app.checkout.onepage.information') }}</span>
                             </div>
                             <div class="step-content information" v-show="current_step == 1" id="address-section">
                                 @include('shop::checkout.onepage.customer-info')
-                           </div>
-                        </li>
-{{--                        <li :class="[current_step >= 0 || completed_step > 0 ? 'completed' : '']" @click="navigateToStep(2)">--}}
-                        <li :class="[completed_step >= 0 ? 'active' : '', completed_step > 0 ? 'completed' : '']">
-                            <div class="flex items-center inline-block">
-                                <div class="decorator shipping"></div>
-                                <span
-                                    class="text-gray-dark text-xl sm:text-2xl uppercase pl-4">{{ __('shop::app.checkout.onepage.shipping') }}</span>
+
+                                <div class="button-group">
+                                    <button type="button" class="button-black px-6 py-4 normal-case" @click="validateForm('address-form')" :disabled="disable_button" id="checkout-address-continue-button">
+                                        {{ __('shop::app.checkout.onepage.continue') }}
+                                    </button>
+                                </div>
+
                             </div>
-                            <div class="step-content shipping" v-show="current_step == 0" id="shipping-section">
-{{--                                <shipping-section v-if="current_step == 0" @onShippingMethodSelected="shippingMethodSelected($event)"></shipping-section>--}}
-                                <shipping-section v-if="current_step == 0" @onShippingMethodSelected="shippingMethodSelected($event)"></shipping-section>
+                        </li>
+                        @if ($cart->haveStockableItems())
+                            <li :class="[current_step == 2 || completed_step > 1 ? 'active' : '', completed_step > 1 ? 'completed' : '']" @click="navigateToStep(2)">
+                            <div class="flex items-center inline-block">
+                                <div class="decorator shipping w-8"></div>
+                                <span
+                                    class="title text-xl sm:text-2xl uppercase pl-4">{{ __('shop::app.checkout.onepage.shipping') }}</span>
+                            </div>
+
+{{--                            <div class="line mb-25"></div>--}}
+
+                            <div class="step-content shipping" v-show="current_step == 2" id="shipping-section">
+                                <shipping-section v-if="current_step == 2" @onShippingMethodSelected="shippingMethodSelected($event)"></shipping-section>
+
+                                <div class="button-group">
+                                    <button type="button" class="button-black px-6 py-4 normal-case" @click="validateForm('shipping-form')" :disabled="disable_button" id="checkout-shipping-continue-button">
+                                        {{ __('shop::app.checkout.onepage.continue') }}
+                                    </button>
+
+                                </div>
+                            </div>
+                        </li>
+                        @endif
+                        <li :class="[current_step == 3 || completed_step > 2 ? 'active' : '', completed_step > 2 ? 'completed' : '']" @click="navigateToStep(3)">
+                            <div class="flex items-center inline-block">
+                                <div class="decorator payment w-8"></div>
+                                <span class="title text-xl sm:text-2xl uppercase pl-4">{{ __('shop::app.checkout.onepage.payment') }}</span>
+                            </div>
+                            <div class="step-content payment" v-show="current_step == 3" id="payment-section">
+                                <payment-section v-if="current_step == 3"
+                                                 @onPaymentMethodSelected="paymentMethodSelected($event)"></payment-section>
+
+                                <div class="button-group">
+                                    <button type="button" class="button-black px-6 py-4 normal-case" @click="validateForm('payment-form')"
+                                            :disabled="disable_button" id="checkout-payment-continue-button">
+                                        {{ __('shop::app.checkout.onepage.continue') }}
+                                    </button>
+                                </div>
+                            </div>
+
+                        </li>
+
+{{--                        <div class="line mb-25"></div>--}}
+
+                        <li :class="[current_step == 4 ? 'active' : '']">
+                            <div class="flex items-center inline-block">
+                                <div class="decorator review w-8"></div>
+                                <span class="title text-xl sm:text-2xl uppercase pl-4">{{ __('shop::app.checkout.onepage.complete') }}</span>
                             </div>
                         </li>
 
                     </ul>
 
-
-{{--                    <div class="step-content payment" v-show="current_step == 3" id="payment-section">--}}
-{{--                        <payment-section v-if="current_step == 3"--}}
-{{--                                         @onPaymentMethodSelected="paymentMethodSelected($event)"></payment-section>--}}
-
-{{--                        <div class="button-group">--}}
-{{--                            <button type="button" class="btn btn-lg btn-primary" @click="validateForm('payment-form')"--}}
-{{--                                    :disabled="disable_button" id="checkout-payment-continue-button">--}}
-{{--                                {{ __('shop::app.checkout.onepage.continue') }}--}}
-{{--                            </button>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-
-{{--                    <div class="step-content review" v-show="current_step == 4" id="summary-section">--}}
-{{--                        <review-section v-if="current_step == 4" :key="reviewComponentKey">--}}
-
-                    <div class="button-group">
-                        <button type="button" class="button-decor w-1/2 py-4 normal-case" @click="placeOrder()"
-                                :disabled="disable_button" id="checkout-place-order-button">
-                            {{ __('shop::app.checkout.onepage.place-order') }}
-                        </button>
+                    <div class="step-content review" v-show="current_step == 4" id="summary-section">
+                        <review-section v-if="current_step == 4" :key="reviewComponentKey">
+{{--                            <div slot="summary-section">--}}
+{{--                                <summary-section--}}
+{{--                                    discount="1"--}}
+{{--                                    :key="summeryComponentKey"--}}
+{{--                                    @onApplyCoupon="getOrderSummary"--}}
+{{--                                    @onRemoveCoupon="getOrderSummary"--}}
+{{--                                ></summary-section>--}}
+{{--                            </div>--}}
+                        </review-section>
+                        <div class="button-group">
+                            <button type="button" class="button-decor w-2/3 sm:w-1/3 py-4 normal-case" @click="placeOrder()"
+                                    :disabled="disable_button" id="checkout-place-order-button">
+                                {{ __('shop::app.checkout.onepage.place-order') }}
+                            </button>
+                        </div>
                     </div>
 
                 </div>
 
-            <div class="col-right w-full bg-old-lace sm:bg-white sm:max-w-md ml-auto mt-2" v-show="current_step != 4">
+            <div class="col-right w-full bg-old-lace sm:bg-white sm:max-w-md ml-auto mt-2" v-show="current_step > 0">
 
 
                 @inject ('productImageHelper', 'Webkul\Product\Helpers\ProductImage')
@@ -231,49 +271,34 @@
                             @endif
                         </div>
 
-                            {{--                            <div class="dropdown-footer">--}}
-{{--                                <div class="bg-gray-snow font-medium text-gray-dark h-16 flex content-center flex-wrap">--}}
-{{--                                    <div class="w-2/3 text-center uppercase">--}}
-{{--                                        {{ __('shop::app.checkout.cart.cart-subtotal') }}:--}}
-{{--                                    </div>--}}
-{{--                                    <div class="w-1/3 text-center">--}}
-{{--                                        {!! view_render_event('bagisto.shop.checkout.cart-mini.subtotal.before', ['cart' => $cart]) !!}--}}
-{{--    --}}
-{{--                                        {{ core()->currency($cart->base_sub_total) }}--}}
-{{--    --}}
-{{--                                        {!! view_render_event('bagisto.shop.checkout.cart-mini.subtotal.after', ['cart' => $cart]) !!}--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                                <div class="flex flex-row justify-content-between items-center">--}}
-{{--                    <span class="button-black w-full py-3 normal-case">--}}
-{{--    --}}{{--                            <a href="{{ route('shop.checkout.cart.index') }}">{{ __('shop::app.checkout.cart.continue-shopping') }}</a>--}}
-{{--                        <a href="{{ route('shop.checkout.cart.index') }}">{{ __('shop::app.minicart.view-cart') }}</a>--}}
-{{--                    </span>--}}
-{{--                                    <span class="button-decor w-full py-3 normal-case">--}}
-{{--    --}}{{--                            <a href="{{ route('shop.checkout.cart.index') }}">{{ __('shop::app.minicart.view-cart') }}</a>--}}
-{{--                        <a  href="{{ route('shop.checkout.onepage.index') }}">{{ __('shop::app.minicart.checkout') }}</a>--}}
-{{--                    </span>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
                     </div>
 
                 @endif
 
-
-                <div class="step-content review" v-show="current_step >= 0" id="summary-section">
-                    <review-section v-if="current_step >= 0" :key="reviewComponentKey">
-                        <div slot="summary-section">
-                            <summary-section
-                                discount="1"
-                                :key="summeryComponentKey"
-                                @onApplyCoupon="getOrderSummary"
-                                @onRemoveCoupon="getOrderSummary"
-                            ></summary-section>
-                        </div>
-                    </review-section>
-                </div>
-                <div class="sm:bg-gray-snow px-8">
+{{--                <div class="step-content review" v-show="current_step == 4" id="summary-section">--}}
+{{--                    <review-section v-if="current_step == 4" :key="reviewComponentKey">--}}
+{{--                        <div slot="summary-section">--}}
+{{--                            <summary-section--}}
+{{--                                discount="1"--}}
+{{--                                :key="summeryComponentKey"--}}
+{{--                                @onApplyCoupon="getOrderSummary"--}}
+{{--                                @onRemoveCoupon="getOrderSummary"--}}
+{{--                            ></summary-section>--}}
+{{--                        </div>--}}
+{{--                    </review-section>--}}
+{{--                </div>--}}
+                <div class="sm:bg-gray-snow" v-show="current_step != 4">
                    <summary-section :key="summeryComponentKey"></summary-section>
+                </div>
+                <div class="sm:bg-gray-snow" v-show="current_step == 4">
+                    <div slot="summary-section">
+                        <summary-section
+                            discount="1"
+                            :key="summeryComponentKey"
+                            @onApplyCoupon="getOrderSummary"
+                            @onRemoveCoupon="getOrderSummary"
+                        ></summary-section>
+                    </div>
                 </div>
             </div>
         </div>
@@ -302,18 +327,18 @@
             template: '#checkout-template',
             inject: ['$validator'],
 
-            data: function () {
+            data: function() {
                 return {
                     step_numbers: {
                         'information': 1,
-                        'shipping': 1,
+                        'shipping': 2,
                         'payment': 3,
                         'review': 4
                     },
 
                     current_step: 1,
 
-                    completed_step: 1,
+                    completed_step: 0,
 
                     address: {
                         billing: {
@@ -345,14 +370,16 @@
 
                     summeryComponentKey: 0,
 
-                    reviewComponentKey: 0
+                    reviewComponentKey: 0,
+
+                    is_customer_exist: 0
                 }
             },
 
-            created: function () {
+            created: function() {
                 this.getOrderSummary();
 
-                if (!customerAddress) {
+                if(! customerAddress) {
                     this.new_shipping_address = true;
                     this.new_billing_address = true;
                 } else {
@@ -380,26 +407,25 @@
             },
 
             methods: {
-                navigateToStep: function (step) {
+                navigateToStep: function(step) {
                     if (step <= this.completed_step) {
                         this.current_step = step
                         this.completed_step = step - 1;
                     }
                 },
 
-                haveStates: function (addressType) {
+                haveStates: function(addressType) {
                     if (this.countryStates[this.address[addressType].country] && this.countryStates[this.address[addressType].country].length)
                         return true;
 
                     return false;
                 },
 
-                validateForm: function (scope) {
+                validateForm: function(scope) {
                     var this_this = this;
 
                     this.$validator.validateAll(scope).then(function (result) {
-
-                       if (result) {
+                        if (result) {
                             if (scope == 'address-form') {
                                 this_this.saveAddress();
                             } else if (scope == 'shipping-form') {
@@ -411,27 +437,64 @@
                     });
                 },
 
-                getOrderSummary() {
+                isCustomerExist: function() {
+                    this.$validator.attach('email', 'required|email');
+
+                    var this_this = this;
+
+                    this.$validator.validate('email', this.address.billing.email)
+                        .then(function(isValid) {
+                            if (! isValid)
+                                return;
+
+                            this_this.$http.post("{{ route('customer.checkout.exist') }}", {email: this_this.address.billing.email})
+                                .then(function(response) {
+                                    this_this.is_customer_exist = response.data ? 1 : 0;
+                                })
+                                .catch(function (error) {})
+
+                        })
+                },
+
+                loginCustomer: function() {
+                    var this_this = this;
+
+                    this_this.$http.post("{{ route('customer.checkout.login') }}", {
+                        email: this_this.address.billing.email,
+                        password: this_this.address.billing.password
+                    })
+                        .then(function(response) {
+                            if (response.data.success) {
+                                window.location.href = "{{ route('shop.checkout.onepage.index') }}";
+                            } else {
+                                window.flashMessages = [{'type': 'alert-error', 'message': response.data.error }];
+
+                                this_this.$root.addFlashMessages()
+                            }
+                        })
+                        .catch(function (error) {})
+                },
+
+                getOrderSummary () {
                     var this_this = this;
 
                     this.$http.get("{{ route('shop.checkout.summary') }}")
-                        .then(function (response) {
+                        .then(function(response) {
                             summaryHtml = Vue.compile(response.data.html)
 
                             this_this.summeryComponentKey++;
                             this_this.reviewComponentKey++;
                         })
-                        .catch(function (error) {
-                        })
+                        .catch(function (error) {})
                 },
 
-                saveAddress: function () {
+                saveAddress: function() {
                     var this_this = this;
 
                     this.disable_button = true;
 
                     this.$http.post("{{ route('shop.checkout.save-address') }}", this.address)
-                        .then(function (response) {
+                        .then(function(response) {
                             this_this.disable_button = false;
 
                             if (this_this.step_numbers[response.data.jump_to_section] == 2)
@@ -441,26 +504,32 @@
 
                             this_this.completed_step = this_this.step_numbers[response.data.jump_to_section] + 1;
                             this_this.current_step = this_this.step_numbers[response.data.jump_to_section];
+
+                            shippingMethods = response.data.shippingMethods;
+
                             this_this.getOrderSummary();
                         })
                         .catch(function (error) {
                             this_this.disable_button = false;
+
                             this_this.handleErrorResponse(error.response, 'address-form')
                         })
                 },
 
-                saveShipping: function () {
+                saveShipping: function() {
                     var this_this = this;
 
                     this.disable_button = true;
 
                     this.$http.post("{{ route('shop.checkout.save-shipping') }}", {'shipping_method': this.selected_shipping_method})
-                        .then(function (response) {
+                        .then(function(response) {
                             this_this.disable_button = false;
 
                             paymentHtml = Vue.compile(response.data.html)
                             this_this.completed_step = this_this.step_numbers[response.data.jump_to_section] + 1;
                             this_this.current_step = this_this.step_numbers[response.data.jump_to_section];
+
+                            paymentMethods = response.data.paymentMethods;
 
                             this_this.getOrderSummary();
                         })
@@ -471,13 +540,13 @@
                         })
                 },
 
-                savePayment: function () {
+                savePayment: function() {
                     var this_this = this;
 
                     this.disable_button = true;
 
                     this.$http.post("{{ route('shop.checkout.save-payment') }}", {'payment': this.selected_payment_method})
-                        .then(function (response) {
+                        .then(function(response) {
                             this_this.disable_button = false;
 
                             reviewHtml = Vue.compile(response.data.html)
@@ -493,13 +562,13 @@
                         });
                 },
 
-                placeOrder: function () {
+                placeOrder: function() {
                     var this_this = this;
 
                     this.disable_button = true;
 
                     this.$http.post("{{ route('shop.checkout.save-order') }}", {'_token': "{{ csrf_token() }}"})
-                        .then(function (response) {
+                        .then(function(response) {
                             if (response.data.success) {
                                 if (response.data.redirect_url) {
                                     window.location.href = response.data.redirect_url;
@@ -511,16 +580,13 @@
                         .catch(function (error) {
                             this_this.disable_button = true;
 
-                            window.flashMessages = [{
-                                'type': 'alert-error',
-                                'message': "{{ __('shop::app.common.error') }}"
-                            }];
+                            window.flashMessages = [{'type': 'alert-error', 'message': "{{ __('shop::app.common.error') }}" }];
 
                             this_this.$root.addFlashMessages()
                         })
                 },
 
-                handleErrorResponse: function (response, scope) {
+                handleErrorResponse: function(response, scope) {
                     if (response.status == 422) {
                         serverErrors = response.data.errors;
                         this.$root.addServerErrors(scope)
@@ -531,27 +597,27 @@
                     }
                 },
 
-                shippingMethodSelected: function (shippingMethod) {
+                shippingMethodSelected: function(shippingMethod) {
                     this.selected_shipping_method = shippingMethod;
                 },
 
-                paymentMethodSelected: function (paymentMethod) {
+                paymentMethodSelected: function(paymentMethod) {
                     this.selected_payment_method = paymentMethod;
                 },
 
-                newBillingAddress: function () {
+                newBillingAddress: function() {
                     this.new_billing_address = true;
                 },
 
-                newShippingAddress: function () {
+                newShippingAddress: function() {
                     this.new_shipping_address = true;
                 },
 
-                backToSavedBillingAddress: function () {
+                backToSavedBillingAddress: function() {
                     this.new_billing_address = false;
                 },
 
-                backToSavedShippingAddress: function () {
+                backToSavedShippingAddress: function() {
                     this.new_shipping_address = false;
                 },
             }
@@ -562,19 +628,19 @@
         Vue.component('shipping-section', {
             inject: ['$validator'],
 
-            data: function () {
+            data: function() {
                 return {
                     templateRender: null,
 
                     selected_shipping_method: '',
 
-                    first_iteration: true,
+                    first_iteration : true,
                 }
             },
 
             staticRenderFns: shippingTemplateRenderFns,
 
-            mounted: function () {
+            mounted: function() {
                 for (method in shippingMethods) {
                     if (this.first_iteration) {
                         for (rate in shippingMethods[method]['rates']) {
@@ -593,7 +659,7 @@
                 eventBus.$emit('after-checkout-shipping-section-added');
             },
 
-            render: function (h) {
+            render: function(h) {
                 return h('div', [
                     (this.templateRender ?
                         this.templateRender() :
@@ -602,7 +668,7 @@
             },
 
             methods: {
-                methodSelected: function () {
+                methodSelected: function() {
                     this.$emit('onShippingMethodSelected', this.selected_shipping_method)
 
                     eventBus.$emit('after-shipping-method-selected');
@@ -615,7 +681,7 @@
         Vue.component('payment-section', {
             inject: ['$validator'],
 
-            data: function () {
+            data: function() {
                 return {
                     templateRender: null,
 
@@ -623,13 +689,13 @@
                         method: ""
                     },
 
-                    first_iteration: true,
+                    first_iteration : true,
                 }
             },
 
             staticRenderFns: paymentTemplateRenderFns,
 
-            mounted: function () {
+            mounted: function() {
                 for (method in paymentMethods) {
                     if (this.first_iteration) {
                         this.payment.method = paymentMethods[method]['method'];
@@ -646,7 +712,7 @@
                 eventBus.$emit('after-checkout-payment-section-added');
             },
 
-            render: function (h) {
+            render: function(h) {
                 return h('div', [
                     (this.templateRender ?
                         this.templateRender() :
@@ -655,7 +721,7 @@
             },
 
             methods: {
-                methodSelected: function () {
+                methodSelected: function() {
                     this.$emit('onPaymentMethodSelected', this.payment)
 
                     eventBus.$emit('after-payment-method-selected');
@@ -666,7 +732,7 @@
         var reviewTemplateRenderFns = [];
 
         Vue.component('review-section', {
-            data: function () {
+            data: function() {
                 return {
                     templateRender: null,
 
@@ -676,7 +742,7 @@
 
             staticRenderFns: reviewTemplateRenderFns,
 
-            render: function (h) {
+            render: function(h) {
                 return h('div', [
                     (this.templateRender ?
                         this.templateRender() :
@@ -684,7 +750,7 @@
                 ]);
             },
 
-            mounted: function () {
+            mounted: function() {
                 this.templateRender = reviewHtml.render;
 
                 for (var i in reviewHtml.staticRenderFns) {
@@ -710,7 +776,7 @@
                 }
             },
 
-            data: function () {
+            data: function() {
                 return {
                     templateRender: null,
 
@@ -726,7 +792,7 @@
 
             staticRenderFns: summaryTemplateRenderFns,
 
-            mounted: function () {
+            mounted: function() {
                 this.templateRender = summaryHtml.render;
 
                 for (var i in summaryHtml.staticRenderFns) {
@@ -737,7 +803,7 @@
                 this.$forceUpdate();
             },
 
-            render: function (h) {
+            render: function(h) {
                 return h('div', [
                     (this.templateRender ?
                         this.templateRender() :
@@ -746,23 +812,26 @@
             },
 
             methods: {
-                onSubmit: function () {
+                onSubmit: function() {
                     var this_this = this;
-
+                    const emptyCouponErrorText = "Please enter a coupon code";
                     axios.post('{{ route('shop.checkout.check.coupons') }}', {code: this_this.coupon_code})
-                        .then(function (response) {
+                        .then(function(response) {
                             this_this.$emit('onApplyCoupon');
 
                             this_this.couponChanged = true;
                         })
-                        .catch(function (error) {
+                        .catch(function(error) {
                             this_this.couponChanged = true;
 
-                            this_this.error_message = error.response.data.message;
+                            this_this.error_message = (error.response.data.message === "The given data was invalid.")?
+                                emptyCouponErrorText :
+                                (error.response.data.message === "Cannot Apply Coupon")?
+                                    "Sorry, this Coupon code is invalid":error.response.data.message;
                         });
                 },
 
-                changeCoupon: function () {
+                changeCoupon: function() {
                     if (this.couponChanged == true && this.changeCount == 0) {
                         this.changeCount++;
 
@@ -778,11 +847,11 @@
                     var this_this = this;
 
                     axios.post('{{ route('shop.checkout.remove.coupon') }}')
-                        .then(function (response) {
+                        .then(function(response) {
                             this_this.$emit('onRemoveCoupon')
                         })
-                        .catch(function (error) {
-                            window.flashMessages = [{'type': 'alert-error', 'message': error.response.data.message}];
+                        .catch(function(error) {
+                            window.flashMessages = [{'type' : 'alert-error', 'message' : error.response.data.message}];
 
                             this_this.$root.addFlashMessages();
                         });

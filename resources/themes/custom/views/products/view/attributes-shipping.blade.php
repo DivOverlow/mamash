@@ -7,7 +7,7 @@
     @foreach ($customAttributeValues as $attribute)
             @if ($attribute['code'] == 'shipping_info')
                 @foreach( explode(",", $attribute['value']) as $value )
-                    <li class="checkmark block">{{ $value }}</li>
+                    <li class="check-mark block">{{ $value }}</li>
                 @endforeach
             @endif
     @endforeach

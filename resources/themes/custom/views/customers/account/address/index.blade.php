@@ -6,25 +6,37 @@
 
 @section('content-wrapper')
 
-<div class="account-content">
-
-    @include('shop::customers.account.partials.sidemenu')
-
-    <div class="account-layout">
-
-        <div class="account-head">
-            <span class="back-icon"><a href="{{ route('customer.account.index') }}"><i class="icon icon-menu-back"></i></a></span>
-            <span class="account-heading">{{ __('shop::app.customer.account.address.index.title') }}</span>
-
-            @if (! $addresses->isEmpty())
-                <span class="account-action">
-                    <a href="{{ route('customer.address.create') }}">{{ __('shop::app.customer.account.address.index.add') }}</a>
-                </span>
-            @else
-                <span></span>
-            @endif
-            <div class="horizontal-rule"></div>
+<div class="account-content main-container-wrapper flex content-start flex-wrap">
+    <div class="w-full sm:w-1/2">
+        <div class="flex items-end inline-block h-20">
+            <div class="user-icon active mb-1"></div>
+            <span class="text-gold text-xl sm:text-2xl uppercase pl-4">{{ $customer->first_name .' ' .  $customer->last_name  }}</span>
         </div>
+
+        @include('shop::customers.account.partials.sidemenu')
+
+    </div>
+
+    <div class="account-layout w-full sm:w-1/2">
+
+        <div class="account-head flex items-end h-20">
+
+            <div class="w-full flex justify-content-between items-center">
+                <div class=" flex items-end inline-block">
+                    <div class="address-icon align-middle h-auto w-6 mb-1"></div>
+                    <span class="account-heading text-gray-dark text-lg sm:text-xl uppercase pl-4">{{ __('shop::app.layouts.address') }}</span>
+                </div>
+                @if (! $addresses->isEmpty())
+                <span class="account-action border-b border-transparent ml-auto font-serif text-gold hover:border-b hover:border-gold">
+                        <a href="{{ route('customer.address.create') }}">{{ __('shop::app.customer.account.address.index.add') }}</a>
+                </span>
+                @else
+                    <span></span>
+                @endif
+            </div>
+        </div>
+        <div class="horizontal-rule"></div>
+
 
         {!! view_render_event('bagisto.shop.customers.account.address.list.before', ['addresses' => $addresses]) !!}
 
@@ -32,7 +44,8 @@
             @if ($addresses->isEmpty())
                 <div>{{ __('shop::app.customer.account.address.index.empty') }}</div>
                 <br/>
-                <a href="{{ route('customer.address.create') }}">{{ __('shop::app.customer.account.address.index.add') }}</a>
+                <span class="button-decor w-1/2 py-3 normal-case">
+                    <a href="{{ route('customer.address.create') }}">{{ __('shop::app.customer.account.address.index.add') }}</a></span>
             @else
                 <div class="address-holder">
                     @foreach ($addresses as $address)

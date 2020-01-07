@@ -517,6 +517,7 @@ return [
             'new-address' => 'Add New Address',
             'save_as_address' => 'Save as Address',
             'apply-coupon' => 'Apply Coupon',
+            'enter-coupon' => 'Enter Coupon Code',
             'amt-payable' => 'Amount Payable',
             'got' => 'Got',
             'free' => 'Free',

@@ -6,10 +6,18 @@
 
 @section('content-wrapper')
 
-    <div class="account-content">
-        @include('shop::customers.account.partials.sidemenu')
+    <div class="account-content main-container-wrapper flex content-start flex-wrap">
+        <div class="w-full sm:w-1/2">
+            <div class="flex items-end inline-block h-20">
+                <div class="user-icon active mb-1"></div>
+                <span class="text-gold text-xl sm:text-2xl uppercase pl-4">{{ $customer->first_name .' ' .  $customer->last_name  }}</span>
+            </div>
 
-        <div class="account-layout">
+            @include('shop::customers.account.partials.sidemenu')
+
+        </div>
+
+        <div class="account-layout w-full sm:w-1/2">
 
             <div class="account-head mb-15">
                 <span class="back-icon"><a href="{{ route('customer.account.index') }}"><i class="icon icon-menu-back"></i></a></span>
@@ -18,7 +26,7 @@
             </div>
 
             {!! view_render_event('bagisto.shop.customers.account.address.edit.before', ['address' => $address]) !!}
-            
+
             <form method="post" action="{{ route('customer.address.edit', $address->id) }}" @submit.prevent="onSubmit">
 
                 <div class="account-table-content">
