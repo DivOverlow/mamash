@@ -998,7 +998,7 @@ dropdown-list
 }
 
 .checkbox .checkbox-view {
-    background-image: url("/themes/default/assets/images/Checkbox.svg");
+    background-image: url("/themes/custom/assets/images/checkbox.svg");
     height: 24px;
     width: 24px;
     margin: 0;
@@ -1008,7 +1008,7 @@ dropdown-list
 }
 
 .checkbox input:checked + .checkbox-view {
-    background-image: url("/themes/default/assets/images/Checkbox-Checked.svg")
+    background-image: url("/themes/custom/assets/images/checkbox-checked.svg")
 }
 
 .checkbox input:disabled + .checkbox-view {
@@ -1042,11 +1042,11 @@ dropdown-list
 }
 
 .radio input:checked + .radio-view {
-    background-image: url("/themes/default/assets/images/selected.svg");
+    background-image: url("/themes/custom/assets/images/selected.svg");
 }
 
 .radio input:disabled + .radio-view {
-    background-image: url("/themes/default/assets/images/disabled.svg");
+    background-image: url("/themes/custom/assets/images/disabled.svg");
     cursor: not-allowed
 }
 

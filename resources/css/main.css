@@ -790,40 +790,40 @@ section.product-detail div.layouter .form-container div.product-image-group div 
 
 
 
-.checkbox {
-    position: relative;
-    display: block;
-    vertical-align: middle;
-}
+/*.checkbox {*/
+/*    position: relative;*/
+/*    display: block;*/
+/*    vertical-align: middle;*/
+/*}*/
 
-.checkbox input {
-    left: 0;
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    height: 24px;
-    width: 24px;
-    z-index: 100;
-}
+/*.checkbox input {*/
+/*    left: 0;*/
+/*    opacity: 0;*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    height: 24px;*/
+/*    width: 24px;*/
+/*    z-index: 100;*/
+/*}*/
 
-.checkbox .checkbox-view {
-    background-image: url("/themes/default/assets/images/Checkbox.svg");
-    height: 24px;
-    width: 24px;
-    margin: 0;
-    display: inline-block !important;
-    vertical-align: middle;
-    margin-right: 5px;
-}
+/*.checkbox .checkbox-view {*/
+/*    background-image: url("/themes/custom/assets/images/Checkbox.svg");*/
+/*    height: 24px;*/
+/*    width: 24px;*/
+/*    margin: 0;*/
+/*    display: inline-block !important;*/
+/*    vertical-align: middle;*/
+/*    margin-right: 5px;*/
+/*}*/
 
-.checkbox input:checked + .checkbox-view {
-    background-image: url("/themes/default/assets/images/Checkbox-Checked.svg");
-}
+/*.checkbox input:checked + .checkbox-view {*/
+/*    background-image: url("/themes/custom/assets/images/Checkbox-Checked.svg");*/
+/*}*/
 
-.checkbox input:disabled + .checkbox-view {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
+/*.checkbox input:disabled + .checkbox-view {*/
+/*    opacity: 0.5;*/
+/*    cursor: not-allowed;*/
+/*}*/
 
 
 
@@ -856,12 +856,12 @@ section.product-detail div.layouter .form-container div.product-image-group div 
 .main .category-container .responsive-layred-filter .filter-attributes .filter-attributes-item .filter-attributes-content ol.items li.item .checkbox .checkbox-view {
     height: 16px;
     width: 16px;
-    background-image: url(/themes/default/assets/images/checkbox.svg?c3dbe347b49aaab5dc7e8332f51c9bf5);
+    background-image: url(/themes/custom/assets/images/checkbox.svg?c3dbe347b49aaab5dc7e8332f51c9bf5);
 }
 
 .main .category-container .layered-filter-wrapper .filter-attributes .filter-attributes-item .filter-attributes-content ol.items li.item .checkbox input:checked + .checkbox-view,
 .main .category-container .responsive-layred-filter .filter-attributes .filter-attributes-item .filter-attributes-content ol.items li.item .checkbox input:checked + .checkbox-view {
-    background-image: url(/themes/default/assets/images/checkbox-checked.svg?802912fd437c681ee53580c8b2635f94);
+    background-image: url(/themes/custom/assets/images/checkbox-checked.svg?802912fd437c681ee53580c8b2635f94);
 }
 
 .main .category-container .layered-filter-wrapper .filter-attributes .filter-attributes-item .filter-attributes-content ol.items li.item .color-swatch,
