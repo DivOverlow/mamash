@@ -710,17 +710,17 @@ section.product-detail div.layouter .form-container div.product-image-group div 
 
 
 
-/*.icon-search {*/
-/*    background-image: url(/themes/custom/assets/images/icon-search.svg')*/
-/*    width: 24px;*/
-/*    height: 24px;*/
-/*}*/
+.icon-search {
+    background-image: url(/themes/default/assets/images/icon-search.svg);
+    width: 24px;
+    height: 24px;
+}
 
-/*.icon-menu-back {*/
-/*    background-image: url(/themes/custom/assets/images/icon-menu-back.svg')*/
-/*    width: 24px;*/
-/*    height: 24px;*/
-/*}*/
+.icon-menu-back {
+    background-image: url(/themes/default/assets/images/icon-menu-back.svg);
+    width: 24px;
+    height: 24px;
+}
 
 /*.shipping-icon {*/
 /*    background-image: url(/themes/custom/assets/images/shipping.svg')*/

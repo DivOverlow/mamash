@@ -32,7 +32,8 @@ import {
     Navigation as HooperNavigation,
     Pagination as HooperPagination
 } from 'hooper';
-import 'hooper/dist/hooper.css';
+// import 'hooper/dist/hooper.css';
+import '../../css/components/hooper.css';
 
 $(document).ready(function () {
     const app = new Vue({

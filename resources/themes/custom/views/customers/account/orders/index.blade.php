@@ -36,7 +36,8 @@
             <div class="account-items-list">
                 <div class="account-table-content">
 
-                    {!! app('Webkul\Shop\DataGrids\OrderDataGrid')->render() !!}
+                    @inject('order','Webkul\Shop\DataGrids\OrderDataGrid')
+                    {!! $order->render() !!}
 
                 </div>
             </div>

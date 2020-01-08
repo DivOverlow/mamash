@@ -76,7 +76,7 @@
                                 </div>
                                 @include ('shop::products.view.gallery')
                             </div>
-                            <div class="w-full sm:w-1/2 flex content-center flex-wrap">
+                            <div class="w-full sm:w-1/2 flex content-center h-132 flex-wrap">
                                 <div class="details w-full font-serif">
                                     <div class="product-heading font-serif text-gray-dark text-center my-3">
                                         @if ($categoryCollection)
