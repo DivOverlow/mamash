@@ -554,10 +554,10 @@ return [
         ],
 
         'success' => [
-            'title' => 'Order successfully placed',
-            'thanks' => 'Thank you for your order!',
-            'order-id-info' => 'Your order id is #:order_id',
-            'info' => 'We will email you, your order details and tracking information'
+            'title' => 'Заказ успешно размещен',
+            'thanks' => 'Спасибо за ваш заказ!',
+            'order-id-info' => 'Ваш идентификатор заказа #: order_id',
+            'info' => 'Мы вышлем вам ваши реквизиты и информацию для отслеживания'
         ]
     ],
 

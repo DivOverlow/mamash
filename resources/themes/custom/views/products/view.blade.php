@@ -76,8 +76,8 @@
                                 </div>
                                 @include ('shop::products.view.gallery')
                             </div>
-                            <div class="w-full sm:w-1/2 flex content-center h-132 flex-wrap">
-                                <div class="details w-full font-serif">
+                            <div class="w-full sm:w-1/2">
+                                <div class="details w-full font-serif flex justify-center content-center h-132 flex-wrap">
                                     <div class="product-heading font-serif text-gray-dark text-center my-3">
                                         @if ($categoryCollection)
                                             <div class="text-lg font-medium hover:text-gray-silver">
@@ -88,7 +88,7 @@
                                         @endif
 
                                         <p class="font-medium uppercase text-xl sm:text-3xl">{{ $product->name }}</p>
-                                        <p class="text-gray-silver text-lg text-center">
+                                        <p class="text-gray-silver text-lg">
                                             {{ number_format($product->weight) }}{{ __('shop::app.products.weight-unit') }}
                                         </p>
                                     </div>

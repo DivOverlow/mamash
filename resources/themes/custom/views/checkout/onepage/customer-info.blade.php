@@ -4,7 +4,7 @@
         <div class="form-header mb-10">
             <span class="checkout-step-heading">{{ __('shop::app.checkout.onepage.billing-address') }}</span>
 
-            <a class="btn btn-lg btn-primary" @click = newBillingAddress()>
+            <a class="btn btn-primary py-3 px-6" @click = newBillingAddress()>
                 {{ __('shop::app.checkout.onepage.new-address') }}
             </a>
         </div>
@@ -43,7 +43,6 @@
                     </ul>
                 </div>
             </div>
-            <div id="message"></div>
             <div class="control-group" :class="[errors.has('address-form.billing[address_id]') ? 'has-error' : '']">
                 <span class="control-error" v-if="errors.has('address-form.billing[address_id]')">
                     @{{ errors.first('address-form.billing[address_id]') }}
@@ -51,7 +50,6 @@
             </div>
         </div>
 
-        @if ($cart->haveStockableItems())
 {{--            <div class="control-group mt-5">--}}
 {{--                <span class="checkbox">--}}
 {{--                    <input type="checkbox" id="billing[use_for_shipping]" name="billing[use_for_shipping]" v-model="address.billing.use_for_shipping"/>--}}
@@ -59,21 +57,27 @@
 {{--                        {{ __('shop::app.checkout.onepage.use_for_shipping') }}--}}
 {{--                </span>--}}
 {{--            </div>--}}
-        @endif
     </div>
 
     <div class="form-container" v-if="this.new_billing_address">
 
-        <div class="form-header">
+        <div class="form-header w-full flex justify-end">
 {{--            <h1>{{ __('shop::app.checkout.onepage.billing-address') }}</h1>--}}
+            @guest('customer')
+                <a class="btn btn-primary py-3 px-6 -mt-8" href="{{ route('customer.session.index') }}">
+                    {{ __('shop::app.checkout.onepage.sign-in') }}
+                </a>
+            @endguest
 
             @auth('customer')
                 @if(count(auth('customer')->user()->addresses))
-                    <a class="btn btn-lg btn-primary" @click = backToSavedBillingAddress()>
+                    <a class="btn btn-primary py-3 px-6" @click = backToSavedBillingAddress()>
                         {{ __('shop::app.checkout.onepage.back') }}
                     </a>
                 @endif
             @endauth
+
+
         </div>
 
         <div class="control-group" :class="[errors.has('address-form.billing[first_name]') ? 'has-error' : '']">
@@ -131,16 +135,10 @@
                 {{--                <input type="text" v-validate="'required|email'" class="control mat-input" id="billing[email]" name="billing[email]" placeholder=" " v-model="address.billing.email" data-vv-as="&quot;{{ __('shop::app.checkout.onepage.email') }}&quot;"/>--}}
                 <input type="text" v-validate="'email'" class="control mat-input" id="billing[email]" name="billing[email]" placeholder=" " v-model="address.billing.email" data-vv-as="&quot;{{ __('shop::app.checkout.onepage.email') }}&quot;"/>
             </div>
-            {{--                <span class="control-error" v-if="errors.has('address-form.billing[email]')">--}}
-            {{--                    @{{ errors.first('address-form.billing[email]') }}--}}
-            {{--                </span>--}}
+            <span class="control-error" v-if="errors.has('address-form.billing[email]')">
+                @{{ errors.first('address-form.billing[email]') }}
+            </span>
         </div>
-
-        {{--  for customer login checkout   --}}
-        @if (! auth()->guard('customer')->check())
-            @include('shop::checkout.onepage.customer-checkout')
-        @endif
-
 
 {{--        <div class="control-group" :class="[errors.has('address-form.billing[address1][]') ? 'has-error' : '']">--}}
 {{--            <div class="mat-div">--}}
@@ -255,15 +253,13 @@
 
 {{--        </div>--}}
 
-{{--    @if ($cart->haveStockableItems())--}}
-{{--            <div class="control-group">--}}
-{{--                <span class="checkbox">--}}
-{{--                    <input type="checkbox" id="billing[use_for_shipping]" name="billing[use_for_shipping]" v-model="address.billing.use_for_shipping"/>--}}
-{{--                    <label class="checkbox-view" for="billing[use_for_shipping]"></label>--}}
-{{--                    {{ __('shop::app.checkout.onepage.use_for_shipping') }}--}}
-{{--                </span>--}}
-{{--            </div>--}}
-{{--        @endif--}}
+            <div class="control-group" style="display: none">
+                <span class="checkbox">
+                    <input type="checkbox" id="billing[use_for_shipping]" name="billing[use_for_shipping]" v-model="address.billing.use_for_shipping"/>
+                    <label class="checkbox-view" for="billing[use_for_shipping]"></label>
+                    {{ __('shop::app.checkout.onepage.use_for_shipping') }}
+                </span>
+            </div>
 
         @auth('customer')
             <div class="control-group">
@@ -277,7 +273,6 @@
 
     </div>
 
-    @if ($cart->haveStockableItems())
         <div class="form-container" v-if="!address.billing.use_for_shipping && !this.new_shipping_address">
             <div class="form-header mb-30">
                 <span class="checkout-step-heading">{{ __('shop::app.checkout.onepage.shipping-address') }}</span>
@@ -490,7 +485,6 @@
             @endauth
 
         </div>
-    @endif
 
 </form>
 
