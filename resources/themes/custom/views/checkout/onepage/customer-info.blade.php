@@ -129,11 +129,11 @@
 
         <div class="control-group" :class="[errors.has('address-form.billing[email]') ? 'has-error' : '']">
             <div class="mat-div" :class="address.billing.email ? 'is-completed' : ''">
-                <label for="billing[email]" class="mat-label">
+                <label for="billing[email]" class="required mat-label">
                     {{ __('shop::app.checkout.onepage.email') }}
                 </label>
-                {{--                <input type="text" v-validate="'required|email'" class="control mat-input" id="billing[email]" name="billing[email]" placeholder=" " v-model="address.billing.email" data-vv-as="&quot;{{ __('shop::app.checkout.onepage.email') }}&quot;"/>--}}
-                <input type="text" v-validate="'email'" class="control mat-input" id="billing[email]" name="billing[email]" placeholder=" " v-model="address.billing.email" data-vv-as="&quot;{{ __('shop::app.checkout.onepage.email') }}&quot;"/>
+                    <input type="text" v-validate="'required|email'" class="control mat-input" id="billing[email]" name="billing[email]" placeholder=" " v-model="address.billing.email" data-vv-as="&quot;{{ __('shop::app.checkout.onepage.email') }}&quot;"/>
+{{--                <input type="text" v-validate="'email'" class="control mat-input" id="billing[email]" name="billing[email]" placeholder=" " v-model="address.billing.email" data-vv-as="&quot;{{ __('shop::app.checkout.onepage.email') }}&quot;"/>--}}
             </div>
             <span class="control-error" v-if="errors.has('address-form.billing[email]')">
                 @{{ errors.first('address-form.billing[email]') }}

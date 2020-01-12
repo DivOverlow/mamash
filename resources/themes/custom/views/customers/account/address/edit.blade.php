@@ -39,8 +39,10 @@
                     <?php $addresses = explode(PHP_EOL, $address->address1); ?>
 
                     <div class="control-group" :class="[errors.has('address1[]') ? 'has-error' : '']">
-                        <label for="address_0" class="required">{{ __('shop::app.customer.account.address.edit.street-address') }}</label>
-                        <input type="text" class="control" name="address1[]" id="address_0" v-validate="'required'" value="{{ isset($addresses[0]) ? $addresses[0] : '' }}" data-vv-as="&quot;{{ __('shop::app.customer.account.address.create.street-address') }}&quot;">
+                        <div class="mat-div {{ isset($addresses[0]) ? 'is-completed' : '' }}">
+                        <label for="address_0" class="required mat-label">{{ __('shop::app.customer.account.address.edit.street-address') }}</label>
+                        <input type="text" class="control mat-input" name="address1[]" id="address_0" v-validate="'required'" value="{{ isset($addresses[0]) ? $addresses[0] : '' }}" data-vv-as="&quot;{{ __('shop::app.customer.account.address.create.street-address') }}&quot;">
+                        </div>
                         <span class="control-error" v-if="errors.has('address1[]')">@{{ errors.first('address1[]') }}</span>
                     </div>
 
@@ -75,7 +77,7 @@
                     {!! view_render_event('bagisto.shop.customers.account.address.edit_form_controls.after', ['address' => $address]) !!}
 
                     <div class="button-group">
-                        <button class="btn btn-primary btn-lg" type="submit">
+                        <button class="btn btn-primary py-3 px-5" type="submit">
                             {{ __('shop::app.customer.account.address.create.submit') }}
                         </button>
                     </div>

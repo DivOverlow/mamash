@@ -293,6 +293,7 @@ return [
                     'item-canceled' => 'Canceled (:qty_canceled)',
                     'item-refunded' => 'Refunded (:qty_refunded)',
                     'price' => 'Price',
+                    'gift' => 'Free Gift',
                     'total' => 'Total',
                     'subtotal' => 'Subtotal',
                     'shipping-handling' => 'Shipping & Handling',
@@ -319,9 +320,9 @@ return [
                     'ship-to' => 'Ship to',
                     'contact' => 'Contact',
                     'refunds' => 'Refunds',
-                    'individual-refund' => 'Refund #:refund_id',
-                    'adjustment-refund' => 'Adjustment Refund',
-                    'adjustment-fee' => 'Adjustment Fee',
+                    'individual-refund' => 'Возврат #:refund_id',
+                    'adjustment-refund' => 'Корректировка Возврата',
+                    'adjustment-fee' => 'Плата за корректировку',
                 ]
             ],
 
@@ -572,6 +573,7 @@ return [
             'shipping' => 'Shipping Method',
             'payment' => 'Payment Method',
             'price' => 'Price',
+            'gift' => 'Free Gift',
             'quantity' => 'Quantity',
             'subtotal' => 'Subtotal',
             'shipping-handling' => 'Shipping & Handling',

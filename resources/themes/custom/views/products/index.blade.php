@@ -61,19 +61,25 @@
             {!! view_render_event('bagisto.shop.products.index.before', ['category' => $category]) !!}
 
             <div class="main-container-wrapper category-container">
-                <?php $products = $productRepository->getAll($category->id); ?>
-
-                @if ($products->count())
-                    <div class="product-list my-10">
-                        @foreach ($products as $productFlat)
-                            <div class="product-card bg-white flex flex-col {{($loop->index & 1) ? 'sm:flex-row' : 'sm:flex-row-reverse' }} justify-between items-center my-4 sm:my-0">
-                                @include ('shop::products.list.gifts', ['product' => $productFlat])
-                            </div>
-                        @endforeach
-                    </div>
-
-                @endif
+                    @inject ('giftRepository', 'Webkul\Discount\Repositories\GiftRuleRepository')
+                    <?php
+                        $gift_products = $giftRepository->getGiftsProduct();
+                    ?>
+                    @foreach($gift_products as $gift_product)
+                        @if (isset($gift_product->related_products()->first()->product_id))
+                            <?php
+                                $action_amount = $gift_product->action_amount;
+                                $product = $productRepository->find($gift_product->related_products()->first()->product_id);
+                            ?>
+                            @if ($product)
+                                <div class="product-card bg-white flex flex-col {{($loop->index & 1) ? 'sm:flex-row' : 'sm:flex-row-reverse' }} justify-between items-center my-4 sm:my-0">
+                                    @include ('shop::products.list.gift', ['product' => $product, 'evaluation' => $action_amount, 'class' => 'medium'])
+                                </div>
+                            @endif
+                        @endif
+                    @endforeach
             </div>
+        </div>
 
             {!! view_render_event('bagisto.shop.products.index.after', ['category' => $category]) !!}
 

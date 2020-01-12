@@ -43,6 +43,7 @@ class NewAdminNotification extends Mailable
     public function build()
     {
         return $this->to(env('ADMIN_MAIL_TO'))
+                ->from (env ('SHOP_MAIL_FROM'))
                 ->subject(trans('shop::app.mail.order.subject'))
                 ->view('shop::emails.sales.new-admin-order');
     }

@@ -1,4 +1,4 @@
-{!! view_render_event('bagisto.shop.products.list.gifts.before', ['product' => $product, 'evaluation' => $evaluation, 'class' => $class]) !!}
+{!! view_render_event('bagisto.shop.products.list.gift.before', ['product' => $product, 'evaluation' => $evaluation, 'class' => $class]) !!}
     @inject ('templateRepository', 'Webkul\CMS\Repositories\TemplateRepository')
     @inject ('productImageHelper', 'Webkul\Product\Helpers\ProductImage')
 
@@ -14,4 +14,4 @@
         ->render() !!}
 
 
-{!! view_render_event('bagisto.shop.products.list.gifts.after', ['product' => $product, 'evaluation' => $evaluation, 'class' => $class]) !!}
+{!! view_render_event('bagisto.shop.products.list.gift.after', ['product' => $product, 'evaluation' => $evaluation, 'class' => $class]) !!}

@@ -229,7 +229,7 @@ class Cart {
     {
         foreach ($data['qty'] as $itemId => $quantity) {
             $item = $this->cartItemRepository->findOneByField('id', $itemId);
-        
+
             if (! $item)
                 continue;
 
@@ -345,7 +345,7 @@ class Cart {
             foreach ($guestCart->items as $key => $guestCartItem) {
 
                 $found = false;
-                
+
                 foreach ($cart->items as $cartItem) {
                     if (! $cartItem->product->getTypeInstance()->compareOptions($cartItem->additional, $guestCartItem->additional))
                         continue;
@@ -492,7 +492,7 @@ class Cart {
         if ($cart->haveStockableItems()) {
             $shippingAddress = $data['shipping'];
             $shippingAddress['cart_id'] = $cart->id;
-            
+
             if (isset($data['shipping']['address_id']) && $data['shipping']['address_id']) {
                 $address = $this->customerAddressRepository->findOneWhere(['id'=> $data['shipping']['address_id']])->toArray();
 
@@ -666,7 +666,7 @@ class Cart {
         //rare case of accident-->used when there are no items.
         if (count($cart->items) == 0) {
             $this->cartRepository->delete($cart->id);
-            
+
             return false;
         } else {
             foreach ($cart->items as $item) {
@@ -704,7 +704,7 @@ class Cart {
 
             if (! $taxCategory)
                 continue;
-            
+
             if ($item->product->getTypeInstance()->isStockable()) {
                 $address = $cart->shipping_address;
             } else {
@@ -857,6 +857,34 @@ class Cart {
             $finalData['items'][] = $this->prepareDataForOrderItem($item);
         }
 
+        if (session()->has('gift_product_id')) {
+            $product = $this->productRepository->find(session()->get('gift_product_id'));
+            if ($product) {
+                $giftlData = [
+                    'product' => $product,
+                    'sku' => $product->sku,
+                    'type' => $product->type,
+                    'name' => $product->name,
+                    'weight' => $product->weight,
+                    'total_weight' => $product->weight,
+                    'qty_ordered' => 1,
+                    'price' => 0,
+                    'base_price' => 0,
+                    'total' => 0,
+                    'base_total' => 0,
+                    'tax_percent' => 0,
+                    'tax_amount' => 0,
+                    'base_tax_amount' => 0,
+                    'discount_percent' => 0,
+                    'discount_amount' => 0,
+                    'base_discount_amount' => 0,
+                    'additional' => $product->additional,
+                ];
+                $finalData['items'][] = $giftlData;
+            }
+            session()->forget('gift_product_id');
+        }
+
         return $finalData;
     }
 
@@ -902,7 +930,7 @@ class Cart {
 
     /**
      * Move a wishlist item to cart
-     * 
+     *
      * @param WishlistItem $wishlistItem
      * @return boolean
      */
@@ -910,7 +938,7 @@ class Cart {
     {
         if (! $wishlistItem->product->getTypeInstance()->canBeMovedFromWishlistToCart($wishlistItem))
             return false;
-    
+
         if (! $wishlistItem->additional)
             $wishlistItem->additional = ['product_id' => $wishlistItem->product_id];
 
