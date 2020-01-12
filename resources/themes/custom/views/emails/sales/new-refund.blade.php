@@ -1,3 +1,4 @@
+@inject ('productImageHelper', 'Webkul\Product\Helpers\ProductImage')
 @component('shop::emails.layouts.master')
     <div style="text-align: center;">
         <a href="{{ config('app.url') }}">
@@ -104,6 +105,7 @@
                 border-spacing: 0;width: 100%">
                     <thead>
                         <tr style="background-color: #f2f2f2">
+                            <th style="text-align: left;padding: 8px"></th>
                             <th style="text-align: left;padding: 8px">{{ __('shop::app.customer.account.order.view.product-name') }}</th>
                             <th style="text-align: left;padding: 8px">{{ __('shop::app.customer.account.order.view.price') }}</th>
                             <th style="text-align: left;padding: 8px">{{ __('shop::app.customer.account.order.view.qty') }}</th>
@@ -112,13 +114,20 @@
 
                     <tbody>
                         @foreach ($refund->items as $item)
+                            <?php
+                            if ($item->type == "configurable")
+                                $images = $productImageHelper->getProductBaseImage($item->child->product);
+                            else
+                                $images = $productImageHelper->getProductBaseImage($item->product);
+                            ?>
                             <tr>
+                            @if ($item->price > 0)
                                 <td data-value="{{ __('shop::app.customer.account.order.view.product-name') }}" style="text-align: left;padding: 8px">
                                     {{ $item->name }}
-                                    
+
                                     @if (isset($item->additional['attributes']))
                                         <div class="item-options">
-                                            
+
                                             @foreach ($item->additional['attributes'] as $attribute)
                                                 <b>{{ $attribute['attribute_name'] }} : </b>{{ $attribute['option_label'] }}</br>
                                             @endforeach
@@ -135,6 +144,13 @@
                                     {{ $item->qty }}
                                 </td>
                             </tr>
+                            @else
+                                <td colspan="2" style="text-align: right;padding: 8px"><img src="{{ $images['small_image_url'] }}"/></td>
+                                <td colspan="3" data-value="{{ __('shop::app.customer.account.order.view.product-name') }}" style="display:flex;flex-direction: column;height: 100px;justify-content: center;align-content: center;flex-wrap: wrap;text-align: center;padding: 8px;">
+                                    {{ $item->name }}
+                                    <span style="color: #969696;font-weight: 500 !important;">{{ __('shop::app.customer.account.order.view.gift') }}</span>
+                                </td>
+                            @endif
 
                         @endforeach
                     </tbody>
