@@ -1455,7 +1455,12 @@ modal {
 
 .card-modal-container .modal-body {
     overflow-y: auto;
-    max-height: 250px;
+    max-height: 260px;
+}
+
+.card-modal-container .modal-body .item-title {
+    max-height: 5rem;
+    overflow: hidden;
 }
 
 
