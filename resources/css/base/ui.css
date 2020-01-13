@@ -1455,7 +1455,7 @@ modal {
 
 .card-modal-container .modal-body {
     overflow-y: auto;
-    max-height: 450px;
+    max-height: 290px;
 }
 
 

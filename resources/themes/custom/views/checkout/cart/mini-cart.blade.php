@@ -120,47 +120,37 @@
 
             <div class="w-full absolute inset-x-0 bottom-0">
             <?php $gift_products = $giftRepository->getGiftsProduct(); ?>
+
                 @if (count($gift_products))
                     @inject ('productImageHelper', 'Webkul\Product\Helpers\ProductImage')
-
                     <div class="gift-content my-3 pr-3">
-                        <div class="w-4/5 ml-auto tracking-widest">{{ __('shop::app.checkout.gift.title') }}</div>
                         @if (session()->has('gift_product_id'))
-                        <?php $product = $productRepository->find(session()->get('gift_product_id')); ?>
-                            @if($product)
-                                @php
-                                    $productBaseImage = $productImageHelper->getProductBaseImage($product);
-                                @endphp
-                                <div class="w-full flex flex-row justify-between items-center text-left py-2">
-                                    <div class="item-image h-28 w-1/2 flex items-center justify-center">
-                                        <a href="{{ url()->to('/').'/products/'.$product->url_key }}"><img  class="object-scale-down h-24 w-auto"
-                                                                                                            src="{{ $productBaseImage['small_image_url'] }}"/></a>
-                                    </div>
-                                    <div class="item-title flex flex-col justify-start">
-                                        <div class="text-base text-gray-dark uppercase hover:text-gray-cloud">
-                                            <a href="{{ url()->to('/').'/products/'.$product->url_key }}">
-                                                {{ $product->name }} </a>
-                                        </div>
-                                        <div class="font-serif font-medium text-base text-gray-cloud">
-                                            {{  __('shop::app.checkout.gift.free') }}
-                                        </div>
-                                        <div class="font-normal font-medium text-base text-gray-cloud leading-tight">
-                                            {{  __('shop::app.checkout.gift.free-message') }}
-                                        </div>
-                                    </div>
-                                </div>
-                            @endif
-                        @else
-                            <div class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4" role="alert">
-                                <p>{{__('shop::app.checkout.gift.gift-not-available')}}</p>
-                            </div>
                             @foreach($gift_products as $gift_product)
+
                                 @if(isset($gift_product->related_products()->first()->product_id))
-                                    <?php $product = $productRepository->find($gift_product->related_products()->first()->product_id); ?>
-                                    @if($product)
-                                        @php
-                                            $productBaseImage = $productImageHelper->getProductBaseImage($product);
-                                        @endphp
+                                    <?php
+                                        $product = $productRepository->find($gift_product->related_products()->first()->product_id);
+                                        $productBaseImage = $productImageHelper->getProductBaseImage($product);
+                                    ?>
+
+                                    @if (session()->get('gift_product_id') == $product->product_id)
+                                        <div class="w-full flex flex-row items-center justify-between text-left py-2 border-t-2 border-orange-500 rounded-b shadow-md">
+                                            <div class="item-image h-28 w-1/3 flex items-center justify-center">
+                                                <a href="{{ url()->to('/').'/products/'.$product->url_key }}"><img  class="object-scale-down h-24 w-auto"
+                                                                                                                    src="{{ $productBaseImage['small_image_url'] }}"/></a>
+                                            </div>
+                                            <div class="item-title flex flex-col items-start justify-around h-24">
+                                                <div class="w-4/5 ml-auto tracking-widest text-gold">{{ __('shop::app.checkout.gift.title') }}</div>
+                                                <div class="text-base text-gray-dark uppercase hover:text-gray-cloud">
+                                                    <a href="{{ url()->to('/').'/products/'.$product->url_key }}">
+                                                        {{ $product->name }} </a>
+                                                </div>
+                                                <div class="font-serif font-medium text-base text-gray-cloud">
+                                                    {{  __('shop::app.checkout.gift.free') }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @else
                                         <div class="w-full flex flex-row justify-between items-center text-left py-2">
                                             <div class="item-image h-28 w-1/2 flex items-center justify-center">
                                                 <a href="{{ url()->to('/').'/products/'.$product->url_key }}"><img  class="object-scale-down h-24 w-auto"
@@ -180,9 +170,41 @@
                                             </div>
                                         </div>
                                     @endif
-                                    @break
                                 @endif
                             @endforeach
+                        @else
+                                <div class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4" role="alert">
+                                    <p>{{__('shop::app.checkout.gift.gift-not-available')}}</p>
+                                </div>
+                                @foreach($gift_products as $gift_product)
+                                    @if(isset($gift_product->related_products()->first()->product_id))
+                                        <?php $product = $productRepository->find($gift_product->related_products()->first()->product_id); ?>
+                                        @if($product)
+                                            @php
+                                                $productBaseImage = $productImageHelper->getProductBaseImage($product);
+                                            @endphp
+                                            <div class="w-full flex flex-row justify-between items-center text-left py-2">
+                                                <div class="item-image h-28 w-1/2 flex items-center justify-center">
+                                                    <a href="{{ url()->to('/').'/products/'.$product->url_key }}"><img  class="object-scale-down h-24 w-auto"
+                                                                                                                        src="{{ $productBaseImage['small_image_url'] }}"/></a>
+                                                </div>
+                                                <div class="item-title flex flex-col justify-start">
+                                                    <div class="text-base text-gray-dark uppercase hover:text-gray-cloud">
+                                                        <a href="{{ url()->to('/').'/products/'.$product->url_key }}">
+                                                            {{ $product->name }} </a>
+                                                    </div>
+                                                    <div class="font-serif font-medium text-base text-gray-cloud">
+                                                        {{ ($cart->base_sub_total < $gift_product->action_amount) ? __('shop::app.checkout.gift.premium') : __('shop::app.checkout.gift.free') }}
+                                                    </div>
+                                                    <div class="font-normal font-medium text-base text-gray-cloud leading-tight">
+                                                        {{ ($cart->base_sub_total < $gift_product->action_amount) ? sprintf(__('shop::app.checkout.gift.premium-message'), core()->convertPrice($gift_product->action_amount - $cart->base_sub_total) . core()->currencySymbol(core()->getBaseCurrencyCode()) ) : __('shop::app.checkout.gift.free-message') }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
+                                        @break
+                                    @endif
+                                @endforeach
 
                         @endif
 
