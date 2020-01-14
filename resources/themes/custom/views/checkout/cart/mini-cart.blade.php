@@ -40,7 +40,7 @@
     </div>
 
     <card-modal :showing="showCardModal" @close="showCardModal = false">
-        <div slot="header" class="dropdown-header bg-gray-snow h-24 flex content-center flex-wrap"> <p class="heading w-full font-medium text-center text-gray-dark text-xl uppercase">
+        <div slot="header" class="dropdown-header bg-gray-snow h-20 flex content-center flex-wrap"> <p class="heading w-full font-medium text-center text-gray-dark text-xl uppercase">
                 {{ __('shop::app.checkout.cart.title') }}
             </p>
         </div>
@@ -212,7 +212,7 @@
                         </div>
                     @endif
                 </div>
-                <div class="bg-gray-snow w-full font-medium text-gray-dark h-16 flex content-center flex-wrap">
+                <div class="bg-gray-snow w-full font-medium text-gray-dark h-12 flex content-center flex-wrap">
                     <div class="w-2/3 text-center uppercase">
                         {{ __('shop::app.checkout.cart.cart-subtotal') }}:
                     </div>
