@@ -47,7 +47,7 @@
         <div slot="body">
             <div class="cart-content my-3">
                 @foreach ($items as $item)
-                    <div class="item w-full flex flex-row items-center px-3 py-1 inline-block">
+                    <div class="item w-full flex flex-row items-center px-3 py-2 inline-block">
                         <div class="item-image w-1/5">
                             <?php
                             if ($item->type == "configurable")
@@ -116,8 +116,10 @@
                     </div>
 
                 @endforeach
+            </div>
 
-                <div class="w-full mt-20">
+            <div class="cart-footer absolute inset-x-0 bottom-0">
+                <div class="w-full my-3">
                     <?php $gift_products = $giftRepository->getGiftsProduct(); ?>
 
                     @if (count($gift_products))
@@ -210,10 +212,6 @@
                         </div>
                     @endif
                 </div>
-
-            </div>
-
-            <div class="cart-footer absolute inset-x-0 bottom-0">
                 <div class="bg-gray-snow w-full font-medium text-gray-dark h-16 flex content-center flex-wrap">
                     <div class="w-2/3 text-center uppercase">
                         {{ __('shop::app.checkout.cart.cart-subtotal') }}:

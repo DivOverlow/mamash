@@ -34,7 +34,7 @@ class CustomerAddressForm extends FormRequest
             $this->rules = [
                 'billing.first_name' => ['required'],
                 'billing.last_name' => ['required'],
-                'billing.email' => ['required'],
+//                'billing.email' => ['required'],
 //                'billing.address1' => ['required'],
 //                'billing.city' => ['required'],
 //                'billing.state' => ['required'],
@@ -53,9 +53,9 @@ class CustomerAddressForm extends FormRequest
                 $this->rules = array_merge($this->rules, [
                     'shipping.first_name' => ['required'],
                     'shipping.last_name' => ['required'],
-                    'shipping.email' => ['required'],
+//                    'shipping.email' => ['required'],
 //                    'shipping.address1' => ['required'],
-//                    'shipping.city' => ['required'],
+                    'shipping.city' => ['required'],
 //                    'shipping.state' => ['required'],
                     'shipping.postcode' => ['required'],
                     'shipping.phone' => ['required'],

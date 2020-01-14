@@ -497,7 +497,7 @@ return [
             'shipping' => 'Доставка',
             'payment' => 'Оплата',
             'complete' => 'Завершення',
-            'billing-address' => 'Платіжна адреса',
+            'billing-address' => 'Дані платника',
             'sign-in' => 'Увійти',
             'first-name' => 'Ім\'я',
             'last-name' => 'Прізвище',
@@ -510,7 +510,7 @@ return [
             'phone' => 'Телефон',
             'country' => 'Країна',
             'order-summary' => 'Загальна сума',
-            'shipping-address' => 'Shipping Address',
+            'shipping-address' => 'Дані отримувача',
             'use_for_shipping' => 'Доставка на цю адресу',
             'continue' => 'Продовжити',
             'shipping-method' => 'Виберіть спосіб доставки',
@@ -537,7 +537,8 @@ return [
             'free-desc' => 'Це безкоштовна доставка',
             'flat-desc' => 'Це єдина ставка',
             'password' => 'Пароль',
-            'login-exist-message' => 'Ви вже маєте обліковий запис у нас, увійдіть або продовжте як гість.'
+            'login-exist-message' => 'Ви вже маєте обліковий запис у нас, увійдіть або продовжте як гість.',
+            'address-message' => 'Тут вказуєм адресу доставки. Для НОВОЇ ПОШТИ вказуєм номер відділення в полі - вулиця.'
         ],
 
         'total' => [

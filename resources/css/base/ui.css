@@ -999,6 +999,7 @@ dropdown-list
 
 .checkbox .checkbox-view {
     background-image: url("/themes/custom/assets/images/checkbox.svg");
+    background-repeat: no-repeat;
     height: 24px;
     width: 24px;
     margin: 0;
@@ -1008,7 +1009,8 @@ dropdown-list
 }
 
 .checkbox input:checked + .checkbox-view {
-    background-image: url("/themes/custom/assets/images/checkbox-checked.svg")
+    background-image: url("/themes/custom/assets/images/checkbox-checked.svg");
+    background-repeat: no-repeat;
 }
 
 .checkbox input:disabled + .checkbox-view {
@@ -1455,7 +1457,7 @@ modal {
 
 .card-modal-container .modal-body {
     overflow-y: auto;
-    max-height: 700px;
+    max-height: 250px;
 }
 
 @media only screen and (max-width: 770px) {

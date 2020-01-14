@@ -531,7 +531,8 @@ return [
             'free-desc' => 'This is a free shipping',
             'flat-desc' => 'This is a flat rate',
             'password' => 'Password',
-            'login-exist-message' => 'You already have an account with us, Sign in or continue as guest.'
+            'login-exist-message' => 'You already have an account with us, Sign in or continue as guest.',
+            'address-message' => 'Here we specify the shipping address. For NEW POST we specify the branch number in the field - street.'
         ],
 
         'total' => [
