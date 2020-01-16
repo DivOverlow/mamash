@@ -23,7 +23,7 @@
         <div class="page-content">
 
             {!! app('Webkul\Admin\DataGrids\AddressDataGrid')->render() !!}
-            
+
         </div>
 
         {!! view_render_event('bagisto.admin.customer.addresses.list.after') !!}

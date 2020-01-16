@@ -27,7 +27,10 @@ class Order {
     {
         try {
             Mail::queue(new NewOrderNotification($order));
+        } catch (\Exception $e) {
 
+        }
+        try {
             Mail::queue(new NewAdminNotification($order));
         } catch (\Exception $e) {
 

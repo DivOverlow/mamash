@@ -57,7 +57,7 @@ class CustomerAddressForm extends FormRequest
 //                    'shipping.address1' => ['required'],
                     'shipping.city' => ['required'],
 //                    'shipping.state' => ['required'],
-                    'shipping.postcode' => ['required'],
+//                    'shipping.postcode' => ['required'],
                     'shipping.phone' => ['required'],
 //                    'shipping.country' => ['required']
                 ]);

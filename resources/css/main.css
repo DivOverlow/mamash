@@ -952,7 +952,7 @@ section.product-detail div.layouter .form-container div.product-image-group div 
 }
 
 .address-card {
-    width: 260px;
+    width: 100%;
     border: 1px solid #C7C7C7;
     padding: 15px;
     margin-right: 15px;

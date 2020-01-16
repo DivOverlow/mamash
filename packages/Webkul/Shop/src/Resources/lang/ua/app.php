@@ -223,18 +223,18 @@ return [
 
             'address' => [
                 'index' => [
-                    'page-title' => 'Customer - Address',
-                    'title' => 'Address',
+                    'page-title' => 'Клієнт - Адреси',
+                    'title' => 'Адреси',
                     'add' => 'Додати адресу',
-                    'edit' => 'Edit',
+                    'edit' => 'Редагувати',
                     'empty' => 'Тут у вас немає збережених адрес, спробуйте створити їх, натиснувши посилання нижче',
                     'create' => 'Зтворити адресу',
                     'delete' => 'Видалити',
-                    'make-default' => 'Make Default',
-                    'default' => 'Default',
-                    'contact' => 'Contact',
-                    'confirm-delete' =>  'Do you really want to delete this address?',
-                    'default-delete' => 'Default address cannot be changed.',
+                    'make-default' => 'Використовувати за замовчуванням',
+                    'default' => 'За замовчуванням',
+                    'contact' => 'Контактна інформація',
+                    'confirm-delete' =>  'Ви дійсно хочете видалити цю адресу?',
+                    'default-delete' => 'Адресу за замовчуванням неможливо змінити.',
                     'enter-password' => 'Введіть ваш пароль.',
                 ],
 
@@ -254,16 +254,16 @@ return [
                 ],
 
                 'edit' => [
-                    'page-title' => 'Customer - Edit Address',
-                    'title' => 'Edit Address',
-                    'street-address' => 'Street Address',
-                    'submit' => 'Save Address',
-                    'success' => 'Address updated successfully.',
+                    'page-title' => 'Клієнт - Редагування адреси',
+                    'title' => 'Редагувати адресу',
+                    'street-address' => 'Адреса вулиці',
+                    'submit' => 'Зберегти адресу',
+                    'success' => 'Адреса успішно оновлена.',
                 ],
                 'delete' => [
-                    'success' => 'Address successfully deleted',
-                    'failure' => 'Address cannot be deleted',
-                    'wrong-password' => 'Wrong Password !'
+                    'success' => 'Адреса успішно видалена',
+                    'failure' => 'Видалити адресу не можна',
+                    'wrong-password' => 'Неправильний пароль !'
                 ]
             ],
 
@@ -530,7 +530,7 @@ return [
             'free' => 'Free',
             'coupon-used' => 'Купон використаний',
             'applied' => 'Застосовується',
-            'back' => 'Back',
+            'back' => 'Назад',
             'cash-desc' => 'Оплата при доставці',
             'money-desc' => 'Грошовий переказ',
             'paypal-desc' => 'Paypal Standard',

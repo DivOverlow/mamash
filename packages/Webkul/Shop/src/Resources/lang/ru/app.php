@@ -228,11 +228,11 @@ return [
                     'empty' => 'У вас нет сохраненных адресов здесь, попробуйте создать его, нажав на ссылку ниже',
                     'create' => 'Создать адрес',
                     'delete' => 'Удалить',
-                    'make-default' => 'Make Default',
-                    'default' => 'Default',
-                    'contact' => 'Contact',
-                    'confirm-delete' =>  'Do you really want to delete this address?',
-                    'default-delete' => 'Default address cannot be changed.',
+                    'make-default' => 'Использовать по умолчанию',
+                    'default' => 'По умолчанию',
+                    'contact' => 'Контакт',
+                    'confirm-delete' =>  'Вы действительно хотите удалить этот адрес?',
+                    'default-delete' => 'Адрес по умолчанию не может быть изменен.',
                     'enter-password' => 'Введите ваш пароль.',
                 ],
 
@@ -252,16 +252,16 @@ return [
                 ],
 
                 'edit' => [
-                    'page-title' => 'Customer - Edit Address',
+                    'page-title' => 'Клиент - Редактирование адреса',
                     'title' => 'Редактировать адрес',
-                    'street-address' => 'Street Address',
-                    'submit' => 'Save Address',
-                    'success' => 'Address updated successfully.',
+                    'street-address' => 'Адрес улицы',
+                    'submit' => 'Сохранить адрес',
+                    'success' => 'Адрес успешно обновлен.',
                 ],
                 'delete' => [
-                    'success' => 'Address successfully deleted',
-                    'failure' => 'Address cannot be deleted',
-                    'wrong-password' => 'Wrong Password !'
+                    'success' => 'Адрес успешно удален',
+                    'failure' => 'Адрес не может быть удален',
+                    'wrong-password' => 'Неправильный пароль !'
                 ]
             ],
 
@@ -528,7 +528,7 @@ return [
             'free' => 'Free',
             'coupon-used' => 'Купон используется',
             'applied' => 'Применяется',
-            'back' => 'Back',
+            'back' => 'Назад',
             'cash-desc' => 'Оплата при доставке',
             'money-desc' => 'Денежный перевод',
             'paypal-desc' => 'Paypal Standard',

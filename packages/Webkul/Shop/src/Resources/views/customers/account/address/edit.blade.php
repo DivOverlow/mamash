@@ -18,7 +18,7 @@
             </div>
 
             {!! view_render_event('bagisto.shop.customers.account.address.edit.before', ['address' => $address]) !!}
-            
+
             <form method="post" action="{{ route('customer.address.edit', $address->id) }}" @submit.prevent="onSubmit">
 
                 <div class="account-table-content">

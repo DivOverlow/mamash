@@ -4,6 +4,7 @@ namespace Webkul\Customer\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Webkul\Customer\Repositories\CustomerRepository;
 use Webkul\Customer\Repositories\CustomerAddressRepository;
 use Auth;
 
@@ -17,49 +18,49 @@ use Auth;
 class AddressController extends Controller
 {
     /**
-     * Contains route related configuration
+     * Display a listing of the resource.
      *
-     * @var array
+     * @return \Illuminate\Http\Response
      */
     protected $_config;
 
-    /**
-     * CustomerAddressRepository object
-     *
-     * @param  \Webkul\Customer\Repositories\CustomerAddressRepository $customerAddressRepository
-     * @var Object
-     */
-    protected $customerAddressRepository;
+    protected $customer;
 
+    protected $address;
 
-    public function __construct(CustomerAddressRepository $customerAddressRepository)
+    public function __construct(
+        CustomerRepository $customer,
+        CustomerAddressRepository $address
+    )
     {
         $this->middleware('customer');
 
         $this->_config = request('_config');
 
-        $this->customerAddressRepository = $customerAddressRepository;
-
         $this->customer = auth()->guard('customer')->user();
+
+        $this->address = $address;
     }
 
     /**
      * Address Route index page
      *
-     * @return \Illuminate\View\View
+     * @return view
      */
     public function index()
     {
+//        return view($this->_config['view'])->with('addresses', $this->customer->addresses);
         return view($this->_config['view'])->with(['addresses' => $this->customer->addresses, 'customer' => $this->customer]);
     }
 
     /**
      * Show the address create form
      *
-     * @return \Illuminate\View\View
+     * @return view
      */
     public function create()
     {
+//        return view($this->_config['view']);
         return view($this->_config['view'])->with('customer', $this->customer);
     }
 
@@ -76,10 +77,10 @@ class AddressController extends Controller
 
         $this->validate(request(), [
             'address1' => 'string|required',
-            'country' => 'string|required',
-            'state' => 'string|required',
+//            'country' => 'string|required',
+//            'state' => 'string|required',
             'city' => 'string|required',
-            'postcode' => 'required',
+//            'postcode' => 'required',
             'phone' => 'required'
         ]);
 
@@ -90,7 +91,7 @@ class AddressController extends Controller
             $data['default_address'] = 1;
         }
 
-        if ($this->customerAddressRepository->create($data)) {
+        if ($this->address->create($data)) {
             session()->flash('success', trans('shop::app.customer.account.address.create.success'));
 
             return redirect()->route($this->_config['redirect']);
@@ -104,11 +105,11 @@ class AddressController extends Controller
     /**
      * For editing the existing addresses of current logged in customer
      *
-     * @return \Illuminate\View\View
+     * @return view
      */
     public function edit($id)
     {
-        $address = $this->customerAddressRepository->findOneWhere([
+        $address = $this->address->findOneWhere([
             'id' => $id,
             'customer_id' => auth()->guard('customer')->user()->id
         ]);
@@ -116,7 +117,8 @@ class AddressController extends Controller
         if (! $address)
             abort(404);
 
-        return view($this->_config['view'])->with(['addresses' => $address, 'customer' => $this->customer]);
+//        return view($this->_config['view'], compact('address'));
+        return view($this->_config['view'])->with(['address' => $address, 'customer' => $this->customer]);
     }
 
     /**
@@ -131,10 +133,10 @@ class AddressController extends Controller
 
         $this->validate(request(), [
             'address1' => 'string|required',
-            'country' => 'string|required',
-            'state' => 'string|required',
+//            'country' => 'string|required',
+//            'state' => 'string|required',
             'city' => 'string|required',
-            'postcode' => 'required',
+//            'postcode' => 'required',
             'phone' => 'required'
         ]);
 
@@ -146,7 +148,7 @@ class AddressController extends Controller
             if ($id == $address->id) {
                 session()->flash('success', trans('shop::app.customer.account.address.edit.success'));
 
-                $this->customerAddressRepository->update($data, $id);
+                $this->address->update($data, $id);
 
                 return redirect()->route('customer.address.index');
             }
@@ -164,10 +166,11 @@ class AddressController extends Controller
      */
     public function makeDefault($id)
     {
-        if ($default = $this->customer->default_address)
-            $this->customerAddressRepository->find($default->id)->update(['default_address' => 0]);
+        if ($default = $this->customer->default_address) {
+            $this->address->find($default->id)->update(['default_address' => 0]);
+        }
 
-        if ($address = $this->customerAddressRepository->find($id)) {
+        if ($address = $this->address->find($id)) {
             $address->update(['default_address' => 1]);
         } else {
             session()->flash('success', trans('shop::app.customer.account.address.index.default-delete'));
@@ -185,7 +188,7 @@ class AddressController extends Controller
      */
     public function destroy($id)
     {
-        $address = $this->customerAddressRepository->findOneWhere([
+        $address = $this->address->findOneWhere([
             'id' => $id,
             'customer_id' => auth()->guard('customer')->user()->id
         ]);
@@ -193,7 +196,7 @@ class AddressController extends Controller
         if (! $address)
             abort(404);
 
-        $this->customerAddressRepository->delete($id);
+        $this->address->delete($id);
 
         session()->flash('success', trans('shop::app.customer.account.address.delete.success'));
 

@@ -84,17 +84,17 @@
 /*    height: 24px*/
 /*}*/
 
-/*.cross-icon {*/
-/*    background-image: url("/themes/default/assets/images/Icon-Crossed.svg");*/
-/*    width: 18px;*/
-/*    height: 18px*/
-/*}*/
+.cross-icon {
+    background-image: url("/themes/default/assets/images/Icon-Crossed.svg");
+    width: 18px;
+    height: 18px
+}
 
-/*.trash-icon {*/
-/*    background-image: url("/themes/default/assets/images/Icon-Trash.svg");*/
-/*    width: 24px;*/
-/*    height: 24px*/
-/*}*/
+.trash-icon {
+    background-image: url("/themes/default/assets/images/Icon-Trash.svg");
+    width: 24px;
+    height: 24px
+}
 
 .remove-icon {
     /*background-image: url("/themes/default/assets/images/Icon-remove.svg");*/
