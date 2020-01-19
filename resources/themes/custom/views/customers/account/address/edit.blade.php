@@ -97,9 +97,6 @@
 
         </div>
 
-        <div class="w-full sm:w-1/2 mt-0 sm:-mt-20">
-            @include('shop::customers.account.partials.mini-gift')
-        </div>
 
     </div>
 

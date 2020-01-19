@@ -36,7 +36,15 @@
             </div>
         </div>
     @endforeach
+
+    <div class="w-full hidden sm:block">
+        @include('shop::customers.account.partials.mini-gift')
+    </div>
+
+
+
 </div>
+
 
 @push('scripts')
 <script>

@@ -102,7 +102,8 @@
 
          {!! view_render_event('bagisto.shop.customers.account.profile.view.after', ['customer' => $customer]) !!}
     </div>
-    <div class="w-full sm:w-1/2 mt-0 sm:-mt-20">
+
+    <div class="w-full block sm:hidden my-6">
         @include('shop::customers.account.partials.mini-gift')
     </div>
 

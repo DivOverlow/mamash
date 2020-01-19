@@ -2,8 +2,20 @@
 @inject ('wishListHelper', 'Webkul\Customer\Helpers\Wishlist')
 
 <?php $images = $productImageHelper->getGalleryImages($product);?>
+<?php //$productBaseImage = $productImageHelper->getProductBaseImage($product); ?>
 
 {!! view_render_event('bagisto.shop.products.view.gallery.before', ['product' => $product]) !!}
+
+{{--<div class="py-3 px-4"   @click="showImageModal = true"> BUTTON</div>--}}
+
+{{--<image-modal :showing="showImageModal"     @close="showImageModal = false">--}}
+{{--    <div slot="body">--}}
+{{--    <div class="product-hero-image w-full h-screen flex items-center justify-center py-10">--}}
+{{--        <img class="object-contain w-auto h-screen" src="{{ $productBaseImage['original_image_url'] }}" onerror="this.src='{{ asset('vendor/webkul/ui/assets/images/product/meduim-product-placeholder.png') }}'"/>--}}
+
+{{--    </div>--}}
+{{--    </div>--}}
+{{--</image-modal>--}}
 
 
 <div class="product-image-group {{ (count($images) == 1) ? 'sm:z-20 sm:h-264' :'' }}">
@@ -38,8 +50,8 @@
                 </li>
             </ul>
 
-            <div class="product-hero-image w-full max-w-xl sm:ml-auto h-96 sm:h-112 flex items-center justify-center" id="product-hero-image">
-                <img :src="currentLargeImageUrl" id="pro-img" :data-image="currentOriginalImageUrl" class="w-full h-88 sm:h-96 object-scale-down"/>
+            <div class="product-hero-image w-full max-w-xl sm:ml-auto h-96 sm:h-112 flex items-center justify-center" id="product-hero-image" @click="showImageModal = true">
+                <img :src="currentLargeImageUrl" id="pro-img" :data-image="currentLargeImageUrl" class="w-full h-88 sm:h-96 object-scale-down"/>
 
                 @auth('customer')
                     <a @if ($wishListHelper->getWishlistProduct($product)) class="add-to-wishlist already" @else class="add-to-wishlist" @endif href="{{ route('customer.wishlist.add', $product->product_id) }}">

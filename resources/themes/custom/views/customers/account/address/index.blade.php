@@ -102,9 +102,11 @@
 
         {!! view_render_event('bagisto.shop.customers.account.address.list.after', ['addresses' => $addresses]) !!}
     </div>
-    <div class="w-full sm:w-1/2 sm:-mt-20">
+
+    <div class="w-full block sm:hidden my-6">
         @include('shop::customers.account.partials.mini-gift')
     </div>
+
 
 </div>
 @endsection

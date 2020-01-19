@@ -13,7 +13,6 @@
             </div>
 
             @include('shop::customers.account.partials.sidemenu')
-            @include('shop::customers.account.partials.mini-gift')
 
         </div>
 

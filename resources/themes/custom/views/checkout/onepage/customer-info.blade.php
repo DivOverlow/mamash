@@ -2,7 +2,7 @@
 
     <div class="form-container" v-if="!this.new_billing_address">
         <div class="form-header mb-10 w-full flex justify-end items-center">
-            <span class="checkout-step-heading font-serif font-medium uppercase mr-6">{{ __('shop::app.checkout.onepage.billing-address') }}</span>
+{{--            <span class="checkout-step-heading font-serif font-medium uppercase mr-6">{{ __('shop::app.checkout.onepage.billing-address') }}</span>--}}
 
             <a class="btn btn-primary py-3 px-6" @click = newBillingAddress()>
                 {{ __('shop::app.checkout.onepage.new-address') }}
@@ -59,10 +59,11 @@
 {{--            </div>--}}
     </div>
 
+
     <div class="form-container" v-if="this.new_billing_address">
 
         <div class="form-header w-full flex justify-end items-center">
-            <div class="font-serif font-medium uppercase mr-6">{{ __('shop::app.checkout.onepage.billing-address') }}</div>
+{{--            <div class="font-serif font-medium uppercase mr-6">{{ __('shop::app.checkout.onepage.billing-address') }}</div>--}}
             @guest('customer')
                 <a class="btn btn-primary py-3 px-6 -mt-8" href="{{ route('customer.session.index') }}">
                     {{ __('shop::app.checkout.onepage.sign-in') }}
@@ -140,11 +141,7 @@
             </span>
         </div>
         @guest('customer')
-            <div class="form-control" v-if="address.billing.use_for_shipping && this.new_shipping_address">
-            <div class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 mt-6 p-4" role="alert">
-                <p class="font-serif">{{ __('shop::app.checkout.onepage.address-message') }}</p>
-            </div>
-
+        <div class="form-control" v-if="address.billing.use_for_shipping && this.new_shipping_address">
             <div class="control-group" :class="[errors.has('address-form.billing[city]') ? 'has-error' : '']">
                 <div class="mat-div" :class="address.billing.city ? 'is-completed' : ''">
                     <label for="billing[city]" class="mat-label required">
@@ -177,21 +174,22 @@
                 </span>
             </div>
             @if (core()->getConfigData('customer.settings.address.street_lines') && core()->getConfigData('customer.settings.address.street_lines') > 1)
-                <div class="control-group" style="margin-top: -25px;">
+                <div class="control-group">
                     <div class="mat-div">
-                    @for ($i = 1; $i < core()->getConfigData('customer.settings.address.street_lines'); $i++)
-                        <input type="text" class="control mat-input" name="billing[address1][{{ $i }}]" id="billing_address_{{ $i }}" v-model="address.billing.address1[{{$i}}]">
-                    @endfor
+                        <label for="billing_address_1" class="mat-label">
+                            {{ __('shop::app.checkout.onepage.address2') }}
+                        </label>
+                        <input type="text" class="control mat-input" name="billing[address1][{{ 1 }}]" id="billing_address_{{ 1 }}" v-model="address.billing.address1[{{1}}]">
+{{--                    @for ($i = 1; $i < core()->getConfigData('customer.settings.address.street_lines'); $i++)--}}
+{{--                        <input type="text" class="control mat-input" name="billing[address1][{{ $i }}]" id="billing_address_{{ $i }}" v-model="address.billing.address1[{{$i}}]">--}}
+{{--                    @endfor--}}
                     </div>
                 </div>
             @endif
         </div>
         @endguest
         @auth('customer')
-            <div class="form-control" v-if="address.billing.use_for_shipping && !this.new_shipping_address">
-            <div class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 mt-6 p-4" role="alert">
-                <p class="font-serif">{{ __('shop::app.checkout.onepage.address-message') }}</p>
-            </div>
+            <div class="form-control" v-if="address.billing.use_for_shipping && this.new_billing_address">
 
             <div class="control-group" :class="[errors.has('address-form.billing[city]') ? 'has-error' : '']">
                 <div class="mat-div" :class="address.billing.city ? 'is-completed' : ''">
@@ -199,7 +197,7 @@
                         {{ __('shop::app.checkout.onepage.city') }}
                     </label>
 
-                    <input type="text" class="control mat-input required" id="billing[city]" name="billing[city]"
+                    <input type="text" class="control required mat-input" id="billing[city]" name="billing[city]"
                            v-model="address.billing.city"
                            data-vv-as="&quot;{{ __('shop::app.checkout.onepage.city') }}&quot;"/>
                 </div>
@@ -209,30 +207,66 @@
                 </span>
             </div>
 
-            <div class="control-group" :class="[errors.has('address-form.billing[address1][]') ? 'has-error' : '']">
-                <div class="mat-div">
-                    <label for="billing_address_0" class="required mat-label">
-                        {{ __('shop::app.checkout.onepage.address1') }}
-                    </label>
+{{--            <div class="control-group" :class="[errors.has('address-form.billing[address1][]') ? 'has-error' : '']">--}}
+{{--                <div class="mat-div">--}}
+{{--                    <label for="billing_address_0" class="required mat-label">--}}
+{{--                        {{ __('shop::app.checkout.onepage.address1') }}--}}
+{{--                    </label>--}}
 
-                    <input type="text" v-validate="'required'" class="control mat-input" id="billing_address_0"
-                           name="billing[address1][]" v-model="address.billing.address1[0]"
-                           data-vv-as="&quot;{{ __('shop::app.checkout.onepage.address1') }}&quot;"/>
-                </div>
+{{--                    <input type="text" v-validate="'required'" class="control mat-input" id="billing_address_0"--}}
+{{--                           name="billing[address1][]" v-model="address.billing.address1[0]"--}}
+{{--                           data-vv-as="&quot;{{ __('shop::app.checkout.onepage.address1') }}&quot;"/>--}}
+{{--                </div>--}}
 
-                <span class="control-error" v-if="errors.has('address-form.billing[address1][]')">
+{{--                <span class="control-error" v-if="errors.has('address-form.billing[address1][]')">--}}
+{{--                    @{{ errors.first('address-form.billing[address1][]') }}--}}
+{{--                </span>--}}
+{{--            </div>--}}
+
+{{--            @if (core()->getConfigData('customer.settings.address.street_lines') && core()->getConfigData('customer.settings.address.street_lines') > 1)--}}
+{{--                <div class="control-group">--}}
+{{--                    <div class="mat-div">--}}
+{{--                        <label for="billing_address_1" class="mat-label">--}}
+{{--                            {{ __('shop::app.checkout.onepage.address2') }}--}}
+{{--                        </label>--}}
+
+{{--                    @for ($i = 1; $i < core()->getConfigData('customer.settings.address.street_lines'); $i++)--}}
+{{--                            <input type="text" class="control mat-input" name="billing[address1][{{ $i }}]" id="billing_address_{{ $i }}" v-model="address.billing.address1[{{$i}}]">--}}
+{{--                        @endfor--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            @endif--}}
+                <div class="control-group" :class="[errors.has('address-form.billing[address1][]') ? 'has-error' : '']">
+                    <div class="mat-div" :class="address.billing.address1[0] ? 'is-completed' : ''">
+                        <label for="billing_address_0" class="required mat-label">
+                            {{ __('shop::app.checkout.onepage.address1') }}
+                        </label>
+
+                        <input type="text" v-validate="'required'" class="control mat-input" id="billing_address_0"
+                               name="billing[address1][]" v-model="address.billing.address1[0]"
+                               data-vv-as="&quot;{{ __('shop::app.checkout.onepage.address1') }}&quot;"/>
+                    </div>
+
+                    <span class="control-error" v-if="errors.has('address-form.billing[address1][]')">
                     @{{ errors.first('address-form.billing[address1][]') }}
                 </span>
-            </div>
-            @if (core()->getConfigData('customer.settings.address.street_lines') && core()->getConfigData('customer.settings.address.street_lines') > 1)
-                <div class="control-group" style="margin-top: -25px;">
-                    <div class="mat-div">
-                        @for ($i = 1; $i < core()->getConfigData('customer.settings.address.street_lines'); $i++)
-                            <input type="text" class="control mat-input" name="billing[address1][{{ $i }}]" id="billing_address_{{ $i }}" v-model="address.billing.address1[{{$i}}]">
-                        @endfor
-                    </div>
                 </div>
-            @endif
+                @if (core()->getConfigData('customer.settings.address.street_lines') && core()->getConfigData('customer.settings.address.street_lines') > 1)
+                    <div class="control-group">
+                        <div class="mat-div" :class="address.billing.address1[{{1}}] ? 'is-completed' : ''">
+                            <label for="billing_address_1" class="mat-label">
+                                {{ __('shop::app.checkout.onepage.address2') }}
+                            </label>
+                            <input type="text" class="control mat-input" name="billing[address1][{{ 1 }}]" id="billing_address_{{ 1 }}" v-model="address.billing.address1[{{1}}]">
+                            {{--                    @for ($i = 1; $i < core()->getConfigData('customer.settings.address.street_lines'); $i++)--}}
+                            {{--                        <input type="text" class="control mat-input" name="billing[address1][{{ $i }}]" id="billing_address_{{ $i }}" v-model="address.billing.address1[{{$i}}]">--}}
+                            {{--                    @endfor--}}
+                        </div>
+                    </div>
+                @endif
+
+
+
         </div>
         @endauth
 
@@ -387,10 +421,6 @@
                 </span>
             </div>
 
-            <div class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 mt-6 p-4" role="alert">
-                <p class="font-serif">{{ __('shop::app.checkout.onepage.address-message') }}</p>
-            </div>
-
             <div class="control-group" :class="[errors.has('address-form.shipping[city]') ? 'has-error' : '']">
                 <div class="mat-div" :class="address.shipping.city ? 'is-completed' : ''">
                     <label for="shipping[city]" class="required mat-label">
@@ -418,11 +448,15 @@
             </div>
 
             @if (core()->getConfigData('customer.settings.address.street_lines') && core()->getConfigData('customer.settings.address.street_lines') > 1)
-                <div class="control-group" style="margin-top: -25px;">
-                    <div class="mat-div is-completed">
-                    @for ($i = 1; $i < core()->getConfigData('customer.settings.address.street_lines'); $i++)
-                        <input type="text" class="control mat-input" name="shipping[address1][{{ $i }}]" id="shipping_address_{{ $i }}" v-model="address.shipping.address1[{{$i}}]">
-                    @endfor
+                <div class="control-group">
+                    <div class="mat-div" :class="address.shipping.address1[{{1}}] ? 'is-completed' : ''">
+                        <label for="shipping_address_1" class="mat-label">
+                            {{ __('shop::app.checkout.onepage.address2') }}
+                        </label>
+
+                        <input type="text" class="control mat-input" id="shipping_address_1" name="shipping[address1][{{1}}]" v-model="address.shipping.address1[{{1}}]" data-vv-as="&quot;{{ __('shop::app.checkout.onepage.address2') }}&quot;"/>
+                    </div>
+
                 </div>
             @endif
 

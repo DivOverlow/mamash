@@ -79,5 +79,8 @@
 
             {!! view_render_event('bagisto.shop.customers.account.reviews.list.after', ['reviews' => $reviews]) !!}
         </div>
+        <div class="w-full block sm:hidden my-6">
+            @include('shop::customers.account.partials.mini-gift')
+        </div>
     </div>
 @endsection

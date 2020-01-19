@@ -42,13 +42,7 @@ class NewOrderNotification extends Mailable
     public function build()
     {
             return $this->to($this->order->customer_email, $this->order->customer_full_name)
-//                ->from(env('ADMIN_MAIL_TO'))
                 ->subject(trans('shop::app.mail.order.subject'))
                 ->view('shop::emails.sales.new-order');
-//
-//        return $this->to(env('ADMIN_MAIL_TO'), $this->order->customer_full_name)
-//            ->subject(trans('shop::app.mail.order.subject'))
-//            ->view('shop::emails.sales.new-order');
-
     }
 }

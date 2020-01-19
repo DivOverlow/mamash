@@ -53,7 +53,7 @@
                     </div>
 
                     @if (core()->getConfigData('customer.settings.address.street_lines') && core()->getConfigData('customer.settings.address.street_lines') > 1)
-                        <div class="control-group" style="margin-top: -25px;">
+                        <div class="control-group">
                             @for ($i = 1; $i < core()->getConfigData('customer.settings.address.street_lines'); $i++)
                                 <input type="text" class="control mat-input text-gray-dark" name="address1[{{ $i }}]" id="address_{{ $i }}">
                             @endfor
@@ -93,9 +93,6 @@
 
             {!! view_render_event('bagisto.shop.customers.account.address.create.after') !!}
 
-        </div>
-        <div class="w-full sm:w-1/2 mt-0 sm:-mt-20">
-            @include('shop::customers.account.partials.mini-gift')
         </div>
 
     </div>

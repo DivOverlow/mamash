@@ -33,13 +33,20 @@
         <span class="name top-0 right-0 inline-block absolute -mt-1 mr-2">
 {{--            {{ __('shop::app.header.cart') }}--}}
             <span
-                class="count align-top bg-chocolate text-xs text-white rounded-full h-6 w-6 flex items-center justify-center"> {{ $cart->items->count() }}</span>
+                class="count align-top bg-chocolate text-xs text-white rounded-full h-6 w-6 flex items-center justify-center">{{ intval($cart->items_qty) }}</span>
         </span>
 
         {{--        <i class="icon arrow-down-icon"></i>--}}
     </div>
 
-    <card-modal :showing="showCardModal" @close="showCardModal = false">
+    <?php
+        $showCardModal = false;
+        if (session()->has('showCardModal')) {
+            $showCardModal = true;
+            session()->forget('showCardModal');
+        }
+    ?>
+    <card-modal :showing="showCardModal"     @close="showCardModal = false">
         <div slot="header" class="dropdown-header bg-gray-snow h-20 flex content-center flex-wrap"> <p class="heading w-full font-medium text-center text-gray-dark text-xl uppercase">
                 {{ __('shop::app.checkout.cart.title') }}
             </p>

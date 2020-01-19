@@ -1461,7 +1461,7 @@ modal {
 }
 
 @media only screen and (max-width: 770px) {
-    .card-modal-container {
+    .card-modal-container .modal-content {
         max-width: 100%;
     }
     .modal-container {

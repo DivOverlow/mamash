@@ -79,16 +79,16 @@ foreach (app('Webkul\Category\Repositories\CategoryRepository')->getVisibleCateg
             {{--        v-if="haveChildren"  @click="showOrHide"></i>--}}
             <div v-if="haveChildren" class="nav-level">
                 <div>
-{{--            <div class="main-container-wrapper w-1/3">--}}
-                <ul v-if="haveChildren && show">
-                    <category-item
-                        v-for="(child, index) in item.children"
-                        :key="index"
-                        :url="url"
-                        :item="child">
-                    </category-item>
-                </ul>
-            </div>
+                    {{--            <div class="main-container-wrapper w-1/3">--}}
+                    <ul v-if="haveChildren && show">
+                        <category-item
+                            v-for="(child, index) in item.children"
+                            :key="index"
+                            :url="url"
+                            :item="child">
+                        </category-item>
+                    </ul>
+                </div>
             </div>
         </li>
     </script>
