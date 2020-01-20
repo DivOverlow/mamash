@@ -2,21 +2,8 @@
 @inject ('wishListHelper', 'Webkul\Customer\Helpers\Wishlist')
 
 <?php $images = $productImageHelper->getGalleryImages($product);?>
-<?php //$productBaseImage = $productImageHelper->getProductBaseImage($product); ?>
 
 {!! view_render_event('bagisto.shop.products.view.gallery.before', ['product' => $product]) !!}
-
-{{--<div class="py-3 px-4"   @click="showImageModal = true"> BUTTON</div>--}}
-
-{{--<image-modal :showing="showImageModal"     @close="showImageModal = false">--}}
-{{--    <div slot="body">--}}
-{{--    <div class="product-hero-image w-full h-screen flex items-center justify-center py-10">--}}
-{{--        <img class="object-contain w-auto h-screen" src="{{ $productBaseImage['original_image_url'] }}" onerror="this.src='{{ asset('vendor/webkul/ui/assets/images/product/meduim-product-placeholder.png') }}'"/>--}}
-
-{{--    </div>--}}
-{{--    </div>--}}
-{{--</image-modal>--}}
-
 
 <div class="product-image-group {{ (count($images) == 1) ? 'sm:z-20 sm:h-264' :'' }}">
 
@@ -30,6 +17,8 @@
 {!! view_render_event('bagisto.shop.products.view.gallery.after', ['product' => $product]) !!}
 
 @push('scripts')
+
+
 
     <script type="text/x-template" id="product-gallery-template">
         <div class="flex flex-row  {{ (count($images) == 1) ? 'sm:sticky sm:top-0' :'' }}">
@@ -50,8 +39,16 @@
                 </li>
             </ul>
 
-            <div class="product-hero-image w-full max-w-xl sm:ml-auto h-96 sm:h-112 flex items-center justify-center" id="product-hero-image" @click="showImageModal = true">
-                <img :src="currentLargeImageUrl" id="pro-img" :data-image="currentLargeImageUrl" class="w-full h-88 sm:h-96 object-scale-down"/>
+           <image-modal :showing="showImageModal1" :modalTransform="modalTransform11"  @close="showImageModal1 = false">
+                <div slot="body">
+                    <div class="w-full h-screen flex items-center justify-center py-10">
+                        <img :src="currentOriginalImageUrl" :data-image="currentOriginalImageUrl" class="object-contain w-auto h-screen"/>
+                    </div>
+                </div>
+            </image-modal>
+
+            <div class="product-hero-image w-full max-w-xl sm:ml-auto h-96 sm:h-112 flex items-center justify-center" id="product-hero-image">
+                <img :src="currentLargeImageUrl" id="pro-img" :data-image="currentLargeImageUrl" class="w-full h-88 sm:h-96 object-scale-down z-10" @click="openModal1($event)"/>
 
                 @auth('customer')
                     <a @if ($wishListHelper->getWishlistProduct($product)) class="add-to-wishlist already" @else class="add-to-wishlist" @endif href="{{ route('customer.wishlist.add', $product->product_id) }}">
@@ -63,6 +60,24 @@
     </script>
 
     <script>
+        function prepareModalOpened(e) {
+            // console.log('event='+ e.currentTarget.getBoundingClientRect())
+            const targetRect = e.currentTarget.getBoundingClientRect()
+            // console.log(targetRect)
+            const targetCenterTop = targetRect.top + targetRect.height/2
+            const targetCenterLeft = targetRect.left + targetRect.width/2
+            const screenCenterTop = window.innerHeight/2
+            const screenCenterLeft = window.innerWidth/2
+
+            // css translate scale
+            const translateX = targetCenterLeft - screenCenterLeft
+            const translateY = targetCenterTop - screenCenterTop
+            const scaleX = targetRect.width / window.innerWidth
+            const scaleY = targetRect.height / window.innerHeight
+
+            return `translate(${translateX}px, ${translateY}px) scale(${scaleX}, ${scaleY})`
+        }
+
         var galleryImages = @json($images);
 
         Vue.component('product-gallery', {
@@ -71,6 +86,8 @@
 
             data: function() {
                 return {
+                    showImageModal1: false,
+                    modalTransform11: '',
                     images: galleryImages,
 
                     thumbs: [],
@@ -106,6 +123,12 @@
             },
 
             methods: {
+                openModal1(e) {
+                    console.log(e)
+                    this.modalTransform11 = prepareModalOpened(e)
+                    return this.showImageModal1 = true;
+                } ,
+
                 prepareThumbs: function() {
                     var this_this = this;
 
