@@ -47,9 +47,12 @@
         }
     ?>
     <card-modal :showing="showCardModal"     @close="showCardModal = false">
-        <div slot="header" class="dropdown-header bg-gray-snow h-20 flex content-center flex-wrap"> <p class="heading w-full font-medium text-center text-gray-dark text-xl uppercase">
-                {{ __('shop::app.checkout.cart.title') }}
-            </p>
+        <div slot="header">
+            <div class="dropdown-header bg-gray-snow h-20 flex content-center flex-wrap">
+                <p class="heading w-full font-medium text-center text-gray-dark text-xl uppercase">
+                    {{ __('shop::app.checkout.cart.title') }}
+                </p>
+            </div>
         </div>
         <div slot="body">
             <div class="cart-content my-3">

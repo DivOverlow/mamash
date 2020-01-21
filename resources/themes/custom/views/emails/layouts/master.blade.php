@@ -4,9 +4,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500" rel="stylesheet" type="text/css">
+        @yield('extra-css')
     </head>
 
-    <body style="font-family: montserrat, sans-serif;">
+    <body style="font-family: montserrat, sans-serif;background-color: #282828;">
         <div style="max-width: 1000px; margin-left: auto; margin-right: auto;">
             <div style="text-align: center;">
                 {{ $header ?? '' }}

@@ -127,7 +127,7 @@
                                 <label class="ml-auto -mt-3 bg-chocolate rounded-full h-8 w-8 flex items-center justify-center text-white text-xl">
                                     {{ substr(auth()->guard('customer')->user()->first_name, 0, 2) }}
                                 </label>
-                                <a href="{{ route('customer.profile.index') }}" title="{{ __('shop::app.header.profile') }}" class="z-10 absolute inset-0 mt-2">
+                                <a href="{{ route('customer.profile.index') }}" title="{{ __('shop::app.header.profile') }}" class="z-0 absolute inset-0 mt-2">
                                     <span class="user-icon active"></span></a>
                             </div>
                             @else

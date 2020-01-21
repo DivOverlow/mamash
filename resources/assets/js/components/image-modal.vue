@@ -110,12 +110,12 @@
     }
     .modal-wrapper {
         background-color: rgba(0, 0, 0, 0.75);
-        z-index: 40;
+        z-index: 50;
     }
     .modal-mask .modal-content {
         background-image: url('/themes/custom/assets/images/banner/bg_card.jpg');
         /*background-color: #f5f5f5;*/
-        z-index: 50;
+        z-index: 10;
         padding: 2em;
         height: 100%;
     }

@@ -129,20 +129,6 @@
 
                                     {!! view_render_event('bagisto.shop.products.view.description.before', ['product' => $product]) !!}
 
-                                    {{--                                    <accordian :title="'{{ __('shop::app.products.description') }}'" :active="true">--}}
-                                    {{--                                        <div slot="header">--}}
-                                    {{--                                            {{ __('shop::app.products.description') }}--}}
-                                    {{--                                            <i class="icon expand-icon right"></i>--}}
-                                    {{--                                        </div>--}}
-
-                                    {{--                                        <div slot="body">--}}
-                                    {{--                                            <div class="full-description">--}}
-                                    {{--                                                {!! $product->description !!}--}}
-                                    {{--                                            </div>--}}
-                                    {{--                                        </div>--}}
-                                    {{--                                    </accordian>--}}
-
-                                    {{--                                    {!! view_render_event('bagisto.shop.products.view.description.after', ['product' => $product]) !!}--}}
                                     <div class="w-full flex justify-center my-6">
                                         @include ('shop::products.view.attributes-shipping')
                                     </div>

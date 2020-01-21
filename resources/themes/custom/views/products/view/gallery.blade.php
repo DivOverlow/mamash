@@ -21,7 +21,7 @@
 
 
     <script type="text/x-template" id="product-gallery-template">
-        <div class="flex flex-row  {{ (count($images) == 1) ? 'sm:sticky sm:top-0' :'' }}">
+        <div class="flex flex-row z-10 {{ (count($images) == 1) ? 'sm:sticky sm:top-0' :'' }}">
 
             <ul class="thumb-list" v-if="(thumbs.length > 2)">
                 <li class="gallery-control top" @click="moveThumbs('top')" v-if="(thumbs.length > 4) && this.is_move.up">
@@ -48,7 +48,7 @@
             </image-modal>
 
             <div class="product-hero-image w-full max-w-xl sm:ml-auto h-96 sm:h-112 flex items-center justify-center" id="product-hero-image">
-                <img :src="currentLargeImageUrl" id="pro-img" :data-image="currentLargeImageUrl" class="w-full h-88 sm:h-96 object-scale-down z-10" @click="openModal1($event)"/>
+                <img :src="currentLargeImageUrl" id="pro-img" :data-image="currentLargeImageUrl" class="w-full h-88 sm:h-96 object-scale-down cursor-pointer z-10" @click="openModal1($event)"/>
 
                 @auth('customer')
                     <a @if ($wishListHelper->getWishlistProduct($product)) class="add-to-wishlist already" @else class="add-to-wishlist" @endif href="{{ route('customer.wishlist.add', $product->product_id) }}">
@@ -61,9 +61,7 @@
 
     <script>
         function prepareModalOpened(e) {
-            // console.log('event='+ e.currentTarget.getBoundingClientRect())
             const targetRect = e.currentTarget.getBoundingClientRect()
-            // console.log(targetRect)
             const targetCenterTop = targetRect.top + targetRect.height/2
             const targetCenterLeft = targetRect.left + targetRect.width/2
             const screenCenterTop = window.innerHeight/2
