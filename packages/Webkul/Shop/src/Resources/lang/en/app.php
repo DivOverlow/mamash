@@ -564,6 +564,7 @@ return [
         'order' => [
             'subject' => 'New Order Confirmation',
             'heading' => 'Order Confirmation!',
+            'new-heading' => 'Your order',
             'dear' => 'Dear :customer_name',
             'dear-admin' => 'Dear :admin_name',
             'greeting' => 'Thanks for your Order :order_id placed on :created_at',
@@ -578,7 +579,7 @@ return [
             'gift' => 'Free Gift',
             'quantity' => 'Quantity',
             'subtotal' => 'Subtotal',
-            'shipping-handling' => 'Shipping & Handling',
+            'shipping-handling' => 'Shipping',
             'tax' => 'Tax',
             'discount' => 'Discount',
             'grand-total' => 'Grand Total',
@@ -604,7 +605,13 @@ return [
                 'final-summary' => 'Thanks for showing your interest in our store',
                 'help' => 'If you need any kind of help please contact us at :support_email',
                 'thanks' => 'Thanks!',
-            ]
+            ],
+            'menu' => [
+                'products' => 'Products',
+                'collections' => 'Collections',
+                'gifts' => 'Gifts',
+                'about-us' => 'About Us',
+            ],
         ],
 
         'invoice' => [

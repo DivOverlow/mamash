@@ -570,6 +570,7 @@ return [
         'order' => [
             'subject' => 'Підтвердження нового замовлення',
             'heading' => 'Підтвердження замовлення!',
+            'new-heading' => 'Ваше замовлення',
             'dear' => 'Шановний(на) :customer_name',
             'dear-admin' => 'Шановний(на) :admin_name',
             'greeting' => 'Дякуєм за ваше замовлення :order_id розміщене :created_at',
@@ -584,7 +585,7 @@ return [
             'gift' => 'Безкоштовний подарунок',
             'quantity' => 'Кількість',
             'subtotal' => 'Підсумок',
-            'shipping-handling' => 'Доставка & Обробка',
+            'shipping-handling' => 'Доставка',
             'tax' => 'Податок',
             'discount' => 'Знижка',
             'grand-total' => 'Загальна сума',
@@ -610,7 +611,13 @@ return [
                 'final-summary' => 'Дякуємо, що завітали до нашого магазину',
                 'help' => 'Якщо вам потрібна будь-яка допомога, зв\'яжіться з нами за адресою :support_email',
                 'thanks' => 'Дякуєм!',
-            ]
+            ],
+            'menu' => [
+                'products' => 'Товари',
+                'collections' => 'Колекції',
+                'gifts' => 'Подарунки',
+                'about-us' => 'Про нас',
+            ],
         ],
 
         'invoice' => [

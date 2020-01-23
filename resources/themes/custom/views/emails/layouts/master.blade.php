@@ -7,7 +7,7 @@
         @yield('extra-css')
     </head>
 
-    <body style="font-family: montserrat, sans-serif;background-color: #282828;">
+    <body style="font-family: montserrat, sans-serif;background-color: #fff;">
         <div style="max-width: 1000px; margin-left: auto; margin-right: auto;">
             <div style="text-align: center;">
                 {{ $header ?? '' }}

@@ -55,7 +55,7 @@
             </div>
         </div>
         <div slot="body">
-            <div class="cart-content my-3">
+            <div class="cart-content my-3"user-icon mr-1>
                 @foreach ($items as $item)
                     <div class="item w-full flex flex-row items-center px-3 py-2 inline-block">
                         <div class="item-image w-1/5">
