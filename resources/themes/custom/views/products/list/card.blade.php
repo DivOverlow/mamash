@@ -7,22 +7,20 @@
     @inject ('categoryRepository', 'Webkul\Category\Repositories\CategoryRepository')
 
     <?php $productBaseImage = $productImageHelper->getProductBaseImage($product);
-
     $categoryCollection = null;
-    $categoriesForProduct =  $productRepository->find($product->id);
-    if ($categoriesForProduct) {
-        foreach ($categoriesForProduct->categories()->get() as $categoryProduct ) {
-            if ($categoryProduct->display_mode == "collections_only" ) {
-                $categoryCollection = $categoryRepository->findOrFail($categoryProduct->id);
+    $product_categories = $productRepository->find($product->id);
+
+    if($product_categories) {
+        foreach ($product_categories->categories()->get() as $category) {
+            if ($category->display_mode == "collections_only") {
+                $categoryCollection = $category;
                 break;
             }
         }
     }
     ?>
 
-
-
-    @if ($product->new)
+@if ($product->new)
         <div class="sticker new">
             {{ __('shop::app.products.new') }}
         </div>

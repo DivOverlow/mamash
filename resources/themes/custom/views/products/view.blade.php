@@ -45,11 +45,12 @@
     $categories = array_reverse($categories);
 
     $categoryCollection = null;
-    $categoriesForProduct = $productRepository->find($product->id);
-    if ($categoriesForProduct) {
-        foreach ($categoriesForProduct->categories()->get() as $categoryProduct) {
-            if ($categoryProduct->display_mode == "products_collection") {
-                $categoryCollection = $categoryRepository->findOrFail($categoryProduct->id);
+    $product_categories = $productRepository->find($product->id);
+
+    if($product_categories) {
+        foreach ($product_categories->categories()->get() as $category) {
+            if ($category->display_mode == "collections_only") {
+                $categoryCollection = $category;
                 break;
             }
         }
@@ -77,7 +78,7 @@
                                 @include ('shop::products.view.gallery')
                             </div>
                             <div class="w-full sm:w-1/2">
-                                <div class="details w-full font-serif flex justify-center content-center h-132 flex-wrap">
+                                <div class="details w-full font-serif flex justify-center content-between h-132 flex-wrap">
                                     <div class="product-heading font-serif text-gray-dark text-center my-3">
                                         @if ($categoryCollection)
                                             <div class="text-lg font-medium hover:text-gray-silver">
@@ -200,7 +201,7 @@
             </script>
 
             <script type="text/x-template" id="quantity-changer-template">
-                <div class="quantity control-group invisible" :class="[errors.has(controlName) ? 'has-error' : '']">
+                <div class="quantity control-group hidden" :class="[errors.has(controlName) ? 'has-error' : '']">
                     <label class="required">{{ __('shop::app.products.quantity') }}</label>
 
                     <button type="button outline-none" class="decrease" @click="decreaseQty()">-</button>

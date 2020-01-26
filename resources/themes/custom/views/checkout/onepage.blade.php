@@ -151,7 +151,7 @@
                                                     $categoriesForProduct = $productRepository->find($item->product_id);
                                                     if ($categoriesForProduct) {
                                                         foreach ($categoriesForProduct->categories()->get() as $categoryProduct) {
-                                                            if ($categoryProduct->display_mode == "products_collection") {
+                                                            if ($categoryProduct->display_mode == "collections_only") {
                                                                 $categoryCollection = $categoryRepository->findOrFail($categoryProduct->id);
                                                                 break;
                                                             }

@@ -74,14 +74,11 @@
                             <div class="item-title w-full">
                                 @php
                                     $categoryCollection = null;
-                                    $categoriesForProduct = $productRepository->find($item->product_id);
-                                    if ($categoriesForProduct) {
-                                    foreach ($categoriesForProduct->categories()->get() as $categoryProduct) {
-                                    if ($categoryProduct->display_mode == "products_collection") {
-                                    $categoryCollection = $categoryRepository->findOrFail($categoryProduct->id);
-                                    break;
-                                    }
-                                    }
+                                    foreach ($item->product->categories as $category) {
+                                        if ($category->display_mode == "collections_only") {
+                                            $categoryCollection = $category;
+                                            break;
+                                        }
                                     }
                                 @endphp
                                 @if ($categoryCollection)

@@ -1,5 +1,5 @@
 @inject ('productImageHelper', 'Webkul\Product\Helpers\ProductImage')
-@inject ('productRepository', 'Webkul\Product\Repositories\ProductRepository')
+@inject ('templateRepository', 'Webkul\CMS\Repositories\TemplateRepository')
 
 @component('shop::emails.layouts.master')
 
@@ -15,16 +15,11 @@
         }
         a {
             text-decoration: none;
+            color: #fff;
         }
         .container {
             background-color: #fff;
             padding: 30px;
-        }
-        .section-footer {
-            background-color: #2f2f2f;
-            display: flex;
-            height: 688px;
-            padding: 0 20px;
         }
         .top-nav {
             display: flex;
@@ -35,73 +30,97 @@
             width: 100%;
             background-color: #212121;
         }
-
         .top-nav ul {
             display: flex;
             justify-content: space-around;
             width: 100%;
         }
-
         .top-nav ul li {
             display: flex;
             font-size: .875rem;
             font-weight: 400;
             text-transform: uppercase;
         }
-
         .top-nav ul li::after {
             content: ' |';
             color: #fff;
             margin-left: 22px;
         }
-
         .top-nav ul li:last-child::after {
             margin-left: 0;
             content: '';
         }
-
-        .top-nav a {
-            color: #fff;
-        }
-
         .top-nav a:hover {
             color: #dfa46d;
         }
-
+        .section-footer {
+            background-color: #2f2f2f;
+            display: flex;
+            flex-direction: column;
+            height: 688px;
+            padding: 0 20px;
+        }
+        .section-footer .list-link ul  {
+            display: flex;
+            flex-direction: column;
+            line-height: 2;
+        }
+        .section-footer .list-link li a {
+            color: #969696;
+        }
+        .section-footer .list-link li:first-child,
+        .section-footer .list-link li a:hover {
+            color: #fff;
+        }
         .user-icon {
             width: 27px;
             height: 27px;
             display: inline-block;
-            background-image: url(../themes/custom/assets/images/user.png);
+            background-image: url({{ bagisto_asset('images/user.png') }});
             background-position: top center;
             background-repeat: no-repeat;
+            margin-top: -2px;
         }
-
         .user-icon:hover,
         .user-icon:focus,
-        .user-icon.active,
+        .user-icon:active
         {
             background-position-y: -31px;
         }
-
+        .shipping-icon {
+            width: 28px;
+            height: 20px;
+            display: inline-block;
+            background-image: url({{ bagisto_asset('images/shipping.png') }});
+            background-position: top center;
+            background-repeat: no-repeat;
+        }
+        .pay-cards {
+            width: 215px;
+            height: 33px;
+            display: inline-block;
+            background-image: url({{ bagisto_asset('images/cards.png') }});
+            background-position: top center;
+            background-repeat: no-repeat;
+        }
         /*@media only screen and (max-width: 768px) {*/
         @media only screen and (max-width : 480px) {
             .container {
                 padding: 30px 0;
             }
-
             .top-nav {
                 flex-direction: column;
             }
-
             .top-nav ul li {
                 font-size: .75rem;
             }
-
             .top-nav ul li::after {
                 content: ' |';
                 color: #fff;
                 margin: 0 2px;
+            }
+            .section-footer {
+                padding: 0;
             }
         }
     </style>
@@ -130,7 +149,7 @@
                     <li>
                         <a href="{{ route('shop.cms.page', 'about-us') }}">{{ __('shop::app.mail.order.menu.about-us') }}</a>
                     </li>
-                    <li><a href="{{ route('customer.session.index') }}"><span class="user-icon mr-1"></span></a></li>
+                    <li><a href="{{ route('customer.session.index') }}"><span class="user-icon"></span></a></li>
                 </ul>
             </div> <!-- end top-nav -->
         </div>
@@ -149,21 +168,27 @@
                             <tbody>
                             @foreach ($order->items as $item)
                                 <?php
-                                if ($item->type == "configurable")
-                                    $images = $productImageHelper->getProductBaseImage($item->child->product);
-                                else
-                                    $images = $productImageHelper->getProductBaseImage($item->product);
-
                                 $categoryCollection = null;
-                                $categoriesForProduct = $productRepository->find($item->product->id);
-                                if ($categoriesForProduct) {
-                                    foreach ($categoriesForProduct->categories()->get() as $categoryProduct) {
-                                        if ($categoryProduct->display_mode == "products_collection") {
-                                            $categoryCollection = $categoryRepository->findOrFail($categoryProduct->id);
+
+                                if ($item->type == "configurable") {
+                                    $images = $productImageHelper->getProductBaseImage($item->child->product);
+                                    foreach ($item->child->product->categories as $category) {
+                                        if ($category->display_mode == "collections_only") {
+                                            $categoryCollection = $category;
                                             break;
                                         }
                                     }
                                 }
+                                else {
+                                    $images = $productImageHelper->getProductBaseImage($item->product);
+                                    foreach ($item->product->categories as $category) {
+                                        if ($category->display_mode == "collections_only") {
+                                            $categoryCollection = $category;
+                                            break;
+                                        }
+                                    }
+                                }
+
                                 ?>
 
                                 <tr>
@@ -257,7 +282,7 @@
                 </div>
 
                 <div style="display: flex;align-items: center;display:inline-block; margin-bottom: 40px">
-                    <div class="decorator shipping" style="width: 2rem;"></div>
+                    <div class="shipping-icon"></div>
                     <span style="font-weight: bold;font-size: 1.5rem;text-transform: uppercase;padding-left: 1rem;">{{ __('shop::app.mail.order.shipping-handling') }}</span>
                 </div>
                 <div style="font-size: 1.125rem;letter-spacing: 0.05em;font-weight: 500;text-transform: uppercase;color: #969696;margin-bottom: 15px;">
@@ -266,64 +291,96 @@
                 <div style="display: inline-block; font-size: 1.25rem;font-weight: bold;">
                     {{ $order->shipping_address->city }}, {{ $order->shipping_address->address1 }}
                 </div>
-
-
-
-
-{{--                <div style="margin-top: 65px;font-size: 16px;color: #5E5E5E;line-height: 24px;display: inline-block">--}}
-{{--                    <p style="font-size: 16px;color: #5E5E5E;line-height: 24px;">--}}
-{{--                        {{ __('shop::app.mail.order.final-summary') }}--}}
-{{--                    </p>--}}
-
-{{--                    <p style="font-size: 16px;color: #5E5E5E;line-height: 24px;">--}}
-{{--                        {!!--}}
-{{--                            __('shop::app.mail.order.help', [--}}
-{{--                                'support_email' => '<a style="color:#0041FF" href="mailto:' . config('mail.from.address') . '">' . config('mail.from.address'). '</a>'--}}
-{{--                                ])--}}
-{{--                        !!}--}}
-{{--                    </p>--}}
-
-{{--                    <p style="font-size: 16px;color: #5E5E5E;line-height: 24px;">--}}
-{{--                        {{ __('shop::app.mail.order.thanks') }}--}}
-{{--                    </p>--}}
-{{--                </div>--}}
             </div>
         </div>
 
-        <div class="section-footer">
-            <div style="display: flex;align-items: center;width: 100%;border-bottom: solid 1px #727272;height: 160px;">
-                <ul style="display: flex;justify-content: space-around;width: 90%;">
-                    <li><a href="#" target="_blank" rel="noopener noreferrer">
-                            <svg width="40" height="40" fill="#979797" xmlns="http://www.w3.org/2000/svg"
-                                 viewBox="0 0 24 24">
-                                <path
-                                    d="M21,3H3v18h9.621v-6.961h-2.343v-2.725h2.343V9.309c0-2.324,1.421-3.591,3.495-3.591c0.699-0.002,1.397,0.034,2.092,0.105 v2.43h-1.428c-1.13,0-1.35,0.534-1.35,1.322v1.735h2.7l-0.351,2.725h-2.365V21H21V3z"></path>
-                            </svg>
-                        </a></li>
-                    <li><a href="#" target="_blank" rel="noopener noreferrer">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
-                                 fill="none" stroke="#979797" stroke-width="2" stroke-linecap="round"
-                                 stroke-linejoin="round" class="feather feather-instagram">
-                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                                <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line>
-                            </svg>
-                        </a></li>
-                    <li><a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
-                            <svg width="40" height="40" viewBox="0 0 26 20" fill="#979797"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M25.457 3.13c-.3-1.232-1.18-2.203-2.299-2.532C21.13 0 13 0 13 0S4.87 0 2.842.598c-1.119.33-2 1.3-2.299 2.531C0 5.362 0 10.02 0 10.02s0 4.658.543 6.891c.3 1.232 1.18 2.162 2.299 2.49C4.87 20 13 20 13 20s8.13 0 10.158-.598c1.119-.33 2-1.26 2.299-2.49C26 14.677 26 10.02 26 10.02s0-4.658-.543-6.89zM10.34 14.25V5.79l6.795 4.23-6.795 4.23z"
-                                    fill-rule="nonzero"></path>
-                            </svg>
-                        </a>
-                    </li>
-                </ul>
-            </div>
 
-{{--            <div style="display: flex;align-items: center;width: 100%;border-bottom: solid 1px #727272;padding: 20px 0;">--}}
+        {!! DbView::make($templateRepository
+                ->getTemplate('email-footer-new-order'))
+                ->field('html_content')
+                ->render() !!}
+
+
+{{--        <div class="section-footer">--}}
+{{--            <div style="display: flex;align-items: center;justify-content: center;width: 100%;border-bottom: solid 1px #727272;height: 160px;">--}}
+{{--                <ul style="display: flex;justify-content: space-around;width: 90%;">--}}
+{{--                    <li><a href="#" target="_blank" rel="noopener noreferrer">--}}
+{{--                            <svg width="40" height="40" fill="#979797" xmlns="http://www.w3.org/2000/svg"--}}
+{{--                                 viewBox="0 0 24 24">--}}
+{{--                                <path--}}
+{{--                                    d="M21,3H3v18h9.621v-6.961h-2.343v-2.725h2.343V9.309c0-2.324,1.421-3.591,3.495-3.591c0.699-0.002,1.397,0.034,2.092,0.105 v2.43h-1.428c-1.13,0-1.35,0.534-1.35,1.322v1.735h2.7l-0.351,2.725h-2.365V21H21V3z"></path>--}}
+{{--                            </svg>--}}
+{{--                        </a></li>--}}
+{{--                    <li><a href="#" target="_blank" rel="noopener noreferrer">--}}
+{{--                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"--}}
+{{--                                 fill="none" stroke="#979797" stroke-width="2" stroke-linecap="round"--}}
+{{--                                 stroke-linejoin="round" class="feather feather-instagram">--}}
+{{--                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>--}}
+{{--                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>--}}
+{{--                                <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line>--}}
+{{--                            </svg>--}}
+{{--                        </a></li>--}}
+{{--                    <li><a href="https://youtube.com" target="_blank" rel="noopener noreferrer">--}}
+{{--                            <svg width="40" height="40" viewBox="0 0 26 20" fill="#979797"--}}
+{{--                                 xmlns="http://www.w3.org/2000/svg">--}}
+{{--                                <path--}}
+{{--                                    d="M25.457 3.13c-.3-1.232-1.18-2.203-2.299-2.532C21.13 0 13 0 13 0S4.87 0 2.842.598c-1.119.33-2 1.3-2.299 2.531C0 5.362 0 10.02 0 10.02s0 4.658.543 6.891c.3 1.232 1.18 2.162 2.299 2.49C4.87 20 13 20 13 20s8.13 0 10.158-.598c1.119-.33 2-1.26 2.299-2.49C26 14.677 26 10.02 26 10.02s0-4.658-.543-6.89zM10.34 14.25V5.79l6.795 4.23-6.795 4.23z"--}}
+{{--                                    fill-rule="nonzero"></path>--}}
+{{--                            </svg>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                </ul>--}}
 {{--            </div>--}}
-        </div>
+
+{{--            <div style="display: flex;align-content: space-around;justify-content: center;flex-wrap: wrap;width: 100%;border-bottom: solid 1px #727272;height: 330px;">--}}
+{{--                <div style="display: flex;justify-content: space-around;width: 100%;font-size: .875rem;line-height: 2;color:#fff">--}}
+{{--                    <div style="width: 35%;">--}}
+{{--                        <span style="display: inline-block;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#dfa46d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-map-pin"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> Киев, ЖК "Чайки", ул. Лобановского, 12</span>--}}
+{{--                    </div>--}}
+{{--                    <div style="width: 35%;">--}}
+{{--                        <span style="display: inline-block;"><a href="tel:+380661312772"><span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#dfa46d" stroke="#dfa46d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></span> 066 131 27 72 </a></span>--}}
+{{--                        {!!--}}
+{{--                                '<a style="color:#fff" href="mailto:' . config('mail.from.address') . '">' . config('mail.from.address'). '</a>'--}}
+{{--                        !!}--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+
+{{--                <div class="list-link" style="display: flex;justify-content: space-around;width: 100%;font-size: 1rem;">--}}
+{{--                    <div style="width: 35%;">--}}
+{{--                        <ul>--}}
+{{--                            <li>Информация</li>--}}
+{{--                            <li><a href="@php echo route('shop.cms.page', 'delivery-and-payment') @endphp">Доставка и оплата</a></li>--}}
+{{--                            <li><a href="@php echo route('shop.cms.page', 'faq') @endphp">Частые вопросы</a></li>--}}
+{{--                            <li><a href="@php echo route('shop.cms.page', 'contact-us') @endphp">Контакты</a></li>--}}
+{{--                        </ul>--}}
+{{--                    </div>--}}
+{{--                    <div style="width: 35%;">--}}
+{{--                        <ul class="list-group text-gray-light">--}}
+{{--                            <li>О бренде</li>--}}
+{{--                            <li><a href="@php echo route('shop.cms.page', 'about-us') @endphp">О нас</a></li>--}}
+{{--                            <li><a href="@php echo route('shop.cms.page', 'leaving') @endphp">Уход с Mamash</a></li>--}}
+{{--                            <li><a href="@php echo route('shop.cms.page', 'gifts') @endphp">Подарки</a></li>--}}
+{{--                        </ul>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+
+{{--            <div style="display: flex;align-content: space-around;justify-content: center;flex-wrap: wrap;width: 100%;height: 195px;">--}}
+
+{{--                <div class="pay-cards" style="width: 100%"></div>--}}
+{{--                <ul style="display: flex;">--}}
+{{--                    <li style="margin-right: 2rem;">--}}
+{{--                        <a href="@php echo route('shop.cms.page', 'terms-conditions') @endphp">Условия покупки</a>--}}
+{{--                    </li>--}}
+{{--                    <li style="margin-right: 2rem;">--}}
+{{--                        <a href="#">Документация</a>--}}
+{{--                    </li>--}}
+{{--                    <li>--}}
+{{--                        <a href="@php echo route('shop.cms.page', 'refund-policy') @endphp">Условия возврата</a>--}}
+{{--                    </li>--}}
+{{--                </ul>--}}
+{{--            </div>--}}
+{{--        </div>--}}
 
 
     </div>
