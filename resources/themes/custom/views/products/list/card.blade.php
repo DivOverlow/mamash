@@ -4,21 +4,24 @@
 
     @inject ('productImageHelper', 'Webkul\Product\Helpers\ProductImage')
     @inject ('productRepository', 'Webkul\Product\Repositories\ProductRepository')
-    @inject ('categoryRepository', 'Webkul\Category\Repositories\CategoryRepository')
 
     <?php $productBaseImage = $productImageHelper->getProductBaseImage($product);
     $categoryCollection = null;
     $product_categories = $productRepository->find($product->id);
 
     if($product_categories) {
-        foreach ($product_categories->categories()->get() as $category) {
+        foreach ($product_categories->categories as $category) {
             if ($category->display_mode == "collections_only") {
-                $categoryCollection = $category;
+                    $categoryCollection = $category;
                 break;
             }
         }
     }
+
     ?>
+
+
+
 
 @if ($product->new)
         <div class="sticker new">
@@ -28,7 +31,7 @@
 
     <div class="product-information">
         <div class="text-base text-center text-gray-dark my-1 hover:text-gray-silver">
-            @if ($categoryCollection)
+        @if ($categoryCollection)
                 <a href="{{ route('shop.categories.index', $categoryCollection->slug) }}" title="{{ $categoryCollection->name }}">
                     {{ $categoryCollection->name }} </a>
             @endif

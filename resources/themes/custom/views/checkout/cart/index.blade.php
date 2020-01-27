@@ -60,7 +60,7 @@
 
                                                     <div class="item-title w-full">
                                                         @php
-                                                            $categoryCollection = null;
+                                                              $categoryCollection = null;
                                                             foreach ($item->product->categories as $category) {
                                                                 if ($category->display_mode == "collections_only") {
                                                                     $categoryCollection = $category;

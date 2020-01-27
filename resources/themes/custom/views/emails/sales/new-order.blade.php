@@ -3,158 +3,36 @@
 
 @component('shop::emails.layouts.master')
 
-@section('extra-css')
-    <style>
-        ul, li {
-            list-style: none !important;
-            margin: 0;
-            padding: 0;
-            border: 0;
-            font-size: 100%;
-            font: inherit;
-        }
-        a {
-            text-decoration: none;
-            color: #fff;
-        }
-        .container {
-            background-color: #fff;
-            padding: 30px;
-        }
-        .top-nav {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            letter-spacing: 0.025em;
-            height: 50px;
-            width: 100%;
-            background-color: #212121;
-        }
-        .top-nav ul {
-            display: flex;
-            justify-content: space-around;
-            width: 100%;
-        }
-        .top-nav ul li {
-            display: flex;
-            font-size: .875rem;
-            font-weight: 400;
-            text-transform: uppercase;
-        }
-        .top-nav ul li::after {
-            content: ' |';
-            color: #fff;
-            margin-left: 22px;
-        }
-        .top-nav ul li:last-child::after {
-            margin-left: 0;
-            content: '';
-        }
-        .top-nav a:hover {
-            color: #dfa46d;
-        }
-        .section-footer {
-            background-color: #2f2f2f;
-            display: flex;
-            flex-direction: column;
-            height: 688px;
-            padding: 0 20px;
-        }
-        .section-footer .list-link ul  {
-            display: flex;
-            flex-direction: column;
-            line-height: 2;
-        }
-        .section-footer .list-link li a {
-            color: #969696;
-        }
-        .section-footer .list-link li:first-child,
-        .section-footer .list-link li a:hover {
-            color: #fff;
-        }
-        .user-icon {
-            width: 27px;
-            height: 27px;
-            display: inline-block;
-            background-image: url({{ bagisto_asset('images/user.png') }});
-            background-position: top center;
-            background-repeat: no-repeat;
-            margin-top: -2px;
-        }
-        .user-icon:hover,
-        .user-icon:focus,
-        .user-icon:active
-        {
-            background-position-y: -31px;
-        }
-        .shipping-icon {
-            width: 28px;
-            height: 20px;
-            display: inline-block;
-            background-image: url({{ bagisto_asset('images/shipping.png') }});
-            background-position: top center;
-            background-repeat: no-repeat;
-        }
-        .pay-cards {
-            width: 215px;
-            height: 33px;
-            display: inline-block;
-            background-image: url({{ bagisto_asset('images/cards.png') }});
-            background-position: top center;
-            background-repeat: no-repeat;
-        }
-        /*@media only screen and (max-width: 768px) {*/
-        @media only screen and (max-width : 480px) {
-            .container {
-                padding: 30px 0;
-            }
-            .top-nav {
-                flex-direction: column;
-            }
-            .top-nav ul li {
-                font-size: .75rem;
-            }
-            .top-nav ul li::after {
-                content: ' |';
-                color: #fff;
-                margin: 0 2px;
-            }
-            .section-footer {
-                padding: 0;
-            }
-        }
-    </style>
-@endsection
-
 <div style="background-color: #282828; width: 100%">
     <div style="width: 100%;max-width: 600px;margin:auto;">
         <div style="height: 170px;background-color: #212121;padding: 0 30px;">
             <div style="height: 120px;display: flex;align-items: center;justify-content: center;">
-                <a href="{{ config('app.url') }}">
+                <a style="text-decoration: none;color: #fff;" href="{{ config('app.url') }}">
                     @include ('shop::emails.layouts.logo')
                 </a>
             </div>
 
-            <div class="top-nav">
-                <ul>
-                    <li>
-                        <a href="{{ route('shop.categories.index', 'products') }}">{{ __('shop::app.mail.order.menu.products') }}</a>
+            <div style="display: flex;align-items: center;justify-content: center;letter-spacing: 0.025em;height: 30px;width: 100%;background-color: #212121;">
+                <ul style="padding-inline-start: 0 !important;display: flex;justify-content: space-around;width: 100%;align-items: center;">
+                    <li style="list-style: none !important;margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;display: flex;justify-content: center;font-size: .875rem;font-weight: 400;text-transform: uppercase;width: 23%;border-right: 1px solid #fff;">
+                        <a style="text-decoration: none;color: #fff;" href="{{ route('shop.categories.index', 'products') }}">{{ __('shop::app.mail.order.menu.products') }}</a>
                     </li>
-                    <li>
-                        <a href="{{ route('shop.categories.index', 'collections') }}">{{ __('shop::app.mail.order.menu.collections') }}</a>
+                    <li style="list-style: none !important;margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;display: flex;justify-content: center;font-size: .875rem;font-weight: 400;text-transform: uppercase;width: 23%;border-right: 1px solid #fff;">
+                        <a style="text-decoration: none;color: #fff;" href="{{ route('shop.categories.index', 'collections') }}">{{ __('shop::app.mail.order.menu.collections') }}</a>
                     </li>
-                    <li>
-                        <a href="{{ route('shop.categories.index', 'gifts') }}">{{ __('shop::app.mail.order.menu.gifts') }}</a>
+                    <li style="list-style: none !important;margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;display: flex;justify-content: center;font-size: .875rem;font-weight: 400;text-transform: uppercase;width: 23%;border-right: 1px solid #fff;">
+                        <a style="text-decoration: none;color: #fff;" href="{{ route('shop.categories.index', 'gifts') }}">{{ __('shop::app.mail.order.menu.gifts') }}</a>
                     </li>
-                    <li>
-                        <a href="{{ route('shop.cms.page', 'about-us') }}">{{ __('shop::app.mail.order.menu.about-us') }}</a>
+                    <li style="list-style: none !important;margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;display: flex;justify-content: center;font-size: .875rem;font-weight: 400;text-transform: uppercase;width: 23%;border-right: 1px solid #fff;">
+                        <a style="text-decoration: none;color: #fff;" href="{{ route('shop.cms.page', 'about-us') }}">{{ __('shop::app.mail.order.menu.about-us') }}</a>
                     </li>
-                    <li><a href="{{ route('customer.session.index') }}"><span class="user-icon"></span></a></li>
+                    <li style="list-style: none !important;margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;display: flex;justify-content: center;font-size: .875rem;font-weight: 400;text-transform: uppercase;width: 8%"><a style="text-decoration: none;color: #fff;" href="{{ route('customer.session.index') }}">
+                            <span style="width: 27px;height: 27px;display: inline-block;background-image: url({{ bagisto_asset('images/user.png') }});background-position: top center;background-repeat: no-repeat;margin-top: -2px;"></span></a></li>
                 </ul>
             </div> <!-- end top-nav -->
         </div>
 
-        <div class="container">
+        <div style="background-color: #fff;padding: 30px;">
             <div style="background-color: #fff; color: #242424;">
                 <div
                     style="text-transform: uppercase;display: flex;justify-content: center;align-items: center;height: 120px;font-weight: bold;font-size: 1.875rem;line-height: 30px;margin-bottom: 30px;background-color: #e8e8e8;">
@@ -199,7 +77,7 @@
                                             style="display: flex;flex-direction: column;text-align: left;">
                                             @if ($categoryCollection)
                                                 <div style="padding: 8px;color: #969696;font-weight: 400;">
-                                                    <a href="{{ route('shop.categories.index', $categoryCollection->slug) }}"
+                                                    <a style="text-decoration: none;color: #fff;" href="{{ route('shop.categories.index', $categoryCollection->slug) }}"
                                                        title="{{ $categoryCollection->name }}">
                                                         {{ $categoryCollection->name }} </a>
                                                 </div>
@@ -282,7 +160,7 @@
                 </div>
 
                 <div style="display: flex;align-items: center;display:inline-block; margin-bottom: 40px">
-                    <div class="shipping-icon"></div>
+                    <div style="width: 28px;height: 20px;display: inline-block;background-image: url({{ bagisto_asset('images/shipping.png') }});background-position: top center;background-repeat: no-repeat;"></div>
                     <span style="font-weight: bold;font-size: 1.5rem;text-transform: uppercase;padding-left: 1rem;">{{ __('shop::app.mail.order.shipping-handling') }}</span>
                 </div>
                 <div style="font-size: 1.125rem;letter-spacing: 0.05em;font-weight: 500;text-transform: uppercase;color: #969696;margin-bottom: 15px;">
@@ -301,17 +179,17 @@
                 ->render() !!}
 
 
-{{--        <div class="section-footer">--}}
+{{--        <div class="section-footer" style="background-color: #2f2f2f;display: flex;flex-direction: column;height: 688px;padding: 0 20px;">--}}
 {{--            <div style="display: flex;align-items: center;justify-content: center;width: 100%;border-bottom: solid 1px #727272;height: 160px;">--}}
-{{--                <ul style="display: flex;justify-content: space-around;width: 90%;">--}}
-{{--                    <li><a href="#" target="_blank" rel="noopener noreferrer">--}}
+{{--                <ul style="padding-inline-start: 0 !important;display: flex;justify-content: space-around;width: 90%;">--}}
+{{--                    <li style="list-style: none !important;margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;"><a style="text-decoration: none;color: #fff;" href="#" target="_blank" rel="noopener noreferrer">--}}
 {{--                            <svg width="40" height="40" fill="#979797" xmlns="http://www.w3.org/2000/svg"--}}
 {{--                                 viewBox="0 0 24 24">--}}
 {{--                                <path--}}
 {{--                                    d="M21,3H3v18h9.621v-6.961h-2.343v-2.725h2.343V9.309c0-2.324,1.421-3.591,3.495-3.591c0.699-0.002,1.397,0.034,2.092,0.105 v2.43h-1.428c-1.13,0-1.35,0.534-1.35,1.322v1.735h2.7l-0.351,2.725h-2.365V21H21V3z"></path>--}}
 {{--                            </svg>--}}
 {{--                        </a></li>--}}
-{{--                    <li><a href="#" target="_blank" rel="noopener noreferrer">--}}
+{{--                    <li style="list-style: none !important;margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;"><a style="text-decoration: none;color: #fff;" href="#" target="_blank" rel="noopener noreferrer">--}}
 {{--                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"--}}
 {{--                                 fill="none" stroke="#979797" stroke-width="2" stroke-linecap="round"--}}
 {{--                                 stroke-linejoin="round" class="feather feather-instagram">--}}
@@ -320,7 +198,7 @@
 {{--                                <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line>--}}
 {{--                            </svg>--}}
 {{--                        </a></li>--}}
-{{--                    <li><a href="https://youtube.com" target="_blank" rel="noopener noreferrer">--}}
+{{--                    <li style="list-style: none !important;margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;"><a style="text-decoration: none;color: #fff;" href="https://youtube.com" target="_blank" rel="noopener noreferrer">--}}
 {{--                            <svg width="40" height="40" viewBox="0 0 26 20" fill="#979797"--}}
 {{--                                 xmlns="http://www.w3.org/2000/svg">--}}
 {{--                                <path--}}
@@ -338,28 +216,28 @@
 {{--                        <span style="display: inline-block;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#dfa46d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-map-pin"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> Киев, ЖК "Чайки", ул. Лобановского, 12</span>--}}
 {{--                    </div>--}}
 {{--                    <div style="width: 35%;">--}}
-{{--                        <span style="display: inline-block;"><a href="tel:+380661312772"><span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#dfa46d" stroke="#dfa46d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></span> 066 131 27 72 </a></span>--}}
+{{--                        <span style="display: inline-block;"><a style="text-decoration: none;color: #fff;" href="tel:+380661312772"><span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#dfa46d" stroke="#dfa46d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></span> 066 131 27 72 </a></span>--}}
 {{--                        {!!--}}
-{{--                                '<a style="color:#fff" href="mailto:' . config('mail.from.address') . '">' . config('mail.from.address'). '</a>'--}}
+{{--                                '<a style"text-decoration: none;color: #fff;"" style="color:#fff" href="mailto:' . config('mail.from.address') . '">' . config('mail.from.address'). '</a>'--}}
 {{--                        !!}--}}
 {{--                    </div>--}}
 {{--                </div>--}}
 
 {{--                <div class="list-link" style="display: flex;justify-content: space-around;width: 100%;font-size: 1rem;">--}}
 {{--                    <div style="width: 35%;">--}}
-{{--                        <ul>--}}
-{{--                            <li>Информация</li>--}}
-{{--                            <li><a href="@php echo route('shop.cms.page', 'delivery-and-payment') @endphp">Доставка и оплата</a></li>--}}
-{{--                            <li><a href="@php echo route('shop.cms.page', 'faq') @endphp">Частые вопросы</a></li>--}}
-{{--                            <li><a href="@php echo route('shop.cms.page', 'contact-us') @endphp">Контакты</a></li>--}}
+{{--                        <ul style="padding-inline-start: 0 !important;display: flex;flex-direction: column;line-height: 2;">--}}
+{{--                            <li style="list-style: none !important;margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;color: #fff;">Информация</li>--}}
+{{--                            <li style="list-style: none !important;margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;"><a style="text-decoration: none;color: #969696;" href="@php echo route('shop.cms.page', 'delivery-and-payment') @endphp">Доставка и оплата</a></li>--}}
+{{--                            <li style="list-style: none !important;margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;"><a style="text-decoration: none;color: #969696;" href="@php echo route('shop.cms.page', 'faq') @endphp">Частые вопросы</a></li>--}}
+{{--                            <li style="list-style: none !important;margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;"><a style="text-decoration: none;color: #969696;" href="@php echo route('shop.cms.page', 'contact-us') @endphp">Контакты</a></li>--}}
 {{--                        </ul>--}}
 {{--                    </div>--}}
 {{--                    <div style="width: 35%;">--}}
-{{--                        <ul class="list-group text-gray-light">--}}
-{{--                            <li>О бренде</li>--}}
-{{--                            <li><a href="@php echo route('shop.cms.page', 'about-us') @endphp">О нас</a></li>--}}
-{{--                            <li><a href="@php echo route('shop.cms.page', 'leaving') @endphp">Уход с Mamash</a></li>--}}
-{{--                            <li><a href="@php echo route('shop.cms.page', 'gifts') @endphp">Подарки</a></li>--}}
+{{--                        <ul style="padding-inline-start: 0 !important;display: flex;flex-direction: column;line-height: 2;">--}}
+{{--                            <li style="list-style: none !important;margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;color: #fff;">О бренде</li>--}}
+{{--                            <li style="list-style: none !important;margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;"><a style="text-decoration: none;color: #969696;" href="@php echo route('shop.cms.page', 'about-us') @endphp">О нас</a></li>--}}
+{{--                            <li style="list-style: none !important;margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;"><a style="text-decoration: none;color: #969696;" href="@php echo route('shop.cms.page', 'leaving') @endphp">Уход с Mamash</a></li>--}}
+{{--                            <li style="list-style: none !important;margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;"><a style="text-decoration: none;color: #969696;" href="@php echo route('shop.cms.page', 'gifts') @endphp">Подарки</a></li>--}}
 {{--                        </ul>--}}
 {{--                    </div>--}}
 {{--                </div>--}}
@@ -367,16 +245,16 @@
 
 {{--            <div style="display: flex;align-content: space-around;justify-content: center;flex-wrap: wrap;width: 100%;height: 195px;">--}}
 
-{{--                <div class="pay-cards" style="width: 100%"></div>--}}
-{{--                <ul style="display: flex;">--}}
-{{--                    <li style="margin-right: 2rem;">--}}
-{{--                        <a href="@php echo route('shop.cms.page', 'terms-conditions') @endphp">Условия покупки</a>--}}
+{{--                <div style="height: 33px;display: inline-block;background-image: url({{ bagisto_asset('images/cards.png') }});background-position: top center;background-repeat: no-repeat;width: 100%"></div>--}}
+{{--                <ul style="padding-inline-start: 0 !important;display: flex;">--}}
+{{--                    <li style="list-style: none !important;margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;margin-right: 2rem;">--}}
+{{--                        <a style="text-decoration: none;color: #fff;" href="@php echo route('shop.cms.page', 'terms-conditions') @endphp">Условия покупки</a>--}}
 {{--                    </li>--}}
-{{--                    <li style="margin-right: 2rem;">--}}
-{{--                        <a href="#">Документация</a>--}}
+{{--                    <li style="list-style: none !important;margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;margin-right: 2rem;">--}}
+{{--                        <a style="text-decoration: none;color: #fff;" href="@php echo route('shop.cms.page', 'terms-of-use') @endphp">Документация</a>--}}
 {{--                    </li>--}}
-{{--                    <li>--}}
-{{--                        <a href="@php echo route('shop.cms.page', 'refund-policy') @endphp">Условия возврата</a>--}}
+{{--                    <li style="list-style: none !important;margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;">--}}
+{{--                        <a style="text-decoration: none;color: #fff;" href="@php echo route('shop.cms.page', 'refund-policy') @endphp">Условия возврата</a>--}}
 {{--                    </li>--}}
 {{--                </ul>--}}
 {{--            </div>--}}
