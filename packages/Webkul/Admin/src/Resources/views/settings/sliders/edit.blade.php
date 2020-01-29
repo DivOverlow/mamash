@@ -6,7 +6,9 @@
 
 @section('content')
     <div class="content">
-        <form method="POST" action="{{ route('admin.sliders.update', $slider->id) }}" @submit.prevent="onSubmit" enctype="multipart/form-data">
+        <?php $locale = request()->get('locale') ?: app()->getLocale(); ?>
+{{--        <form method="POST" action="{{ route('admin.sliders.update', $slider->id) }}" @submit.prevent="onSubmit" enctype="multipart/form-data">--}}
+        <form method="POST" action="" @submit.prevent="onSubmit" enctype="multipart/form-data">
             <div class="page-header">
                 <div class="page-title">
                     <h1>
@@ -14,6 +16,19 @@
 
                         {{ __('admin::app.settings.sliders.edit-title') }}
                     </h1>
+
+                    <div class="control-group">
+                        <select class="control" id="locale-switcher" onChange="window.location.href = this.value">
+                            @foreach (core()->getAllLocales() as $localeModel)
+
+                                <option value="{{ route('admin.sliders.update', $slider->id) . '?locale=' . $localeModel->code }}" {{ ($localeModel->code) == $locale ? 'selected' : '' }}>
+                                    {{ $localeModel->name }}
+                                </option>
+
+                            @endforeach
+                        </select>
+                    </div>
+
                 </div>
 
                 <div class="page-action">
@@ -30,10 +45,10 @@
 
                     {!! view_render_event('bagisto.admin.settings.slider.edit.before') !!}
 
-                    <div class="control-group" :class="[errors.has('title') ? 'has-error' : '']">
+                    <div class="control-group" :class="[errors.has('{{$locale}}[title]') ? 'has-error' : '']">
                         <label for="title" class="required">{{ __('admin::app.settings.sliders.name') }}</label>
-                        <input type="text" class="control" name="title" v-validate="'required'" data-vv-as="&quot;{{ __('admin::app.settings.sliders.name') }}&quot;" value="{{ $slider->title ?: old('title') }}">
-                        <span class="control-error" v-if="errors.has('title')">@{{ errors.first('title') }}</span>
+                        <input type="text" class="control" id="title" name="{{$locale}}[title]" value="{{ old($locale)['title'] ?: $slider->translate($locale)['title'] }}" v-validate="'required'" data-vv-as="&quot;{{ __('admin::app.settings.sliders.name') }}&quot;">
+                        <span class="control-error" v-if="errors.has('{{$locale}}[title]')">@{{ errors.first('{!!$locale!!}[title]') }}</span>
                     </div>
 
                     <?php $channels = core()->getAllChannels() ?>
@@ -61,14 +76,20 @@
                         </span>
                     </div>
 
+                    <div class="control-group" :class="[errors.has('{{$locale}}[slug]') ? 'has-error' : '']">
+                        <label for="slug" class="required">{{ __('admin::app.settings.sliders.slug') }}</label>
+                        <input type="text" v-validate="'required'" class="control" id="slug" name="{{$locale}}[slug]" value="{{ old($locale)['slug'] ?: $slider->translate($locale)['slug'] }}" data-vv-as="&quot;{{ __('admin::app.settings.sliders.slug') }}&quot;" v-slugify/>
+                        <span class="control-error" v-if="errors.has('{{$locale}}[slug]')">@{{ errors.first('{!!$locale!!}[slug]') }}</span>
+                    </div>
+
                     <div class="control-group">
-                        <label for="content">{{ __('admin::app.settings.sliders.content') }}</label>
+                        <label for="add_content">{{ __('admin::app.settings.sliders.content') }}</label>
 
                         <div class="panel-body">
-                            <textarea id="tiny" class="control" id="add_content" name="content" rows="5">{{ $slider->content ? : old('content') }}</textarea>
+                            <textarea id="tiny" class="control" id="add_content" name="{{$locale}}[content]" rows="5">{{  old($locale)['content'] ?: $slider->translate($locale)['content'] }}</textarea>
                         </div>
 
-                        <span class="control-error" v-if="errors.has('content')">@{{ errors.first('content') }}</span>
+                        <span class="control-error" v-if="errors.has('{{$locale}}[content]')">@{{'{!!$locale!!}[content]'}}</span>
                     </div>
 
                     {!! view_render_event('bagisto.admin.settings.slider.edit.after', ['slider' => $slider]) !!}

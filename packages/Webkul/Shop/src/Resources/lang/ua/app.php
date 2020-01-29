@@ -29,7 +29,8 @@ return [
         'new-products' => 'Новинки та ',
         'bestsellers' => 'Бестселери',
         'verify-email' => 'Verify your email account',
-        'resend-verify-email' => 'Resend Verification Email'
+        'resend-verify-email' => 'Resend Verification Email',
+        'shop-now' => 'Купити зараз'
     ],
 
     'header' => [

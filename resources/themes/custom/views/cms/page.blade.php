@@ -21,7 +21,7 @@
 @endsection
 
 @section('content-wrapper')
-    {!! DbView::make($page)->field('html_content')->render() !!}
+
 
 {{--<div class="w-full bg-cover" style="background-image: url('/themes/custom/assets/images/banner/bg_card.jpg');">--}}
 {{--    <div class="account-content main-container-wrapper flex flex-col sm:flex-row">--}}

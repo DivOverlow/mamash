@@ -780,6 +780,7 @@ return [
             'save-btn-title' => 'Save Slider',
             'general' => 'General',
             'image' => 'Image',
+            'slug' => 'Slug',
             'content' => 'Content',
             'channels' => 'Channel',
             'created-success' => 'Slider item created successfully',

@@ -19,8 +19,11 @@ class SliderDataGrid extends DataGrid
 
     public function prepareQueryBuilder()
     {
-        $queryBuilder = DB::table('sliders as sl')->addSelect('sl.id as slider_id', 'sl.title', 'ch.name')->leftJoin('channels as ch', 'sl.channel_id', '=',
-        'ch.id');
+        $queryBuilder = DB::table('sliders as sl')->addSelect('sl.id as slider_id', 'st.title', 'ch.name')->leftJoin('channels as ch', 'sl.channel_id', '=',
+        'ch.id')->leftJoin('slider_translations as st', function($leftJoin) {
+            $leftJoin->on('sl.id', '=', 'st.slider_id')
+                ->where('st.locale', app()->getLocale());
+        })->groupBy('sl.id');;
 
         $this->addFilter('slider_id', 'sl.id');
         $this->addFilter('channel_name', 'ch.name');

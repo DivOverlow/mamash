@@ -75,6 +75,7 @@ class SliderController extends Controller
     {
         $this->validate(request(), [
             'title' => 'string|required',
+            'slug' => 'string|required',
             'channel_id' => 'required',
             'image.*'  => 'required|mimes:jpeg,bmp,png,jpg'
         ]);
@@ -108,8 +109,11 @@ class SliderController extends Controller
      */
     public function update($id)
     {
+        $locale = request()->get('locale') ?: app()->getLocale();
+
         $this->validate(request(), [
-            'title' => 'string|required',
+            $locale . '.title' => 'string|required',
+            $locale . '.slug' => 'string|required',
             'channel_id' => 'required',
             'image.*'  => 'sometimes|mimes:jpeg,bmp,png,jpg'
         ]);

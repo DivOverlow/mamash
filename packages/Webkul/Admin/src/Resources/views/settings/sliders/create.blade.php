@@ -60,6 +60,12 @@
                         </span>
                     </div>
 
+                    <div class="control-group" :class="[errors.has('slug') ? 'has-error' : '']">
+                        <label for="slug" class="required">{{ __('admin::app.settings.sliders.slug') }}</label>
+                        <input type="text" v-validate="'required'" class="control" id="slug" name="slug" value="{{ old('slug') }}" data-vv-as="&quot;{{ __('admin::app.settings.sliders.slug') }}&quot;" v-slugify/>
+                        <span class="control-error" v-if="errors.has('slug')">@{{ errors.first('slug') }}</span>
+                    </div>
+
                     <div class="control-group" :class="[errors.has('content') ? 'has-error' : '']">
                         <label for="content">{{ __('admin::app.settings.sliders.content') }}</label>
 

@@ -28,7 +28,8 @@ return [
         'new-products' => 'Новинки и ',
         'bestsellers' => 'Бестселлеры',
         'verify-email' => 'Verify your email account',
-        'resend-verify-email' => 'Resend Verification Email'
+        'resend-verify-email' => 'Resend Verification Email',
+        'shop-now' => 'Купить сейчас'
     ],
 
     'header' => [

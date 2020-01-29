@@ -55,33 +55,6 @@ class TemplateRepository extends Repository
         }
     }
 
-//    /**
-//     * Retrive category from slug
-//     *
-//     * @param string $key
-//     * @return mixed
-//     */
-//    public function getTemplate($key)
-//    {
-//        $currentChannel = core()->getCurrentChannel();
-//        $currentLocale = app()->getLocale();
-//
-//        $currentLocale = $this->locale->findOneWhere([
-//            'code' => $currentLocale
-//        ]);
-//
-//        $template = $this->model->where([
-//            'template_key' => $key,
-//            'locale_id' => $currentLocale->id,
-//            'channel_id' => $currentChannel->id
-//        ])->first();
-//
-//        if ($template) {
-//            return $template->page_title;
-//        }
-//        return $key;
-//    }
-
     /**
      * To extract the page content and load it in the respective view file\
      *
@@ -103,11 +76,6 @@ class TemplateRepository extends Repository
         ])->first();
 
         return $template;
-//        if ($page) {
-//            return view('shop::cms.page')->with('page', $page);
-//        } else {
-//            abort(404);
-//        }
     }
 
 

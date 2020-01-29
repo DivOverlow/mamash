@@ -28,6 +28,7 @@ return [
         'bestsellers' => 'Bestsellers',
         'verify-email' => 'Verify your email account',
         'resend-verify-email' => 'Resend Verification Email',
+        'shop-now' => 'Shop Now'
     ],
 
     'header' => [
