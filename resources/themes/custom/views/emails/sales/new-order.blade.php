@@ -5,8 +5,8 @@
 
 <div style="background-color: #282828; width: 100%">
     <div style="width: 100%;max-width: 600px;margin:auto;">
-        <div style="display:flex;align-content: space-around;flex-wrap: wrap;height: 170px;background-color: #212121;padding: 0 30px;">
-            <div style="width:100%;height:90px;display:flex;justify-content: center;">
+        <div style="height: 170px;background-color: #212121;padding: 0 30px;">
+            <div style="height: 90px;text-align: center;padding-top: 30px;">
                 <a style="text-decoration: none;color: #fff;" href="{{ config('app.url') }}">
                     @include ('shop::emails.layouts.logo')
                 </a>
@@ -14,20 +14,20 @@
 
 
             <div style="display:flex;letter-spacing:0.05em;width:100%;background-color:#212121;">
-                <div style="display:flex;align-items: center;width:100%;font:inherit;font-size:1rem;font-weight:500;text-transform:uppercase">
-                    <div style="text-align: center;width:23%;border-right:1px solid #FFF">
+                <div style="width:100%;font:inherit;font-size:1rem;font-weight:500;text-transform:uppercase">
+                    <div style="text-align: center;width:23%;border-right:1px solid #FFF;padding-top: 5px">
                         <a style="text-decoration: none;color: #fff;" href="{{ route('shop.categories.index', 'products') }}">{{ __('shop::app.mail.order.menu.products') }}</a>
                     </div>
-                    <div style="text-align: center;width:23%;border-right:1px solid #FFF">
+                    <div style="text-align: center;width:23%;border-right:1px solid #FFF;padding-top: 5px">
                         <a style="text-decoration: none;color: #fff;" href="{{ route('shop.categories.index', 'collections') }}">{{ __('shop::app.mail.order.menu.collections') }}</a>
                     </div>
-                    <div style="text-align: center;width:23%;border-right:1px solid #FFF">
+                    <div style="text-align: center;width:23%;border-right:1px solid #FFF;padding-top: 5px">
                         <a style="text-decoration: none;color: #fff;" href="{{ route('shop.categories.index', 'gifts') }}">{{ __('shop::app.mail.order.menu.gifts') }}</a>
                     </div>
-                    <div style="text-align: center;width:23%;border-right:1px solid #FFF">
+                    <div style="text-align: center;width:23%;border-right:1px solid #FFF;padding-top: 5px">
                         <a style="text-decoration: none;color: #fff;" href="{{ route('shop.cms.page', 'about-us') }}">{{ __('shop::app.mail.order.menu.about-us') }}</a>
                     </div>
-                    <div style="text-align: center;width: 8%"><a style="text-decoration: none;color: #fff;" href="{{ route('customer.session.index') }}">
+                    <div style="text-align: center;width: 8%;padding-top: 5px"><a style="text-decoration: none;color: #fff;" href="{{ route('customer.session.index') }}">
                             <span style="margin-bottom: -8px;width: 27px;height: 27px;display: inline-block;background-image: url({{ bagisto_asset('images/user.png') }});background-position: top center;background-repeat: no-repeat;margin-top: -2px;"></span></a></div>
                 </div>
             </div> <!-- end top-nav -->
@@ -73,8 +73,7 @@
                                     @if ($item->price > 0)
                                         <td style="text-align: left;padding: 8px"><img
                                                 src="{{ $images['small_image_url'] }}"/></td>
-                                        <td data-value="{{ __('shop::app.customer.account.order.view.product-name') }}"
-                                            style="display: flex;flex-direction: column;">
+                                        <td data-value="{{ __('shop::app.customer.account.order.view.product-name') }}">
                                             @if ($categoryCollection)
                                                 <div style="padding: 8px;">
                                                     <a style="text-decoration: none;color:#969696;font-weight: 400;" href="{{ route('shop.categories.index', $categoryCollection->slug) }}"
@@ -83,8 +82,8 @@
                                                 </div>
                                             @endif
 
-                                            <span
-                                                style="font-size: 1rem;font-weight: bold;text-transform: uppercase;padding: 8px;">{{ $item->name }}</span>
+                                            <div
+                                                style="font-size: 1rem;font-weight: bold;text-transform: uppercase;padding: 8px;">{{ $item->name }}</div>
 
                                             @if (isset($item->additional['attributes']))
                                                 <div class="item-options">
@@ -126,42 +125,59 @@
                     </div>
                 </div>
 
-                <div style="font-weight: 500;display: flex;align-content: space-around;flex-wrap: wrap;height: 120px;padding: 0 60px;margin: 30px 0;background-color: #e8e8e8;">
-                    <div style="display: block; width:100%">
-                        <span  style="text-align: left;padding: 4px;color: #969696;">{{ __('shop::app.mail.order.shipping-handling') }}&nbsp;{{ $order->shipping_title }}</span>
-                        <span style="float: right;font-weight: bold;">
+                <div style="font-weight: 500;height: 120px;padding: 0 60px;margin: 30px 0;background-color: #e8e8e8;">
+                    <table style="overflow-x: auto; border-collapse: collapse;
+                border-spacing: 0;width: 100%">
+                    <tr>
+                        <td>
+                            <div style="display: block; width:100%">
+                                <span  style="text-align: left;padding: 4px;color: #969696;">{{ __('shop::app.mail.order.shipping-handling') }}&nbsp;{{ $order->shipping_title }}</span>
+                                <span style="float: right;font-weight: bold;">
                                     {{ core()->formatPrice($order->shipping_amount, $order->order_currency_code) }}
                         </span>
-                    </div>
-                    @if ($order->tax_amount > 0)
-                        <div style="display: block; width:100%">
-                            <span style="text-align: left;padding: 4px;color: #969696;">{{ __('shop::app.mail.order.tax') }}</span>
-                            <span style="float: right;font-weight: bold;">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="min-height: 15px;">
+                            @if ($order->tax_amount > 0)
+                                <div style="display: block; width:100%;color:#969696;">
+                                    <span style="text-align: left;padding: 4px;">{{ __('shop::app.mail.order.tax') }}</span>
+                                    <span style="float: right;font-weight: bold;">
                                  {{ core()->formatPrice($order->tax_amount, $order->order_currency_code) }}
                             </span>
-                        </div>
-                    @endif
-                    @if ($order->discount_amount > 0)
-                        <div style="display: block; width:100%">
-                            <span style="text-align: left;padding: 4px;color: #969696;">{{ __('shop::app.mail.order.discount') }}</span>
-                            <span style="float: right;font-weight: bold;">
+                                </div>
+                            @endif
+                        </td>
+                    </tr>
+                        <tr>
+                            <td style="min-height: 15px;">
+                                @if ($order->discount_amount > 0)
+                                    <div style="display: block; width:100%">
+                                        <span style="text-align: left;padding: 4px;color: #969696;">{{ __('shop::app.mail.order.discount') }}</span>
+                                        <span style="float: right;font-weight: bold;">
                                 {{ core()->formatPrice($order->discount_amount, $order->order_currency_code) }}
                             </span>
-                        </div>
-                    @endif
-
-                    <div style="font-weight: bold; text-transform: uppercase; width: 100%;">
-                        <span  style="text-align: left;padding: 4px;">{{ __('shop::app.mail.order.grand-total') }}</span>
-                        <span style="float: right;">
+                                    </div>
+                                @endif
+                            </td>
+                        </tr>
+                    <tr>
+                        <td>
+                            <div style="font-weight: bold; text-transform: uppercase; width: 100%;">
+                                <span  style="text-align: left;padding: 4px;">{{ __('shop::app.mail.order.grand-total') }}</span>
+                                <span style="float: right;">
                         {{ core()->formatPrice($order->grand_total, $order->order_currency_code) }}
                         </span>
-                    </div>
-
+                            </div>
+                        </td>
+                    </tr>
+                    </table>
                 </div>
 
                 <div style="display: flex;align-items: center;display:inline-block; margin-bottom: 40px">
                     <div style="width: 28px;height: 20px;display: inline-block;background-image: url({{ bagisto_asset('images/shipping.png') }});background-position: top center;background-repeat: no-repeat;"></div>
-                    <span style="font-weight: bold;font-size: 1.5rem;text-transform: uppercase;padding-left: 1rem;">{{ __('shop::app.mail.order.shipping-handling') }}</span>
+                    <span style="font-weight: bold;color: #212121;font-size: 1.5rem;text-transform: uppercase;padding-left: 1rem;">{{ __('shop::app.mail.order.shipping-handling') }}</span>
                 </div>
                 <div style="font-size: 1.125rem;letter-spacing: 0.05em;font-weight: 500;text-transform: uppercase;color: #969696;margin-bottom: 15px;">
                     {{ $order->shipping_title }}
