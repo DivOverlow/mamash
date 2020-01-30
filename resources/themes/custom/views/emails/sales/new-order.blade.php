@@ -6,7 +6,7 @@
 <div style="background-color: #282828; width: 100%">
     <div style="width: 100%;max-width: 600px;margin:auto;">
         <div style="height: 170px;background-color: #212121;padding: 0 30px;">
-            <div style="height: 90px;text-align: center;padding-top: 30px">
+            <div style="height: 90px;text-align: center;">
                 <a style="text-decoration: none;color: #fff;" href="{{ config('app.url') }}">
                     @include ('shop::emails.layouts.logo')
                 </a>
@@ -14,7 +14,7 @@
 
 
             <div style="display:flex;letter-spacing:0.05em;width:100%;background-color:#212121;">
-                <ul style="padding-inline-start: 0 !important;display:flex;align-items: center;width:100%;font:inherit;font-size:1rem;font-weight:500;text-transform:uppercase;">
+                <ul style="padding-inline-start: 0 !important;display:flex;align-items: center;width:100%;font:inherit;font-size:1rem;font-weight:500;text-transform:uppercase">
                     <li style="list-style: none;margin:0;padding:0;border:0;text-align: center;width:23%;border-right:1px solid #FFF">
                         <a style="text-decoration: none;color: #fff;" href="{{ route('shop.categories.index', 'products') }}">{{ __('shop::app.mail.order.menu.products') }}</a>
                     </li>
@@ -35,9 +35,8 @@
 
         <div style="background-color: #fff;padding: 30px;">
             <div style="background-color: #fff; color: #242424;">
-                <div
-                    style="text-transform:uppercase;display:flex;justify-content: center;align-items: center;height:120px;font-weight:bold;font-size:1.875rem;line-height:30px;margin-bottom:30px;background-color:#e8e8e8;">
-                    {{ __('shop::app.mail.order.new-heading') }}
+                <div style="text-transform:uppercase;text-align: center;height:75px;font-weight:bold;font-size:1.875rem;line-height:30px;background-color:#e8e8e8;padding-top: 45px">
+                        {{ __('shop::app.mail.order.new-heading') }}
                 </div>
 
                 <div class="section-content">
@@ -75,7 +74,7 @@
                                         <td style="text-align: left;padding: 8px"><img
                                                 src="{{ $images['small_image_url'] }}"/></td>
                                         <td data-value="{{ __('shop::app.customer.account.order.view.product-name') }}"
-                                            style="display: flex;flex-direction: column;text-align: left;">
+                                            style="display: flex;flex-direction: column;">
                                             @if ($categoryCollection)
                                                 <div style="padding: 8px;">
                                                     <a style="text-decoration: none;color:#969696;font-weight: 400;" href="{{ route('shop.categories.index', $categoryCollection->slug) }}"
