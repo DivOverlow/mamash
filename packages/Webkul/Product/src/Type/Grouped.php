@@ -26,7 +26,7 @@ class Grouped extends AbstractType
      * @var ProductGroupedProductRepository
      */
     protected $productGroupedProductRepository;
-    
+
     /**
      * Skip attribute for downloadable product type
      *
@@ -36,7 +36,7 @@ class Grouped extends AbstractType
 
     /**
      * These blade files will be included in product edit page
-     * 
+     *
      * @var array
      */
     protected $additionalViews = [
@@ -44,7 +44,8 @@ class Grouped extends AbstractType
         'admin::catalog.products.accordians.categories',
         'admin::catalog.products.accordians.grouped-products',
         'admin::catalog.products.accordians.channels',
-        'admin::catalog.products.accordians.product-links'
+        'admin::catalog.products.accordians.product-links',
+        'admin::catalog.products.accordians.banners'
     ];
 
     /**
@@ -169,7 +170,7 @@ class Grouped extends AbstractType
 
             if (is_string($cartProducts))
                 return $cartProducts;
-                
+
             $products = array_merge($products, $cartProducts);
         }
 

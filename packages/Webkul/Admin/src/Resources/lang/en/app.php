@@ -70,6 +70,7 @@ return [
         'users' => 'Users',
         'roles' => 'Roles',
         'sliders' => 'Sliders',
+        'banners' => 'Баннеры',
         'taxes' => 'Taxes',
         'tax-categories' => 'Tax Categories',
         'tax-rates' => 'Tax Rates',
@@ -103,6 +104,7 @@ return [
         'users' => 'Users',
         'roles' => 'Roles',
         'sliders' => 'Sliders',
+        'banners' => 'Баннеры',
         'taxes' => 'Taxes',
         'tax-categories' => 'Tax Categories',
         'tax-rates' => 'Tax Rates',
@@ -167,6 +169,7 @@ return [
         'title' => 'Title',
         'layout' => 'Layout',
         'url-key' => 'URL Key',
+        'banner-key' => 'Banner Key',
         'template-key' => 'Template Key',
         'comment' => 'Comment',
         'product-name' => 'Product',
@@ -484,6 +487,8 @@ return [
             'search-products' => 'Search Products',
             'no-result-found' => 'Products not found with same name.',
             'channel' => 'Channels',
+            'banner' => 'Banners',
+            'banner-none' => 'None',
             'bundle-items' => 'Bundle Items',
             'add-option-btn-title' => 'Add Option',
             'option-title' => 'Option Title',
@@ -789,6 +794,25 @@ return [
             'update-fail' => 'Slider cannot be updated',
             'delete-success' => 'Cannot delete last llider item',
             'delete-fail' => 'Slider item successfully deleted'
+        ],
+
+        'banners' => [
+            'title' => 'Banners',
+            'banner-key' => 'Banner key',
+            'name' => 'Name',
+            'add-title' => 'Create Banner',
+            'edit-title' => 'Edit Banner',
+            'save-btn-title' => 'Save Banner',
+            'general' => 'General',
+            'image' => 'Image',
+            'content' => 'Content',
+            'channels' => 'Channel',
+            'created-success' => 'Banner item created successfully',
+            'created-fault' => 'Error in creating slider item',
+            'update-success' => 'Banner item successfully updated',
+            'update-fail' => 'Banner cannot be updated',
+            'delete-success' => 'Cannot delete last llider item',
+            'delete-fail' => 'Banner item successfully deleted'
         ],
 
         'tax-categories' => [

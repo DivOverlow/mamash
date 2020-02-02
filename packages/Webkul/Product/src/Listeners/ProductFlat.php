@@ -262,6 +262,13 @@ class ProductFlat
                         }
                     }
 
+                    if (isset($product['banners'])) {
+                        foreach ($product['banners'] as $banner) {
+                            $banner = app('Webkul\Core\Repositories\BannerRepository')->findOrFail($banner);
+                            $productFlat->banner_key = $banner['banner_key'];
+                        }
+                    }
+
                     $productFlat->created_at = $product->created_at;
 
                     $productFlat->updated_at = $product->updated_at;
@@ -269,6 +276,7 @@ class ProductFlat
                     $productFlat->min_price = $product->getTypeInstance()->getMinimalPrice();
 
                     $productFlat->max_price = $product->getTypeInstance()->getMaximamPrice();
+
 
                     if ($parentProduct) {
                         $parentProductFlat = $this->productFlatRepository->findOneWhere([

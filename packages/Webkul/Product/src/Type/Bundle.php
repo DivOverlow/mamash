@@ -36,7 +36,7 @@ class Bundle extends AbstractType
 
     /**
      * Bundle Option helper instance
-     * 
+     *
      * @var BundleOption
     */
     protected $bundleOptionHelper;
@@ -50,7 +50,7 @@ class Bundle extends AbstractType
 
     /**
      * These blade files will be included in product edit page
-     * 
+     *
      * @var array
      */
     protected $additionalViews = [
@@ -58,7 +58,8 @@ class Bundle extends AbstractType
         'admin::catalog.products.accordians.categories',
         'admin::catalog.products.accordians.bundle-items',
         'admin::catalog.products.accordians.channels',
-        'admin::catalog.products.accordians.product-links'
+        'admin::catalog.products.accordians.product-links',
+        'admin::catalog.products.accordians.banners'
     ];
 
     /**
@@ -293,7 +294,7 @@ class Bundle extends AbstractType
     public function getPriceHtml()
     {
         $prices = $this->getProductPrices();
-            
+
         $priceHtml = '<div class="price-from">';
 
         if ($prices['from']['regular_price']['price'] != $prices['from']['final_price']['price']) {
@@ -304,7 +305,7 @@ class Bundle extends AbstractType
         }
 
 
-        if ($prices['from']['regular_price']['price'] != $prices['to']['regular_price']['price'] 
+        if ($prices['from']['regular_price']['price'] != $prices['to']['regular_price']['price']
             || $prices['from']['final_price']['price'] != $prices['to']['final_price']['price']) {
 
             $priceHtml .= '<span style="font-weight: 500;margin-top: 1px;margin-bottom: 1px;display: block;">To</span>';
@@ -332,7 +333,7 @@ class Bundle extends AbstractType
     {
         if (! isset($data['bundle_options']))
             return trans('shop::app.checkout.cart.integrity.missing_options');
-        
+
         $products = parent::prepareForCart($data);
 
         foreach ($this->getCartChildProducts($data) as $productId => $data) {
@@ -396,7 +397,7 @@ class Bundle extends AbstractType
 
         return $products;
     }
-    
+
     /**
      *
      * @param array $options1
@@ -431,7 +432,7 @@ class Bundle extends AbstractType
                 $optionProduct = $this->productBundleOptionProductRepository->find($optionProductId);
 
                 $qty = $data['bundle_option_qty'][$optionId] ?? $optionProduct->qty;
-                
+
                 $labels[] = $qty . ' x ' . $optionProduct->product->name . ' ' . core()->currency($optionProduct->product->getTypeInstance()->getMinimalPrice());
             }
 

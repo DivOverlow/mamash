@@ -86,6 +86,10 @@ class ProductRepository extends Repository
         if (isset($data['channels']))
             $product['channels'] = $data['channels'];
 
+        if (isset($data['banners']))
+            $product['banners'] = $data['banners'];
+
+
         Event::fire('catalog.product.update.after', $product);
 
         return $product;

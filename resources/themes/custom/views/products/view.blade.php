@@ -177,7 +177,9 @@
 
         @include("shop::home.research")
 
-        @include("shop::products.view.gift")
+        @if($product->banner_key != null)
+            @include("shop::products.view.banner", ['banner_key' => $product->banner_key])
+        @endif
 
         @include ('shop::products.view.related-products')
 

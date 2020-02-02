@@ -164,10 +164,16 @@ return [
         'sort' => 7,
         'icon-class' => ''
     ], [
+        'key' => 'settings.banners',
+        'name' => 'admin::app.layouts.banners',
+        'route' => 'admin.banners.index',
+        'sort' => 8,
+        'icon-class' => ''
+    ],[
         'key' => 'settings.taxes',
         'name' => 'admin::app.layouts.taxes',
         'route' => 'admin.tax-categories.index',
-        'sort' => 8,
+        'sort' => 9,
         'icon-class' => ''
     ], [
         'key' => 'settings.taxes.tax-categories',

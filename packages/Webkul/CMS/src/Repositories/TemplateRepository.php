@@ -77,6 +77,4 @@ class TemplateRepository extends Repository
 
         return $template;
     }
-
-
 }

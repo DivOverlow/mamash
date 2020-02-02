@@ -611,6 +611,34 @@ Route::group(['middleware' => ['web']], function () {
             //destroy a slider item
             Route::post('slider/delete/{id}', 'Webkul\Core\Http\Controllers\SliderController@destroy')->name('admin.sliders.delete');
 
+            //banner index
+            Route::get('/banner','Webkul\Core\Http\Controllers\BannerController@index')->defaults('_config',[
+                'view' => 'admin::settings.banners.index'
+            ])->name('admin.banners.index');
+
+            //banner create show
+            Route::get('banner/create','Webkul\Core\Http\Controllers\BannerController@create')->defaults('_config',[
+                'view' => 'admin::settings.banners.create'
+            ])->name('admin.banners.create');
+
+            //banner create show
+            Route::post('banner/create','Webkul\Core\Http\Controllers\BannerController@store')->defaults('_config',[
+                'redirect' => 'admin.banners.index'
+            ])->name('admin.banners.store');
+
+            //banner edit show
+            Route::get('banner/edit/{id}','Webkul\Core\Http\Controllers\BannerController@edit')->defaults('_config',[
+                'view' => 'admin::settings.banners.edit'
+            ])->name('admin.banners.edit');
+
+            //banner edit update
+            Route::post('banner/edit/{id}','Webkul\Core\Http\Controllers\BannerController@update')->defaults('_config',[
+                'redirect' => 'admin.banners.index'
+            ])->name('admin.banners.update');
+
+            //destroy a banner item
+            Route::post('banner/delete/{id}', 'Webkul\Core\Http\Controllers\BannerController@destroy')->name('admin.banners.delete');
+
             //tax routes
             Route::get('/tax-categories', 'Webkul\Tax\Http\Controllers\TaxController@index')->defaults('_config', [
                 'view' => 'admin::tax.tax-categories.index'

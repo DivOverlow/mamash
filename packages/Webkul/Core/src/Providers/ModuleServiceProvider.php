@@ -16,6 +16,8 @@ class ModuleServiceProvider extends BaseModuleServiceProvider
         \Webkul\Core\Models\Locale::class,
         \Webkul\Core\Models\Slider::class,
         \Webkul\Core\Models\SubscribersList::class,
-        \Webkul\Core\Models\SliderTranslation::class
+        \Webkul\Core\Models\SliderTranslation::class,
+        \Webkul\Core\Models\Banner::class,
+        \Webkul\Core\Models\BannerTranslation::class
     ];
 }

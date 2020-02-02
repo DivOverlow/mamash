@@ -131,7 +131,7 @@
                     <tr>
                         <td style="padding-top: 15px;">
                             <div style="display: block; width:100%">
-                                <span  style="text-align: left;padding: 4px;color: #969696;">{{ __('shop::app.mail.order.shipping-handling') }}&nbsp;{{ $order->shipping_title }}</span>
+                                <span  style="text-align: left;padding: 4px;color: #969696;">{{ __('shop::app.mail.order.shipping-handling') }} - {{ $order->shipping_title }}</span>
                                 <span style="float: right;font-weight: bold;">
                                     {{ core()->formatPrice($order->shipping_amount, $order->order_currency_code) }}
                         </span>
@@ -164,7 +164,7 @@
                         </tr>
                     <tr>
                         <td>
-                            <div style="font-weight: bold; text-transform: uppercase; width: 100%;">
+                            <div style="font-size:1rem;font-weight: bold; text-transform: uppercase; width: 100%;">
                                 <span  style="text-align: left;padding: 4px;">{{ __('shop::app.mail.order.grand-total') }}</span>
                                 <span style="float: right;">
                         {{ core()->formatPrice($order->grand_total, $order->order_currency_code) }}

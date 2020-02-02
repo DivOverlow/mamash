@@ -2,12 +2,11 @@
 
 namespace Webkul\Core\Models;
 
-//use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
-use Webkul\Core\Contracts\Slider as SliderContract;
+use Webkul\Core\Contracts\Banner as BannerContract;
 use Webkul\Core\Eloquent\TranslatableModel;
 
-class Slider extends TranslatableModel implements SliderContract
+class Banner extends TranslatableModel implements BannerContract
 {
     /**
      * The attributes that are mass assignable.
@@ -15,12 +14,12 @@ class Slider extends TranslatableModel implements SliderContract
      * @var array
      */
 
-    public $translatedAttributes = ['title', 'slug', 'content'];
+    public $translatedAttributes = ['title', 'html_content', 'content'];
 
-    protected $table = 'sliders';
+    protected $table = 'banners';
 
     protected $fillable = [
-        'title', 'path', 'content', 'channel_id'
+        'banner_key', 'path', 'channel_id'
     ];
 
     protected $with = ['translations'];
