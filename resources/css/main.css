@@ -86,7 +86,7 @@ body {
 }
 .history-icon.active
 {
-    background-position-y: -18px;
+        background-position-y: -18px;
 }
 
 .leaving-icon {
@@ -1003,9 +1003,12 @@ section.product-detail div.layouter .form-container div.product-image-group div 
     .list-group .list-item:hover {
         @apply .text-gray-dark .border-b .border-gray-dim;
     }
-    /*.account-content .menu-block .menubar {*/
-    /*    display: none;*/
-    /*}*/
+    .md-bg-shift {
+        background-position-x: -150px;
+    }
+    .hero-content .md-bg-shift {
+        background-position-x: -830px;
+    }
 }
 
 

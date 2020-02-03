@@ -172,9 +172,11 @@ class BannerRepository extends Repository
         $banner = $this->model->where([
             'banner_key' => $key,
             'channel_id' => $currentChannel->id,
-        ])->first();
+        ])->whereTranslation('locale', $currentLocale->code)->first();
 
-        return $banner->translations->where('locale', $currentLocale->code)->first();
+        $banner->path = Storage::url($banner->path);
+
+        return $banner;
     }
 
 }

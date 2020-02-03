@@ -1,8 +1,8 @@
 @inject ('templateRepository', 'Webkul\CMS\Repositories\TemplateRepository')
 <?php
 $category = app('Webkul\Category\Repositories\CategoryRepository')->findOrFail(1);
-?>
 
+?>
 
 {!! DbView::make($templateRepository
         ->getTemplate('home-hero'))
