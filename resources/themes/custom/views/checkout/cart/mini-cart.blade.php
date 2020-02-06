@@ -23,6 +23,11 @@
                 session()->put('gift_product_id', end($gifts));
             }
         }
+
+//    if (session()->has('showCardModal')) {
+//            session()->forget('showCardModal');
+//    }
+
     ?>
 
     <div class="dropdown-toggle flex relative w-12 inline-block" @click="showCardModal = true">
@@ -39,13 +44,34 @@
         {{--        <i class="icon arrow-down-icon"></i>--}}
     </div>
 
-    <?php
-        $showCardModal = false;
-        if (session()->has('showCardModal')) {
-            $showCardModal = true;
-            session()->forget('showCardModal');
-        }
-    ?>
+    @if (session("new_gift_product"))
+    <eclipse-modal message="{{session("new_gift_product")}}"  @close="closeEclipse">
+        <div slot="body">
+            <?php
+                $product = $productRepository->find(session()->get('new_gift_product'));
+                $productBaseImage = $productImageHelper->getProductBaseImage($product);
+                session()->forget('new_gift_product');
+            ?>
+
+            <div class="w-full flex flex-col items-center bg-orange-100 border-t-2 border-orange-500 rounded-b shadow-md p-6">
+                <div class="tracking-widest text-gold uppercase">{{ __('shop::app.checkout.gift.hail') }}</div>
+                <div class="tracking-widest text-gray-dark">{{ __('shop::app.checkout.gift.available') }}</div>
+                <div class="item-image h-56 w-full flex items-center justify-center">
+                    <a href="{{ url()->to('/').'/products/'.$product->url_key }}"><img  class="object-scale-down h-48 w-auto"
+                                                                                        src="{{ $productBaseImage['medium_image_url'] }}"/></a>
+                </div>
+                <div class="text-base text-gray-dark uppercase hover:text-gray-cloud">
+                    <a href="{{ url()->to('/').'/products/'.$product->url_key }}">
+                        {{ $product->name }} </a>
+                </div>
+                <button class="button-decor py-3 px-6 mt-6" @click="closeEclipse">{{  __('shop::app.checkout.cart.continue-shopping') }}</button>
+            </div>
+
+        </div>
+    </eclipse-modal>
+    @endif
+
+
     <card-modal :showing="showCardModal"     @close="showCardModal = false">
         <div slot="header">
             <div class="dropdown-header bg-gray-snow h-20 flex content-center flex-wrap">
@@ -158,7 +184,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        @else
+                                            @else
                                             <div class="w-full flex flex-row justify-between items-center text-left py-2">
                                                 <div class="item-image h-28 w-1/2 flex items-center justify-center">
                                                     <a href="{{ url()->to('/').'/products/'.$product->url_key }}"><img  class="object-scale-down h-24 w-auto"

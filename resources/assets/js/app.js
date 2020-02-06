@@ -28,6 +28,8 @@ window.eventBus = new Vue();
 Vue.component("image-slider", ImageSlider);
 Vue.component("card-modal", require("./components/card-modal"));
 Vue.component("image-modal", require("./components/image-modal"));
+Vue.component("eclipse-modal", require("./components/eclipse-modal"));
+
 Vue.component("vue-slider", VueSlider);
 
 Vue.filter('currency', function (value, argument) {
@@ -161,6 +163,10 @@ $(document).ready(function () {
 
             showModal(id) {
                 this.$set(this.modalIds, id, true);
+            },
+
+            closeEclipse: function () {
+                eventBus.$emit('close-eclipse-modal-event')
             }
         }
     });

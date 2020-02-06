@@ -114,23 +114,8 @@
     }
     .modal-mask .modal-content {
         background-image: url('/themes/custom/assets/images/banner/bg_card.jpg');
-        /*background-color: #f5f5f5;*/
         z-index: 10;
         padding: 2em;
         height: 100%;
     }
-    /*.modal-transition-enter-active {*/
-    /*    opacity: 1;*/
-    /*}*/
-    /*.modal-transition-enter {*/
-    /*    opacity: 0;*/
-    /*    transform: scale(1.5, 1.5);*/
-    /*}*/
-    /*.modal-transition-leave-active {*/
-    /*    opacity: 0;*/
-    /*    transform: scale(1.5, 1.5);*/
-    /*}*/
-    /*.modal-transition-leave {*/
-    /*    opacity: 1;*/
-    /*}*/
 </style>

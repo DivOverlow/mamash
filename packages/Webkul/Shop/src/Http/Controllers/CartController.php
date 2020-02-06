@@ -215,6 +215,7 @@ class CartController extends Controller
                     }
                     else {
                         session()->put('gift_product_id', end($gifts));
+                        session()->put('new_gift_product', end($gifts));
                         return trans('shop::app.checkout.gift.gift-available');
                     }
                 }

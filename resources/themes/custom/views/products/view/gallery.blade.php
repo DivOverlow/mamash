@@ -122,7 +122,7 @@
 
             methods: {
                 openModal1(e) {
-                    console.log(e)
+                    // console.log(e)
                     this.modalTransform11 = prepareModalOpened(e)
                     return this.showImageModal1 = true;
                 } ,
