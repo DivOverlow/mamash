@@ -475,6 +475,8 @@ return [
         ],
         'gift' => [
             'title' => 'Your Gift',
+            'hail' => 'Congratulations',
+            'available' => 'you have a gift now',
             'free' => 'Free Gift',
             'premium' => 'Premium Gift',
             'free-message' => 'You can choose this product as a gift when paying for the order.',
