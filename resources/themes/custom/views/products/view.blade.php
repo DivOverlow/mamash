@@ -78,7 +78,7 @@
                                 @include ('shop::products.view.gallery')
                             </div>
                             <div class="w-full sm:w-1/2">
-                                <div class="details w-full font-serif flex justify-center content-between h-132 flex-wrap">
+                                <div class="details w-full font-serif flex flex-col justify-center content-between h-132 flex-wrap">
                                     <div class="product-heading font-serif text-gray-dark text-center my-3">
                                         @if ($categoryCollection)
                                             <div class="text-lg font-medium hover:text-gray-silver">
@@ -97,7 +97,7 @@
                                     {!! view_render_event('bagisto.shop.products.view.short_description.before', ['product' => $product]) !!}
                                     <div class="description px-0 sm:px-6 text-center text-gray-dark my-3 overflow-hidden" style="max-height: 6rem;">
                                         {!! str_limit($product->short_description, 160)  !!}
-                                        <span class="right-0 bottom-0 text-gold font-serif underline hover:no-underline"><a class="" href="#product-description">показать больше</a></span>
+                                        <a class="right-0 bottom-0 text-gold font-serif underline hover:no-underline lowercase" href="#product-description">{{ __('shop::app.products.show-more') }}</a>
                                     </div>
                                     {!! view_render_event('bagisto.shop.products.view.short_description.after', ['product' => $product]) !!}
 

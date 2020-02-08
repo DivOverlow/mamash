@@ -422,7 +422,9 @@ return [
         'choose-selection' => 'Choose a selection',
         'your-customization' => 'Your Customization',
         'total-amount' => 'Total Amount',
-        'none' => 'None'
+        'none' => 'None',
+        'weight-unit' => 'ml',
+        'show-more' => 'Show More'
     ],
 
     // 'reviews' => [

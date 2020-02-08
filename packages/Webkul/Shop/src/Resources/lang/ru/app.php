@@ -405,6 +405,7 @@ return [
         'total-amount' => 'Total Amount',
         'none' => 'None',
         'weight-unit' => 'мл',
+        'show-more' => 'Показать больше'
     ],
 
     'wishlist' => [
