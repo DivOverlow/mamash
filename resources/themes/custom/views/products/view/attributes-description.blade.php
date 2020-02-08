@@ -5,7 +5,7 @@
 <?php
     $customAttributeValues = $productViewHelper->getAdditionalData($product);
 ?>
-<section class="product-description">
+<section id="product-description" class="product-description">
     <div class="w-full max-w-sm sm:max-w-4xl text-center mx-auto">
         <tabs>
             <tab name="{{ __('shop::app.products.description') }}" :selected="true">

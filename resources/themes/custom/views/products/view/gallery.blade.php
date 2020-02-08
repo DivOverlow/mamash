@@ -48,7 +48,7 @@
             </image-modal>
 
             <div class="product-hero-image w-full max-w-xl sm:ml-auto h-96 sm:h-112 flex items-center justify-center" id="product-hero-image">
-                <img :src="currentLargeImageUrl" id="pro-img" :data-image="currentLargeImageUrl" class="w-full h-88 sm:h-96 object-scale-down cursor-pointer z-10" @click="openModal1($event)"/>
+                <img :src="currentLargeImageUrl" id="pro-img" :data-image="currentLargeImageUrl" class="w-auto h-88 sm:h-96 object-scale-down cursor-pointer z-10" @click="openModal1($event)"/>
 
                 @auth('customer')
                     <a @if ($wishListHelper->getWishlistProduct($product)) class="add-to-wishlist already" @else class="add-to-wishlist" @endif href="{{ route('customer.wishlist.add', $product->product_id) }}">

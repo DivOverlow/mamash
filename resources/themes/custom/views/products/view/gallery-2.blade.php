@@ -16,8 +16,8 @@
 {{--    </image-modal>--}}
 
     <div class="product-hero-image max-w-xl sm:ml-auto h-88 sm:h-96  flex items-center justify-center">
-        <img class="w-full h-88 sm:h-96 object-scale-down" src="{{ $images[1]['large_image_url'] }}" onerror="this.src='{{ asset('vendor/webkul/ui/assets/images/product/meduim-product-placeholder.png') }}'"/>
-{{--        <img class="w-full h-88 sm:h-96 object-scale-down" src="{{ $images[1]['large_image_url'] }}" onerror="this.src='{{ asset('vendor/webkul/ui/assets/images/product/meduim-product-placeholder.png') }}'"  @click="openModal($event)"/>--}}
+        <img class="w-auto h-88 sm:h-96 object-scale-down" src="{{ $images[1]['large_image_url'] }}" onerror="this.src='{{ asset('vendor/webkul/ui/assets/images/product/meduim-product-placeholder.png') }}'"/>
+{{--        <img class="w-auto h-88 sm:h-96 object-scale-down" src="{{ $images[1]['large_image_url'] }}" onerror="this.src='{{ asset('vendor/webkul/ui/assets/images/product/meduim-product-placeholder.png') }}'"  @click="openModal($event)"/>--}}
     </div>
 @endif
 {!! view_render_event('bagisto.shop.products.view.gallery-2.after', ['product' => $product]) !!}

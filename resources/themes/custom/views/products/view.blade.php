@@ -95,8 +95,9 @@
                                     </div>
 
                                     {!! view_render_event('bagisto.shop.products.view.short_description.before', ['product' => $product]) !!}
-                                    <div class="description px-0 sm:px-6 text-center text-gray-dark my-3">
-                                        {!! $product->short_description !!}
+                                    <div class="description px-0 sm:px-6 text-center text-gray-dark my-3 overflow-hidden" style="max-height: 6rem;">
+                                        {!! str_limit($product->short_description, 160)  !!}
+                                        <span class="right-0 bottom-0 text-gold font-serif underline hover:no-underline"><a class="" href="#product-description">показать больше</a></span>
                                     </div>
                                     {!! view_render_event('bagisto.shop.products.view.short_description.after', ['product' => $product]) !!}
 
