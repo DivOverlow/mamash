@@ -27,24 +27,6 @@
     </transition>
 </template>
 <script>
-    function prepareModalOpened(e) {
-        // console.log('event='+ e.currentTarget.getBoundingClientRect())
-        const targetRect = e.currentTarget.getBoundingClientRect()
-        // console.log(targetRect)
-        const targetCenterTop = targetRect.top + targetRect.height/2
-        const targetCenterLeft = targetRect.left + targetRect.width/2
-        const screenCenterTop = window.innerHeight/2
-        const screenCenterLeft = window.innerWidth/2
-
-        // css translate scale
-        const translateX = targetCenterLeft - screenCenterLeft
-        const translateY = targetCenterTop - screenCenterTop
-        const scaleX = targetRect.width / window.innerWidth
-        const scaleY = targetRect.height / window.innerHeight
-
-        return `translate(${translateX}px, ${translateY}px) scale(${scaleX}, ${scaleY})`
-    }
-
     export default {
         props: {
             showing: {
@@ -56,17 +38,12 @@
             }
         },
         methods: {
-            openModal(e) {
-                this.showImageModal2 = true
-                this.modalTransform12 = prepareModalOpened(e)
-            } ,
             closeModal() {
                 this.$emit('close');
             },
             beforeEnter(el) {
                 el.style.transform = this.modalTransform
                 el.style.opacity = '0.5'
-                // console.log(this.modalTransform)
             },
             enter(el, done) {
                 setTimeout(() => {

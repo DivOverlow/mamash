@@ -39,7 +39,13 @@ Route::group(['middleware' => ['web', 'locale', 'theme', 'currency']], function 
         'view' => 'shop::checkout.cart.index'
     ])->name('shop.checkout.cart.index');
 
-        Route::post('checkout/check/coupons', 'Webkul\Shop\Http\Controllers\OnepageController@applyCoupon')->name('shop.checkout.check.coupons');
+
+    Route::post('checkout/cart/coupon', 'Webkul\Shop\Http\Controllers\CartController@applyCoupon')->name('shop.checkout.cart.coupon.apply');
+
+    Route::delete('checkout/cart/coupon', 'Webkul\Shop\Http\Controllers\CartController@removeCoupon')->name('shop.checkout.coupon.remove.coupon');
+
+
+    Route::post('checkout/check/coupons', 'Webkul\Shop\Http\Controllers\OnepageController@applyCoupon')->name('shop.checkout.check.coupons');
 
         Route::post('checkout/remove/coupon', 'Webkul\Shop\Http\Controllers\OnepageController@removeCoupon')->name('shop.checkout.remove.coupon');
 

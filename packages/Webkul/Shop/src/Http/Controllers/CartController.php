@@ -82,7 +82,7 @@ class CartController extends Controller
 
             if ($result) {
                 $message = $this->checkedGift($result->base_sub_total);
-                session()->flash('success', trans('shop::app.checkout.cart.item.success') . ' ' . $message );
+//                session()->flash('success', trans('shop::app.checkout.cart.item.success') . ' ' . $message );
 
                 if ($customer = auth()->guard('customer')->user())
                     $this->wishlistRepository->deleteWhere(['product_id' => $id, 'customer_id' => $customer->id]);
@@ -229,5 +229,54 @@ class CartController extends Controller
             session()->forget('gift_product_id');
         }
     }
+
+    /**
+     * Apply coupon to the cart
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function applyCoupon()
+    {
+        $couponCode = request()->get('code');
+
+        try {
+            if (strlen($couponCode)) {
+                Cart::setCouponCode($couponCode)->collectTotals();
+
+                if (Cart::getCart()->coupon_code == $couponCode) {
+                    return response()->json([
+                        'success' => true,
+                        'message' => trans('shop::app.checkout.total.success-coupon')
+                    ]);
+                }
+            }
+
+            return response()->json([
+                'success' => false,
+                'message' => trans('shop::app.checkout.total.invalid-coupon')
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => trans('shop::app.checkout.total.coupon-apply-issue')
+            ]);
+        }
+    }
+
+    /**
+     * Apply coupon to the cart
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function removeCoupon()
+    {
+        Cart::removeCouponCode()->collectTotals();
+
+        return response()->json([
+            'success' => true,
+            'message' => trans('shop::app.checkout.total.remove-coupon')
+        ]);
+    }
+
 
 }

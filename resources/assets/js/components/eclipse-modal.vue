@@ -45,22 +45,25 @@
 
         methods: {
             emitClose() {
-              this.$emit('close');
+              this.$emit('close')
             },
 
             eclipse() {
                 setTimeout(()=> {
-                    this.show = true
+                    this.show = true;
+                    // return document.querySelector('body').classList.add('modal-open');
                 }, 1000);
+
             },
 
             eclipseClose() {
-                this.show = false
+                this.show = false;
+                // document.querySelector('body').classList.remove('modal-open');
             },
 
             hide() {
                 setTimeout(()=> {
-                    this.show = false
+                    this.eclipseClose()
                 }, 5000);
             }
         }

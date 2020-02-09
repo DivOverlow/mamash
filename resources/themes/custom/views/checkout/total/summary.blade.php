@@ -72,7 +72,7 @@
                     </div>
                 </div>
             @else
-                <div class="discount-details-group">
+                <div class="discount-details-group py-6 px-8">
                     <div class="item-detail">
                         <label>{{ __('shop::app.checkout.total.coupon-applied') }}</label>
 

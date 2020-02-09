@@ -10,12 +10,6 @@
     @inject ('productRepository', 'Webkul\Product\Repositories\ProductRepository')
     @inject ('giftRepository', 'Webkul\Discount\Repositories\GiftRuleRepository')
 
-{{--    @php--}}
-{{--        $products = $productRepository->searchProductByAttribute('category?gift_rules=21,20');--}}
-{{--        dd($products);--}}
-{{--    @endphp--}}
-
-
     <section class="cart">
         <div class="cart-product bg-ghost-white w-full">
             <div class="main-container-wrapper">
@@ -100,7 +94,7 @@
 
                                                     {!! view_render_event('bagisto.shop.checkout.cart.item.options.after', ['item' => $item]) !!}
 
-                                                    <span class="remove font-serif text-base text-gray-cloud cursor-pointer underline hover:text-gray-dark static">
+                                                    <span class="remove font-serif text-base text-gray-cloud cursor-pointer underline hover:no-underline hover:text-gray-dark static">
                                                         <a href="{{ route('shop.checkout.cart.remove', $item->id) }}"
                                                        onclick="removeLink('{{ __('shop::app.checkout.cart.cart-remove-action') }}')">{{ __('shop::app.checkout.cart.remove-link') }}</a>
                                                     </span>
@@ -124,13 +118,26 @@
                                                     {!! view_render_event('bagisto.shop.checkout.cart.item.quantity.before', ['item' => $item]) !!}
 
                                                     <div class="misc">
-                                                        <quantity-changer
-                                                            :control-name="'qty[{{$item->id}}]'"
-                                                            quantity="{{$item->quantity}}">
-                                                        </quantity-changer>
+
+                                                        <div class="control-group" :class="[errors.has('qty[{{$item->id}}]') ? 'has-error' : '']">
+                                                            <div class="wrap font-serif text-gray-dark flex justify-center items-center inline-block">
+{{--                                                                <label for="qty[{{$item->id}}]">{{ __('shop::app.checkout.cart.quantity.quantity') }}</label>--}}
+
+                                                                <input class="control quantity-change font-semibold w-12" value="-" onclick="updateCartQunatity('remove', {{$key}})" readonly>
+
+                                                                <input type="text" class="control quantity-change control border border-gray-cloud font-semibold text-xl rounded-full h-12 w-12 flex items-center justify-center text-center" id="cart-quantity{{ $key
+                                                    }}" v-validate="'required|numeric|min_value:1'" name="qty[{{$item->id}}]" value="{{ $item->quantity }}" data-vv-as="&quot;{{ __('shop::app.checkout.cart.quantity.quantity') }}&quot;" readonly>
+
+                                                                <input class="font-semibold text-xl px-4 w-12 control quantity-change" value="+" onclick="updateCartQunatity('add', {{$key}})" readonly>
+                                                            </div>
+
+                                                            <span class="control-error" v-if="errors.has('qty[{{$item->id}}]')">@{{ errors.first('qty[{!!$item->id!!}]') }}</span>
+                                                        </div>
+
                                                     </div>
 
                                                     {!! view_render_event('bagisto.shop.checkout.cart.item.quantity.after', ['item' => $item]) !!}
+
 
                                                     {!! view_render_event('bagisto.shop.checkout.cart.item.price.before', ['item' => $item]) !!}
 
@@ -216,13 +223,15 @@
 
                                             @include('shop::checkout.total.summary', ['cart' => $cart])
 
+                                            <coupon-component></coupon-component>
+
                                             {!! view_render_event('bagisto.shop.checkout.cart.summary.after', ['cart' => $cart]) !!}
 
                                             {!! view_render_event('bagisto.shop.checkout.cart.controls.after', ['cart' => $cart]) !!}
 
                                             <div class="misc-controls my-3">
                                                 <a href="{{ route('shop.home.index') }}"
-                                                   class="link font-serif font-medium text-base text-gold hover:underline">{{ __('shop::app.checkout.cart.continue-shopping') }}</a>
+                                                   class="link font-serif font-medium text-base text-gold border-b border-transparent hover:border-b hover:border-gold">{{ __('shop::app.checkout.cart.continue-shopping') }}</a>
 
                                                 <div class="flex flex-row justify-between items-center mt-8">
                                                     <button type="submit" class="button-black w-full py-3 normal-case">
@@ -247,6 +256,7 @@
 
                             </form>
                         </div>
+
                     </div>
 
 
@@ -276,70 +286,9 @@
 @endsection
 
 @push('scripts')
-
-    <script type="text/x-template" id="quantity-changer-template">
-        <div class="quantity control-group" :class="[errors.has(controlName) ? 'has-error' : '']">
-            <div class="wrap font-serif text-gray-dark flex justify-between items-center">
-                <button type="button" class="decrease outline-none" @click="decreaseQty()"><span class="font-semibold text-xl px-4">-</span></button>
-
-                <input :name="controlName" class="control focus:border-gray-cloud font-semibold text-xl rounded-full h-12 w-12 flex items-center justify-center text-center" :value="qty" v-validate="'required|numeric|min_value:1'"
-                       data-vv-as="&quot;{{ __('shop::app.products.quantity') }}&quot;" readonly>
-
-                <button type="button" class="increase outline-none" @click="increaseQty()"><span class="font-semibold text-xl px-4">+</span></button></button>
-
-                <span class="control-error" v-if="errors.has(controlName)">@{{ errors.first(controlName) }}</span>
-            </div>
-        </div>
-    </script>
+    @include('shop::checkout.cart.coupon')
 
     <script>
-        Vue.component('quantity-changer', {
-            template: '#quantity-changer-template',
-
-            inject: ['$validator'],
-
-            props: {
-                controlName: {
-                    type: String,
-                    default: 'quantity'
-                },
-
-                quantity: {
-                    type: [Number, String],
-                    default: 1
-                }
-            },
-
-            data: function () {
-                return {
-                    qty: this.quantity
-                }
-            },
-
-            watch: {
-                quantity: function (val) {
-                    this.qty = val;
-
-                    this.$emit('onQtyUpdated', this.qty)
-                }
-            },
-
-            methods: {
-                decreaseQty: function () {
-                    if (this.qty > 1)
-                        this.qty = parseInt(this.qty) - 1;
-
-                    this.$emit('onQtyUpdated', this.qty)
-                },
-
-                increaseQty: function () {
-                    this.qty = parseInt(this.qty) + 1;
-
-                    this.$emit('onQtyUpdated', this.qty)
-                }
-            }
-        });
-
         function removeLink(message) {
             if (!confirm(message))
                 event.preventDefault();

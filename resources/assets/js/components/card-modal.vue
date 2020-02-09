@@ -21,12 +21,31 @@
 
 <script>
     export default {
-        props: {
-            showing: {
-                required: true,
-                type: Boolean
+        props: ['message'],
+
+        data() {
+            return {
+                showing: false
             }
         },
+
+        created() {
+            eventBus.$on('open-card-modal-event', () => {
+                this.showing = true
+            })
+
+            eventBus.$on('close-card-modal-event', () => {
+                this.showing = false
+            })
+
+            if(this.message) {
+                setTimeout(()=> {
+                    this.showing = true
+                }, 500);
+
+            }
+        },
+
         watch: {
             showing(value) {
                 if (value) {

@@ -56,9 +56,8 @@ $(document).ready(function () {
         },
         data() {
             return {
-                // showImageModal2: false,
-                // modalTransform2: '',
-                showCardModal: false,
+                showImageModal2: false,
+                modalTransform2: '',
                 hooperSettings: {
                     infiniteScroll: true,
                     centerMode: true,
@@ -164,9 +163,20 @@ $(document).ready(function () {
             showModal(id) {
                 this.$set(this.modalIds, id, true);
             },
-
+            openImageModal2 (e) {
+                this.modalTransform2 = prepareModalOpened(e);
+                return this.showImageModal2 = true;
+            },
             closeEclipse: function () {
                 eventBus.$emit('close-eclipse-modal-event')
+            },
+
+            openCardModal: function () {
+                eventBus.$emit('open-card-modal-event')
+            },
+
+            closeCardModal: function () {
+                eventBus.$emit('close-card-modal-event')
             }
         }
     });

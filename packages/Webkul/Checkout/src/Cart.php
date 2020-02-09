@@ -1001,4 +1001,38 @@ class Cart {
 
         return true;
     }
+
+    /**
+     * Set coupon code to the cart
+     *
+     * @param string $code
+     * @return Cart
+     */
+    public function setCouponCode($code)
+    {
+        $cart = $this->getCart();
+
+        $cart->coupon_code = $code;
+
+        $cart->save();
+
+        return $this;
+    }
+
+    /**
+     * Remove coupon code from cart
+     *
+     * @return Cart
+     */
+    public function removeCouponCode()
+    {
+        $cart = $this->getCart();
+
+        $cart->coupon_code = null;
+
+        $cart->save();
+
+        return $this;
+    }
+
 }
