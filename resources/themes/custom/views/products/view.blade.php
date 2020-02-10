@@ -143,7 +143,7 @@
 
                     <div class="w-full flex flex-col sm:flex-row">
                         <div class="w-full sm:w-1/2">
-                            @include ('shop::products.view.gallery-2')
+{{--                            @include ('shop::products.view.gallery-2')--}}
                         </div>
                         <div class="w-full h-140 sm:h-132 sm:w-1/2 relative bg-gray-dark-grey flex content-start sm:content-center flex-wrap h-140 sm:h-132">
                             <img  class="content-container h-10 sm:h-12 w-auto absolute inset-x-0 top-0 mx-auto sm:ml-12 my-8"

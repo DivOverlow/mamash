@@ -4,7 +4,7 @@
         <div class="main-container-wrapper flex justify-between sm:justify-end py-3">
             <span class="menu-box visible sm:invisible"><span class="icon icon-menu" id="hammenu"></span></span>
             <div class="left-content mx-8 mt-1 leading-none relative">
-            <a href="#" class="invisible sm:visible inline-block align-top text-white text-sm hover:text-gold cursor-pointer">{{ __('shop::app.header.help') }}</a>
+            <a href="{{ route('shop.cms.page', 'faq') }}" class="invisible sm:visible inline-block align-top text-white text-sm hover:text-gold cursor-pointer">{{ __('shop::app.header.help') }}</a>
         </div>
 
         <?php

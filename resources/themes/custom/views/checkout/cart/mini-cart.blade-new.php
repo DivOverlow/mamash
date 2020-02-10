@@ -122,14 +122,14 @@
                                                                                                             src="{{ $productBaseImage['small_image_url'] }}"/></a>
                                     </div>
                                     <div class="item-title flex flex-col justify-start">
-                                        <div class="text-base text-gray-dark uppercase hover:text-gray-cloud">
+                                        <div class="text-base text-gray-dark uppercase hover:text-gray-cloud leading-none">
                                             <a href="{{ url()->to('/').'/products/'.$product->url_key }}">
                                                 {{ $product->name }} </a>
                                         </div>
                                         <div class="font-serif font-medium text-base text-gray-cloud">
                                             {{  __('shop::app.checkout.gift.free') }}
                                         </div>
-                                        <div class="font-normal font-medium text-base text-gray-cloud leading-tight">
+                                        <div class="font-normal font-medium text-base text-gray-cloud leading-none">
                                             {{  __('shop::app.checkout.gift.free-message') }}
                                         </div>
                                     </div>
@@ -156,7 +156,7 @@
                                                 <div class="font-serif font-medium text-base text-gray-cloud">
                                                     {{ ($cart->base_sub_total < $gift_product->action_amount) ? __('shop::app.checkout.gift.premium') : __('shop::app.checkout.gift.free') }}
                                                 </div>
-                                                <div class="font-normal font-medium text-base text-gray-cloud leading-tight">
+                                                <div class="font-normal font-medium text-base text-gray-cloud leading-none">
                                                     {{ ($cart->base_sub_total < $gift_product->action_amount) ? sprintf(__('shop::app.checkout.gift.premium-message'), core()->convertPrice($gift_product->action_amount - $cart->base_sub_total) . core()->currencySymbol(core()->getBaseCurrencyCode()) ) : __('shop::app.checkout.gift.free-message') }}
                                                 </div>
                                             </div>

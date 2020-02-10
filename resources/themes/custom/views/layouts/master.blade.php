@@ -73,7 +73,7 @@
 
         @if (core()->getConfigData('general.content.footer.footer_toggle'))
 
-            <div class="footer main-container-wrapper">
+            <div class="footer absolute mt-0 sm:-mt-10 pt-0 sm:pt-1 px-10">
                 <p>
                     @if (core()->getConfigData('general.content.footer.footer_content'))
                         {{ core()->getConfigData('general.content.footer.footer_content') }}

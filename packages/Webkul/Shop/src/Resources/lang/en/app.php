@@ -501,7 +501,7 @@ return [
             'first-name' => 'First Name',
             'last-name' => 'Last Name',
             'email' => 'Email',
-            'address1' => 'Delivery Address',
+            'address1' => 'Delivery Address/Branch of Nova Poshta',
             'address2' => 'Branch of Nova Poshta',
             'city' => 'City',
             'state' => 'State',
