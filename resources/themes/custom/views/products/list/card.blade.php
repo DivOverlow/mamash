@@ -37,7 +37,7 @@
             @endif
         </div>
 
-        <div class="product-name cursor-pointer text-gray-dark uppercase text-xl text-center mb-2">
+        <div class="product-name cursor-pointer text-gray-dark uppercase text-xl text-center mb-2 leading-tight">
             <a href="{{ url()->to('/').'/products/' . $product->url_key }}" title="{{ $product->name }}">
                 <span>
                     {{ $product->name }}

@@ -88,7 +88,7 @@
                                             </div>
                                         @endif
 
-                                        <p class="font-medium uppercase text-xl sm:text-3xl">{{ $product->name }}</p>
+                                        <p class="font-medium uppercase text-xl sm:text-3xl leading-tight">{{ $product->name }}</p>
                                         <p class="text-gray-silver text-lg">
                                             {{ number_format($product->weight) }}{{ __('shop::app.products.weight-unit') }}
                                         </p>

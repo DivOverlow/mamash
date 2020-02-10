@@ -8,7 +8,7 @@
 
             <div class="w-full max-w-md bg-orange-light border border-orange">
                 <div class="w-full h-48 flex justify-center content-around flex-wrap mt-3 overflow-hidden">
-                    <div class="text-center text-gray-dark text-3xl uppercase px-16 py-3">{!! $item['title']  !!}</div>
+                    <div class="text-center text-gray-dark text-3xl uppercase px-16 py-3 leading-tight">{!! $item['title']  !!}</div>
                     <div class="w-full text-center font-serif px-6">{!! $item['content']  !!}</div>
                 </div>
                 <div class="w-full flex justify-center"><a class="button-decor w-2/5 py-2 normal-case my-6" href="{{ url()->to('/').'/products/' . $item['slug'] }}">{{ __('shop::app.home.shop-now') }}</a></div>
