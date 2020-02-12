@@ -289,6 +289,28 @@
     @include('shop::checkout.cart.coupon')
 
     <script>
+        $(document).ready(function () {
+            if (document.querySelector('input[name="product_gift_id"]')) {
+                document.querySelectorAll('input[name="product_gift_id"]').forEach((elem) => {
+                    elem.addEventListener("change", function(event) {
+                        let id = event.target.value;
+                        axios.post('{{ route('shop.checkout.cart.gift.change') }}', {
+                            product_gift_id: id
+                        })
+                            .then(function (response) {
+                                window.location.href = '{{ route('shop.checkout.cart.index') }}'
+                                // console.log(response);
+                            })
+                            .catch(function (error) {
+                                console.log(error);
+                            });
+                    });
+                });
+            }
+
+        });
+
+
         function removeLink(message) {
             if (!confirm(message))
                 event.preventDefault();
@@ -309,5 +331,9 @@
             document.getElementById('cart-quantity' + index).value = quantity;
             event.preventDefault();
         }
+
     </script>
+
+
+
 @endpush

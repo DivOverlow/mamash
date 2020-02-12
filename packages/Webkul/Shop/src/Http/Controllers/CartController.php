@@ -231,6 +231,42 @@ class CartController extends Controller
     }
 
     /**
+     * Change gift to the cart
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function changeGift()
+    {
+        $gift_id= (int) request()->get('product_gift_id');
+
+        try {
+            if ($gift_id > 0) {
+                $message = $this->checkedGift(Cart::getCart()->base_sub_total, $gift_id);
+
+                session()->flash('success',  $message );
+
+                    return response()->json([
+                        'success' => true,
+                        'message' => $message
+                    ]);
+
+            }
+
+            session()->flash('warning',  trans('shop::app.checkout.cart.gift.gift-change-error') );
+
+            return response()->json([
+                'success' => false,
+                'message' => trans('shop::app.checkout.cart.gift.gift-change-error')
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => trans('shop::app.checkout.cart.gift.gift-change-error')
+            ]);
+        }
+    }
+
+    /**
      * Apply coupon to the cart
      *
      * @return \Illuminate\Http\JsonResponse

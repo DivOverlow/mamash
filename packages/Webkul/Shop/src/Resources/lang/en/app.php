@@ -487,6 +487,7 @@ return [
             'gift-selected' => 'You have chosen another gift.',
             'gift-available' => 'Congratulations, you now have a gift.',
             'gift-not-available' => 'It\'s a pity, but the order amount is not enough to receive a gift.',
+            'gift-change-error' => 'Error receiving gift.',
 
         ],
         'onepage' => [

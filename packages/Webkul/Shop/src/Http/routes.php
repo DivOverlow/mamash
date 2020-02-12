@@ -39,6 +39,7 @@ Route::group(['middleware' => ['web', 'locale', 'theme', 'currency']], function 
         'view' => 'shop::checkout.cart.index'
     ])->name('shop.checkout.cart.index');
 
+    Route::post('checkout/cart/gift', 'Webkul\Shop\Http\Controllers\CartController@changeGift')->name('shop.checkout.cart.gift.change');
 
     Route::post('checkout/cart/coupon', 'Webkul\Shop\Http\Controllers\CartController@applyCoupon')->name('shop.checkout.cart.coupon.apply');
 
