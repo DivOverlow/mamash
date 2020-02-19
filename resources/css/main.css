@@ -381,7 +381,69 @@ body {
 .header .header-bottom ul.nav {
     @apply .uppercase .text-white .items-center .block;
 }
-
+.header .header-bottom ul.nav>li:first-child>.nav-level{
+    height: 550px;
+    overflow: hidden;
+}
+.header .header-bottom ul.nav>li:first-child>.nav-level>div>ul>li>a{
+    text-align: center;
+    display: block;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+.header .header-bottom ul.nav>li:first-child>.nav-level>div>ul{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.header .header-bottom ul.nav>li:first-child>.nav-level>div>ul>li{
+    width: 30%;
+    position: relative;
+}
+.header .header-bottom ul.nav>li:first-child>.nav-level>div>ul>li:after{
+    content: "";
+    border-right: 1px solid rgba(255, 255, 255, 0.3);
+    position: absolute;
+    height: 75%;
+    top: 10%;
+    right: -5px;
+}
+.header .header-bottom ul.nav>li:first-child>.nav-level>div>ul>li:last-child:after{
+    content: "";
+    border-right: none;
+}
+.header .header-bottom ul.nav>li:first-child>.nav-level>div{
+    height: 580px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.header .header-bottom ul.nav>li:first-child>.nav-level>div>ul>li>div.nav-level{
+    left: 0;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 515px;
+}
+.header .header-bottom ul.nav>li:first-child>.nav-level>div>ul>li>div.nav-level>div{
+    margin: 0;
+    height: 500px;
+}
+.header .header-bottom ul.nav>li:first-child>.nav-level>div>ul>li>div.nav-level>div>ul{
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+}
+.header .header-bottom ul.nav>li:first-child>.nav-level>div>ul>li>div.nav-level>div>ul>li{
+    width: 100%;
+    padding-top: 0;
+    padding-bottom: 5px;
+}
+.header .header-bottom ul.nav>li:first-child>.nav-level>div>ul>li>div.nav-level>div>ul>li>a{
+    text-align: left;
+    text-transform: uppercase;
+}
+.header .header-bottom ul.nav>li:first-child>.nav-level>div>ul>li>div.nav-level>div>ul>li:after{
+    border-right: none;
+}
 .header .header-bottom  ul.nav a:hover {
     @apply .text-gold .border-b .border-gold;
     transition: 0.5s;
@@ -405,9 +467,9 @@ body {
 }
 
 .header .header-bottom .nav > li .nav-level > div {
-    position: absolute;
+/*    position: absolute;*/
 
-    @apply .w-1/5 .h-96 .my-10 .px-10 .mx-auto .flex .justify-center .flex-wrap .overflow-y-auto;
+    @apply  .h-96 .my-10 .px-10 .mx-auto .flex .justify-center .flex-wrap .overflow-y-auto;
 }
 
 .header .header-bottom .nav > li .nav-level > div ul li {
