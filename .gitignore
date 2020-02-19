@@ -1,4 +1,6 @@
 /node_modules
+/docker
+/nbproject
 /public/hot
 /public/installer
 /public/vendor
