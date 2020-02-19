@@ -277,6 +277,16 @@ return [
                     'order_number' => 'Order Number'
                 ],
 
+                'status' => [
+                    'processing' => 'Processing',
+                    'completed' => 'Completed',
+                    'canceled' => 'Canceled',
+                    'closed' => 'Closed',
+                    'pending' => 'Pending',
+                    'pending-payment' => 'Pending Payment',
+                    'fraud' => 'Fraud'
+                ],
+
                 'view' => [
                     'page-tile' => 'Order #:order_id',
                     'info' => 'Information',

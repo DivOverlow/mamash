@@ -50,7 +50,7 @@
         @include('shop::products.add-buttons', ['product' => $product])
     </div>
 
-    <div class="product-image flex justify-content-center items-center px-10">
+    <div class="product-image flex justify-center items-center px-10">
         <a href="{{ route('shop.products.index', $product->url_key) }}" title="{{ $product->name }}" class="my-auto mx-auto">
             <img class="w-full object-scale-down" src="{{ $productBaseImage['medium_image_url'] }}" onerror="this.src='{{ asset('vendor/webkul/ui/assets/images/product/meduim-product-placeholder.png') }}'"/>
         </a>

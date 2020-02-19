@@ -67,19 +67,19 @@ class OrderDataGrid extends DataGrid
             'closure' => true,
             'wrapper' => function ($value) {
                 if ($value->status == 'processing')
-                    return '<span class="badge badge-md badge-success">Processing</span>';
+                    return '<span class="badge badge-md badge-success">' . trans('shop::app.customer.account.order.status.processing') . '</span>';
                 else if ($value->status == 'completed')
-                    return '<span class="badge badge-md badge-success">Completed</span>';
+                    return '<span class="badge badge-md badge-success">' . trans('shop::app.customer.account.order.status.completed') . '</span>';
                 else if ($value->status == "canceled")
-                    return '<span class="badge badge-md badge-danger">Canceled</span>';
+                    return '<span class="badge badge-md badge-danger">' . trans('shop::app.customer.account.order.status.canceled') . '</span>';
                 else if ($value->status == "closed")
-                    return '<span class="badge badge-md badge-info">Closed</span>';
+                    return '<span class="badge badge-md badge-info">' . trans('shop::app.customer.account.order.status.closed') . '</span>';
                 else if ($value->status == "pending")
-                    return '<span class="badge badge-md badge-warning">Pending</span>';
+                    return '<span class="badge badge-md badge-warning">' . trans('shop::app.customer.account.order.status.pending') . '</span>';
                 else if ($value->status == "pending_payment")
-                    return '<span class="badge badge-md badge-warning">Pending Payment</span>';
+                    return '<span class="badge badge-md badge-warning">' . trans('shop::app.customer.account.order.status.pending-payment') . '</span>';
                 else if ($value->status == "fraud")
-                    return '<span class="badge badge-md badge-danger">Fraud</span>';
+                    return '<span class="badge badge-md badge-danger">' . trans('shop::app.customer.account.order.status.fraud') . '</span>';
             },
             'filterable' => true
         ]);

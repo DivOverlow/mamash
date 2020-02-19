@@ -279,6 +279,16 @@ return [
                     'order_number' => 'Номер замовлення'
                 ],
 
+                'status' => [
+                    'processing' => 'Обробка',
+                    'completed' => 'Завершено',
+                    'canceled' => 'Скасовано',
+                    'closed' => 'Закритий',
+                    'pending' => 'В очікуванні',
+                    'pending-payment' => 'Очікування платежу',
+                    'fraud' => 'Шахрайство'
+                ],
+
                 'view' => [
                     'page-tile' => 'Замовлення #:order_id',
                     'info' => 'Інформація',
