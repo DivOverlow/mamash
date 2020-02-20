@@ -74,10 +74,9 @@ foreach (app('Webkul\Category\Repositories\CategoryRepository')->getVisibleCateg
                 {{--            <i class="icon dropdown-right-icon" v-if="haveChildren && item.parent_id != null"></i>--}}
                 <div class="nav-menu-info">
                     <div class="img-nav-block">
-                        <img class="object-cover h-56 w-full" :src="url+'/storage/'+this.item.image" :alt="this.item.name" onerror="this.src='{{ asset('vendor/webkul/ui/assets/images/product/meduim-product-placeholder.png') }}'"/>
+                        <img class="object-cover h-56 w-full" :src="url+'/storage/'+this.item.image" :alt="name" onerror="this.src='{{ asset('vendor/webkul/ui/assets/images/product/meduim-product-placeholder.png') }}'"/>
                     </div>
-                    <div class="desc-nav-block">
-                         @{{ this.item.description }}
+                    <div class="desc-nav-block" v-html="description">
                     </div>
                 </div>
 
@@ -131,6 +130,17 @@ foreach (app('Webkul\Category\Repositories\CategoryRepository')->getVisibleCateg
                     return this.item.children.length ? true : false;
                 },
 
+                description: function () {
+                    if (this.item.translations && this.item.translations.length) {
+                        this.item.translations.forEach(function (translation) {
+                            if (translation.locale == document.documentElement.lang)
+                                return translation.description;
+                        });
+                    }
+
+                    return this.item.description;
+                },
+
                 name: function () {
                     if (this.item.translations && this.item.translations.length) {
                         this.item.translations.forEach(function (translation) {
@@ -141,6 +151,7 @@ foreach (app('Webkul\Category\Repositories\CategoryRepository')->getVisibleCateg
 
                     return this.item.name;
                 }
+
             },
 
             methods: {
