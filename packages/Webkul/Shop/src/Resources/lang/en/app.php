@@ -487,8 +487,8 @@ return [
         ],
         'gift' => [
             'title' => 'Your Gift',
-            'hail' => 'Congratulations',
-            'available' => 'you have a gift now',
+            'hail' => 'Congratulations!',
+            'available' => 'we have added this free :product_name to your shopping cart.',
             'free' => 'Free Gift',
             'premium' => 'Premium Gift',
             'free-message' => 'You can choose this product as a gift when paying for the order.',

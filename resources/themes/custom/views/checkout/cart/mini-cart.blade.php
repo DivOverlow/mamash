@@ -49,18 +49,21 @@
                 session()->forget('new_gift_product');
             ?>
 
-            <div class="w-full flex flex-col items-center bg-orange-100 border-t-2 border-orange-500 rounded-b shadow-md p-6">
-                <div class="tracking-widest text-gold uppercase">{{ __('shop::app.checkout.gift.hail') }}</div>
-                <div class="tracking-widest text-gray-dark">{{ __('shop::app.checkout.gift.available') }}</div>
-                <div class="item-image h-56 w-full flex items-center justify-center">
-                    <a href="{{ url()->to('/').'/products/'.$product->url_key }}"><img  class="object-scale-down h-48 w-auto"
+            <div class="w-full max-w-md flex flex-col items-center bg-orange-100 border-t-2 border-orange-500 rounded-b shadow-md p-6">
+                <div class="tracking-widest text-gray-dark uppercase text-xl font-bold">{{ __('shop::app.checkout.gift.hail') }}</div>
+                <div class="tracking-widest text-gray-dark lowercase text-center">{{ __('shop::app.checkout.gift.available', ['product_name' => $product->name ]) }}</div>
+                <div class="item-image h-48 w-full flex items-center justify-center">
+                    <a href="{{ url()->to('/').'/products/'.$product->url_key }}"><img  class="object-scale-down h-40 w-auto"
                                                                                         src="{{ $productBaseImage['medium_image_url'] }}"/></a>
                 </div>
-                <div class="text-base text-gray-dark uppercase hover:text-gray-cloud">
-                    <a href="{{ url()->to('/').'/products/'.$product->url_key }}">
-                        {{ $product->name }} </a>
+                <div class="w-full flex flex-col items-center text-sm sm:text-base">
+                        <span class="button-black w-2/3 py-3 normal-case mb-6">
+                            <a href="{{ route('shop.checkout.cart.index') }}">{{ __('shop::app.minicart.view-cart') }}</a>
+                        </span>
+                    <span class="mb-6">
+                            <a href="{{ route('shop.categories.index', 'category') }}" class="link text-base text-gray-silver uppercase underline hover:no-underline hover:text-gray-dark">{{ __('shop::app.checkout.cart.continue-shopping') }}</a>
+                        </span>
                 </div>
-                <button class="button-decor py-3 px-6 mt-6" @click="closeEclipse">{{  __('shop::app.checkout.cart.continue-shopping') }}</button>
             </div>
 
         </div>

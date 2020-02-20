@@ -6,7 +6,7 @@
 
                     <div class="modal-header relative">
                         <slot name="header">
-<!--                            <i class="icon remove-icon absolute ml-6 p-4 cursor-pointer top-0 right-0" @click="emitClose"></i>-->
+                            <i class="icon remove-icon absolute m-2 p-4 cursor-pointer top-0 right-0" @click="emitClose"></i>
                         </slot>
                     </div>
 
