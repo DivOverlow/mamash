@@ -72,10 +72,13 @@ foreach (app('Webkul\Category\Repositories\CategoryRepository')->getVisibleCateg
             <a :href="url+'/categories/'+this.item['translations'][0].slug" class="nav-item">
                 @{{ name }}&emsp;
                 {{--            <i class="icon dropdown-right-icon" v-if="haveChildren && item.parent_id != null"></i>--}}
-                <div>
-
-{{--                    <img class="object-cover h-56 w-full" :src="url+'/storage/'+this.item.image" :alt="this.item.name" onerror="this.src='{{ asset('vendor/webkul/ui/assets/images/product/meduim-product-placeholder.png') }}'"/>--}}
-{{--                    @{{ this.item.description }}--}}
+                <div class="nav-menu-info">
+                    <div class="img-nav-block">
+                        <img class="object-cover h-56 w-full" :src="url+'/storage/'+this.item.image" :alt="this.item.name" onerror="this.src='{{ asset('vendor/webkul/ui/assets/images/product/meduim-product-placeholder.png') }}'"/>
+                    </div>
+                    <div class="desc-nav-block">
+                         @{{ this.item.description }}
+                    </div>
                 </div>
 
 
