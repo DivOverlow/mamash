@@ -381,9 +381,71 @@ body {
 .header .header-bottom ul.nav {
     @apply .uppercase .text-white .items-center .block;
 }
+/*all menu items*/
+
+.header .header-bottom ul.nav>li>.nav-level>div>ul{
+    width: 100%;
+    position: relative;
+    padding-top: 35px;
+}
+.header .header-bottom ul.nav>li:first-child>.nav-level>div>ul{
+    padding-top: 0;
+}
+.header .header-bottom ul.nav>li>.nav-level>div>ul:after{
+    content: "";
+    border-right: 1px solid rgba(255, 255, 255, 0.3);
+    position: absolute;
+    height: 75%;
+    top: 10%;
+    left: 30%;
+    margin-left: 4px;
+}
+.header .header-bottom ul.nav>li:first-child>.nav-level>div>ul:after{
+    content: "";
+    border-right: none;
+}
+.header .header-bottom ul.nav>li>.nav-level>div>ul>li{
+    padding-left: 60px;
+    padding-top: 0;
+    padding-bottom: 5px;
+}
+.header .header-bottom ul.nav>li>.nav-level>div>ul>li>a{
+    text-transform: uppercase;
+}
+.header .header-bottom ul.nav>li>.nav-level>div>ul>li>a>.nav-menu-info{
+    position: absolute;
+    left: -9999em;
+}
+.header .header-bottom ul.nav>li>a:hover~.nav-level>div>ul>li:first-child>a>.nav-menu-info,
+.header .header-bottom ul.nav>li>.nav-level>div>ul>li:hover>a>.nav-menu-info{
+    left: 30%;
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    right: 0;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.header .header-bottom ul.nav>li>.nav-level>div>ul>li>a>.nav-menu-info .img-nav-block,
+.header .header-bottom ul.nav>li>.nav-level>div>ul>li>a>.nav-menu-info .desc-nav-block{
+    width: 30%
+}
+/*first menu item */
+.header .header-bottom ul.nav li:first-child .nav-menu-info,
+.header .header-bottom ul.nav>li>a>.nav-menu-info{
+    display: none;
+}
+.header .header-bottom ul.nav>li>.nav-level,
+.header .header-bottom ul.nav>li:hover>.nav-level,
 .header .header-bottom ul.nav>li:first-child>.nav-level{
     height: 550px;
     overflow: hidden;
+}
+.header .header-bottom ul.nav>li:first-child>.nav-level>div>ul{
+    content: "";
+    border-right: none;
 }
 .header .header-bottom ul.nav>li:first-child>.nav-level>div>ul>li>a{
     text-align: center;
@@ -412,6 +474,8 @@ body {
     content: "";
     border-right: none;
 }
+
+.header .header-bottom ul.nav>li>.nav-level>div,
 .header .header-bottom ul.nav>li:first-child>.nav-level>div{
     height: 580px;
     margin-top: 0;
@@ -423,6 +487,8 @@ body {
     padding-right: 20px;
     height: 515px;
 }
+
+.header .header-bottom ul.nav>li>.nav-level>div>ul>li>div.nav-level>div,
 .header .header-bottom ul.nav>li:first-child>.nav-level>div>ul>li>div.nav-level>div{
     margin: 0;
     height: 500px;
