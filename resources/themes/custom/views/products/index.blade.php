@@ -219,9 +219,9 @@
                                 <div class="bottom-toolbar w-full flex justify-center">
 
                                     <div class="my-6">
-                                        <button type="button" class="button-black text-sm px-6 load-more inline-flex items-center py-0">
+                                        <button type="button" class="button-black text-sm px-6 load-more inline-flex items-center relative">
                                             {{ __('shop::app.products.show-more') }}
-                                            <span class="cp-spinner cp-round" id="loader">
+                                            <span class="cp-spinner cp-round -mt-1" id="loader">
                                             </span>
                                         </button>
                                     </div>
