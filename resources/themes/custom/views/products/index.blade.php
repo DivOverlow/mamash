@@ -221,6 +221,8 @@
                                     <div class="my-6">
                                         <button type="button" class="button-black text-sm px-6 load-more">
                                             {{ __('shop::app.products.show-more') }}
+                                            <span class="cp-spinner cp-round" id="loader">
+                                            </span>
                                         </button>
                                     </div>
 {{--                                    {{ $products->appends(request()->input())->links() }}--}}
