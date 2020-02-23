@@ -216,8 +216,15 @@
 
                                 {!! view_render_event('bagisto.shop.products.index.pagination.before', ['category' => $category]) !!}
 
-                                <div class="bottom-toolbar w-full sm:w-1/2 text-center">
-                                    {{ $products->appends(request()->input())->links() }}
+                                <div class="bottom-toolbar w-full flex justify-center">
+
+                                    <div class="my-6">
+                                        <button type="button" class="button-black text-sm px-6 load-more">
+                                            {{ __('shop::app.products.show-more') }}
+                                        </button>
+                                    </div>
+{{--                                    {{ $products->appends(request()->input())->links() }}--}}
+
                                 </div>
 
                                 {!! view_render_event('bagisto.shop.products.index.pagination.after', ['category' => $category]) !!}
