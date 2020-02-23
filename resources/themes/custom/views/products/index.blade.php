@@ -409,19 +409,22 @@
                btn.attr('disabled', true);
                loader.addClass('inline-block');
                // GET request for remote image
-                axios({
-                    method: 'get',
-                    url: '{{ route('shop.categories.index') }}',
-                    responseType: 'stream'
-                })
+                axios.get('{{ route('shop.categories.index', 'category') }}')
                     .then(function (response) {
+
                         setTimeout(function () {
                             loader.removeClass('inline-block');
                             btn.attr('disabled', false);
+
                         }, 1000);
 
-                        console.log(response.data);
-                        // response.data.pipe(fs.createWriteStream('ada_lovelace.jpg'))
+                        console.log(response);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+                    .then(function () {
+                        // always executed
                     });
             });
         });
