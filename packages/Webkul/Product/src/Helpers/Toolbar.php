@@ -35,7 +35,8 @@ class Toolbar extends AbstractProduct
      */
     public function getAvailableLimits()
     {
-        return [9, 15, 21, 28];
+        return [8, 14, 20, 27];
+//        return [9, 15, 21, 28];
     }
 
     /**
