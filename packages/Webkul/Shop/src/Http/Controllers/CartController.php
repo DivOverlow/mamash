@@ -121,7 +121,8 @@ class CartController extends Controller
             }
             else $this->checkedGift(0);
 
-            session()->flash('success', trans('shop::app.checkout.cart.item.success-remove') . ' ' . $message );
+//            session()->flash('success', trans('shop::app.checkout.cart.item.success-remove') . ' ' . $message );
+            session()->flash('success', trans('shop::app.checkout.cart.item.success-remove'));
 
         }
 
@@ -151,7 +152,8 @@ class CartController extends Controller
 
                 $cart = Cart::getCart();
                 $message = $this->checkedGift($cart->base_sub_total, $new_product_gift_id);
-                session()->flash('success', trans('shop::app.checkout.cart.quantity.success') . ' ' . $message );
+                session()->flash('success', trans('shop::app.checkout.cart.quantity.success'));
+//                session()->flash('success', trans('shop::app.checkout.cart.quantity.success') . ' ' . $message );
 
             }
 
@@ -199,28 +201,39 @@ class CartController extends Controller
                 }
                 if (count($gifts) > 0) {
                     if (in_array($new_product_gift_id, $gifts)
-                        && ((int) session()->has('gift_product_id') != $new_product_gift_id)) {
+                        && ((int) session()->get('gift_product_id') != $new_product_gift_id)) {
                         if (session()->has('gift_product_id')) {
                             session()->forget('gift_product_id');
                         }
                         session()->put('gift_product_id', $new_product_gift_id);
                         return trans('shop::app.checkout.gift.gift-selected');
                     }
+
+
                     if (session()->has('gift_product_id')) {
+                        // lowering
                         if (!in_array(session()->get('gift_product_id'), $gifts) ) {
                             session()->forget('gift_product_id');
                             session()->put('gift_product_id', end($gifts));
+                            session()->put('new_gift_product', end($gifts));
                             return trans('shop::app.checkout.gift.gift-change');
+                        }
+                        // rate increase
+                        if (session()->get('gift_product_id') != end($gifts)) {
+                            session()->forget('gift_product_id');
+                            session()->put('gift_product_id', end($gifts));
+                            session()->put('new_gift_product', end($gifts));
                         }
                     }
                     else {
-                        session()->put('gift_product_id', end($gifts));
                         session()->put('new_gift_product', end($gifts));
+                        session()->put('gift_product_id', end($gifts));
                         return trans('shop::app.checkout.gift.gift-available');
                     }
                 }
                 elseif (session()->has('gift_product_id')) {
                     session()->forget('gift_product_id');
+                    session()->put('new_gift_product', -1);
                     return trans('shop::app.checkout.gift.gift-not-available');
                 }
             }

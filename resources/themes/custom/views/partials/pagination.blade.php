@@ -1,5 +1,5 @@
 @if ($paginator->hasPages())
-    <div class="pagination shop mt-50">
+    <div class="pagination shop my-10">
         {{-- Previous Page Link --}}
         @if ($paginator->onFirstPage())
             <a class="page-item previous">

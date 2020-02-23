@@ -68,10 +68,10 @@ class AddressDataGrid extends DataGrid
         $this->addFilter('address_id', 'ca.id');
         $this->addFilter('address1', 'ca.address1');
         $this->addFilter('city', 'ca.city');
-        $this->addFilter('state_name', DB::raw('country_states.default_name'));
-        $this->addFilter('country_name', DB::raw('countries.name'));
-        $this->addFilter('postcode', 'ca.postcode');
-        $this->addFilter('default_address', 'ca.default_address');
+//        $this->addFilter('state_name', DB::raw('country_states.default_name'));
+//        $this->addFilter('country_name', DB::raw('countries.name'));
+//        $this->addFilter('postcode', 'ca.postcode');
+//        $this->addFilter('default_address', 'ca.default_address');
 
         $this->setQueryBuilder($queryBuilder);
     }
@@ -80,7 +80,7 @@ class AddressDataGrid extends DataGrid
     {
         $this->addColumn([
             'index' => 'address_id',
-            'label' => trans('admin::app.customers.addresses.address-id'),
+            'label' => trans('shop::app.customer.account.address.index.address-id'),
             'type' => 'number',
             'searchable' => true,
             'sortable' => true,
@@ -89,7 +89,7 @@ class AddressDataGrid extends DataGrid
 
         $this->addColumn([
             'index' => 'city',
-            'label' => trans('admin::app.customers.addresses.city'),
+            'label' => trans('shop::app.customer.account.address.index.city'),
             'type' => 'string',
             'searchable' => true,
             'sortable' => true,
@@ -98,7 +98,7 @@ class AddressDataGrid extends DataGrid
 
         $this->addColumn([
             'index' => 'address1',
-            'label' => trans('admin::app.customers.addresses.address-1'),
+            'label' => trans('shop::app.customer.account.address.index.address-1'),
             'type' => 'string',
             'searchable' => true,
             'sortable' => true,
@@ -109,7 +109,7 @@ class AddressDataGrid extends DataGrid
 
 //        $this->addColumn([
 //            'index' => 'state_name',
-//            'label' => trans('admin::app.customers.addresses.state-name'),
+//            'label' => trans('shop::app.customer.account.address.index.state-name'),
 //            'type' => 'string',
 //            'searchable' => true,
 //            'sortable' => true,
@@ -118,7 +118,7 @@ class AddressDataGrid extends DataGrid
 
 //        $this->addColumn([
 //            'index' => 'country_name',
-//            'label' => trans('admin::app.customers.addresses.country-name'),
+//            'label' => trans('shop::app.customer.account.address.index.country-name'),
 //            'type' => 'string',
 //            'searchable' => true,
 //            'sortable' => true,
@@ -127,27 +127,27 @@ class AddressDataGrid extends DataGrid
 //
 //        $this->addColumn([
 //            'index' => 'postcode',
-//            'label' => trans('admin::app.customers.addresses.postcode'),
+//            'label' => trans('shop::app.customer.account.address.index.postcode'),
 //            'type' => 'string',
 //            'searchable' => true,
 //            'sortable' => true,
 //            'filterable' => true
 //        ]);
 
-        $this->addColumn([
-            'index' => 'default_address',
-            'label' => trans('admin::app.customers.addresses.default-address'),
-            'type' => 'boolean',
-            'sortable' => true,
-            'searchable' => false,
-            'closure' => true,
-            'wrapper' => function($row) {
-                if ($row->default_address == 1)
-                    return '<span class="badge badge-md badge-success"">' . trans('admin::app.customers.addresses.yes') . '</span>';
-                else
-                    return trans('admin::app.customers.addresses.dash');
-            }
-        ]);
+//        $this->addColumn([
+//            'index' => 'default_address',
+//            'label' => trans('shop::app.customer.account.address.index.default-address'),
+//            'type' => 'boolean',
+//            'sortable' => true,
+//            'searchable' => false,
+//            'closure' => true,
+//            'wrapper' => function($row) {
+//                if ($row->default_address == 1)
+//                    return '<span class="badge badge-md badge-success"">' . trans('admin::app.customers.addresses.yes') . '</span>';
+//                else
+//                    return trans('admin::app.customers.addresses.dash');
+//            }
+//        ]);
     }
 
     public function prepareActions()

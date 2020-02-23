@@ -3,12 +3,16 @@
 @inject ('categoryRepository', 'Webkul\Category\Repositories\CategoryRepository')
 @inject ('giftRepository', 'Webkul\Discount\Repositories\GiftRuleRepository')
 
-<?php $cart = cart()->getCart();?>
+<?php
+    $cart = cart()->getCart();
+    $premium_counter = 0;
+?>
 
 @if ($cart)
     <?php $items = $cart->items;
+        $gift_products = app('Webkul\Discount\Repositories\GiftRuleRepository')->getGiftsProduct();
+
         if(count($items) > 0 && !session()->has('gift_product_id')) {
-            $gift_products = app('Webkul\Discount\Repositories\GiftRuleRepository')->getGiftsProduct();
             $gifts = [];
             foreach ($gift_products as $gift_product) {
                 if( $cart->base_sub_total < $gift_product->action_amount) {
@@ -21,6 +25,17 @@
             }
             if (count($gifts) > 0) {
                 session()->put('gift_product_id', end($gifts));
+            }
+        }
+        if(count($items) > 0) {
+            foreach ($gift_products as $gift_product) {
+                if( $cart->base_sub_total > $gift_product->action_amount) {
+                    continue;
+                }
+                else {
+                    $premium_counter = $gift_product->action_amount - $cart->base_sub_total;
+                    break;
+                }
             }
         }
     ?>
@@ -44,18 +59,23 @@
     <eclipse-modal message="{{session("new_gift_product")}}"  @close="closeEclipse">
         <div slot="body">
             <?php
-                $product = $productRepository->find(session()->get('new_gift_product'));
-                $productBaseImage = $productImageHelper->getProductBaseImage($product);
-                session()->forget('new_gift_product');
+                if (session()->get('new_gift_product') > 0) {
+                    $product = $productRepository->find(session()->get('new_gift_product'));
+                    $productBaseImage = $productImageHelper->getProductBaseImage($product);
+                }
             ?>
 
             <div class="w-full max-w-md flex flex-col items-center bg-orange-100 border-t-2 border-orange-500 rounded-b shadow-md p-6">
-                <div class="tracking-widest text-gray-dark uppercase text-xl font-bold">{{ __('shop::app.checkout.gift.hail') }}</div>
-                <div class="tracking-widest text-gray-dark lowercase text-center">{{ __('shop::app.checkout.gift.available', ['product_name' => $product->name ]) }}</div>
-                <div class="item-image h-48 w-full flex items-center justify-center">
-                    <a href="{{ url()->to('/').'/products/'.$product->url_key }}"><img  class="object-scale-down h-40 w-auto"
-                                                                                        src="{{ $productBaseImage['medium_image_url'] }}"/></a>
-                </div>
+                @if (session()->get('new_gift_product') > 0)
+                    <div class="tracking-widest text-gray-dark uppercase text-xl font-bold">{{ __('shop::app.checkout.gift.hail') }}</div>
+                    <div class="tracking-widest text-gray-dark lowercase text-center">{{ __('shop::app.checkout.gift.available', ['product_name' => $product->name ]) }}</div>
+                    <div class="item-image h-48 w-full flex items-center justify-center">
+                        <a href="{{ url()->to('/').'/products/'.$product->url_key }}"><img  class="object-scale-down h-40 w-auto"
+                                                                                            src="{{ $productBaseImage['medium_image_url'] }}"/></a>
+                    </div>
+                @else
+                    <div class="tracking-widest text-gray-dark uppercase text-xl text-center font-medium py-10">{{ __('shop::app.checkout.gift.gift-lost-available') }}</div>
+                @endif
                 <div class="w-full flex flex-col items-center text-sm sm:text-base">
                         <span class="button-black w-2/3 py-3 normal-case mb-6">
                             <a href="{{ route('shop.checkout.cart.index') }}">{{ __('shop::app.minicart.view-cart') }}</a>
@@ -63,9 +83,16 @@
                     <span class="mb-6">
                             <a href="{{ route('shop.categories.index', 'category') }}" class="link text-base text-gray-silver uppercase underline hover:no-underline hover:text-gray-dark">{{ __('shop::app.checkout.cart.continue-shopping') }}</a>
                         </span>
+                    @if ($premium_counter != 0)
+                        <div class="font-bold text-sm text-gray-dark lowercase text-center">
+                            {{ __('shop::app.checkout.gift.premium-gift', ['premium_counter' => core()->convertPrice($premium_counter) . core()->currencySymbol(core()->getBaseCurrencyCode())] ) }}
+                        </div>
+                    @endif
                 </div>
             </div>
-
+                <?php
+                    session()->forget('new_gift_product');
+                ?>
         </div>
     </eclipse-modal>
     @endif
@@ -153,7 +180,6 @@
 
             <div class="cart-footer absolute inset-x-0 bottom-0">
                 <div class="w-full my-3">
-                    <?php $gift_products = $giftRepository->getGiftsProduct(); ?>
 
                     @if (count($gift_products))
                         @inject ('productImageHelper', 'Webkul\Product\Helpers\ProductImage')
@@ -198,8 +224,8 @@
                                                     <div class="font-serif font-medium text-base text-gray-cloud">
                                                         {{ ($cart->base_sub_total < $gift_product->action_amount) ? __('shop::app.checkout.gift.premium') : __('shop::app.checkout.gift.free') }}
                                                     </div>
-                                                    <div class="font-normal font-medium text-base text-gray-cloud leading-none">
-                                                        {{ ($cart->base_sub_total < $gift_product->action_amount) ? sprintf(__('shop::app.checkout.gift.premium-message'), core()->convertPrice($gift_product->action_amount - $cart->base_sub_total) . core()->currencySymbol(core()->getBaseCurrencyCode()) ) : __('shop::app.checkout.gift.free-message') }}
+                                                    <div class="font-medium text-base text-gray-cloud leading-none">
+                                                        {{ ($cart->base_sub_total < $gift_product->action_amount) ? __('shop::app.checkout.gift.premium-message', ['premium_counter' => core()->convertPrice($gift_product->action_amount - $cart->base_sub_total) . core()->currencySymbol(core()->getBaseCurrencyCode())] ) : __('shop::app.checkout.gift.free-message') }}
                                                     </div>
                                                 </div>
                                             </div>

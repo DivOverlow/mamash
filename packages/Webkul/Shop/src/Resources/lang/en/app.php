@@ -235,6 +235,9 @@ return [
                     'confirm-delete' =>  'Do you really want to delete this address?',
                     'default-delete' => 'Default address cannot be changed.',
                     'enter-password' => 'Enter Your Password.',
+                    'address-id' => 'Address ID',
+                    'address-1' => 'Address',
+                    'city' => 'City',
                 ],
 
                 'create' => [
@@ -492,11 +495,13 @@ return [
             'free' => 'Free Gift',
             'premium' => 'Premium Gift',
             'free-message' => 'You can choose this product as a gift when paying for the order.',
-            'premium-message' => 'Buy another at %s and get this free gift.',
+            'premium-message' => 'Buy another at :premium_counter and get this free gift.',
+            'premium-gift' => 'spend :premium_counter to more and choose for the premium gift.',
             'gift-change' => 'You have changed a gift from the order amount.',
             'gift-selected' => 'You have chosen another gift.',
             'gift-available' => 'Congratulations, you now have a gift.',
             'gift-not-available' => 'It\'s a pity, but the order amount is not enough to receive a gift.',
+            'gift-lost-available' => 'We are very sorry, but you have lost your gift.',
             'gift-change-error' => 'Error receiving gift.',
 
         ],

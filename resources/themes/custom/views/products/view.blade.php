@@ -95,7 +95,7 @@
                                     </div>
 
                                     {!! view_render_event('bagisto.shop.products.view.short_description.before', ['product' => $product]) !!}
-                                    <div class="description px-0 sm:px-6 text-center text-gray-dark my-3 overflow-hidden" style="max-height: 6rem;">
+                                    <div class="description px-0 sm:px-6 text-center text-gray-dark my-3 overflow-hidden" style="max-height: 8rem;">
                                         {!! str_limit($product->short_description, 160)  !!}
                                         <a class="right-0 bottom-0 text-gold font-serif underline hover:no-underline lowercase" href="#product-description">{{ __('shop::app.products.show-more') }}</a>
                                     </div>

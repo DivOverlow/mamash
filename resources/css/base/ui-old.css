@@ -42,17 +42,17 @@
 /*    background-image: url("../images/Icon-CMS.svg")*/
 /*}*/
 
-/*.angle-right-icon {*/
-/*    background-image: url("../images/Angle-Right.svg");*/
-/*    width: 17px;*/
-/*    height: 17px*/
-/*}*/
+.angle-right-icon {
+    background-image: url("../images/Angle-Right.svg");
+    width: 17px;
+    height: 17px
+}
 
-/*.angle-left-icon {*/
-/*    background-image: url("../images/Angle-Left.svg");*/
-/*    width: 17px;*/
-/*    height: 17px*/
-/*}*/
+.angle-left-icon {
+    background-image: url("../images/Angle-Left.svg");
+    width: 17px;
+    height: 17px
+}
 
 /*.arrow-down-icon {*/
 /*    background-image: url("../images/Arrow-Down-Light.svg");*/

@@ -86,10 +86,10 @@ return [
     ],
 
     'search' => [
-        'no-results' => 'No Results Found',
+        'no-results' => 'Результаты не найдены',
         'page-title' => config('app.name') . ' - Поиск',
-        'found-results' => 'Search Results Found',
-        'found-result' => 'Search Result Found'
+        'found-results' => 'Результаты поиска найдены',
+        'found-result' => 'Результат поиска найден'
     ],
 
     'reviews' => [
@@ -235,6 +235,9 @@ return [
                     'confirm-delete' =>  'Вы действительно хотите удалить этот адрес?',
                     'default-delete' => 'Адрес по умолчанию не может быть изменен.',
                     'enter-password' => 'Введите ваш пароль.',
+                    'address-id' => 'ID Адреса',
+                    'address-1' => 'Адрес',
+                    'city' => 'Город',
                 ],
 
                 'create' => [
@@ -495,11 +498,13 @@ return [
             'free' => 'Бесплатный подарок',
             'premium' => 'Премиальный подарок',
             'free-message' => 'Вы можете выбрать этот бесплатный подарок для заказа.',
-            'premium-message' => 'Купите еще на %s и получите этот бесплатный подарок',
+            'premium-message' => 'Купите еще на :premium_counter и получите этот бесплатный подарок',
+            'premium-gift' => 'Купите еще на :premium_counter и более и выберите подарок премиум-класса.',
             'gift-change' => 'У Вас сменился подарок от суммы заказа.',
             'gift-selected' => 'Вы успешно изменили подарок.',
             'gift-available' => 'Поздравляем, теперь у Вас есть подарок.',
-            'gift-not-available' => 'Очень жаль, но суммы заказа не хватает для получения подарка.',
+            'gift-not-available' => 'Нам очень жаль, но суммы заказа не хватает для получения подарка.',
+            'gift-lost-available' => 'Нам очень жаль, но Вы потеряли свой подарок.',
             'gift-change-error' => 'Ошыбка получения подарка.',
         ],
 

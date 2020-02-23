@@ -5,8 +5,11 @@
 @endsection
 
 @section('content-wrapper')
+    <div class="main-container-wrapper">
     @if (! $results)
-        {{  __('shop::app.search.no-results') }}
+        <div class="text-gray-dark text-lg" style="min-height: 9vh;">
+            {{  __('shop::app.search.no-results') }}
+        </div>
     @endif
 
     @if ($results)
@@ -18,19 +21,20 @@
                 </div>
             @else
                 @if ($results->total() == 1)
-                    <div class="search-result-status mb-20">
+                    <div class="search-result-status mb-20 text-gray-dark text-lg">
                         <span><b>{{ $results->total() }} </b>{{ __('shop::app.search.found-result') }}</span>
                     </div>
                 @else
-                    <div class="search-result-status mb-20">
+                    <div class="search-result-status mb-20 text-gray-dark text-lg">
                         <span><b>{{ $results->total() }} </b>{{ __('shop::app.search.found-results') }}</span>
                     </div>
                 @endif
 
-                <div class="product-grid-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mb-20 -mx-3">
                     @foreach ($results as $productFlat)
-
-                        @include('shop::products.list.card', ['product' => $productFlat->product])
+                        <div class="p-3">
+                            @include('shop::products.list.card', ['product' => $productFlat->product])
+                        </div>
 
                     @endforeach
                 </div>
@@ -39,4 +43,5 @@
             @endif
         </div>
     @endif
+    </div>
 @endsection

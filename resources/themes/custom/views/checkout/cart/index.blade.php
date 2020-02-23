@@ -198,7 +198,7 @@
                                                     <div class="item-title w-full sm:w-2/5 flex flex-col justify-end">
                                                         <div class="w-full sm:w-2/3 sm:ml-auto font-normal font-medium text-lg text-gray-cloud">
                                                             @if ($cart->base_sub_total < $gift_product->action_amount)
-                                                              {{  sprintf(__('shop::app.checkout.gift.premium-message'), core()->convertPrice($gift_product->action_amount - $cart->base_sub_total) . core()->currencySymbol(core()->getBaseCurrencyCode())) }}
+                                                              {{  __('shop::app.checkout.gift.premium-message', ['premium_counter' => core()->convertPrice($gift_product->action_amount - $cart->base_sub_total) . core()->currencySymbol(core()->getBaseCurrencyCode())]) }}
                                                             @elseif (session()->get('gift_product_id') == $product->id )
                                                                 <span class="text-gold text-xl"> {{ __('shop::app.checkout.gift.title') }} </span>
                                                             @else

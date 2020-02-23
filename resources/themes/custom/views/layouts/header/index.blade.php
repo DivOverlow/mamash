@@ -93,7 +93,7 @@
                 <div class="w-full right-content flex justify-between items-center">
                     <div class="search-container mr-10 items-center w-full flex justify-end relative">
                         <form role="search" action="{{ route('shop.search.index') }}" method="GET" >
-                            <input type="text" class="bg-transparent font-serif font-light text-white text-sm h-8 w-20 border-b border-gray-light relative focus:w-48 focus:border-gold"
+                            <input type="search" name="term" class="search-field bg-transparent font-serif font-light text-white text-sm h-8 w-20 border-b border-gray-light relative focus:w-48 focus:border-gold"
                                    placeholder="{{ __('shop::app.header.search-text') }}" required>
                                     <div class="search-icon-wrapper flex items-center absolute right-0 inset-y-0">
                                         <button class="pl-2 -mr-5 pb-1">
