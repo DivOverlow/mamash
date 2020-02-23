@@ -403,7 +403,26 @@
     <script>
         $(function () {
             $('.load-more').on('click', function () {
-               alert('OK');
+               const btn = $(this);
+               const loader = btn.find('span');
+
+               btn.attr('disabled', true);
+               loader.addClass('inline-block');
+               // GET request for remote image
+                axios({
+                    method: 'get',
+                    url: '{{ route('shop.categories.index') }}',
+                    responseType: 'stream'
+                })
+                    .then(function (response) {
+                        setTimeout(function () {
+                            loader.removeClass('inline-block');
+                            btn.attr('disabled', false);
+                        }, 1000);
+
+                        console.log(response.data);
+                        // response.data.pipe(fs.createWriteStream('ada_lovelace.jpg'))
+                    });
             });
         });
     </script>
