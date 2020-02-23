@@ -284,6 +284,10 @@ body {
    margin-top: calc(40% - 24px);
 }
 
+.load-more span {
+    display: none;
+}
+
 @media only screen and (max-width: 720px) {
     .cp-spinner {
         left: 50%;

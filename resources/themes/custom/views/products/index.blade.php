@@ -400,4 +400,11 @@
             });
         });
     </script>
+    <script>
+        $(function () {
+            $('.load-more').on('click', function () {
+               alert('OK');
+            });
+        });
+    </script>
 @endpush
