@@ -121,6 +121,13 @@
     height: 24px
 }
 
+.primary-back-icon {
+    background-image: url("/themes/default/assets/images/Icon-Back-Primary.svg");
+    width: 24px;
+    height: 24px;
+}
+
+
 /*.sortable-icon {*/
 /*    background-image: url("/themes/default/assets/images/Icon-Sortable.svg");*/
 /*    width: 24px;*/
@@ -1454,8 +1461,8 @@ modal {
 }
 
 .card-modal-container {
-    height: 100%;
-
+    height: 100vh; /* Use vh as a fallback for browsers that do not support Custom Properties */
+    height: calc(var(--vh, 1vh) * 100);
 }
 
 .card-modal-container .modal-body {

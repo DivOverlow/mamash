@@ -173,19 +173,19 @@ return [
         ],
 
         'forgot-password' => [
-            'title' => 'Recover Password',
+            'title' => 'Восстановить пароль',
             'email' => 'Email',
-            'submit' => 'Submit',
+            'submit' => 'Подтвердить',
             'page_title' => 'Customer - Forgot Password Form'
         ],
 
         'reset-password' => [
-            'title' => 'Reset Password',
-            'email' => 'Registered Email',
-            'password' => 'Password',
-            'confirm-password' => 'Confirm Password',
-            'back-link-title' => 'Back to Sign In',
-            'submit-btn-title' => 'Reset Password'
+            'title' => 'Сброс пароля',
+            'email' => 'Зарегистрированная электронная почта',
+            'password' => 'Пароль',
+            'confirm-password' => 'Подтвердите Пароль',
+            'back-link-title' => 'Вернуться к входу',
+            'submit-btn-title' => 'Сброс пароля'
         ],
 
         'account' => [

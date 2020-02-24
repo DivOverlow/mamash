@@ -216,7 +216,7 @@
 
                                 {!! view_render_event('bagisto.shop.products.index.pagination.before', ['category' => $category]) !!}
 
-                                <div class="bottom-toolbar w-full flex justify-center">
+                                <div class="bottom-toolbar w-full flex justify-center after-products">
 
                                     <div class="my-6">
                                         <button type="button" class="button-black text-sm px-6 load-more inline-flex items-center relative">
@@ -415,7 +415,7 @@
                         setTimeout(function () {
                             loader.removeClass('inline-block');
                             btn.attr('disabled', false);
-
+                            // $('.after-products').before(response);
                         }, 1000);
 
                         console.log(response);
@@ -424,6 +424,8 @@
                         console.log(error);
                     })
                     .then(function () {
+                        loader.removeClass('inline-block');
+                        btn.attr('disabled', false);
                         // always executed
                     });
             });

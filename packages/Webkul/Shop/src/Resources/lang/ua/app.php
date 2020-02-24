@@ -181,12 +181,12 @@ return [
         ],
 
         'reset-password' => [
-            'title' => 'Reset Password',
-            'email' => 'Registered Email',
-            'password' => 'Password',
-            'confirm-password' => 'Confirm Password',
-            'back-link-title' => 'Back to Sign In',
-            'submit-btn-title' => 'Reset Password'
+            'title' => 'Скинути пароль',
+            'email' => 'Зареєстрована електронна пошта',
+            'password' => 'Пароль',
+            'confirm-password' => 'Підтвердити пароль',
+            'back-link-title' => 'Назад до входу',
+            'submit-btn-title' => 'Скинути пароль'
         ],
 
         'account' => [
