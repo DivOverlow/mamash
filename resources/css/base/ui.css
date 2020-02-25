@@ -1471,7 +1471,7 @@ modal {
 }
 
 .card-modal-container .cart-footer {
-    max-height: calc(var(--vh, 1vh) * 100 * 0.5);
+    max-height: calc(var(--vh, 1vh) * 100 * 0.6);
 }
 
 

@@ -101,7 +101,7 @@
     <card-modal message="{{session("showCardModal") }}" @close="closeCardModal">
 {{--    <card-modal :showing="showCardModal"     @close="showCardModal = false">--}}
         <div slot="header">
-            <div class="dropdown-header bg-gray-snow h-16 sm:h-20 flex content-center flex-wrap">
+            <div class="dropdown-header bg-gray-snow h-12 sm:h-20 flex content-center flex-wrap">
                 <p class="heading w-full font-medium text-center text-gray-dark text-xl uppercase">
                     {{ __('shop::app.checkout.cart.title') }}
                 </p>
@@ -142,10 +142,10 @@
                                             {{ $categoryCollection->name }} </a>
                                     </p>
                                 @endif
-                                <span class="text-sm text-gray-dark uppercase hover:text-gray-cloud">
+                                <p class="text-sm text-gray-dark uppercase hover:text-gray-cloud leading-snug">
                                                 <a href="{{ url()->to('/').'/products/'.$item->product->url_key }}">
                                                 {{ $item->product->name }} </a>
-                                            </span>
+                                            </p>
                             </div>
 
                             {!! view_render_event('bagisto.shop.checkout.cart-mini.item.name.after', ['item' => $item]) !!}
@@ -199,10 +199,10 @@
                                                 </div>
                                                 <div class="item-title flex flex-col items-start justify-around h-28">
                                                     <div class="mx-auto tracking-widest text-gold">{{ __('shop::app.checkout.gift.title') }}</div>
-                                                    <div class="text-sm text-gray-dark uppercase hover:text-gray-cloud leading-none sm:leading-snug">
+                                                    <p class="text-sm text-gray-dark uppercase hover:text-gray-cloud leading-none sm:leading-snug">
                                                         <a href="{{ url()->to('/').'/products/'.$product->url_key }}">
                                                             {{ $product->name }} </a>
-                                                    </div>
+                                                    </p>
                                                     <div class="font-serif font-medium text-sm sm:text-base text-gray-cloud">
                                                         {{  __('shop::app.checkout.gift.free') }}
                                                     </div>
@@ -222,9 +222,9 @@
                                                     <div class="font-serif font-medium text-xs sm:text-base text-gray-cloud">
                                                         {{ ($cart->base_sub_total < $gift_product->action_amount) ? __('shop::app.checkout.gift.premium') : __('shop::app.checkout.gift.free') }}
                                                     </div>
-                                                    <div class="font-medium text-xs sm:text-base text-gray-cloud leading-none">
+                                                    <p class="font-medium text-xs sm:text-base text-gray-cloud leading-none">
                                                         {{ ($cart->base_sub_total < $gift_product->action_amount) ? __('shop::app.checkout.gift.premium-message', ['premium_counter' => core()->convertPrice($gift_product->action_amount - $cart->base_sub_total) . core()->currencySymbol(core()->getBaseCurrencyCode())] ) : __('shop::app.checkout.gift.free-message') }}
-                                                    </div>
+                                                    </p>
                                                 </div>
                                             </div>
                                         @endif
