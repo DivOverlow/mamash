@@ -238,8 +238,8 @@
                                                 <a href="{{ route('shop.home.index') }}"
                                                    class="link font-serif font-medium text-base text-gold border-b border-transparent hover:border-b hover:border-gold">{{ __('shop::app.checkout.cart.continue-shopping') }}</a>
 
-                                                <div class="flex flex-row justify-between items-center mt-8 normal-case text-sm sm:text-base">
-                                                    <button type="submit" class="button-black w-full py-3">
+                                                <div class="flex flex-row justify-between items-center mt-8 text-sm sm:text-base">
+                                                    <button type="submit" class="button-black w-full py-3 normal-case">
                                                         {{ __('shop::app.checkout.cart.update-cart') }}
                                                     </button>
 
