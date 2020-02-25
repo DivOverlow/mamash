@@ -1470,9 +1470,9 @@ modal {
     max-height: calc(var(--vh, 1vh) * 100 * 0.35);
 }
 
-.card-modal-container .cart-footer {
-    max-height: calc(var(--vh, 1vh) * 100 * 0.6);
-}
+/*.card-modal-container .cart-footer {*/
+/*    max-height: calc(var(--vh, 1vh) * 100 * 0.6);*/
+/*}*/
 
 
 /*.card-modal-container .modal-body {*/
