@@ -108,9 +108,9 @@
             </div>
         </div>
         <div slot="body">
-            <div class="cart-content my-3"user-icon mr-1>
+            <div class="cart-content my-3 overflow-y-auto">
                 @foreach ($items as $item)
-                    <div class="item w-full flex flex-row items-center px-3 py-2 inline-block">
+                    <div class="item w-full flex flex-row items-center px-3 py-1 inline-block">
                         <div class="item-image w-1/5">
                             <?php
                             if ($item->type == "configurable")
@@ -179,11 +179,9 @@
             </div>
 
             <div class="cart-footer absolute inset-x-0 bottom-0">
-                <div class="w-full my-3">
-
                     @if (count($gift_products))
                         @inject ('productImageHelper', 'Webkul\Product\Helpers\ProductImage')
-                        <div class="gift-content my-3 pr-3">
+                        <div class="gift-content my-1 sm:my-3 pr-3">
                             @if (session()->has('gift_product_id'))
                                 @foreach($gift_products as $gift_product)
 
@@ -211,7 +209,7 @@
                                                 </div>
                                             </div>
                                             @else
-                                            <div class="w-full flex flex-row justify-between items-center text-left py-2">
+                                            <div class="w-full flex flex-row justify-between items-center text-left py-1">
                                                 <div class="item-image h-28 w-1/2 flex items-center justify-center">
                                                     <a href="{{ url()->to('/').'/products/'.$product->url_key }}"><img  class="object-scale-down h-24 w-auto"
                                                                                                                         src="{{ $productBaseImage['small_image_url'] }}"/></a>
@@ -270,7 +268,6 @@
 
                         </div>
                     @endif
-                </div>
                 <div class="bg-gray-snow w-full font-medium text-gray-dark h-12 flex content-center flex-wrap">
                     <div class="w-2/3 text-center uppercase">
                         {{ __('shop::app.checkout.cart.cart-subtotal') }}:
