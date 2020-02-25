@@ -203,7 +203,7 @@
                                                         <a href="{{ url()->to('/').'/products/'.$product->url_key }}">
                                                             {{ $product->name }} </a>
                                                     </div>
-                                                    <div class="font-serif font-medium text-base text-gray-cloud">
+                                                    <div class="font-serif font-medium text-sm sm:text-base text-gray-cloud">
                                                         {{  __('shop::app.checkout.gift.free') }}
                                                     </div>
                                                 </div>
@@ -219,10 +219,10 @@
                                                         <a href="{{ url()->to('/').'/products/'.$product->url_key }}">
                                                             {{ $product->name }} </a>
                                                     </div>
-                                                    <div class="font-serif font-medium text-base text-gray-cloud">
+                                                    <div class="font-serif font-medium text-xs sm:text-base text-gray-cloud">
                                                         {{ ($cart->base_sub_total < $gift_product->action_amount) ? __('shop::app.checkout.gift.premium') : __('shop::app.checkout.gift.free') }}
                                                     </div>
-                                                    <div class="font-medium text-base text-gray-cloud leading-none">
+                                                    <div class="font-medium text-xs sm:text-base text-gray-cloud leading-none">
                                                         {{ ($cart->base_sub_total < $gift_product->action_amount) ? __('shop::app.checkout.gift.premium-message', ['premium_counter' => core()->convertPrice($gift_product->action_amount - $cart->base_sub_total) . core()->currencySymbol(core()->getBaseCurrencyCode())] ) : __('shop::app.checkout.gift.free-message') }}
                                                     </div>
                                                 </div>
