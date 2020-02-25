@@ -255,7 +255,7 @@
                                                         {{ ($cart->base_sub_total < $gift_product->action_amount) ? __('shop::app.checkout.gift.premium') : __('shop::app.checkout.gift.free') }}
                                                     </div>
                                                     <div class="font-normal font-medium text-base text-gray-cloud leading-none">
-                                                        {{ ($cart->base_sub_total < $gift_product->action_amount) ? sprintf(__('shop::app.checkout.gift.premium-message'), core()->convertPrice($gift_product->action_amount - $cart->base_sub_total) . core()->currencySymbol(core()->getBaseCurrencyCode()) ) : __('shop::app.checkout.gift.free-message') }}
+                                                        {{ ($cart->base_sub_total < $gift_product->action_amount) ? __('shop::app.checkout.gift.premium-message', ['premium_counter' => core()->convertPrice($gift_product->action_amount - $cart->base_sub_total) . core()->currencySymbol(core()->getBaseCurrencyCode())] ) : __('shop::app.checkout.gift.free-message') }}
                                                     </div>
                                                 </div>
                                             </div>
