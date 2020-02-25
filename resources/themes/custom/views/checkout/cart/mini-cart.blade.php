@@ -199,7 +199,7 @@
                                                 </div>
                                                 <div class="item-title flex flex-col items-start justify-around h-28">
                                                     <div class="mx-auto tracking-widest text-gold">{{ __('shop::app.checkout.gift.title') }}</div>
-                                                    <p class="text-sm text-gray-dark uppercase hover:text-gray-cloud leading-none sm:leading-snug">
+                                                    <p class="text-sm text-gray-dark uppercase hover:text-gray-cloud leading-snug">
                                                         <a href="{{ url()->to('/').'/products/'.$product->url_key }}">
                                                             {{ $product->name }} </a>
                                                     </p>
@@ -210,8 +210,8 @@
                                             </div>
                                             @else
                                             <div class="w-full flex flex-row justify-between items-center text-left py-1">
-                                                <div class="item-image h-28 w-1/2 flex items-center justify-center">
-                                                    <a href="{{ url()->to('/').'/products/'.$product->url_key }}"><img  class="object-scale-down h-24 w-auto"
+                                                <div class="item-image h-24 sm:h-28 w-1/2 flex items-center justify-center">
+                                                    <a href="{{ url()->to('/').'/products/'.$product->url_key }}"><img  class="object-scale-down h-20 sm:h-24 w-auto"
                                                                                                                         src="{{ $productBaseImage['small_image_url'] }}"/></a>
                                                 </div>
                                                 <div class="item-title flex flex-col justify-start">
@@ -242,12 +242,12 @@
                                                 $productBaseImage = $productImageHelper->getProductBaseImage($product);
                                             @endphp
                                             <div class="w-full flex flex-row justify-between items-center text-left py-2">
-                                                <div class="item-image h-28 w-1/2 flex items-center justify-center">
-                                                    <a href="{{ url()->to('/').'/products/'.$product->url_key }}"><img  class="object-scale-down h-24 w-auto"
+                                                <div class="item-image h-24 sm:h-28 w-1/2 flex items-center justify-center">
+                                                    <a href="{{ url()->to('/').'/products/'.$product->url_key }}"><img  class="object-scale-down h-20 sm:h-24 w-auto"
                                                                                                                         src="{{ $productBaseImage['small_image_url'] }}"/></a>
                                                 </div>
                                                 <div class="item-title flex flex-col justify-start">
-                                                    <div class="text-sm text-gray-dark uppercase hover:text-gray-cloud leading-none">
+                                                    <div class="text-sm text-gray-dark uppercase hover:text-gray-cloud leading-snug">
                                                         <a href="{{ url()->to('/').'/products/'.$product->url_key }}">
                                                             {{ $product->name }} </a>
                                                     </div>
