@@ -101,7 +101,7 @@
     <card-modal message="{{session("showCardModal") }}" @close="closeCardModal">
 {{--    <card-modal :showing="showCardModal"     @close="showCardModal = false">--}}
         <div slot="header">
-            <div class="dropdown-header bg-gray-snow h-12 sm:h-20 flex content-center flex-wrap">
+            <div class="dropdown-header bg-gray-snow h-20 flex content-center flex-wrap">
                 <p class="heading w-full font-medium text-center text-gray-dark text-xl uppercase">
                     {{ __('shop::app.checkout.cart.title') }}
                 </p>
@@ -110,7 +110,7 @@
         <div slot="body">
             <div class="cart-content my-3 overflow-y-auto">
                 @foreach ($items as $item)
-                    <div class="item w-full flex flex-row items-center px-3 py-1 inline-block">
+                    <div class="item w-full flex flex-row items-center px-3 py-2 inline-flex">
                         <div class="item-image w-1/5">
                             <?php
                             if ($item->type == "configurable")
@@ -209,9 +209,9 @@
                                                 </div>
                                             </div>
                                             @else
-                                            <div class="w-full flex flex-row justify-between items-center text-left py-1">
-                                                <div class="item-image h-24 sm:h-28 w-1/2 flex items-center justify-center">
-                                                    <a href="{{ url()->to('/').'/products/'.$product->url_key }}"><img  class="object-scale-down h-20 sm:h-24 w-auto"
+                                            <div class="w-full flex flex-row justify-between items-center text-left py-2 hidden sm:inline-flex">
+                                                <div class="item-image h-28 w-1/2 flex items-center justify-center">
+                                                    <a href="{{ url()->to('/').'/products/'.$product->url_key }}"><img  class="object-scale-down h-24 w-auto"
                                                                                                                         src="{{ $productBaseImage['small_image_url'] }}"/></a>
                                                 </div>
                                                 <div class="item-title flex flex-col justify-start">
@@ -242,8 +242,8 @@
                                                 $productBaseImage = $productImageHelper->getProductBaseImage($product);
                                             @endphp
                                             <div class="w-full flex flex-row justify-between items-center text-left py-2">
-                                                <div class="item-image h-24 sm:h-28 w-1/2 flex items-center justify-center">
-                                                    <a href="{{ url()->to('/').'/products/'.$product->url_key }}"><img  class="object-scale-down h-20 sm:h-24 w-auto"
+                                                <div class="item-image h-28 w-1/2 flex items-center justify-center">
+                                                    <a href="{{ url()->to('/').'/products/'.$product->url_key }}"><img  class="object-scale-down h-24 w-auto"
                                                                                                                         src="{{ $productBaseImage['small_image_url'] }}"/></a>
                                                 </div>
                                                 <div class="item-title flex flex-col justify-start">
