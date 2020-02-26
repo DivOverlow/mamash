@@ -21,7 +21,7 @@ foreach (app('Webkul\Category\Repositories\CategoryRepository')->getVisibleCateg
 
     <script type="text/x-template" id="category-nav-template">
 
-        <ul class="nav flex flex-col sm:flex-row h-24 inline-block items-center">
+        <ul class="nav">
             <category-item
                 v-for="(item, index) in items"
                 :class="`first-menu-item`"
@@ -70,7 +70,7 @@ foreach (app('Webkul\Category\Repositories\CategoryRepository')->getVisibleCateg
             {{--        <a :href="url+'/categories/'+this.item['translations'][0].slug" class="block text-white uppercase border-b border-transparent tracking-wide flex items-center bg-transparent relative hover:text-gold hover:border-b hover:border-gold">--}}
             {{--        <a :href="url+'/categories/'+this.item['translations'][0].slug" class="block text-white uppercase border-b border-transparent tracking-wide flex items-center bg-transparent relative hover:text-gold hover:border-b hover:border-gold">--}}
             <a :href="url+'/categories/'+this.item['translations'][0].slug" class="nav-item">
-                @{{ name }}&emsp;
+                @{{ name }}
                 {{--            <i class="icon dropdown-right-icon" v-if="haveChildren && item.parent_id != null"></i>--}}
                 <div class="nav-menu-info">
                     <div class="img-nav-block">
@@ -87,7 +87,7 @@ foreach (app('Webkul\Category\Repositories\CategoryRepository')->getVisibleCateg
             {{--        <i :class="[show ? 'icon icon-arrow-down mt-15' : 'icon dropdown-right-icon left mt-15']"--}}
             {{--        v-if="haveChildren"  @click="showOrHide"></i>--}}
             <div v-if="haveChildren" class="nav-level">
-                <div>
+                {{-- <div> --}}
                     {{--            <div class="main-container-wrapper w-1/3">--}}
                     <ul v-if="haveChildren && show">
                         <category-item
@@ -97,7 +97,7 @@ foreach (app('Webkul\Category\Repositories\CategoryRepository')->getVisibleCateg
                             :item="child">
                         </category-item>
                     </ul>
-                </div>
+                {{-- </div> --}}
             </div>
         </li>
     </script>
@@ -120,7 +120,7 @@ foreach (app('Webkul\Category\Repositories\CategoryRepository')->getVisibleCateg
             },
 
             mounted: function () {
-                if (window.innerWidth > 770) {
+                if (window.innerWidth > 370) {
                     this.show = true;
                 }
             },

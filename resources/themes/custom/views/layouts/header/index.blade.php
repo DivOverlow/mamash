@@ -73,7 +73,7 @@
 
     <div class="bg-gray-dark">
         <div class="main-container-wrapper flex items-center flex-col sm:flex-row h-24">
-            <div class="header-bottom w-full block flex-grow lg:flex lg:items-center lg:w-full" id="header-bottom">
+            <div class="header-bottom w-full flex-grow lg:flex lg:items-center lg:w-full" id="header-bottom">
                 @include('shop::layouts.header.nav-menu.navmenu')
             </div>
             <div class="w-auto absolute inset-0 mt-2 ml-20 sm:ml-0 sm:relative">
@@ -179,18 +179,18 @@
                     $('#hammenu').removeClass('icon-menu-close');
                     $('#hammenu').addClass('icon-menu');
                     $("#search-responsive").css("display", "block");
-                    $("#header-bottom").css("display", "none");
+                    //$("#header-bottom").css("display", "none");
                 } else if (currentElement.hasClass('icon-menu')) {
                     currentElement.removeClass('icon-menu');
                     currentElement.addClass('icon-menu-close');
                     $('#search').removeClass('icon-menu-close');
                     $('#search').addClass('icon-search');
                     $("#search-responsive").css("display", "none");
-                    $("#header-bottom").css("display", "block");
+                    //$("#header-bottom").css("display", "block");
                 } else {
                     currentElement.removeClass('icon-menu-close');
                     $("#search-responsive").css("display", "none");
-                    $("#header-bottom").css("display", "none");
+                    //$("#header-bottom").css("display", "none");
                     if (currentElement.attr("id") == 'search') {
                         currentElement.addClass('icon-search');
                     } else {
@@ -199,5 +199,6 @@
                 }
             }
         });
+       
     </script>
 @endpush
