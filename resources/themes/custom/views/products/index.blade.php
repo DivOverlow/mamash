@@ -15,6 +15,12 @@
 @section('content-wrapper')
     @inject ('productRepository', 'Webkul\Product\Repositories\ProductRepository')
 
+    @php
+        $last_page = 1;
+        $current_page = 1;
+
+    @endphp
+
     <section class="hero-content">
         @if ($category->display_mode != 'collections_only')
             <div class="hero-image absolute z-0 w-full mx-auto">
@@ -215,24 +221,24 @@
 
                                 @endforeach
 
-                                <div class="bottom-toolbar w-full flex justify-center">
-                                    <div class="my-6">
-                                        <button type="button" class="button-black text-sm px-6 load-more inline-flex items-center relative">
-                                            <p>{{ __('shop::app.products.show-more') }}</p>
-                                            <span class="cp-spinner cp-round -mt-1" id="loader"></span>
-                                        </button>
-                                    </div>
-                                </div>
+                    @php
+                        $last_page = $products->appends(request()->input())->lastPage();
+                        $current_page = $products->appends(request()->input())->currentPage();
+                    @endphp
 
-{{--                                {!! view_render_event('bagisto.shop.products.index.pagination.before', ['category' => $category]) !!}--}}
-
-{{--                                <div class="bottom-toolbar w-full flex justify-center after-products">--}}
-{{--                                    {{ $products->appends(request()->input())->links() }}--}}
-{{--                                </div>--}}
-
-
-{{--                                {!! view_render_event('bagisto.shop.products.index.pagination.after', ['category' => $category]) !!}--}}
-
+                    @if ($current_page < $last_page)
+                            {!! view_render_event('bagisto.shop.products.index.pagination.before', ['category' => $category]) !!}
+                                        <div class="bottom-toolbar w-full flex justify-center">
+                                            <div class="my-6">
+                                                <button type="button" class="button-black text-sm px-6 load-more inline-flex items-center relative">
+                                                    <p>{{ __('shop::app.products.show-more') }}</p>
+                                                    <span class="cp-spinner cp-round -mt-1" id="loader"></span>
+                                                </button>
+        {{--                                    {{ $products->appends(request()->input())->links() }}--}}
+                                            </div>
+                                        </div>
+                            {!! view_render_event('bagisto.shop.products.index.pagination.after', ['category' => $category]) !!}
+                    @endif
                             </div>
                         @else
                             <div class="product-list">
@@ -404,25 +410,37 @@
     </script>
     <script>
         $(function () {
+            {{--let page = {{ (isset( request()->input()['page']) ) ? request()->input()['page'] + 1  : 2 }};--}}
+            let page = {{ $current_page + 1 }};
+            let last_page = {{ $last_page}}
             $('.load-more').on('click', function () {
                const btn = $(this);
                const loader = btn.find('span');
                const label = btn.find('p');
-
                btn.attr('disabled', true);
                label.addClass('text-transparent');
                loader.addClass('inline-block');
                // GET request for remote image
-                axios.get('{{ route('shop.categories.index', $category->slug .'?page=2') }}')
+                axios.get('{{ route('shop.categories.index', $category->slug ) }}', {
+                        params: {
+                            page: page
+                        }
+                    })
                     .then(function (response) {
-
                         setTimeout(function () {
                             loader.removeClass('inline-block');
                             label.removeClass('text-transparent');
                             btn.attr('disabled', false);
                         }, 1000);
-                        $('.bottom-toolbar').before(response.data.data);
-                        // console.log(response.data.data);
+                        $('.bottom-toolbar').before(response.data);
+                        // console.log(response.data);
+
+                        if (page < last_page) {
+                            page += 1;
+                        }
+                        else {
+                            btn.addClass('hidden');
+                        }
                     })
                     .catch(function (error) {
                         console.log(error);

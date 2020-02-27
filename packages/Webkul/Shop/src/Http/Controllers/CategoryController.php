@@ -50,15 +50,32 @@ class CategoryController extends Controller
 
         $category = $this->categoryRepository->findBySlugOrFail($slug);
 
-        if (request()->ajax()) {
+        if (request()->wantsJson()) {
+//        if (request()->ajax()) {
 
-            $html = '<div class="sticker sale">' . 100 . '</div>'
-                . '<span class="special-price mr-4">' . 'UAH' . '</span>'
-                . '<span class="regular-price text-base text-gray-cloud line-through">' . 1000 . '</span>';
+        if (!$category)
+            return response([], 204);
+//            $params = request()->input();
+//            $html = $params['page'];
+            $html = '';
+            $html = $this->load_data($category->id);
 
-            return response()->json(['data' => $html]);
+            return response($html, 201);
+//            return response()->json(['data' => $html]);
         }
 
         return view($this->_config['view'], compact('category'));
+    }
+
+    private function load_data($id)
+    {
+        $products =  app('Webkul\Product\Repositories\ProductRepository')->getAll($id);
+        $html = '';
+        foreach ($products as $productFlat) {
+            $html .= '<div class="w-full sm:w-1/3 pl-0 sm:pl-6 pb-0 sm:pb-6">';
+            $html .= view('shop::products.list.card', ['product' => $productFlat]);
+            $html .= '</div>';
+        }
+        return $html;
     }
 }
