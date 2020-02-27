@@ -17771,8 +17771,9 @@ body {
   display: -ms-flexbox;
   display: flex;
   width: 100%;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   padding-right: 20px;
   color: #969696;
 }
@@ -17783,6 +17784,8 @@ body {
   border-bottom: 1px solid transparent;
   padding-top: 2rem;
   padding-bottom: 2rem;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 #header-bottom>ul>li:hover>a{
@@ -17861,6 +17864,7 @@ body {
           flex: 1 1 50%;
   padding: 10px 50px;
   word-break: break-all;
+  text-transform: uppercase;
 }
 
 /* first-child */
@@ -17887,6 +17891,7 @@ body {
   display: block;
 }
 
+#header-bottom>ul>li:first-child>a:hover~.nav-level>ul>li:first-child>a>.nav-menu-info,
 #header-bottom>ul>li:first-child>.nav-level>ul>li>.nav-level>ul>li>a>.nav-menu-info,
 #header-bottom>ul>li:first-child>.nav-level>ul>li>a>.nav-menu-info,
 #header-bottom>ul>li:first-child>.nav-level>ul>li:hover>a>.nav-menu-info,
@@ -17939,6 +17944,127 @@ body {
 }
 
 /* first-child */
+
+@media(max-width: 640px){
+  #header-bottom{
+    position: absolute;
+    z-index: 1002;
+  }
+
+  #header-bottom>ul{
+    display: block;
+    padding: 10px;
+    background: #212121;
+  }
+
+  #header-bottom>ul>li>a{
+    padding: 0;
+  }
+
+  #header-bottom>ul>li>.nav-level{
+    position: relative;
+    left: auto;
+  }
+
+  #header-bottom>ul>li>.nav-level>ul>li>a{
+    padding: 10px 10px 10px 20px;
+  }
+
+  #header-bottom>ul>li>.nav-level>ul>li>.nav-level>ul{
+    padding: 10px 10px 10px 30px;
+  }
+
+  #header-bottom li{
+    position: relative;
+    padding: 5px 0;
+  }
+
+  #header-bottom .nav-level,
+    #header-bottom>ul>li:hover>.nav-level {
+    display: none;
+  }
+
+  #header-bottom>ul>li:first-child:hover>.show-subnav,
+    #header-bottom>ul>li:hover>.show-subnav,
+    #header-bottom>ul>li>.show-subnav,
+     #header-bottom>ul>li:first-child:hover>.show-subnav>ul>li>.show-subnav,
+    #header-bottom>ul>li:hover>.show-subnav>ul>li>.show-subnav,
+    #header-bottom>ul>li>.show-subnav>ul>li>.show-subnav{
+    display: block;
+    padding: 0;
+    position: relative;
+    min-height: auto;
+    margin: 20px 0;
+  }
+
+  #header-bottom>ul>li:first-child:hover>.show-subnav>ul,
+    #header-bottom>ul>li:hover>.show-subnav>ul,
+    #header-bottom>ul>li>.show-subnav>ul{
+    display: block;
+    min-height: auto;
+  }
+
+  #header-bottom>ul>li:first-child:hover>.show-subnav>ul>li>.show-subnav>ul,
+    #header-bottom>ul>li:hover>.show-subnav>ul>li>.show-subnav>ul,
+    #header-bottom>ul>li>.show-subnav>ul>li>.show-subnav>ul{
+    display: block;
+    text-align: left;
+    color: #969696;
+    text-transform: uppercase;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 30px;
+  }
+
+  #header-bottom>ul>li:hover>.nav-level>ul:after,
+    #header-bottom>ul>li:first-child:hover>.show-subnav>ul>li:after {
+    content: "";
+    border-right: none;
+    position: absolute;
+  }
+
+  #header-bottom>ul>li:first-child:hover>.show-subnav>ul>li>a,
+    #header-bottom>ul>li>.show-subnav>ul>li>a{
+    display: block;
+    text-align: left;
+    color: #969696;
+    text-transform: uppercase;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 20px;
+  }
+
+  #header-bottom>ul>li:hover>a,
+    #header-bottom>ul>li:active>a,
+    #header-bottom>ul>li>.show-subnav>ul>li:hover>a,
+    #header-bottom>ul>li>.show-subnav>ul>li:active>a,
+    #header-bottom>ul>li:first-child>.show-subnav>ul>li:hover>a,
+    #header-bottom>ul>li:first-child>.show-subnav>ul>li:active>a{
+    text-decoration: none;
+    color: #dfa46d;
+    border-bottom: none;
+  }
+
+  div.arrow-menu{
+    position: absolute;
+    top: 0;
+    width: 50%;
+    right: 0;
+    padding-right: 10px;
+    z-index: 1002;
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    text-align: right;
+  }
+
+  #header-bottom>ul>li:hover>div.arrow-menu,
+    #header-bottom>ul>li:active>div.arrow-menu,
+    #header-bottom>ul>li>.show-subnav>ul>li:hover>div.arrow-menu,
+    #header-bottom>ul>li>.show-subnav>ul>li:active>div.arrow-menu{
+    color: #dfa46d;
+  }
+}
 
 /* site menu */
 

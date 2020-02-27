@@ -73,7 +73,7 @@
 
     <div class="bg-gray-dark">
         <div class="main-container-wrapper flex items-center flex-col sm:flex-row h-24">
-            <div class="header-bottom w-full flex-grow lg:flex lg:items-center lg:w-full" id="header-bottom">
+            <div class="header-bottom w-full flex-grow lg:flex lg:items-center lg:w-full" id="header-bottom" style="display: none;">
                 @include('shop::layouts.header.nav-menu.navmenu')
             </div>
             <div class="w-auto absolute inset-0 mt-2 ml-20 sm:ml-0 sm:relative">
@@ -172,25 +172,25 @@
 
             function toggleDropdown(e) {
                 var currentElement = $(e.currentTarget);
-
+                $("#header-bottom").find("div.show-subnav").removeClass("show-subnav");
                 if (currentElement.hasClass('icon-search')) {
                     currentElement.removeClass('icon-search');
                     currentElement.addClass('icon-menu-close');
                     $('#hammenu').removeClass('icon-menu-close');
                     $('#hammenu').addClass('icon-menu');
                     $("#search-responsive").css("display", "block");
-                    //$("#header-bottom").css("display", "none");
+                    $("#header-bottom").css("display", "none");
                 } else if (currentElement.hasClass('icon-menu')) {
                     currentElement.removeClass('icon-menu');
                     currentElement.addClass('icon-menu-close');
                     $('#search').removeClass('icon-menu-close');
                     $('#search').addClass('icon-search');
                     $("#search-responsive").css("display", "none");
-                    //$("#header-bottom").css("display", "block");
+                    $("#header-bottom").css("display", "block");
                 } else {
                     currentElement.removeClass('icon-menu-close');
                     $("#search-responsive").css("display", "none");
-                    //$("#header-bottom").css("display", "none");
+                    $("#header-bottom").css("display", "none");
                     if (currentElement.attr("id") == 'search') {
                         currentElement.addClass('icon-search');
                     } else {
@@ -199,6 +199,20 @@
                 }
             }
         });
-       
+        $(document).ready(function(){
+        
+            if (screen.width <= '640') {
+                $('#header-bottom li:has(.nav-level)').append ('<div class="arrow-menu">+</div>')
+            }
+
+            $('.arrow-menu').click(function(e){
+                e.preventDefault();
+                var parent = $(this).parent();
+                parent.siblings().find("div.show-subnav").removeClass("show-subnav");
+                parent.find('.nav-level:first').toggleClass('show-subnav');
+                $(this).find(".show-subnav").removeClass("show-subnav");
+            });
+           
+        });
     </script>
 @endpush
