@@ -14,6 +14,7 @@
 
 @section('content-wrapper')
     @inject ('productRepository', 'Webkul\Product\Repositories\ProductRepository')
+
     <section class="hero-content">
         @if ($category->display_mode != 'collections_only')
             <div class="hero-image absolute z-0 w-full mx-auto">
@@ -214,22 +215,23 @@
 
                                 @endforeach
 
-                                {!! view_render_event('bagisto.shop.products.index.pagination.before', ['category' => $category]) !!}
-
-                                <div class="bottom-toolbar w-full flex justify-center after-products">
-
+                                <div class="bottom-toolbar w-full flex justify-center">
                                     <div class="my-6">
                                         <button type="button" class="button-black text-sm px-6 load-more inline-flex items-center relative">
-                                            {{ __('shop::app.products.show-more') }}
-                                            <span class="cp-spinner cp-round -mt-1" id="loader">
-                                            </span>
+                                            <p>{{ __('shop::app.products.show-more') }}</p>
+                                            <span class="cp-spinner cp-round -mt-1" id="loader"></span>
                                         </button>
                                     </div>
-{{--                                    {{ $products->appends(request()->input())->links() }}--}}
-
                                 </div>
 
-                                {!! view_render_event('bagisto.shop.products.index.pagination.after', ['category' => $category]) !!}
+{{--                                {!! view_render_event('bagisto.shop.products.index.pagination.before', ['category' => $category]) !!}--}}
+
+{{--                                <div class="bottom-toolbar w-full flex justify-center after-products">--}}
+{{--                                    {{ $products->appends(request()->input())->links() }}--}}
+{{--                                </div>--}}
+
+
+{{--                                {!! view_render_event('bagisto.shop.products.index.pagination.after', ['category' => $category]) !!}--}}
 
                             </div>
                         @else
@@ -405,20 +407,22 @@
             $('.load-more').on('click', function () {
                const btn = $(this);
                const loader = btn.find('span');
+               const label = btn.find('p');
 
                btn.attr('disabled', true);
+               label.addClass('text-transparent');
                loader.addClass('inline-block');
                // GET request for remote image
-                axios.get('{{ route('shop.categories.index', 'category') }}')
+                axios.get('{{ route('shop.categories.index', $category->slug .'?page=2') }}')
                     .then(function (response) {
 
                         setTimeout(function () {
                             loader.removeClass('inline-block');
+                            label.removeClass('text-transparent');
                             btn.attr('disabled', false);
-                            // $('.after-products').before(response);
                         }, 1000);
-
-                        console.log(response);
+                        $('.bottom-toolbar').before(response.data.data);
+                        // console.log(response.data.data);
                     })
                     .catch(function (error) {
                         console.log(error);
@@ -428,7 +432,8 @@
                         btn.attr('disabled', false);
                         // always executed
                     });
-            });
+                });
+
         });
     </script>
 @endpush

@@ -43,11 +43,21 @@ class CategoryController extends Controller
      * Display a listing of the resource.
      *
      * @param  string $slug
-     * @return \Illuminate\View\View 
+     * @return \Illuminate\View\View
      */
     public function index($slug)
     {
+
         $category = $this->categoryRepository->findBySlugOrFail($slug);
+
+        if (request()->ajax()) {
+
+            $html = '<div class="sticker sale">' . 100 . '</div>'
+                . '<span class="special-price mr-4">' . 'UAH' . '</span>'
+                . '<span class="regular-price text-base text-gray-cloud line-through">' . 1000 . '</span>';
+
+            return response()->json(['data' => $html]);
+        }
 
         return view($this->_config['view'], compact('category'));
     }
