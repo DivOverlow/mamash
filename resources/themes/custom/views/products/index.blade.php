@@ -232,7 +232,7 @@
                                             <div class="my-6">
                                                 <button type="button" class="button-black text-sm px-6 load-more inline-flex items-center relative">
                                                     <p>{{ __('shop::app.products.show-more') }}</p>
-                                                    <span class="cp-spinner cp-round -mt-1" id="loader"></span>
+                                                    <span class="cp-spinner cp-round -mt-6 sm:-mt-1" id="loader"></span>
                                                 </button>
         {{--                                    {{ $products->appends(request()->input())->links() }}--}}
                                             </div>
