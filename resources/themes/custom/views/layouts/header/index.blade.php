@@ -89,7 +89,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="w-full w-5/12 flex justify-end items-center">
+            <div class="w-full w-5/12 flex justify-end items-center header-cart-line">
                 <div class="w-full right-content flex justify-between items-center">
                     <div class="search-container mr-10 items-center w-full flex justify-end relative">
                         <form role="search" action="{{ route('shop.search.index') }}" method="GET" >
@@ -210,9 +210,9 @@
         });
         $(document).ready(function(){
         
-            if (screen.width <= '640') {
+            
                 $('#header-bottom li:has(.nav-level)').append ('<div class="arrow-menu">+</div>')
-            }
+            
 
             $('.arrow-menu').click(function(e){
                 e.preventDefault();

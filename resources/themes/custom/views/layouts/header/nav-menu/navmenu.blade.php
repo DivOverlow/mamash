@@ -120,7 +120,7 @@ foreach (app('Webkul\Category\Repositories\CategoryRepository')->getVisibleCateg
             },
 
             mounted: function () {
-                if (window.innerWidth > 300) {
+                if (window.innerWidth > 100) {
                     this.show = true;
                 }
             },
