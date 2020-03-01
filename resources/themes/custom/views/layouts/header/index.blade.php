@@ -80,9 +80,9 @@
                     <li>
                         <a href="{{ route('shop.home.index') }}">
                             @if ($logo = core()->getCurrentChannel()->logo_url)
-                                <img class="logo mt-3 ml-4 sm:ml-0" src="{{ $logo }}" />
+                                <img class="logo mt-3 sm:mt-0 ml-4 sm:ml-0" src="{{ $logo }}" />
                             @else
-                                <img class="logo mt-3 ml-4 sm:ml-0" src="{{ bagisto_asset('images/logo.svg') }}" />
+                                <img class="logo mt-3 sm:mt-0 ml-4 sm:ml-0" src="{{ bagisto_asset('images/logo.svg') }}" />
                             @endif
                         </a>
                     </li>

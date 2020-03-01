@@ -51,7 +51,6 @@ class CategoryController extends Controller
         $category = $this->categoryRepository->findBySlugOrFail($slug);
 
         if (request()->wantsJson()) {
-//        if (request()->ajax()) {
 
         if (!$category)
             return response([], 204);

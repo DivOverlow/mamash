@@ -18,7 +18,10 @@
     @php
         $last_page = 1;
         $current_page = 1;
-
+        $is_filter_on = false;
+        if(isset(request()->input()['line_filter']) || isset(request()->input()['product_filter']) || isset(request()->input()['price'])) {
+            $is_filter_on = true;
+        }
     @endphp
 
     <section class="hero-content">
@@ -175,7 +178,7 @@
                                                         @if ($products->count())
                                                             <div
                                                                 class="inline-block text-gray-light text-base uppercase relative px-10 mb-4 -ml-6 sm:ml-0">{{ __('shop::app.products.layered-nav-title') }}
-                                                                <div class="icon filter-icon-on absolute cursor-pointer top-0 bottom-0 right-0 py-4"
+                                                                <div class="icon absolute cursor-pointer top-0 bottom-0 right-0 py-4 {{($is_filter_on) ? 'filter-icon-off' : 'filter-icon-on'}}"
                                                                      id="filter"></div>
                                                             </div>
                                                         @endif
@@ -362,7 +365,12 @@
                 $('.remove-filter-link').trigger('click');
                 $('.apply-filter-link').trigger('click');
             })
-            $(".sort-icon, .filter-icon-on, .filter-icon-menu").on('click', function (e) {
+
+            @if ($is_filter_on)
+                $('.responsive-layred-filter').css('display', 'block');
+            @endif
+
+            $(".sort-icon, .filter-icon-on, .filter-icon-off, .filter-icon-menu").on('click', function (e) {
                 var currentElement = $(e.currentTarget);
                 if (currentElement.hasClass('sort-icon')) {
                     currentElement.removeClass('sort-icon');
@@ -410,7 +418,6 @@
     </script>
     <script>
         $(function () {
-            {{--let page = {{ (isset( request()->input()['page']) ) ? request()->input()['page'] + 1  : 2 }};--}}
             let page = {{ $current_page + 1 }};
             let last_page = {{ $last_page}}
             $('.load-more').on('click', function () {
