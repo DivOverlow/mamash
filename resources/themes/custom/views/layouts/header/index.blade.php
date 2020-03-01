@@ -76,7 +76,7 @@
             </div>
             <div class="w-40 sm:w-56 absolute inset-0 top-0 sm:relative h-12">
                 <ul class="logo-container sm:w-56 sm:mx-2 flex">
-                    <li><span class="menu-box block sm:hidden p-3"><span class="icon icon-menu" id="hammenu"></span></span></li>
+                    <li><span class="menu-box block sm:hidden p-3 z-10"><span class="icon icon-menu" id="hammenu"></span></span></li>
                     <li>
                         <a href="{{ route('shop.home.index') }}">
                             @if ($logo = core()->getCurrentChannel()->logo_url)
