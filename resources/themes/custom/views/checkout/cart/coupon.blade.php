@@ -4,12 +4,12 @@
             <div class="discount-control">
                 <form class="coupon-form" method="post" @submit.prevent="applyCoupon">
 
-                    <div class="control-group flex" :class="[error_message ? 'has-error' : '']">
+                    <div class="control-group flex flex-col sm:flex-row" :class="[error_message ? 'has-error' : '']">
                         <div class="mat-div w-full">
                             <label for="code" class="normal-case mat-label">{{ __('shop::app.checkout.onepage.enter-coupon-code') }}</label>
                             <input type="text" class="control mat-input" v-model="coupon_code" name="code">
                         </div>
-                        <button class="border-b border-transparent hover:border-b hover:border-gold w-1/3 normal-case text-gold pt-8 px-3" :disabled="disable_button">{{ __('shop::app.checkout.onepage.apply-coupon') }}</button>
+                        <button class="border-b border-transparent hover:border-b hover:border-gold w-1/3 normal-case text-gold pt-3 sm:pt-8 px-3 mx-auto" :disabled="disable_button">{{ __('shop::app.checkout.onepage.apply-coupon') }}</button>
 
                         <div class="control-error">@{{ error_message }}</div>
                     </div>
