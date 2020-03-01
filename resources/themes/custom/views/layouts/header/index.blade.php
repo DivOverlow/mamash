@@ -1,8 +1,8 @@
 <div class="header" id="header">
     <div class="header-top bg-gray-grey">
 {{--        <span class="menu-box hidden" ><span class="icon icon-menu" id="hammenu"></span></span>--}}
-        <div class="main-container-wrapper flex justify-between sm:justify-end py-3">
-            <span class="menu-box block sm:hidden px-4"><span class="icon icon-menu" id="hammenu"></span></span>
+        <div class="main-container-wrapper flex justify-between sm:justify-end items-center">
+            <span class="menu-box block sm:hidden p-2"><span class="icon icon-menu" id="hammenu"></span></span>
             <div class="left-content mx-8 mt-1 leading-none relative">
             <a href="{{ route('shop.cms.page', 'faq') }}" class="invisible sm:visible inline-block align-top text-white text-sm hover:text-gold cursor-pointer">{{ __('shop::app.header.help') }}</a>
         </div>
@@ -81,9 +81,9 @@
                     <li>
                         <a href="{{ route('shop.home.index') }}">
                             @if ($logo = core()->getCurrentChannel()->logo_url)
-                                <img class="logo mt-2 ml-20 sm:ml-0" src="{{ $logo }}" />
+                                <img class="logo mt-3 ml-20 sm:ml-0" src="{{ $logo }}" />
                             @else
-                                <img class="logo mt-2 ml-20 sm:ml-0" src="{{ bagisto_asset('images/logo.svg') }}" />
+                                <img class="logo mt-3 ml-20 sm:ml-0" src="{{ bagisto_asset('images/logo.svg') }}" />
                             @endif
                         </a>
                     </li>
