@@ -76,7 +76,7 @@
             </div>
             <div class="w-40 sm:w-56 absolute inset-0 top-0 sm:relative h-12">
                 <ul class="logo-container sm:w-56 sm:mx-2 flex">
-                    <li><span class="menu-box block sm:hidden p-3 z-10"><span class="icon icon-menu" id="hammenu"></span></span></li>
+                    <li><span class="menu-box block sm:hidden p-3"><span class="icon icon-menu" id="hammenu"></span></span></li>
                     <li>
                         <a href="{{ route('shop.home.index') }}">
                             @if ($logo = core()->getCurrentChannel()->logo_url)
@@ -150,7 +150,6 @@
 
                     </ul>
                 </div>
-{{--                    <span class="menu-box hidden sm:visible" ><span class="icon icon-menu" id="hammenu"></span></span>--}}
 
             </div>
         </div>
@@ -189,7 +188,7 @@
                     $("#search-responsive").css("display", "block");
                     $("#header-bottom").css("display", "none");
                 } else if (currentElement.hasClass('icon-menu')) {
-                    currentElement.removeClass('icon-menu');
+                    currentElement.removeClass('');
                     currentElement.addClass('icon-menu-close');
                     $('#search').removeClass('icon-menu-close');
                     $('#search').addClass('icon-search');
