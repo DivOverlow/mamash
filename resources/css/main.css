@@ -998,25 +998,23 @@ section.product-detail div.layouter .form-container div.product-image-group div 
 /*    height: 32px;*/
 /*}*/
 
-/*.icon-facebook {*/
-/*    background-image: url("/themes/custom/assets/images/facebook.svg");*/
-/*}*/
+.icon-facebook {
+    background-image: url("/themes/custom/assets/images/facebook.svg");
+    width: 40px;
+    height: 40px;
+}
 
-/*.icon-twitter {*/
-/*    background-image: url("/themes/custom/assets/images/twitter.svg");*/
-/*}*/
+.icon-instagram {
+    background-image: url("/themes/custom/assets/images/instagram.svg");
+    width: 40px;
+    height: 40px;
+}
 
-/*.icon-google-plus {*/
-/*    background-image: url("/themes/custom/assets/images/google-plus.svg");*/
-/*}*/
-
-/*.icon-instagram {*/
-/*    background-image: url("/themes/custom/assets/images/instagram.svg");*/
-/*}*/
-
-/*.icon-linkedin {*/
-/*    background-image: url("/themes/custom/assets/images/linkedin.svg");*/
-/*}*/
+.icon-youtube {
+    background-image: url("/themes/custom/assets/images/youtube.svg");
+    width: 40px;
+    height: 40px;
+}
 
 /*.icon-dropdown {*/
 /*    background-image: url("/themes/custom/assets/images/icon-dropdown.svg");*/
