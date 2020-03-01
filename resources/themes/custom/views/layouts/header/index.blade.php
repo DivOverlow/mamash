@@ -1,8 +1,6 @@
 <div class="header" id="header">
     <div class="header-top bg-gray-grey">
-{{--        <span class="menu-box hidden" ><span class="icon icon-menu" id="hammenu"></span></span>--}}
         <div class="main-container-wrapper flex justify-between sm:justify-end items-center h-12">
-            <span class="menu-box block sm:hidden p-2"><span class="icon icon-menu" id="hammenu"></span></span>
             <div class="left-content mx-8 mt-1 leading-none relative">
             <a href="{{ route('shop.cms.page', 'faq') }}" class="invisible sm:visible inline-block align-top text-white text-sm hover:text-gold cursor-pointer">{{ __('shop::app.header.help') }}</a>
         </div>
@@ -76,12 +74,13 @@
             <div class="header-bottom w-full flex-grow lg:flex lg:items-center lg:w-full" id="header-bottom" style="display: none;">
                 @include('shop::layouts.header.nav-menu.navmenu')
             </div>
-            <div class="w-32 sm:w-56 absolute inset-0 top-0 sm:relative h-16">
-                <ul class="logo-container w-32 sm:w-56 sm:mx-2">
+            <div class="w-40 sm:w-56 absolute inset-0 top-0 sm:relative h-12">
+                <ul class="logo-container sm:w-56 sm:mx-2 flex">
+                    <li><span class="menu-box block sm:hidden p-2"><span class="icon icon-menu" id="hammenu"></span></span></li>
                     <li>
                         <a href="{{ route('shop.home.index') }}">
                             @if ($logo = core()->getCurrentChannel()->logo_url)
-                                <img class="logo mt-3 ml-20 sm:ml-0" src="{{ $logo }}" />
+                                <img class="logo mt-3 ml-10 sm:ml-0" src="{{ $logo }}" />
                             @else
                                 <img class="logo mt-3 ml-20 sm:ml-0" src="{{ bagisto_asset('images/logo.svg') }}" />
                             @endif

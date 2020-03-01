@@ -601,10 +601,6 @@ body {
     }
 }
 @media(max-width: 640px){
-    .menu-box{
-        position: absolute;
-        z-index: 10;
-    }
     .header-cart-line{
         padding: 30px 10px;
     }
