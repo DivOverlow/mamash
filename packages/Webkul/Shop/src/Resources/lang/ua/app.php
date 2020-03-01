@@ -174,10 +174,10 @@ return [
         ],
 
         'forgot-password' => [
-            'title' => 'Recover Password',
+            'title' => 'Відновлення пароля',
             'email' => 'Email',
-            'submit' => 'Submit',
-            'page_title' => 'Customer - Forgot Password Form'
+            'submit' => 'Підтвердити',
+            'page_title' => 'Клієнт - Забув пароль'
         ],
 
         'reset-password' => [
