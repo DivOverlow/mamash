@@ -14,10 +14,10 @@
         <div class="cart-product bg-ghost-white w-full">
             <div class="main-container-wrapper">
                 @if ($cart)
-                    <div class="title w-full h-24 sm:h-32 flex items-end text-center">
-                        <span class="text-xl sm:text-5xl uppercase text-gray-dark mx-auto">{{ __('shop::app.checkout.cart.title') }}</span>
+                    <div class="title w-full h-24 sm:h-32 flex items-center text-center">
+                        <span class="text-3xl sm:text-5xl uppercase text-gray-dark mx-auto">{{ __('shop::app.checkout.cart.title') }}</span>
                     </div>
-                    <div class="w-full invisible sm:visible font-serif text-xs tracking-widest text-gray-dark uppercase flex flex-row justify-between items-center mt-12">
+                    <div class="w-full hidden sm:block font-serif text-xs tracking-widest text-gray-dark uppercase flex flex-row justify-between items-center mt-12">
                         <div class="w-1/2">
                             {{ __('shop::app.checkout.cart.name') }}
                         </div>
@@ -268,8 +268,8 @@
                 @else
 
 
-                    <div class="title w-full h-32 flex items-end text-center">
-                        <span class="text-xl sm:text-5xl uppercase text-gray-dark mx-auto">{{ __('shop::app.checkout.cart.title') }}</span>
+                    <div class="title w-full h-24 sm:h-32 flex items-center text-center">
+                        <span class="text-3xl sm:text-5xl uppercase text-gray-dark mx-auto">{{ __('shop::app.checkout.cart.title') }}</span>
                     </div>
 
                     <div class="cart-content text-base sm:text-lg text-gray-dark uppercase">
