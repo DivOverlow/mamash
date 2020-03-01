@@ -476,9 +476,9 @@ return [
                 'quantity' => 'Кількість',
                 'short' => 'к-сть:',
                 'success' => 'Зміст кошика успішно оновлено.',
-                'illegal' => 'Quantity cannot be lesser than one.',
-                'inventory_warning' => 'The requested quantity is not available, please try again later.',
-                'error' => 'Cannot update the item(s) at the moment, please try again later.'
+                'illegal' => 'Кількість не може бути меншою, ніж одна.',
+                'inventory_warning' => 'Запитана кількість недоступна. Повторіть спробу пізніше.',
+                'error' => 'Наразі неможливо оновити позицію, будь ласка, спробуйте пізніше.'
             ],
 
             'item' => [

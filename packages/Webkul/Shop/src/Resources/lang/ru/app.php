@@ -474,9 +474,9 @@ return [
                 'quantity' => 'Количество',
                 'short' => 'кол-во:',
                 'success' => 'Содержание корзины успешно обновлено.',
-                'illegal' => 'Quantity cannot be lesser than one.',
-                'inventory_warning' => 'The requested quantity is not available, please try again later.',
-                'error' => 'Cannot update the item(s) at the moment, please try again later.'
+                'illegal' => 'Количество не может быть меньше единицы.',
+                'inventory_warning' => 'Запрашиваемое количество недоступно, повторите попытку позже.',
+                'error' => 'Не удается обновить элементы в данный момент, повторите попытку позже.'
             ],
 
             'item' => [

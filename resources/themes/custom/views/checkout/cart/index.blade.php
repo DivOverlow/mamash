@@ -31,7 +31,7 @@
 
                     <div class="cart-content">
                         <div class="left-side">
-                            <form action="{{ route('shop.checkout.cart.update') }}" method="POST"
+                            <form id="cart-form" action="{{ route('shop.checkout.cart.update') }}" method="POST"
                                   @submit.prevent="onSubmit">
 
                                 <div class="cart-item-list">
@@ -322,18 +322,16 @@
         }
 
         function updateCartQunatity(operation, index) {
-            var quantity = document.getElementById('cart-quantity' + index).value;
+            let quantity = document.getElementById('cart-quantity' + index).value;
 
             if (operation == 'add') {
                 quantity = parseInt(quantity) + 1;
             } else if (operation == 'remove') {
-                if (quantity > 1) {
                     quantity = parseInt(quantity) - 1;
-                } else {
-                    alert('{{ __('shop::app.products.less-quantity') }}');
-                }
             }
-            document.getElementById('cart-quantity' + index).value = quantity;
+            document.getElementById('cart-quantity'+index).value = quantity;
+
+            document.getElementById('cart-form').submit();
             event.preventDefault();
         }
 
