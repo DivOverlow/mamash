@@ -199,28 +199,13 @@
             <div style="display: flex;align-items: center;justify-content: center;width: 100%;border-bottom: solid 1px #727272;height: 160px;">
                 <div style="width: 90%;">
                     <div style=""><a style="text-decoration: none;color: #fff;" href="#" target="_blank" rel="noopener noreferrer">
-                            <svg width="40" height="40" fill="#979797" xmlns="http://www.w3.org/2000/svg"
-                                 viewBox="0 0 24 24">
-                                <path
-                                    d="M21,3H3v18h9.621v-6.961h-2.343v-2.725h2.343V9.309c0-2.324,1.421-3.591,3.495-3.591c0.699-0.002,1.397,0.034,2.092,0.105 v2.43h-1.428c-1.13,0-1.35,0.534-1.35,1.322v1.735h2.7l-0.351,2.725h-2.365V21H21V3z"></path>
-                            </svg>
+                            <span style="width: 40px;height: 40px;background-size: cover;display: inline-block;background-image: url({{ bagisto_asset('images/facebook.svg') }});"></span>
                         </a></div>
                     <div style=""><a style="text-decoration: none;color: #fff;" href="#" target="_blank" rel="noopener noreferrer">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
-                                 fill="none" stroke="#979797" stroke-width="2" stroke-linecap="round"
-                                 stroke-linejoin="round" class="feather feather-instagram">
-                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                                <divne x1="17.5" y1="6.5" x2="17.5" y2="6.5"></divne>
-                            </svg>
+                            <span style="width: 40px;height: 40px;background-size: cover;display: inline-block;background-image: url({{ bagisto_asset('images/instagram.svg') }});"></span>
                         </a></div>
                     <div style=""><a style="text-decoration: none;color: #fff;" href="https://youtube.com" target="_blank" rel="noopener noreferrer">
-                            <svg width="40" height="40" viewBox="0 0 26 20" fill="#979797"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M25.457 3.13c-.3-1.232-1.18-2.203-2.299-2.532C21.13 0 13 0 13 0S4.87 0 2.842.598c-1.119.33-2 1.3-2.299 2.531C0 5.362 0 10.02 0 10.02s0 4.658.543 6.891c.3 1.232 1.18 2.162 2.299 2.49C4.87 20 13 20 13 20s8.13 0 10.158-.598c1.119-.33 2-1.26 2.299-2.49C26 14.677 26 10.02 26 10.02s0-4.658-.543-6.89zM10.34 14.25V5.79l6.795 4.23-6.795 4.23z"
-                                    fill-rule="nonzero"></path>
-                            </svg>
+                            <span style="width: 40px;height: 40px;background-size: cover;display: inline-block;background-image: url({{ bagisto_asset('images/youtube.svg') }});"></span>
                         </a>
                     </div>
                 </div>
