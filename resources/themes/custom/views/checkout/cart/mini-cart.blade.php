@@ -280,7 +280,7 @@
                         {!! view_render_event('bagisto.shop.checkout.cart-mini.subtotal.after', ['cart' => $cart]) !!}
                     </div>
                 </div>
-                <div class="w-full flex flex-row items-center text-sm sm:text-base">
+                <div class="w-full flex flex-row items-center text-xs sm:text-base">
                         <span class="button-black w-full py-3 normal-case">
                             <a href="{{ route('shop.categories.index', 'category') }}">{{ __('shop::app.checkout.cart.continue-shopping') }}</a>
 {{--                            <a href="{{ route('shop.checkout.cart.index') }}">{{ __('shop::app.minicart.view-cart') }}</a>--}}

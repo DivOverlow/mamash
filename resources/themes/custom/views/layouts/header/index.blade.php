@@ -2,7 +2,7 @@
     <div class="header-top bg-gray-grey">
         <div class="main-container-wrapper flex justify-between sm:justify-end items-center h-12">
             <div class="left-content mx-8 mt-1 leading-none relative">
-            <a href="{{ route('shop.cms.page', 'faq') }}" class="invisible sm:visible inline-block align-top text-white text-sm hover:text-gold cursor-pointer">{{ __('shop::app.header.help') }}</a>
+            <a href="{{ route('shop.cms.page', 'faq') }}" class="hidden sm:inline-block align-top text-white text-sm hover:text-gold cursor-pointer">{{ __('shop::app.header.help') }}</a>
         </div>
 
         <?php
@@ -188,7 +188,7 @@
                     $("#search-responsive").css("display", "block");
                     $("#header-bottom").css("display", "none");
                 } else if (currentElement.hasClass('icon-menu')) {
-                    currentElement.removeClass('');
+                    currentElement.removeClass('icon-menu');
                     currentElement.addClass('icon-menu-close');
                     $('#search').removeClass('icon-menu-close');
                     $('#search').addClass('icon-search');
