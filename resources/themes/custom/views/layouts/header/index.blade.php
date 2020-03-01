@@ -1,7 +1,7 @@
 <div class="header" id="header">
     <div class="header-top bg-gray-grey">
 {{--        <span class="menu-box hidden" ><span class="icon icon-menu" id="hammenu"></span></span>--}}
-        <div class="main-container-wrapper flex justify-between sm:justify-end items-center">
+        <div class="main-container-wrapper flex justify-between sm:justify-end items-center h-12">
             <span class="menu-box block sm:hidden p-2"><span class="icon icon-menu" id="hammenu"></span></span>
             <div class="left-content mx-8 mt-1 leading-none relative">
             <a href="{{ route('shop.cms.page', 'faq') }}" class="invisible sm:visible inline-block align-top text-white text-sm hover:text-gold cursor-pointer">{{ __('shop::app.header.help') }}</a>
