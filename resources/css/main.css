@@ -460,7 +460,7 @@ body {
     padding-bottom: 2rem;
     padding-left: 15px;
     padding-right: 15px;
-    
+
 }
 #header-bottom>ul>li:hover>a{
     color: #dfa46d;
@@ -500,7 +500,7 @@ body {
 #header-bottom>ul>li:hover>.nav-level>ul>li{
     display: flex;
 }
-#header-bottom>ul>li>.nav-level>ul>li:hover>a>.nav-menu-info, 
+#header-bottom>ul>li>.nav-level>ul>li:hover>a>.nav-menu-info,
 #header-bottom>ul>li>a:hover~.nav-level>ul>li:first-child>a>.nav-menu-info {
     display: flex;
     position: absolute;
@@ -564,7 +564,7 @@ body {
     text-transform: uppercase;
     padding-top: 5px;
     padding-bottom: 10px;
-    
+
 }
 #header-bottom>ul>li:first-child:hover>.nav-level>ul>li>a:hover,
 #header-bottom>ul>li:first-child:hover>.nav-level>ul>li>.nav-level>ul>li>a:hover{
@@ -603,7 +603,7 @@ body {
 @media(max-width: 640px){
     .menu-box{
         position: absolute;
-        z-index: 999;
+        z-index: 10;
     }
     .header-cart-line{
         padding: 30px 10px;
