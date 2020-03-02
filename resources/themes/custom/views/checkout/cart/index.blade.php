@@ -113,7 +113,7 @@
                                                 </div>
                                             </div>
                                             <div class="w-full sm:w-1/2">
-                                                <div class="w-2/3 sm:w-1/2 ml-0 sm:ml-auto flex justify-between items-center">
+                                                <div class="w-5/6 sm:w-1/2 ml-0 sm:ml-auto flex justify-between items-center">
 
                                                     {!! view_render_event('bagisto.shop.checkout.cart.item.quantity.before', ['item' => $item]) !!}
 
@@ -142,7 +142,7 @@
                                                     {!! view_render_event('bagisto.shop.checkout.cart.item.price.before', ['item' => $item]) !!}
 
                                                     <div class="price">
-                                                        {{ core()->currency($item->base_price) }}
+                                                        {{ core()->currency($item->base_total) }}
                                                     </div>
 
                                                     {!! view_render_event('bagisto.shop.checkout.cart.item.price.after', ['item' => $item]) !!}
