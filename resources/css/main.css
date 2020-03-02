@@ -537,10 +537,10 @@ body {
     position: relative;
     display: block;
 }
-#header-bottom>ul>li:first-child>a:hover~.nav-level>ul>li:first-child>a>.nav-menu-info,
-#header-bottom>ul>li:first-child>.nav-level>ul>li>.nav-level>ul>li>a>.nav-menu-info,
-#header-bottom>ul>li:first-child>.nav-level>ul>li>a>.nav-menu-info,
-#header-bottom>ul>li:first-child>.nav-level>ul>li:hover>a>.nav-menu-info,
+#header-bottom>ul>li:first-child>a:hover~.nav-level>ul>li:first-child>.nav-menu-info,
+#header-bottom>ul>li:first-child>.nav-level>ul>li>.nav-level>ul>li>.nav-menu-info,
+#header-bottom>ul>li:first-child>.nav-level>ul>li>.nav-menu-info,
+#header-bottom>ul>li:first-child>.nav-level>ul>li:hover>.nav-menu-info,
 #header-bottom>ul>li:first-child:hover.nav-menu-info{
     display: none;
 }
