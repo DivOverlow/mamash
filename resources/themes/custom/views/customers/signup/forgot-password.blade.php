@@ -42,7 +42,7 @@
             {!! view_render_event('bagisto.shop.customers.forget_password_form_controls.before') !!}
 
             <div class="button-group w-full text-center">
-                <button type="submit" class="btn btn-lg btn-primary px-6 py-3">
+                <button type="submit" class="btn btn-primary px-6 py-3">
                     {{ __('shop::app.customer.forgot-password.submit') }}
                 </button>
             </div>
