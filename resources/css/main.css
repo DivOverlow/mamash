@@ -500,8 +500,8 @@ body {
 #header-bottom>ul>li:hover>.nav-level>ul>li{
     display: flex;
 }
-#header-bottom>ul>li>.nav-level>ul>li:hover>a>.nav-menu-info,
-#header-bottom>ul>li>a:hover~.nav-level>ul>li:first-child>a>.nav-menu-info {
+#header-bottom>ul>li>.nav-level>ul>li:hover>.nav-menu-info,
+#header-bottom>ul>li>a:hover~.nav-level>ul>li:first-child>.nav-menu-info {
     display: flex;
     position: absolute;
     left: 33%;
@@ -515,8 +515,8 @@ body {
     text-decoration: underline;
 }
 #header-bottom>ul>li:hover>.nav-level>ul>li>a,
-#header-bottom>ul>li:hover>.nav-level>ul>li>a>.nav-menu-info>.img-nav-block,
-#header-bottom>ul>li:hover>.nav-level>ul>li>a>.nav-menu-info>.desc-nav-block{
+#header-bottom>ul>li:hover>.nav-level>ul>li>.nav-menu-info>.img-nav-block,
+#header-bottom>ul>li:hover>.nav-level>ul>li>.nav-menu-info>.desc-nav-block{
     flex: 1 1 50%;
     padding: 3px 50px;
     word-break: break-all;
@@ -598,6 +598,32 @@ body {
         padding-left: 5px;
         padding-right: 5px;
         font-size: 14px;
+    }
+    #header-bottom>ul>li:hover>.nav-level{
+        padding: 30px;
+    }
+    #header-bottom>ul>li:hover>.nav-level>ul>li>.nav-menu-info>.desc-nav-block{
+        font-size: 12px;
+        max-height: 450px;
+        overflow: hidden;
+        padding: 3px 25px;
+    }
+}
+@media(max-width: 770px){
+    #header-bottom{
+        display: flex;
+    }
+    #header-bottom>ul>li>a {
+        padding-left: 3px;
+        padding-right: 3px;
+        font-size: 12px;
+    }
+    .main-container-wrapper>.sm\:w-56{
+        width: 10rem !important;
+    }
+    .right-content>.px-10 {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
     }
 }
 @media(max-width: 640px){
@@ -714,6 +740,10 @@ body {
     #header-bottom>ul>li>.show-subnav>ul>li:hover>div.arrow-menu,
     #header-bottom>ul>li>.show-subnav>ul>li:active>div.arrow-menu{
         color: #dfa46d;
+    }
+    #header-bottom>ul>li>.nav-level>ul>li:hover>.nav-menu-info,
+    #header-bottom>ul>li>a:hover~.nav-level>ul>li:first-child>.nav-menu-info {
+        display: none;
     }
 }
 
