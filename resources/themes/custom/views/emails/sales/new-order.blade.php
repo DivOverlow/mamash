@@ -15,7 +15,7 @@
 
             <div style="letter-spacing:0.05em;width:100%;background-color:#212121;">
                 <div style="display:flex;width:100%;font:inherit;font-size:1rem;font-weight:500;text-transform:uppercase">
-                    <div style="text-align: center;width:23%;border-right:1px solid #FFF;padding-top: 5px">
+                        <div style="text-align: center;width:23%;border-right:1px solid #FFF;padding-top: 5px">
                         <a style="text-decoration: none;color: #fff;" href="{{ route('shop.categories.index', 'products') }}">{{ __('shop::app.mail.order.menu.products') }}</a>
                     </div>
                     <div style="text-align: center;width:23%;border-right:1px solid #FFF;padding-top: 5px">
@@ -196,36 +196,36 @@
 
 
         <div class="section-footer" style="background-color: #2f2f2f;height: 688px;padding: 0 20px;">
-            <div style="display: flex;align-items: center;justify-content: center;width: 100%;border-bottom: solid 1px #727272;height: 160px;">
-                <div style="width: 90%;">
-                    <div style=""><a style="text-decoration: none;color: #fff;" href="#" target="_blank" rel="noopener noreferrer">
+            <div style="width: 100%;border-bottom: solid 1px #727272;height: 160px;">
+                <div style="width: 90%;display: flex;margin-left: auto;margin-right: auto;padding-top: 60px">
+                    <div style="text-align: center;width: 33%"><a style="text-decoration: none;color: #fff;" href="#" target="_blank" rel="noopener noreferrer">
                             <span style="width: 40px;height: 40px;background-size: cover;display: inline-block;background-image: url({{ bagisto_asset('images/facebook.png') }});"></span>
                         </a></div>
-                    <div style=""><a style="text-decoration: none;color: #fff;" href="#" target="_blank" rel="noopener noreferrer">
+                    <div style="text-align: center;width: 33%"><a style="text-decoration: none;color: #fff;" href="#" target="_blank" rel="noopener noreferrer">
                             <span style="width: 40px;height: 40px;background-size: cover;display: inline-block;background-image: url({{ bagisto_asset('images/instagram.png') }});"></span>
                         </a></div>
-                    <div style=""><a style="text-decoration: none;color: #fff;" href="https://youtube.com" target="_blank" rel="noopener noreferrer">
+                    <div style="text-align: center;width: 33%"><a style="text-decoration: none;color: #fff;" href="https://youtube.com" target="_blank" rel="noopener noreferrer">
                             <span style="width: 40px;height: 40px;background-size: cover;display: inline-block;background-image: url({{ bagisto_asset('images/youtube.png') }});"></span>
                         </a>
                     </div>
                 </div>
             </div>
 
-            <div style="display: flex;align-content: space-around;justify-content: center;flex-wrap: wrap;width: 100%;border-bottom: solid 1px #727272;height: 330px;">
-                <div style="display: flex;justify-content: space-around;width: 100%;font-size: .875rem;line-height: 2;color:#fff">
-                    <div style="width: 35%;">
-                        <span style="display: inline-block;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#dfa46d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-map-pin"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> Киев, ЖК "Чайки", ул. Лобановского, 12</span>
+            <div style="width: 100%;border-bottom: solid 1px #727272;height: 330px;">
+                <div style="display: flex;width: 90%;font-size: .875rem;line-height: 2;color:#fff;padding-top:40px;margin-left: auto;margin-right: auto">
+                    <div style="width: 40%;padding-right: 25px">
+                        <span style="display: inline-block;"> Киев, ЖК "Чайки", ул. Лобановского, 12</span>
                     </div>
-                    <div style="width: 35%;">
-                        <span style="display: inline-block;"><a style="text-decoration: none;color: #fff;" href="tel:+380661312772"><span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#dfa46d" stroke="#dfa46d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></span> 066 131 27 72 </a></span>
+                    <div style="width: 40%;padding-left: 25px">
+                        <span style="display: inline-block;"><a style="text-decoration: none;color: #fff;" href="tel:+380661312772"><span style="width: 40px;height: 40px;background-size: cover;display: inline-block;background-image: url({{ bagisto_asset('images/phone.png') }});"></span> 066 131 27 72 </a></span>
                         {!!
                                 '<a style"text-decoration: none;color: #fff;"" style="color:#fff" href="mailto:' . config('mail.from.address') . '">' . config('mail.from.address'). '</a>'
                         !!}
                     </div>
                 </div>
 
-                <div class="list-link" style="display: flex;justify-content: space-around;width: 100%;font-size: 1rem;">
-                    <div style="width: 35%;">
+                <div class="list-link" style="display: flex;width: 90%;font-size: 1rem;padding-top:30px;margin-left: auto;margin-right: auto">
+                    <div style="width: 40%;padding-right: 25px">
                         <ul style="line-height: 2;">
                             <div style="color: #fff;">Информация</div>
                             <div style=""><a style="text-decoration: none;color: #969696;" href="@php echo route('shop.cms.page', 'delivery-and-payment') @endphp">Доставка и оплата</a></div>
@@ -233,7 +233,7 @@
                             <div style=""><a style="text-decoration: none;color: #969696;" href="@php echo route('shop.cms.page', 'contact-us') @endphp">Контакты</a></div>
                         </ul>
                     </div>
-                    <div style="width: 35%;">
+                    <div style="width: 40%;padding-left: 25px">
                         <ul style="line-height: 2;">
                             <div style="list-style: none !important;margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;color: #fff;">О бренде</div>
                             <div style="list-style: none !important;margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;"><a style="text-decoration: none;color: #969696;" href="@php echo route('shop.cms.page', 'about-us') @endphp">О нас</a></div>
@@ -244,10 +244,10 @@
                 </div>
             </div>
 
-            <div style="display: flex;align-content: space-around;justify-content: center;flex-wrap: wrap;width: 100%;height: 195px;">
+            <div style="width: 100%;height: 195px;padding-top: 50px">
 
                 <div style="height: 33px;display: inline-block;background-image: url({!! bagisto_asset('images/cards.png') !!});background-position: top center;background-repeat: no-repeat;width: 100%"></div>
-                <div style="display: flex;">
+                <div style="display: flex;width: 70%;margin-top: 30px;margin-left: auto;margin-right: auto">
                     <div style="list-style: none !important;margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;margin-right: 2rem;">
                         <a style="text-decoration: none;color: #fff;" href="@php echo route('shop.cms.page', 'terms-conditions') @endphp">Условия покупки</a>
                     </div>
