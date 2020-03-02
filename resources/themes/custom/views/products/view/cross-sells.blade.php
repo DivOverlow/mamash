@@ -11,9 +11,9 @@
 
 @if (isset($products))
 
-    <div class="attached-products-wrapper mt-50">
+    <div class="attached-products-wrapper mt-10">
 
-        <div class="title">
+        <div class="title text-lg sm:text-2xl text-gray-dark text-center uppercase mb-3">
             {{ __('shop::app.products.cross-sell-title') }}
              <span class="border-bottom"></span>
         </div>

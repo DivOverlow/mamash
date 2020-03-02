@@ -67,13 +67,10 @@ foreach (app('Webkul\Category\Repositories\CategoryRepository')->getVisibleCateg
 
     <script type="text/x-template" id="category-item-template">
         <li>
-            {{--        <a :href="url+'/categories/'+this.item['translations'][0].slug" class="block text-white uppercase border-b border-transparent tracking-wide flex items-center bg-transparent relative hover:text-gold hover:border-b hover:border-gold">--}}
-            {{--        <a :href="url+'/categories/'+this.item['translations'][0].slug" class="block text-white uppercase border-b border-transparent tracking-wide flex items-center bg-transparent relative hover:text-gold hover:border-b hover:border-gold">--}}
             <a :href="url+'/categories/'+this.item['translations'][0].slug" class="nav-item">
                 @{{ name }}
-                {{--            <i class="icon dropdown-right-icon" v-if="haveChildren && item.parent_id != null"></i>--}}
-                    
-                 </a>   
+
+                 </a>
                 <div class="nav-menu-info">
                     <div class="img-nav-block">
                         <img class="object-cover h-56 w-full" :src="url+'/storage/'+this.item.image" :alt="name" onerror="this.src='{{ asset('vendor/webkul/ui/assets/images/product/meduim-product-placeholder.png') }}'"/>
@@ -82,15 +79,7 @@ foreach (app('Webkul\Category\Repositories\CategoryRepository')->getVisibleCateg
                     </div>
                 </div>
 
-
-            
-
-
-            {{--        <i :class="[show ? 'icon icon-arrow-down mt-15' : 'icon dropdown-right-icon left mt-15']"--}}
-            {{--        v-if="haveChildren"  @click="showOrHide"></i>--}}
             <div v-if="haveChildren" class="nav-level">
-                 {{--<div>--}}
-                    {{--            <div class="main-container-wrapper w-1/3">--}}
                     <ul v-if="haveChildren && show">
                         <category-item
                             v-for="(child, index) in item.children"
@@ -99,7 +88,6 @@ foreach (app('Webkul\Category\Repositories\CategoryRepository')->getVisibleCateg
                             :item="child">
                         </category-item>
                     </ul>
-                 {{--</div>--}}
             </div>
         </li>
     </script>

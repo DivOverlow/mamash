@@ -199,13 +199,13 @@
             <div style="display: flex;align-items: center;justify-content: center;width: 100%;border-bottom: solid 1px #727272;height: 160px;">
                 <div style="width: 90%;">
                     <div style=""><a style="text-decoration: none;color: #fff;" href="#" target="_blank" rel="noopener noreferrer">
-                            <span style="width: 40px;height: 40px;background-size: cover;display: inline-block;background-image: url({{ bagisto_asset('images/facebook.svg') }});"></span>
+                            <span style="width: 40px;height: 40px;background-size: cover;display: inline-block;background-image: url({{ bagisto_asset('images/facebook.png') }});"></span>
                         </a></div>
                     <div style=""><a style="text-decoration: none;color: #fff;" href="#" target="_blank" rel="noopener noreferrer">
-                            <span style="width: 40px;height: 40px;background-size: cover;display: inline-block;background-image: url({{ bagisto_asset('images/instagram.svg') }});"></span>
+                            <span style="width: 40px;height: 40px;background-size: cover;display: inline-block;background-image: url({{ bagisto_asset('images/instagram.png') }});"></span>
                         </a></div>
                     <div style=""><a style="text-decoration: none;color: #fff;" href="https://youtube.com" target="_blank" rel="noopener noreferrer">
-                            <span style="width: 40px;height: 40px;background-size: cover;display: inline-block;background-image: url({{ bagisto_asset('images/youtube.svg') }});"></span>
+                            <span style="width: 40px;height: 40px;background-size: cover;display: inline-block;background-image: url({{ bagisto_asset('images/youtube.png') }});"></span>
                         </a>
                     </div>
                 </div>
