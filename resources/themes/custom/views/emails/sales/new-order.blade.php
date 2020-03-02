@@ -213,11 +213,11 @@
 
             <div style="width: 100%;border-bottom: solid 1px #727272;height: 330px;">
                 <div style="display: flex;width: 90%;font-size: .875rem;line-height: 2;color:#fff;padding-top:40px;margin-left: auto;margin-right: auto">
-                    <div style="width: 40%;padding-right: 25px">
+                    <div style="width: 40%;padding-right: 50px">
                         <span style="display: inline-block;"> Киев, ЖК "Чайки", ул. Лобановского, 12</span>
                     </div>
-                    <div style="width: 40%;padding-left: 25px">
-                        <span style="display: inline-block;"><a style="text-decoration: none;color: #fff;" href="tel:+380661312772"><span style="width: 40px;height: 40px;background-size: cover;display: inline-block;background-image: url({{ bagisto_asset('images/phone.png') }});"></span> 066 131 27 72 </a></span>
+                    <div style="width: 40%;">
+                        <span style="display: inline-block;"><a style="text-decoration: none;color: #fff;" href="tel:+380661312772"><span style="margin-bottom: -2px;width: 16px;height: 16px;background-size: cover;display: inline-block;background-image: url({{ bagisto_asset('images/phone.png') }});"></span> 066 131 27 72 </a></span>
                         {!!
                                 '<a style"text-decoration: none;color: #fff;"" style="color:#fff" href="mailto:' . config('mail.from.address') . '">' . config('mail.from.address'). '</a>'
                         !!}
@@ -225,7 +225,7 @@
                 </div>
 
                 <div class="list-link" style="display: flex;width: 90%;font-size: 1rem;padding-top:30px;margin-left: auto;margin-right: auto">
-                    <div style="width: 40%;padding-right: 25px">
+                    <div style="width: 40%;padding-right: 80px">
                         <ul style="line-height: 2;">
                             <div style="color: #fff;">Информация</div>
                             <div style=""><a style="text-decoration: none;color: #969696;" href="@php echo route('shop.cms.page', 'delivery-and-payment') @endphp">Доставка и оплата</a></div>
@@ -233,7 +233,7 @@
                             <div style=""><a style="text-decoration: none;color: #969696;" href="@php echo route('shop.cms.page', 'contact-us') @endphp">Контакты</a></div>
                         </ul>
                     </div>
-                    <div style="width: 40%;padding-left: 25px">
+                    <div style="width: 40%;">
                         <ul style="line-height: 2;">
                             <div style="list-style: none !important;margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;color: #fff;">О бренде</div>
                             <div style="list-style: none !important;margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;"><a style="text-decoration: none;color: #969696;" href="@php echo route('shop.cms.page', 'about-us') @endphp">О нас</a></div>
