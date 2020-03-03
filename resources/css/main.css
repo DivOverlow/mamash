@@ -733,13 +733,13 @@ body {
     }
     div.arrow-menu{
         position: absolute;
-        top: 0;
+        top: -10px;
         width: 50%;
         right: 0;
         padding-right: 10px;
         z-index: 1002;
         color: white;
-        font-size: 22px;
+        font-size: 34px;
         font-weight: bold;
         text-align: right;
     }
