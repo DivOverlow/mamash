@@ -68,9 +68,7 @@
     };
 
 </script>
-
 <style scoped>
-
     .modal-mask {
         display: flex;
         align-items: center;

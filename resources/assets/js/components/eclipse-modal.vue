@@ -71,7 +71,6 @@
     };
 
 </script>
-
 <style scoped>
 
     .modal {

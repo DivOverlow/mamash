@@ -1470,16 +1470,6 @@ modal {
     max-height: calc(var(--vh, 1vh) * 100 * 0.35);
 }
 
-/*.card-modal-container .cart-footer {*/
-/*    max-height: calc(var(--vh, 1vh) * 100 * 0.6);*/
-/*}*/
-
-
-/*.card-modal-container .modal-body {*/
-/*    overflow-y: auto;*/
-/*    max-height: 250px;*/
-/*}*/
-
 @media only screen and (max-width: 770px) {
     .card-modal-container .modal-content {
         max-width: 100%;
