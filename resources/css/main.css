@@ -609,9 +609,9 @@
         padding: 3px 25px;
     }
 }
-@media(max-width: 770px){
+@media(min-width: 768px){
     #header-bottom{
-        display: flex;
+        display: flex !important;
     }
     #header-bottom>ul>li>a {
         padding-left: 3px;
