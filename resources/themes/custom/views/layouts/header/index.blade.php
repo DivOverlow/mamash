@@ -102,9 +102,9 @@
                         </form>
                     </div>
 
-                    <div class="mx-1 px-3 lg:px-10"><span class="border-gray-light border-l py-4 opacity-50"></span></div>
+                    <div class="mx-1 px-3 xl:px-10"><span class="border-gray-light border-l py-4 opacity-50"></span></div>
 
-                    <ul class="w-full lg:w-1/2 right-content-menu flex justify-between items-center">
+                    <ul class="w-full xl:w-1/2 right-content-menu flex justify-between items-center">
 
                         {!! view_render_event('bagisto.shop.layout.header.account-item.before') !!}
 
