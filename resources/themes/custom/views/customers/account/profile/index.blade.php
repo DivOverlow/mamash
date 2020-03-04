@@ -21,7 +21,7 @@
 
         <div class="account-head flex items-end h-20">
 
-            <div class="w-full flex justify-content-between items-center">
+            <div class="w-full flex flex-col sm:flex-row justify-content-between items-center">
                 <div class=" flex items-end inline-block">
                     <div class="profile-icon address-info mb-2"></div>
                     <span class="account-heading text-gray-dark text-xl sm:text-2xl uppercase pl-4">{{ __('shop::app.customer.account.profile.index.title') }}</span>

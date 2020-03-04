@@ -20,6 +20,6 @@ if ($product_id) {
 
 ?>
 
-<div class="w-full sm:w-1/2 my-6">
+<div class="w-full max-w-xs my-6">
     @include ('shop::products.list.gift', ['product' => $product, 'evaluation' => $evaluation, 'class' => 'mini' ])
 </div>

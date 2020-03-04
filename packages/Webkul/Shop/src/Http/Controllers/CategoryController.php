@@ -71,7 +71,7 @@ class CategoryController extends Controller
         $products =  app('Webkul\Product\Repositories\ProductRepository')->getAll($id);
         $html = '';
         foreach ($products as $productFlat) {
-            $html .= '<div class="w-full sm:w-1/3 pl-0 sm:pl-6 pb-0 sm:pb-6">';
+            $html .= '<div class="max-w-sm lg:max-w-md w-full lg:w-1/3 pl-0 sm:pl-6 pb-0 sm:pb-6">';
             $html .= view('shop::products.list.card', ['product' => $productFlat]);
             $html .= '</div>';
         }

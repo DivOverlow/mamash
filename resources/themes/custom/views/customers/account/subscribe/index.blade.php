@@ -16,10 +16,10 @@
             @include('shop::customers.account.partials.sidemenu')
         </div>
 
-        <div class="w-full sm:w-1/2">
-            <div class="flex flex-row sm:flex-col content-between font-sans h-80 sm:h-88 flex-wrap">
+        <div class="w-full sm:w-1/2 py-10">
+            <div class="flex flex-row sm:flex-col content-between font-sans h-88 sm:h-96 flex-wrap">
                     <div class="w-full text-gray-dark">
-                        <div class="flex items-end h-20 text-3xl sm:text-4xl">Будь в курсе&nbsp;<span class="text-gold">событий</span></div>
+                        <div class="flex justify-start items-end h-20 text-3xl sm:text-4xl">Будь в курсе&nbsp;<span class="text-gold">событий</span></div>
                         <div class="w-full font-serif my-3 text-sm sm:text-base">нажимая на кнопку &ldquo;подписаться на новости&rdquo; вы даете согласие на действия входящие в <a href="#" class="text-gold font-serif underline">политику конфиденциальности</a></div>
                     </div>
 

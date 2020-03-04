@@ -74,8 +74,8 @@
             <div class="header-bottom w-full flex-grow lg:flex lg:items-center lg:w-full" id="header-bottom" style="display: none;">
                 @include('shop::layouts.header.nav-menu.navmenu')
             </div>
-            <div class="w-40 sm:w-56 absolute inset-0 top-0 sm:relative h-12">
-                <ul class="logo-container sm:w-56 sm:mx-2 flex">
+            <div class="w-40 lg:w-56 absolute inset-0 top-0 sm:relative h-12">
+                <ul class="logo-container w-40 lg:w-56 sm:mx-2 flex">
                     <li><span class="menu-box block sm:hidden p-3"><span class="icon icon-menu" id="hammenu"></span></span></li>
                     <li>
                         <a href="{{ route('shop.home.index') }}">
@@ -88,11 +88,11 @@
                     </li>
                 </ul>
             </div>
-            <div class="w-full w-5/12 flex justify-end items-center header-cart-line">
+            <div class="w-full flex justify-end items-center header-cart-line">
                 <div class="w-full right-content flex justify-between items-center">
-                    <div class="search-container mr-10 items-center w-full flex justify-end relative">
+                    <div class="search-container mr-4 lg:mr-0 items-center w-full flex justify-end relative">
                         <form role="search" action="{{ route('shop.search.index') }}" method="GET" >
-                            <input type="search" name="term" class="search-field bg-transparent font-serif font-light text-white text-sm h-8 w-20 border-b border-gray-light relative focus:w-48 focus:border-gold"
+                            <input type="search" name="term" class="search-field bg-transparent font-serif font-light text-white text-sm h-8 w-20 border-b border-gray-light relative focus:w-32 lg:focus:w-40 focus:border-gold"
                                    placeholder="{{ __('shop::app.header.search-text') }}" required>
                                     <div class="search-icon-wrapper flex items-center absolute right-0 inset-y-0">
                                         <button class="pl-2 -mr-5 pb-1">
@@ -102,25 +102,13 @@
                         </form>
                     </div>
 
-                    <div class="mx-1 px-10"><span class="border-gray-light border-l py-4 opacity-50"></span></div>
+                    <div class="mx-1 px-3 lg:px-10"><span class="border-gray-light border-l py-4 opacity-50"></span></div>
 
-{{--                <span class="search-box hidden sm:visible"><span class="icon icon-search" id="search"></span></span>--}}
-
-                    <ul class="w-1/2 right-content-menu flex justify-between items-center">
+                    <ul class="w-full lg:w-1/2 right-content-menu flex justify-between items-center">
 
                         {!! view_render_event('bagisto.shop.layout.header.account-item.before') !!}
 
                         <li>
-{{--                        @guest--}}
-{{--                            <a href="{{ route('customer.session.index') }}"><div class="cursor-pointer user-icon mr-1"></div></a>--}}
-{{--                        @else--}}
-{{--                            <div>--}}
-{{--                                <label style="color: #9e9e9e; font-weight: 700; text-transform: uppercase; font-size: 15px;">--}}
-{{--                                    {{ auth()->guard('customer')->user()->first_name }}--}}
-{{--                                </label>--}}
-{{--                                <a href="{{ route('customer.profile.index') }}" title="{{ __('shop::app.header.profile') }}"><div class="cursor-pointer user-icon active"></div></a>--}}
-{{--                            </div>--}}
-{{--                        @endguest--}}
                         @auth('customer')
                             <div class="relative w-12">
                                 <label class="ml-auto -mt-3 bg-chocolate rounded-full h-8 w-8 flex items-center justify-center text-white text-xl">

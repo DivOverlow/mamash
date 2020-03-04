@@ -9,7 +9,7 @@
     <img src="/themes/custom/assets/images/banner/blooper.png" alt="blooper image" class="h-24 w-auto absolute right-0 bottom-0 mb-20 invisible sm:visible">
 
     <div class="main-container-wrapper flex flex-col justify-content-between sm:flex-row">
-        <div class="w-full sm:w-1/2 py-4">
+        <div class="w-full sm:w-1/2 py-4 pr-4">
 
         {!! view_render_event('bagisto.shop.customers.signup.before') !!}
 

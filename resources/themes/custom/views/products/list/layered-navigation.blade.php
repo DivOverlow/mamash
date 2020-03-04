@@ -31,7 +31,7 @@
         $filterAttributes = $attributeRepository->getFilterAttributes();
     }
 ?>
-<div class="layered-filter-wrapper z-20 absolute w-full max-w-md" style="transition: left .6s cubic-bezier(.645,.045,.355,1);">
+<div class="layered-filter-wrapper z-20 absolute w-full max-w-sm lg:max-w-md" style="transition: left .6s cubic-bezier(.645,.045,.355,1);">
 
     {!! view_render_event('bagisto.shop.products.list.layered-nagigation.before') !!}
 

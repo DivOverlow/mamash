@@ -21,7 +21,7 @@
 
         <div class="account-head flex items-end h-20">
 
-            <div class="w-full flex justify-content-between items-center">
+            <div class="w-full flex flex-col sm:justify-content-between items-center">
                 <div class=" flex items-end inline-block">
                     <div class="address-icon align-middle h-auto w-6 mb-1"></div>
                     <span class="account-heading text-gray-dark text-lg sm:text-xl uppercase pl-4">{{ __('shop::app.layouts.address') }}</span>

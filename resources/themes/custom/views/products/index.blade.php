@@ -123,7 +123,7 @@
                                 @foreach ($products as $productFlat)
                                     @if ($loop->index == 0)
 
-                                        <div class="w-full max-w-md sm:w-1/3 bg-gray-dark text-xs mb-6">
+                                        <div class="max-w-sm lg:max-w-md w-full lg:w-1/3 bg-gray-dark text-xs mb-6">
                                                         <div class="hidden p-10 sm:block">
                                                             <?php
                                                             $categories = [];
@@ -177,8 +177,8 @@
                                                         <?php $products = $productRepository->getAll($category->id); ?>
                                                         @if ($products->count())
                                                             <div
-                                                                class="inline-block text-gray-light text-base uppercase relative px-10 mb-4 -ml-6 sm:ml-0">{{ __('shop::app.products.layered-nav-title') }}
-                                                                <div class="icon absolute cursor-pointer top-0 bottom-0 right-0 py-4 {{($is_filter_on) ? 'filter-icon-off' : 'filter-icon-on'}}"
+                                                                class="inline-block text-gray-light text-base uppercase relative py-3 sm:py-0 px-10 mb-0 sm:mb-4 -ml-6 sm:ml-0">{{ __('shop::app.products.layered-nav-title') }}
+                                                                <div class="icon absolute cursor-pointer mt-3 sm:mt-0 top-0 bottom-0 right-0 py-4 {{($is_filter_on) ? 'filter-icon-off' : 'filter-icon-on'}}"
                                                                      id="filter"></div>
                                                             </div>
                                                         @endif
@@ -197,7 +197,7 @@
                                                     $action_amount = $gift_products[$gift_index]->action_amount;
                                                     $gift_index++;
                                                 ?>
-                                                    <div class="w-full max-w-md sm:w-1/3 my-3 sm:my-0">
+                                                    <div class="max-w-sm lg:max-w-md w-full lg:w-1/3 my-3 sm:my-0">
                                                       @include ('shop::products.list.gift', ['product' => $product, 'evaluation' => $action_amount, 'class' => 'medium' ])
 
                                                     @if (($gift_index < count($gift_products)) && (count($products) - $loop->index) < 3)
@@ -218,7 +218,7 @@
                                             @endif
                                     @endif
 
-                                    <div class="w-full sm:w-1/3 pl-0 sm:pl-6 pb-0 sm:pb-6">
+                                    <div class="max-w-sm lg:max-w-md w-full lg:w-1/3 pl-0 sm:pl-6 pb-0 sm:pb-6">
                                         @include ('shop::products.list.card', ['product' => $productFlat])
                                     </div>
 
@@ -246,7 +246,7 @@
                         @else
                             <div class="product-list">
                                 @foreach ($products as $productFlat)
-                                    <div class="w-full sm:w-1/3 bg-gray-dark text-xs">
+                                    <div class="max-w-sm lg:max-w-md w-full lg:w-1/3 bg-gray-dark text-xs">
                                                         <div class="hidden p-10 sm:block">
                                                             <?php
                                                             $categories = [];
