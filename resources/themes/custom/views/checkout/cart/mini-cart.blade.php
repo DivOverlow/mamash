@@ -59,16 +59,28 @@
     <eclipse-modal message="{{session("new_gift_product")}}"  @close="closeEclipse">
         <div slot="body">
             <?php
-                if (session()->get('new_gift_product') > 0) {
-                    $product = $productRepository->find(session()->get('new_gift_product'));
-                    $productBaseImage = $productImageHelper->getProductBaseImage($product);
+                if (session()->get('new_gift_product') > 0 ) {
+                    if ( session()->get('old_gift_product') > 0 ) {
+                        $product = $productRepository->find(session()->get('old_gift_product'));
+                        $productBaseImage = $productImageHelper->getProductBaseImage($product);
+                    }
+                    else
+                    {
+                        $product = $productRepository->find(session()->get('new_gift_product'));
+                        $productBaseImage = $productImageHelper->getProductBaseImage($product);
+                    }
                 }
             ?>
 
             <div class="w-full max-w-md flex flex-col items-center bg-orange-100 border-t-2 border-orange-500 rounded-b shadow-md p-6">
-                @if (session()->get('new_gift_product') > 0)
-                    <div class="tracking-widest text-gray-dark uppercase text-xl font-bold">{{ __('shop::app.checkout.gift.hail') }}</div>
-                    <div class="tracking-widest text-gray-dark lowercase text-center">{{ __('shop::app.checkout.gift.available', ['product_name' => $product->name ]) }}</div>
+                @if (session()->get('new_gift_product') > 0 && $product )
+                    @if (session()->get('old_gift_product') > 0)
+                        <div class="tracking-widest text-gray-dark uppercase text-xl font-bold">{{ __('shop::app.checkout.gift.regret-sorry') }}</div>
+                        <div class="tracking-widest text-gray-dark text-center">{{ __('shop::app.checkout.gift.regret', ['product_name' => $product->name ]) }}</div>
+                    @else
+                        <div class="tracking-widest text-gray-dark uppercase text-xl font-bold">{{ __('shop::app.checkout.gift.hail') }}</div>
+                        <div class="tracking-widest text-gray-dark text-center">{{ __('shop::app.checkout.gift.available', ['product_name' => $product->name ]) }}</div>
+                    @endif
                     <div class="item-image h-48 w-full flex items-center justify-center">
                         <a href="{{ url()->to('/').'/products/'.$product->url_key }}"><img  class="object-scale-down h-40 w-auto"
                                                                                             src="{{ $productBaseImage['medium_image_url'] }}"/></a>
@@ -85,13 +97,18 @@
                         </span>
                     @if ($premium_counter != 0)
                         <div class="font-bold text-sm text-gray-dark lowercase text-center">
-                            {{ __('shop::app.checkout.gift.premium-gift', ['premium_counter' => core()->convertPrice($premium_counter) . core()->currencySymbol(core()->getBaseCurrencyCode())] ) }}
+                            @if (session()->get('old_gift_product') > 0)
+                                {{ __('shop::app.checkout.gift.regret-premium', ['premium_counter' => core()->convertPrice($premium_counter) . core()->currencySymbol(core()->getBaseCurrencyCode())] ) }}
+                            @else
+                                {{ __('shop::app.checkout.gift.premium-gift', ['premium_counter' => core()->convertPrice($premium_counter) . core()->currencySymbol(core()->getBaseCurrencyCode())] ) }}
+                            @endif
                         </div>
                     @endif
                 </div>
             </div>
                 <?php
                     session()->forget('new_gift_product');
+                    session()->forget('old_gift_product');
                 ?>
         </div>
     </eclipse-modal>

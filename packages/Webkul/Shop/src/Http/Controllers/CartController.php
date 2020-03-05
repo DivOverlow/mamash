@@ -213,6 +213,7 @@ class CartController extends Controller
                     if (session()->has('gift_product_id')) {
                         // lowering
                         if (!in_array(session()->get('gift_product_id'), $gifts) ) {
+                            session()->put('old_gift_product', session()->get('gift_product_id'));
                             session()->forget('gift_product_id');
                             session()->put('gift_product_id', end($gifts));
                             session()->put('new_gift_product', end($gifts));

@@ -329,9 +329,14 @@
             } else if (operation == 'remove') {
                     quantity = parseInt(quantity) - 1;
             }
-            document.getElementById('cart-quantity'+index).value = quantity;
 
-            document.getElementById('cart-form').submit();
+            if (quantity > 0) {
+                document.getElementById('cart-quantity'+index).value = quantity;
+                document.getElementById('cart-form').submit();
+            } else {
+                alert('{{ __('shop::app.products.less-quantity') }}');
+            }
+
             event.preventDefault();
         }
 

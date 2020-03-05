@@ -128,221 +128,221 @@
 }
 
 
-/*.sortable-icon {*/
-/*    background-image: url("/themes/default/assets/images/Icon-Sortable.svg");*/
-/*    width: 24px;*/
-/*    height: 24px*/
-/*}*/
+.sortable-icon {
+    background-image: url("/themes/default/assets/images/Icon-Sortable.svg");
+    width: 24px;
+    height: 24px
+}
 
-/*.sort-down-icon, .sort-up-icon {*/
-/*    background-image: url("/themes/default/assets/images/Icon-Sort-Down.svg");*/
-/*    width: 18px;*/
-/*    height: 18px*/
-/*}*/
+.sort-down-icon, .sort-up-icon {
+    background-image: url("/themes/default/assets/images/Icon-Sort-Down.svg");
+    width: 18px;
+    height: 18px
+}
 
-/*.sort-up-icon {*/
-/*    -webkit-transform: rotate(180deg);*/
-/*    transform: rotate(180deg)*/
-/*}*/
+.sort-up-icon {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg)
+}
 
-/*.primary-back-icon {*/
-/*    background-image: url("/themes/default/assets/images/Icon-Back-Primary.svg");*/
-/*    width: 24px;*/
-/*    height: 24px*/
-/*}*/
+.primary-back-icon {
+    background-image: url("/themes/default/assets/images/Icon-Back-Primary.svg");
+    width: 24px;
+    height: 24px
+}
 
-/*.checkbox-dash-icon {*/
-/*    background-image: url("/themes/default/assets/images/Checkbox-Dash.svg");*/
-/*    width: 24px;*/
-/*    height: 24px*/
-/*}*/
+.checkbox-dash-icon {
+    background-image: url("/themes/default/assets/images/Checkbox-Dash.svg");
+    width: 24px;
+    height: 24px
+}
 
-/*.account-icon {*/
-/*    background-image: url("/themes/default/assets/images/icon-account.svg");*/
-/*    width: 24px;*/
-/*    height: 24px*/
-/*}*/
+.account-icon {
+    background-image: url("/themes/default/assets/images/icon-account.svg");
+    width: 24px;
+    height: 24px
+}
 
-/*.expand-icon {*/
-/*    background-image: url("/themes/default/assets/images/Expand-Light.svg");*/
-/*    width: 18px;*/
-/*    height: 18px*/
-/*}*/
+.expand-icon {
+    background-image: url("/themes/default/assets/images/Expand-Light.svg");
+    width: 18px;
+    height: 18px
+}
 
-/*.expand-on-icon {*/
-/*    background-image: url("/themes/default/assets/images/Expand-Light-On.svg");*/
-/*    width: 18px;*/
-/*    height: 18px*/
-/*}*/
+.expand-on-icon {
+    background-image: url("/themes/default/assets/images/Expand-Light-On.svg");
+    width: 18px;
+    height: 18px
+}
 
-/*.dark-left-icon {*/
-/*    background-image: url("/themes/default/assets/images/arrow-left-dark.svg");*/
-/*    width: 18px;*/
-/*    height: 18px*/
-/*}*/
+.dark-left-icon {
+    background-image: url("/themes/default/assets/images/arrow-left-dark.svg");
+    width: 18px;
+    height: 18px
+}
 
-/*.light-right-icon {*/
-/*    background-image: url("/themes/default/assets/images/arrow-right-light.svg");*/
-/*    width: 18px;*/
-/*    height: 18px*/
-/*}*/
+.light-right-icon {
+    background-image: url("/themes/default/assets/images/arrow-right-light.svg");
+    width: 18px;
+    height: 18px
+}
 
-/*.folder-icon {*/
-/*    background-image: url("/themes/default/assets/images/Folder-Icon.svg");*/
-/*    width: 24px;*/
-/*    height: 24px*/
-/*}*/
+.folder-icon {
+    background-image: url("/themes/default/assets/images/Folder-Icon.svg");
+    width: 24px;
+    height: 24px
+}
 
-/*.star-icon {*/
-/*    background-image: url("/themes/default/assets/images/Star-Icon.svg");*/
-/*    width: 24px;*/
-/*    height: 24px*/
-/*}*/
+.star-icon {
+    background-image: url("/themes/default/assets/images/Star-Icon.svg");
+    width: 24px;
+    height: 24px
+}
 
-/*.arrow-down-white-icon {*/
-/*    background-image: url("/themes/default/assets/images/down-arrow-white.svg");*/
-/*    width: 17px;*/
-/*    height: 13px*/
-/*}*/
+.arrow-down-white-icon {
+    background-image: url("/themes/default/assets/images/down-arrow-white.svg");
+    width: 17px;
+    height: 13px
+}
 
-/*.arrow-up-white-icon {*/
-/*    background-image: url("/themes/default/assets/images/up-arrow-white.svg");*/
-/*    width: 17px;*/
-/*    height: 13px*/
-/*}*/
+.arrow-up-white-icon {
+    background-image: url("/themes/default/assets/images/up-arrow-white.svg");
+    width: 17px;
+    height: 13px
+}
 
-/*.profile-pic-icon {*/
-/*    background-image: url("/themes/default/assets/images/Profile-Pic.svg");*/
-/*    width: 60px;*/
-/*    height: 60px*/
-/*}*/
+.profile-pic-icon {
+    background-image: url("/themes/default/assets/images/Profile-Pic.svg");
+    width: 60px;
+    height: 60px
+}
 
-/*.graph-up-icon {*/
-/*    background-image: url("/themes/default/assets/images/Icon-Graph-Green.svg");*/
-/*    width: 24px;*/
-/*    height: 24px*/
-/*}*/
+.graph-up-icon {
+    background-image: url("/themes/default/assets/images/Icon-Graph-Green.svg");
+    width: 24px;
+    height: 24px
+}
 
-/*.graph-down-icon {*/
-/*    background-image: url("/themes/default/assets/images/Icon-Graph-Red.svg");*/
-/*    width: 24px;*/
-/*    height: 24px*/
-/*}*/
+.graph-down-icon {
+    background-image: url("/themes/default/assets/images/Icon-Graph-Red.svg");
+    width: 24px;
+    height: 24px
+}
 
-/*.no-result-icon {*/
-/*    background-image: url("/themes/default/assets/images/limited-icon.svg");*/
-/*    width: 52px;*/
-/*    height: 47px*/
-/*}*/
+.no-result-icon {
+    background-image: url("/themes/default/assets/images/limited-icon.svg");
+    width: 52px;
+    height: 47px
+}
 
-/*.note-icon {*/
-/*    background-image: url("/themes/default/assets/images/icon-note.svg")*/
-/*}*/
+.note-icon {
+    background-image: url("/themes/default/assets/images/icon-note.svg")
+}
 
-/*.list-icon, .note-icon {*/
-/*    width: 24px;*/
-/*    height: 24px*/
-/*}*/
+.list-icon, .note-icon {
+    width: 24px;
+    height: 24px
+}
 
-/*.list-icon {*/
-/*    background-image: url("/themes/default/assets/images/Icon-Listing.svg")*/
-/*}*/
+.list-icon {
+    background-image: url("/themes/default/assets/images/Icon-Listing.svg")
+}
 
-/*.active .dashboard-icon {*/
-/*    background-image: url("/themes/default/assets/images/Icon-Dashboard-Active.svg")*/
-/*}*/
+.active .dashboard-icon {
+    background-image: url("/themes/default/assets/images/Icon-Dashboard-Active.svg")
+}
 
-/*.active .sales-icon {*/
-/*    background-image: url("/themes/default/assets/images/Icon-Sales-Active.svg")*/
-/*}*/
+.active .sales-icon {
+    background-image: url("/themes/default/assets/images/Icon-Sales-Active.svg")
+}
 
-/*.active .catalog-icon {*/
-/*    background-image: url("/themes/default/assets/images/Icon-Catalog-Active.svg")*/
-/*}*/
+.active .catalog-icon {
+    background-image: url("/themes/default/assets/images/Icon-Catalog-Active.svg")
+}
 
-/*.active .customer-icon {*/
-/*    background-image: url("/themes/default/assets/images/Icon-Customers-Active.svg")*/
-/*}*/
+.active .customer-icon {
+    background-image: url("/themes/default/assets/images/Icon-Customers-Active.svg")
+}
 
-/*.active .settings-icon {*/
-/*    background-image: url("/themes/default/assets/images/Icon-Settings-Active.svg")*/
-/*}*/
+.active .settings-icon {
+    background-image: url("/themes/default/assets/images/Icon-Settings-Active.svg")
+}
 
-/*.active .configuration-icon {*/
-/*    background-image: url("/themes/default/assets/images/Icon-Configure-Active.svg")*/
-/*}*/
+.active .configuration-icon {
+    background-image: url("/themes/default/assets/images/Icon-Configure-Active.svg")
+}
 
-/*.active .promotion-icon {*/
-/*    background-image: url("/themes/default/assets/images/icon-promotion-active.svg")*/
-/*}*/
+.active .promotion-icon {
+    background-image: url("/themes/default/assets/images/icon-promotion-active.svg")
+}
 
-/*.active .cms-icon {*/
-/*    background-image: url("/themes/default/assets/images/Icon-CMS-Active.svg")*/
-/*}*/
+.active .cms-icon {
+    background-image: url("/themes/default/assets/images/Icon-CMS-Active.svg")
+}
 
-/*.active > .arrow-down-icon {*/
-/*    background-image: url("/themes/default/assets/images/Arrow-Down.svg");*/
-/*    width: 14px;*/
-/*    height: 8px*/
-/*}*/
+.active > .arrow-down-icon {
+    background-image: url("/themes/default/assets/images/Arrow-Down.svg");
+    width: 14px;
+    height: 8px
+}
 
-/*.active > .expand-icon {*/
-/*    background-image: url("/themes/default/assets/images/Expand-Light-On.svg")*/
-/*}*/
+.active > .expand-icon {
+    background-image: url("/themes/default/assets/images/Expand-Light-On.svg")
+}
 
-/*.active.dashboard-icon {*/
-/*    background-image: url("/themes/default/assets/images/Icon-Dashboard-Active.svg")*/
-/*}*/
+.active.dashboard-icon {
+    background-image: url("/themes/default/assets/images/Icon-Dashboard-Active.svg")
+}
 
-/*.active.customer-icon {*/
-/*    background-image: url("/themes/default/assets/images/Icon-Customers-Active.svg")*/
-/*}*/
+.active.customer-icon {
+    background-image: url("/themes/default/assets/images/Icon-Customers-Active.svg")
+}
 
-/*.active.sales-icon {*/
-/*    background-image: url("/themes/default/assets/images/Icon-Sales-Active.svg")*/
-/*}*/
+.active.sales-icon {
+    background-image: url("/themes/default/assets/images/Icon-Sales-Active.svg")
+}
 
-/*.active.settings-icon {*/
-/*    background-image: url("/themes/default/assets/images/Icon-Settings-Active.svg")*/
-/*}*/
+.active.settings-icon {
+    background-image: url("/themes/default/assets/images/Icon-Settings-Active.svg")
+}
 
-/*.active.configuration-icon {*/
-/*    background-image: url("/themes/default/assets/images/Icon-Configure-Active.svg")*/
-/*}*/
+.active.configuration-icon {
+    background-image: url("/themes/default/assets/images/Icon-Configure-Active.svg")
+}
 
-/*.active.arrow-down-icon {*/
-/*    background-image: url("/themes/default/assets/images/Arrow-Down.svg");*/
-/*    width: 14px;*/
-/*    height: 8px*/
-/*}*/
+.active.arrow-down-icon {
+    background-image: url("/themes/default/assets/images/Arrow-Down.svg");
+    width: 14px;
+    height: 8px
+}
 
-/*.active.expand-icon {*/
-/*    background-image: url("/themes/default/assets/images/Expand-Light-On.svg")*/
-/*}*/
+.active.expand-icon {
+    background-image: url("/themes/default/assets/images/Expand-Light-On.svg")
+}
 
-/*.icon-404 {*/
-/*    background-image: url("/themes/default/assets/images/404-image.svg");*/
-/*    width: 255px;*/
-/*    height: 255px*/
-/*}*/
+.icon-404 {
+    background-image: url("/themes/default/assets/images/404-image.svg");
+    width: 255px;
+    height: 255px
+}
 
-/*.export-icon {*/
-/*    background-image: url("/themes/default/assets/images/Icon-Export.svg");*/
-/*    width: 32px;*/
-/*    height: 32px*/
-/*}*/
+.export-icon {
+    background-image: url("/themes/default/assets/images/Icon-Export.svg");
+    width: 32px;
+    height: 32px
+}
 
-/*.import-icon {*/
-/*    background-image: url("/themes/default/assets/images/Icon-Import.svg");*/
-/*    width: 32px;*/
-/*    height: 32px*/
-/*}*/
+.import-icon {
+    background-image: url("/themes/default/assets/images/Icon-Import.svg");
+    width: 32px;
+    height: 32px
+}
 
-/*.star-blue-icon {*/
-/*    width: 17px;*/
-/*    height: 17px;*/
-/*    background-image: url("/themes/default/assets/images/Icon-star.svg")*/
-/*}*/
+.star-blue-icon {
+    width: 17px;
+    height: 17px;
+    background-image: url("/themes/default/assets/images/Icon-star.svg")
+}
 
 .grid-container {
     display: block;

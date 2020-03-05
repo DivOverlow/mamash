@@ -56,7 +56,7 @@
                                 <textarea type="text" class="control" id="content" name="html_content" v-validate="'required'" data-vv-as="&quot;{{ __('admin::app.cms.templates.content') }}&quot;">{{ $template->html_content ?? old('html_content') }}</textarea>
 
                                 <div class="mt-10 mb-10">
-                                    <a target="_blank" href="{{ route('ui.helper.classes') }}" class="btn btn-sm btn-primary">
+                                    <a target="_blank" href="https://tailwindcss.com/" class="btn btn-sm btn-primary">
                                         {{ __('admin::app.cms.pages.helper-classes') }}
                                     </a>
                                 </div>
