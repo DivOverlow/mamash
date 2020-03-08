@@ -90,7 +90,7 @@ class Order extends Model implements OrderContract
     {
         return $this->hasMany(RefundProxy::modelClass());
     }
-    
+
     /**
      * Get the customer record associated with the order.
      */
@@ -193,12 +193,12 @@ class Order extends Model implements OrderContract
     {
         if ($this->status == 'fraud')
             return false;
-            
+
         foreach ($this->items as $item) {
             if ($item->canInvoice())
                 return true;
         }
-        
+
         return false;
     }
 
@@ -209,11 +209,22 @@ class Order extends Model implements OrderContract
     {
         if ($this->status == 'fraud')
             return false;
-            
+
         foreach ($this->items as $item) {
             if ($item->canCancel())
                 return true;
         }
+
+        return false;
+    }
+
+    /**
+     * Checks if order can be edited or not
+     */
+    public function canEdit()
+    {
+        if ($this->status == 'pending')
+            return true;
 
         return false;
     }
@@ -225,7 +236,7 @@ class Order extends Model implements OrderContract
     {
         if ($this->status == 'fraud')
             return false;
-            
+
         foreach ($this->items as $item) {
             if ($item->qty_to_refund > 0)
                 return true;

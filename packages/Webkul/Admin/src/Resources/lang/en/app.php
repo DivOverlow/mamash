@@ -298,6 +298,7 @@ return [
             'title' => 'Orders',
             'view-title' => 'Order #:order_id',
             'cancel-btn-title' => 'Cancel',
+            'edit-btn-title' => 'Edit',
             'shipment-btn-title' => 'Ship',
             'invoice-btn-title' => 'Invoice',
             'info' => 'Information',

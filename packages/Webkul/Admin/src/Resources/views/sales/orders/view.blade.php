@@ -19,6 +19,40 @@
             </div>
 
             <div class="page-action">
+
+                @if ($order->canEdit())
+                    <div class="navbar-top-right">
+                        <div class="order-edit">
+
+                            <div class="order-info">
+                                <div class="dropdown-toggle">
+                                    <div style="display: inline-block; vertical-align: middle;">
+                                        {{ __('admin::app.sales.orders.edit-btn-title') }}
+                                    </div>
+                                    <i class="icon arrow-down-icon active"></i>
+                                </div>
+
+                                <div class="dropdown-list bottom-right" style="display: none;">
+                                    <div class="dropdown-container">
+                                        <label>{{ __('admin::app.sales.orders.order-info') }}</label>
+                                        <ul>
+                                            <li>
+                                                <a href="{{ route('admin.sales.orders.edit-shipping', $order->id) }}">{{ trans('admin::app.sales.orders.shipping-address') }}</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route('admin.sales.orders.index') }}">{{ trans('admin::app.sales.orders.payment-and-shipping') }}</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route('admin.sales.orders.index') }}">{{ trans('admin::app.sales.orders.products-ordered') }}</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+
                 @if ($order->canCancel())
                     <a href="{{ route('admin.sales.orders.cancel', $order->id) }}" class="btn btn-lg btn-primary" v-alert:message="'{{ __('admin::app.sales.orders.cancel-confirm-msg') }}'">
                         {{ __('admin::app.sales.orders.cancel-btn-title') }}
@@ -264,7 +298,7 @@
 
                                                         @if (isset($item->additional['attributes']))
                                                             <div class="item-options">
-                                                                
+
                                                                 @foreach ($item->additional['attributes'] as $attribute)
                                                                     <b>{{ $attribute['attribute_name'] }} : </b>{{ $attribute['option_label'] }}</br>
                                                                 @endforeach

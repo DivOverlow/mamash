@@ -179,6 +179,14 @@ Route::group(['middleware' => ['web']], function () {
                     'view' => 'admin::sales.orders.index'
                 ])->name('admin.sales.orders.index');
 
+                Route::get('/orders/edit-shipping/{id}', 'Webkul\Admin\Http\Controllers\Sales\OrderController@edit_shipping')->defaults('_config', [
+                    'view' => 'admin::sales.orders.edit-shipping'
+                ])->name('admin.sales.orders.edit-shipping');
+
+                Route::put('/orders/edit-shipping/{id}', 'Webkul\Admin\Http\Controllers\Sales\OrderController@update_shipping')->defaults('_config', [
+                    'redirect' => 'admin.sales.orders.view'
+                ])->name('admin.sales.orders.update-shipping');
+
                 Route::get('/orders/view/{id}', 'Webkul\Admin\Http\Controllers\Sales\OrderController@view')->defaults('_config', [
                     'view' => 'admin::sales.orders.view'
                 ])->name('admin.sales.orders.view');
@@ -228,7 +236,7 @@ Route::group(['middleware' => ['web']], function () {
                 ])->name('admin.sales.shipments.view');
 
 
-                // Sales Redunds Routes
+                // Sales Refunds Routes
                 Route::get('/refunds', 'Webkul\Admin\Http\Controllers\Sales\RefundController@index')->defaults('_config', [
                     'view' => 'admin::sales.refunds.index'
                 ])->name('admin.sales.refunds.index');

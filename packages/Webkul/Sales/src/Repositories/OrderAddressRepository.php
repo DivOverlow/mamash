@@ -25,4 +25,19 @@ class OrderAddressRepository extends Repository
     {
         return OrderAddress::class;
     }
+
+    /**
+     * @param array $data
+     * @param $id
+     * @return mixed
+     */
+    public function update(array $data, $id)
+    {
+        $address = $this->findWhere(['order_id' => $id, 'address_type' => 'shipping'])->first();
+
+        if ($address) {
+            $address->update($data);
+            return $address;
+        }
+    }
 }

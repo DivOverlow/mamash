@@ -97,19 +97,19 @@ class OrderDataGrid extends DataGrid
             'filterable' => true,
             'wrapper' => function ($value) {
                 if ($value->status == 'processing')
-                    return '<span class="badge badge-md badge-success">Processing</span>';
+                    return '<span class="badge badge-md badge-success">Обработка</span>';
                 else if ($value->status == 'completed')
-                    return '<span class="badge badge-md badge-success">Completed</span>';
+                    return '<span class="badge badge-md badge-success">Выполнен</span>';
                 else if ($value->status == "canceled")
-                    return '<span class="badge badge-md badge-danger">Canceled</span>';
+                    return '<span class="badge badge-md badge-danger">Отменен</span>';
                 else if ($value->status == "closed")
-                    return '<span class="badge badge-md badge-info">Closed</span>';
+                    return '<span class="badge badge-md badge-info">Закрыто</span>';
                 else if ($value->status == "pending")
-                    return '<span class="badge badge-md badge-warning">Pending</span>';
+                    return '<span class="badge badge-md badge-warning">В ожидании</span>';
                 else if ($value->status == "pending_payment")
-                    return '<span class="badge badge-md badge-warning">Pending Payment</span>';
+                    return '<span class="badge badge-md badge-warning">Ожидающий платеж</span>';
                 else if ($value->status == "fraud")
-                    return '<span class="badge badge-md badge-danger">Fraud</span>';
+                    return '<span class="badge badge-md badge-danger">Мошенничество</span>';
             }
         ]);
 
