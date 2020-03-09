@@ -141,44 +141,44 @@
 
                                             <input name="_method" type="hidden" value="PUT">
 
-                                                <div class="control-group" :class="[errors.has('first_name') ? 'has-error' : '']">
-                                                    <label for="first_name" class="required"> {{ __('admin::app.customers.customers.first_name') }}</label>
-                                                    <input type="text"  class="control" name="first_name" v-validate="'required'" value="{{$order->shipping_address->first_name}}"
-                                                           data-vv-as="&quot;{{ __('shop::app.customer.signup-form.firstname') }}&quot;"/>
-                                                    <span class="control-error" v-if="errors.has('first_name')">@{{ errors.first('first_name') }}</span>
-                                                </div>
+                                            <div class="control-group" :class="[errors.has('first_name') ? 'has-error' : '']">
+                                                <label for="first_name" class="required"> {{ __('admin::app.customers.customers.first_name') }}</label>
+                                                <input type="text"  class="control" name="first_name" v-validate="'required'" value="{{$order->shipping_address->first_name}}"
+                                                       data-vv-as="&quot;{{ __('shop::app.customer.signup-form.firstname') }}&quot;"/>
+                                                <span class="control-error" v-if="errors.has('first_name')">@{{ errors.first('first_name') }}</span>
+                                            </div>
 
-                                                <div class="control-group" :class="[errors.has('last_name') ? 'has-error' : '']">
-                                                    <label for="last_name" class="required"> {{ __('admin::app.customers.customers.last_name') }}</label>
-                                                    <input type="text"  class="control"  name="last_name"   v-validate="'required'" value="{{$order->shipping_address->last_name}}" data-vv-as="&quot;{{ __('shop::app.customer.signup-form.lastname') }}&quot;">
-                                                    <span class="control-error" v-if="errors.has('last_name')">@{{ errors.first('last_name') }}</span>
-                                                </div>
+                                            <div class="control-group" :class="[errors.has('last_name') ? 'has-error' : '']">
+                                                <label for="last_name" class="required"> {{ __('admin::app.customers.customers.last_name') }}</label>
+                                                <input type="text"  class="control"  name="last_name"   v-validate="'required'" value="{{$order->shipping_address->last_name}}" data-vv-as="&quot;{{ __('shop::app.customer.signup-form.lastname') }}&quot;">
+                                                <span class="control-error" v-if="errors.has('last_name')">@{{ errors.first('last_name') }}</span>
+                                            </div>
 
-                                                <div class="control-group" :class="[errors.has('address1') ? 'has-error' : '']">
-                                                    <label for="address1" class="required"> {{ __('admin::app.sales.orders.shipping-address') }}</label>
-                                                    <input type="text"  class="control"  name="address1"   v-validate="'required'" value="{{$order->shipping_address->address1}}" data-vv-as="&quot;{{ __('admin::app.sales.orders.shipping-address') }}&quot;">
-                                                    <span class="control-error" v-if="errors.has('address1')">@{{ errors.first('address1') }}</span>
-                                                </div>
+                                            <div class="control-group" :class="[errors.has('address1') ? 'has-error' : '']">
+                                                <label for="address1" class="required"> {{ __('admin::app.sales.orders.shipping-address') }}</label>
+                                                <input type="text"  class="control"  name="address1"   v-validate="'required'" value="{{$order->shipping_address->address1}}" data-vv-as="&quot;{{ __('admin::app.sales.orders.shipping-address') }}&quot;">
+                                                <span class="control-error" v-if="errors.has('address1')">@{{ errors.first('address1') }}</span>
+                                            </div>
 
-                                                @if($order->shipping_address->address2 != null)
-                                                    <div class="control-group" :class="[errors.has('address2') ? 'has-error' : '']">
-                                                        <label for="address2" class="required"> {{ __('admin::app.sales.orders.shipping-address') }}</label>
-                                                        <input type="text"  class="control"  name="address2"   v-validate="'required'" value="{{$order->shipping_address->address2}}" data-vv-as="&quot;{{ __('admin::app.sales.orders.shipping-address') }}&quot;">
-                                                        <span class="control-error" v-if="errors.has('address2')">@{{ errors.first('address2') }}</span>
-                                                    </div>
-                                                @endif
-
-                                                <div class="control-group" :class="[errors.has('city') ? 'has-error' : '']">
-                                                    <label for="city" class="required"> {{ __('admin::app.customers.addresses.city') }}</label>
-                                                    <input type="text"  class="control"  name="city"   v-validate="'required'" value="{{$order->shipping_address->city}}" data-vv-as="&quot;{{ __('admin::app.sales.orders.city') }}&quot;">
-                                                    <span class="control-error" v-if="errors.has('city')">@{{ errors.first('city') }}</span>
+                                            @if($order->shipping_address->address2 != null)
+                                                <div class="control-group" :class="[errors.has('address2') ? 'has-error' : '']">
+                                                    <label for="address2" class="required"> {{ __('admin::app.sales.orders.shipping-address') }}</label>
+                                                    <input type="text"  class="control"  name="address2"   v-validate="'required'" value="{{$order->shipping_address->address2}}" data-vv-as="&quot;{{ __('admin::app.sales.orders.shipping-address') }}&quot;">
+                                                    <span class="control-error" v-if="errors.has('address2')">@{{ errors.first('address2') }}</span>
                                                 </div>
+                                            @endif
 
-                                                <div class="control-group" :class="[errors.has('phone') ? 'has-error' : '']">
-                                                    <label for="phone" class="required">{{ __('admin::app.customers.customers.phone') }}</label>
-                                                    <input type="text" class="control" name="phone"  value="{{ $order->shipping_address->phone }}" data-vv-as="&quot;{{ __('admin::app.customers.customers.phone') }}&quot;">
-                                                    <span class="control-error" v-if="errors.has('phone')">@{{ errors.first('phone') }}</span>
-                                                </div>
+                                            <div class="control-group" :class="[errors.has('city') ? 'has-error' : '']">
+                                                <label for="city" class="required"> {{ __('admin::app.customers.addresses.city') }}</label>
+                                                <input type="text"  class="control"  name="city"   v-validate="'required'" value="{{$order->shipping_address->city}}" data-vv-as="&quot;{{ __('admin::app.sales.orders.city') }}&quot;">
+                                                <span class="control-error" v-if="errors.has('city')">@{{ errors.first('city') }}</span>
+                                            </div>
+
+                                            <div class="control-group" :class="[errors.has('phone') ? 'has-error' : '']">
+                                                <label for="phone" class="required">{{ __('admin::app.customers.customers.phone') }}</label>
+                                                <input type="text" class="control" name="phone"  value="{{ $order->shipping_address->phone }}" data-vv-as="&quot;{{ __('admin::app.customers.customers.phone') }}&quot;">
+                                                <span class="control-error" v-if="errors.has('phone')">@{{ errors.first('phone') }}</span>
+                                            </div>
 
                                         </div>
 
@@ -258,80 +258,80 @@
                             <div class="table">
                                 <table>
                                     <thead>
-                                        <tr>
-                                            <th>{{ __('admin::app.sales.orders.SKU') }}</th>
-                                            <th>{{ __('admin::app.sales.orders.product-name') }}</th>
-                                            <th>{{ __('admin::app.sales.orders.price') }}</th>
-                                            <th>{{ __('admin::app.sales.orders.item-status') }}</th>
-                                            <th>{{ __('admin::app.sales.orders.subtotal') }}</th>
-                                            <th>{{ __('admin::app.sales.orders.tax-percent') }}</th>
-                                            <th>{{ __('admin::app.sales.orders.tax-amount') }}</th>
-                                            @if ($order->base_discount_amount > 0)
-                                                <th>{{ __('admin::app.sales.orders.discount-amount') }}</th>
-                                            @endif
-                                            <th>{{ __('admin::app.sales.orders.grand-total') }}</th>
-                                        </tr>
+                                    <tr>
+                                        <th>{{ __('admin::app.sales.orders.SKU') }}</th>
+                                        <th>{{ __('admin::app.sales.orders.product-name') }}</th>
+                                        <th>{{ __('admin::app.sales.orders.price') }}</th>
+                                        <th>{{ __('admin::app.sales.orders.item-status') }}</th>
+                                        <th>{{ __('admin::app.sales.orders.subtotal') }}</th>
+                                        <th>{{ __('admin::app.sales.orders.tax-percent') }}</th>
+                                        <th>{{ __('admin::app.sales.orders.tax-amount') }}</th>
+                                        @if ($order->base_discount_amount > 0)
+                                            <th>{{ __('admin::app.sales.orders.discount-amount') }}</th>
+                                        @endif
+                                        <th>{{ __('admin::app.sales.orders.grand-total') }}</th>
+                                    </tr>
                                     </thead>
 
                                     <tbody>
 
-                                        @foreach ($order->items as $item)
-                                            <tr>
-                                                <td>
-                                                    {{ $item->getTypeInstance()->getOrderedItem($item)->sku }}
-                                                </td>
+                                    @foreach ($order->items as $item)
+                                        <tr>
+                                            <td>
+                                                {{ $item->getTypeInstance()->getOrderedItem($item)->sku }}
+                                            </td>
 
-                                                <td>
-                                                    {{ $item->name }}
+                                            <td>
+                                                {{ $item->name }}
 
-                                                    @if (isset($item->additional['attributes']))
-                                                        <div class="item-options">
+                                                @if (isset($item->additional['attributes']))
+                                                    <div class="item-options">
 
-                                                            @foreach ($item->additional['attributes'] as $attribute)
-                                                                <b>{{ $attribute['attribute_name'] }} : </b>{{ $attribute['option_label'] }}</br>
-                                                            @endforeach
+                                                        @foreach ($item->additional['attributes'] as $attribute)
+                                                            <b>{{ $attribute['attribute_name'] }} : </b>{{ $attribute['option_label'] }}</br>
+                                                        @endforeach
 
-                                                        </div>
-                                                    @endif
-                                                </td>
+                                                    </div>
+                                                @endif
+                                            </td>
 
-                                                <td>{{ core()->formatBasePrice($item->base_price) }}</td>
+                                            <td>{{ core()->formatBasePrice($item->base_price) }}</td>
 
-                                                <td>
+                                            <td>
                                                     <span class="qty-row">
                                                         {{ $item->qty_ordered ? __('admin::app.sales.orders.item-ordered', ['qty_ordered' => $item->qty_ordered]) : '' }}
                                                     </span>
 
-                                                    <span class="qty-row">
+                                                <span class="qty-row">
                                                         {{ $item->qty_invoiced ? __('admin::app.sales.orders.item-invoice', ['qty_invoiced' => $item->qty_invoiced]) : '' }}
                                                     </span>
 
-                                                    <span class="qty-row">
+                                                <span class="qty-row">
                                                         {{ $item->qty_shipped ? __('admin::app.sales.orders.item-shipped', ['qty_shipped' => $item->qty_shipped]) : '' }}
                                                     </span>
 
-                                                    <span class="qty-row">
+                                                <span class="qty-row">
                                                         {{ $item->qty_refunded ? __('admin::app.sales.orders.item-refunded', ['qty_refunded' => $item->qty_refunded]) : '' }}
                                                     </span>
 
-                                                    <span class="qty-row">
+                                                <span class="qty-row">
                                                         {{ $item->qty_canceled ? __('admin::app.sales.orders.item-canceled', ['qty_canceled' => $item->qty_canceled]) : '' }}
                                                     </span>
-                                                </td>
+                                            </td>
 
-                                                <td>{{ core()->formatBasePrice($item->base_total) }}</td>
+                                            <td>{{ core()->formatBasePrice($item->base_total) }}</td>
 
-                                                <td>{{ $item->tax_percent }}%</td>
+                                            <td>{{ $item->tax_percent }}%</td>
 
-                                                <td>{{ core()->formatBasePrice($item->base_tax_amount) }}</td>
+                                            <td>{{ core()->formatBasePrice($item->base_tax_amount) }}</td>
 
-                                                @if ($order->base_discount_amount > 0)
-                                                    <td>{{ core()->formatBasePrice($item->base_discount_amount) }}</td>
-                                                @endif
+                                            @if ($order->base_discount_amount > 0)
+                                                <td>{{ core()->formatBasePrice($item->base_discount_amount) }}</td>
+                                            @endif
 
-                                                <td>{{ core()->formatBasePrice($item->base_total + $item->base_tax_amount - $item->base_discount_amount) }}</td>
-                                            </tr>
-                                        @endforeach
+                                            <td>{{ core()->formatBasePrice($item->base_total + $item->base_tax_amount - $item->base_discount_amount) }}</td>
+                                        </tr>
+                                    @endforeach
                                 </table>
                             </div>
 

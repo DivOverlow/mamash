@@ -3,6 +3,9 @@
 namespace Webkul\Admin\Http\Controllers\Sales;
 
 use Webkul\Admin\Http\Controllers\Controller;
+use Webkul\Payment\Facades\Payment;
+use Webkul\Sales\Repositories\OrderPaymentRepository;
+use Webkul\Shipping\Facades\Shipping;
 use Webkul\Sales\Repositories\OrderAddressRepository;
 use Webkul\Sales\Repositories\OrderRepository;
 
@@ -28,6 +31,7 @@ class OrderController extends Controller
      */
     protected $orderRepository;
     protected $orderAddressRepository;
+    protected $orderPaymentRepository;
 
     /**
      * Create a new controller instance.
@@ -35,7 +39,9 @@ class OrderController extends Controller
      * @param  \Webkul\Sales\Repositories\OrderRepository $orderRepository
      * @return void
      */
-    public function __construct(OrderRepository $orderRepository, OrderAddressRepository $orderAddressRepository)
+    public function __construct(OrderRepository $orderRepository,
+                                OrderAddressRepository $orderAddressRepository,
+                                OrderPaymentRepository $orderPaymentRepository)
     {
         $this->middleware('admin');
 
@@ -43,6 +49,7 @@ class OrderController extends Controller
 
         $this->orderRepository = $orderRepository;
         $this->orderAddressRepository = $orderAddressRepository;
+        $this->orderPaymentRepository = $orderPaymentRepository;
 
     }
 
@@ -80,6 +87,23 @@ class OrderController extends Controller
         $order = $this->orderRepository->findOrFail($id);
 
         return view($this->_config['view'], compact('order'));
+    }
+
+    /**
+     * Show the view for the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\View\View
+     */
+    public function edit_payment($id)
+    {
+        $paymentMethods = Payment::getPaymentMethods();
+
+        $shippingMethods = Shipping::getShippingMethods();
+
+        $order = $this->orderRepository->findOrFail($id);
+
+        return view($this->_config['view'], compact('order', 'paymentMethods', 'shippingMethods'));
     }
 
     /**
@@ -121,7 +145,28 @@ class OrderController extends Controller
         $address = $this->orderAddressRepository->update(request()->all(), $id);
 
         if($address)
-            session()->flash('success', trans('admin::app.sales.orders.shipping-update-success'));
+            session()->flash('success', trans('admin::app.sales.orders.order-update-success'));
+
+        return redirect()->route($this->_config['redirect'], $id);
+    }
+
+    /**
+     * Edit's the premade resource of customer called
+     * Address.
+     *
+     * @return redirect
+     */
+    public function update_payment($id)
+    {
+
+        $data['method'] = request()->all()['payment_method'];
+
+        $order = $this->orderRepository->findOrFail($id);
+
+        $payment = $this->orderPaymentRepository->update($data, $id);
+
+        if($payment)
+            session()->flash('success', trans('admin::app.sales.orders.order-update-success'));
 
         return redirect()->route($this->_config['redirect'], $id);
     }
