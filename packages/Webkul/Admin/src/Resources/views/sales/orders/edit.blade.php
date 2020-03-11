@@ -364,7 +364,7 @@
                                 <tr>
                                     <td>
                                         <span class="radio"><input type="radio" id="0" name="product_id" value="0"> <label for="0" class="radio-view"
-                                               @if ($product_id == 0) checked = "checked" @endif
+                                               @if ($product_id == 0) checked="checked" @endif
                                             ></label></span>
                                     </td>
                                     <td colspan="2"><span class="{{ ($product_id == 0) ? 'bold' : '' }}"></span>{{ __('admin::app.sales.orders.not-gift') }}</td>
@@ -383,9 +383,9 @@
                                             <tr>
                                             @endif
                                                 <td>
-                                                    <span class="radio"><input type="radio" id="$product->id" name="product_id" value="$product->id"
-                                                       @if ($product_id == $product->id) checked = "checked" @endif
-                                                        > <label for="$product->id" class="radio-view"></label></span>
+                                                    <span class="radio"><input type="radio" id="{{$product->id}}" name="product_id" value="{{$product->id}}"
+                                                       @if ($product_id == $product->id) checked="checked" @endif
+                                                        > <label for="{{$product->id}}" class="radio-view"></label></span>
                                                 </td>
                                                 <td style="text-align: left;padding: 8px">
                                                     <a href="{{ url()->to('/').'/products/'.$product->url_key }}"><img
