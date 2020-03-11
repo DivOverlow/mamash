@@ -210,6 +210,21 @@ class OrderRepository extends Repository
     }
 
     /**
+     * Returns order
+     *
+     * @return Order|null
+     */
+    public function getOrder($orderId)
+    {
+        $order = $this->findOrFail($orderId);
+
+        if (! $order->canCancel())
+            return false;
+
+        return $order;
+    }
+
+    /**
      * @param mixed $order
      * @return void
      */

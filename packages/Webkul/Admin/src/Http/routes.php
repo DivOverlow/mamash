@@ -179,6 +179,14 @@ Route::group(['middleware' => ['web']], function () {
                     'view' => 'admin::sales.orders.index'
                 ])->name('admin.sales.orders.index');
 
+                Route::get('/orders/edit/{id}', 'Webkul\Admin\Http\Controllers\Sales\OrderController@edit')->defaults('_config', [
+                    'view' => 'admin::sales.orders.edit'
+                ])->name('admin.sales.orders.edit');
+
+                Route::put('/orders/edit/{id}', 'Webkul\Admin\Http\Controllers\Sales\OrderController@update')->defaults('_config', [
+                    'redirect' => 'admin.sales.orders.view'
+                ])->name('admin.sales.orders.update');
+
                 Route::get('/orders/edit-shipping/{id}', 'Webkul\Admin\Http\Controllers\Sales\OrderController@edit_shipping')->defaults('_config', [
                     'view' => 'admin::sales.orders.edit-shipping'
                 ])->name('admin.sales.orders.edit-shipping');

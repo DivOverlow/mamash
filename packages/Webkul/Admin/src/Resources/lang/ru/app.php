@@ -335,7 +335,7 @@ return [
             'item-refunded' => 'Возвращено (:qty_refunded)',
             'price' => 'Цена',
             'total' => 'Всего',
-            'subtotal' => 'Subtotal',
+            'subtotal' => 'Подитог',
             'shipping-handling' => 'Доставка',
             'save-btn-changes' => 'Сохранить изменения',
             'discount' => 'Скидка',
@@ -350,7 +350,9 @@ return [
             'cancel-confirm-msg' => 'Вы уверены, что хотите отменить этот заказ ?',
             'order-update-success' => 'Данные заказа успешно обновлены.',
             'refund-btn-title' => 'Возврат',
-            'refunds' => 'Возвраты'
+            'refunds' => 'Возвраты',
+            'products-gifts' => 'Продукты-подарки',
+            'not-gift' => 'Категорически Нет',
         ],
 
         'invoices' => [

@@ -42,4 +42,28 @@ class Free extends AbstractShipping
 
         return $object;
     }
+
+    /**
+     * Returns rate for flatrate
+     *
+     * @return array
+     */
+    public function calculateOrder($orderId)
+    {
+        if (! $this->isAvailable()) {
+            return false;
+        }
+
+        $object = new CartShippingRate;
+
+        $object->carrier = 'free';
+        $object->carrier_title = $this->getConfigData('title');
+        $object->method = 'free_free';
+        $object->method_title = $this->getConfigData('title');
+        $object->method_description = $this->getConfigData('description');
+        $object->price = 0;
+        $object->base_price = 0;
+
+        return $object;
+    }
 }

@@ -223,7 +223,7 @@ class Order extends Model implements OrderContract
      */
     public function canEdit()
     {
-        if ($this->status == 'pending')
+        if ($this->status == 'pending' || $this->status == 'processing')
             return true;
 
         return false;
@@ -247,4 +247,5 @@ class Order extends Model implements OrderContract
 
         return false;
     }
+
 }

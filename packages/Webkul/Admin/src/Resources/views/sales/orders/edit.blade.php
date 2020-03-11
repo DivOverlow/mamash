@@ -5,16 +5,21 @@
 @stop
 
 @section('content-wrapper')
+    @inject ('productRepository', 'Webkul\Product\Repositories\ProductRepository')
+    @inject ('giftRepository', 'Webkul\Discount\Repositories\GiftRuleRepository')
 
+    <?php
+        $product_id = 0;
+    ?>
     <div class="content full-page">
-        <form method="POST" action="{{ route('admin.sales.orders.update-payment', $order->increment_id) }}">
+        <form method="POST" action="{{ route('admin.sales.orders.update', $order->increment_id) }}">
             <div class="page-header">
 
                 <div class="page-title">
                     <h1>
                         <i class="icon angle-left-icon back-link" onclick="history.length > 1 ? history.go(-1) : window.location = '{{ url('/admin/dashboard') }}';"></i>
 
-                        {{ __('admin::app.sales.orders.view-title', ['order_id' => $order->increment_id]) }} - {{ trans('admin::app.sales.orders.payment-and-shipping') }}
+                        {{ __('admin::app.sales.orders.view-title', ['order_id' => $order->increment_id]) }} - {{ trans('admin::app.sales.orders.products-ordered') }}
                     </h1>
                 </div>
 
@@ -29,7 +34,7 @@
             <div class="page-content">
                 <div class="sale-container">
 
-                    <accordian :title="'{{ __('admin::app.sales.orders.order-and-account') }}'" :active="false">
+                    <accordian :title="'{{ __('admin::app.sales.orders.order-and-account') }}'" :active="true">
                         <div slot="body">
 
                             <div class="sale-section">
@@ -145,98 +150,68 @@
                         </div>
                     </accordian>
 
-                    <accordian :title="'{{ __('admin::app.sales.orders.payment-and-shipping') }}'" :active="true">
+                    <accordian :title="'{{ __('admin::app.sales.orders.payment-and-shipping') }}'" :active="false">
                         <div slot="body">
 
-                        <div class="sale-section">
-                            <div class="secton-title">
-                                <span>{{ __('admin::app.sales.orders.billing-address') }}</span>
-                            </div>
-
-                            <div class="section-content">
-
-                                <div class="form-container">
-                                    @csrf()
-
-                                    <input name="_method" type="hidden" value="PUT">
-
-
-                                    <div class="payment-methods">
-
-                                       <div class="control-group">
-
-                                    @foreach ($paymentMethods as $payment)
-
-                                        <div class="checkout-method-group mb-10">
-                                            <div class="line-one">
-                                                <label class="radio-container" style="padding-left: 28px;display: inline-block;width: 56px;">
-                                                    <input type="radio" id="{{ $payment['method'] }}" name="payment_method" value="{{ $payment['method'] }}" data-vv-as="&quot;{{ __('shop::app.checkout.onepage.payment-method') }}&quot;"
-                                                         @if ($payment['method'] == $order->payment->method) checked = "checked" @endif
-                                                    >
-                                                     <label class="radio-view" for="{{ $payment['method'] }}"></label>
-                                                </label>
-
-                                                <span class="payment-method method-label">
-                                <b>{{ $payment['method_title'] }}</b>
-                            </span>
-                                            </div>
-                                        </div>
-
-                                    @endforeach
-
+                            <div class="sale-section">
+                                <div class="secton-title">
+                                    <span>{{ __('admin::app.sales.orders.payment-info') }}</span>
                                 </div>
+
+                                <div class="section-content">
+                                    <div class="row">
+                                        <span class="title">
+                                            {{ __('admin::app.sales.orders.payment-method') }}
+                                        </span>
+
+                                        <span class="value">
+                                            {{ core()->getConfigData('sales.paymentmethods.' . $order->payment->method . '.title') }}
+                                        </span>
                                     </div>
 
-                                      @if ($order->shipping_address)
+                                    <div class="row">
+                                        <span class="title">
+                                            {{ __('admin::app.sales.orders.currency') }}
+                                        </span>
+
+                                        <span class="value">
+                                            {{ $order->order_currency_code }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            @if ($order->shipping_address)
                                 <div class="sale-section">
                                     <div class="secton-title">
                                         <span>{{ __('admin::app.sales.orders.shipping-info') }}</span>
                                     </div>
 
-                                    <div class="shipping-methods">
+                                    <div class="section-content">
+                                        <div class="row">
+                                            <span class="title">
+                                                {{ __('admin::app.sales.orders.shipping-method') }}
+                                            </span>
 
-                                        <div class="control-group">
+                                            <span class="value">
+                                                {{ $order->shipping_title }}
+                                            </span>
+                                        </div>
 
+                                        <div class="row">
+                                            <span class="title">
+                                                {{ __('admin::app.sales.orders.shipping-price') }}
+                                            </span>
 
-                                            @foreach ($shippingRateGroups as $rateGroup)
-
-                                                @foreach ($rateGroup['rates'] as $rate)
-
-                                                    <div class="checkout-method-group mb-20 text-gray-dark">
-                                                        <div class="line-one">
-                                                            <label class="radio-container" style="padding-left: 28px;display: inline-block;width: 56px;">
-                                                                <input  type="radio" id="{{ $rate->method }}" name="shipping_method" data-vv-as="&quot;{{ __('shop::app.checkout.onepage.shipping-method') }}&quot;" value="{{ $rate->method }}"
-                                                                        @if ($rate->method == $order->shipping_method) checked = "checked" @endif
-                                                                >
-                                                                <span class="checkmark"></span>
-                                                            </label>
-                                                            {{-- <label class="radio-view" for="{{ $rate->method }}"></label> --}}
-                                                            <b class="ship-rate method-label">{{ core()->currency($rate->base_price) }}</b>
-                                                        </div>
-
-                                                        <div class="line-two mt-5">
-                                                            <div class="method-summary">
-                                                                <b>{{ $rate->method_title }}</b> - {{ __($rate->method_description) }}
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                @endforeach
-
-
-                                            @endforeach
-
+                                            <span class="value">
+                                                {{ core()->formatBasePrice($order->base_shipping_amount) }}
+                                            </span>
                                         </div>
                                     </div>
-
                                 </div>
                             @endif
-
-                                </div>
-                            </div>
                         </div>
-                    </div>
-                </accordian>
+                    </accordian>
 
                     <accordian :title="'{{ __('admin::app.sales.orders.products-ordered') }}'" :active="true">
                         <div slot="body">
@@ -262,7 +237,8 @@
                                     <tbody>
 
                                         @foreach ($order->items as $item)
-                                            <tr>
+                                            @if ($item->base_price > 0)
+                                                <tr>
                                                 <td>
                                                     {{ $item->getTypeInstance()->getOrderedItem($item)->sku }}
                                                 </td>
@@ -317,10 +293,12 @@
 
                                                 <td>{{ core()->formatBasePrice($item->base_total + $item->base_tax_amount - $item->base_discount_amount) }}</td>
                                             </tr>
+                                            @else
+                                                <?php $product_id = $item->product_id ?>
+                                            @endif
                                         @endforeach
                                 </table>
                             </div>
-
                             <table class="sale-summary">
                                 <tr>
                                     <td>{{ __('admin::app.sales.orders.subtotal') }}</td>
@@ -374,6 +352,100 @@
                                     <td>{{ core()->formatBasePrice($order->base_total_due) }}</td>
                                 </tr>
                             </table>
+                        <?php $gift_products = $giftRepository->getGiftsProduct(); ?>
+                        @if (count($gift_products) > 0)
+
+                            @inject ('productImageHelper', 'Webkul\Product\Helpers\ProductImage')
+
+                            <table class="sale-summary">
+                                <tr class="bold">
+                                    <td colspan="3">{{ __('admin::app.sales.orders.products-gifts') }}</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="radio"><input type="radio" id="0" name="product_id" value="0"> <label for="0" class="radio-view"
+                                               @if ($product_id == 0) checked = "checked" @endif
+                                            ></label></span>
+                                    </td>
+                                    <td colspan="2"><span class="{{ ($product_id == 0) ? 'bold' : '' }}"></span>{{ __('admin::app.sales.orders.not-gift') }}</td>
+                                </tr>
+
+                                @foreach($gift_products as $gift_product)
+                                    @if(isset($gift_product->related_products()->first()->product_id))
+                                        <?php $product = $productRepository->find($gift_product->related_products()->first()->product_id); ?>
+                                        @if($product)
+                                            @php
+                                                $productBaseImage = $productImageHelper->getProductBaseImage($product);
+                                            @endphp
+                                            @if($product_id == $product->id)
+                                            <tr class="border">
+                                            @else
+                                            <tr>
+                                            @endif
+                                                <td>
+                                                    <span class="radio"><input type="radio" id="$product->id" name="product_id" value="$product->id"
+                                                       @if ($product_id == $product->id) checked = "checked" @endif
+                                                        > <label for="$product->id" class="radio-view"></label></span>
+                                                </td>
+                                                <td style="text-align: left;padding: 8px">
+                                                    <a href="{{ url()->to('/').'/products/'.$product->url_key }}"><img
+                                                                                    src="{{ $productBaseImage['small_image_url'] }}" style="width: 100%;height: 4rem;object-fit: contain"/></a>
+                                                <td>
+                                                    <a href="{{ url()->to('/').'/products/'.$product->url_key }}">
+                                                        {{ $product->name }}
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endif
+                                    @endif
+                                @endforeach
+{{--                                @if ($order->haveStockableItems())--}}
+{{--                                    <tr>--}}
+{{--                                        <td>{{ __('admin::app.sales.orders.shipping-handling') }}</td>--}}
+{{--                                        <td>-</td>--}}
+{{--                                        <td>{{ core()->formatBasePrice($order->base_shipping_amount) }}</td>--}}
+{{--                                    </tr>--}}
+{{--                                @endif--}}
+
+{{--                                @if ($order->base_discount_amount > 0)--}}
+{{--                                    <tr>--}}
+{{--                                        <td>{{ __('admin::app.sales.orders.discount') }}</td>--}}
+{{--                                        <td>-</td>--}}
+{{--                                        <td>{{ core()->formatBasePrice($order->base_discount_amount) }}</td>--}}
+{{--                                    </tr>--}}
+{{--                                @endif--}}
+
+{{--                                <tr class="border">--}}
+{{--                                    <td>{{ __('admin::app.sales.orders.tax') }}</td>--}}
+{{--                                    <td>-</td>--}}
+{{--                                    <td>{{ core()->formatBasePrice($order->base_tax_amount) }}</td>--}}
+{{--                                </tr>--}}
+
+{{--                                <tr class="bold">--}}
+{{--                                    <td>{{ __('admin::app.sales.orders.grand-total') }}</td>--}}
+{{--                                    <td>-</td>--}}
+{{--                                    <td>{{ core()->formatBasePrice($order->base_grand_total) }}</td>--}}
+{{--                                </tr>--}}
+
+{{--                                <tr class="bold">--}}
+{{--                                    <td>{{ __('admin::app.sales.orders.total-paid') }}</td>--}}
+{{--                                    <td>-</td>--}}
+{{--                                    <td>{{ core()->formatBasePrice($order->base_grand_total_invoiced) }}</td>--}}
+{{--                                </tr>--}}
+
+{{--                                <tr class="bold">--}}
+{{--                                    <td>{{ __('admin::app.sales.orders.total-refunded') }}</td>--}}
+{{--                                    <td>-</td>--}}
+{{--                                    <td>{{ core()->formatBasePrice($order->base_grand_total_refunded) }}</td>--}}
+{{--                                </tr>--}}
+
+{{--                                <tr class="bold">--}}
+{{--                                    <td>{{ __('admin::app.sales.orders.total-due') }}</td>--}}
+{{--                                    <td>-</td>--}}
+{{--                                    <td>{{ core()->formatBasePrice($order->base_total_due) }}</td>--}}
+{{--                                </tr>--}}
+                            </table>
+                        @endif
 
                         </div>
                     </accordian>

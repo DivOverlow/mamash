@@ -116,24 +116,53 @@ class Shipping
      *
      * @return array
      */
-    public function getShippingMethods()
+    public function getShippingMethods($cartId)
     {
+//        $methods = [];
+//
+//        foreach (Config::get('carriers') as $shippingMethod) {
+//            $object = new $shippingMethod['class'];
+//
+//            if (! $object->isAvailable()) {
+//                continue;
+//            }
+//
+//            $methods[] = [
+//                'method'       => $object->getCode(),
+//                'method_title' => $object->getTitle(),
+//                'description'  => $object->getDescription()
+//            ];
+//        }
+//
+//        return $methods;
+
         $methods = [];
 
         foreach (Config::get('carriers') as $shippingMethod) {
             $object = new $shippingMethod['class'];
 
-            if (! $object->isAvailable()) {
-                continue;
+            if ($rates = $object->calculateOrder($cartId)) {
+                if (is_array($rates)) {
+                    $methods = array_merge($methods, $rates);
+                } else {
+                    $methods[] = $rates;
+                }
             }
-
-            $methods[] = [
-                'method'       => $object->getCode(),
-                'method_title' => $object->getTitle(),
-                'description'  => $object->getDescription()
-            ];
         }
 
-        return $methods;
+        $rates = [];
+
+        foreach ($methods as $rate) {
+            if (! isset($rates[$rate->carrier])) {
+                $rates[$rate->carrier] = [
+                    'carrier_title' => $rate->carrier_title,
+                    'rates'         => []
+                ];
+            }
+
+            $rates[$rate->carrier]['rates'][] = $rate;
+        }
+
+        return $rates;
     }
 }

@@ -33,6 +33,7 @@ class OrderController extends Controller
     protected $orderAddressRepository;
     protected $orderPaymentRepository;
 
+
     /**
      * Create a new controller instance.
      *
@@ -95,15 +96,28 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\View\View
      */
-    public function edit_payment($id)
+    public function edit($id)
     {
-        $paymentMethods = Payment::getPaymentMethods();
-
-        $shippingMethods = Shipping::getShippingMethods();
-
         $order = $this->orderRepository->findOrFail($id);
 
-        return view($this->_config['view'], compact('order', 'paymentMethods', 'shippingMethods'));
+        return view($this->_config['view'], compact('order'));
+    }
+
+    /**
+     * Show the view for the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\View\View
+     */
+    public function edit_payment($id)
+    {
+        $order = $this->orderRepository->findOrFail($id);
+
+        $paymentMethods = Payment::getPaymentMethods();
+
+        $shippingRateGroups = Shipping::getShippingMethods($id);
+
+        return view($this->_config['view'], compact('order', 'paymentMethods', 'shippingRateGroups'));
     }
 
     /**
@@ -131,6 +145,45 @@ class OrderController extends Controller
      *
      * @return redirect
      */
+    public function update($id)
+    {
+
+//        $data['method'] = request()->all()['payment_method'];
+//
+//        $order = $this->orderRepository->findOrFail($id);
+//
+//        $payment = $this->orderPaymentRepository->update($data, $id);
+//
+//        if($payment) {
+//            $shippingRateGroups = Shipping::getShippingMethods($id);
+//
+//            foreach ($shippingRateGroups as $rateGroup) {
+//                foreach ($rateGroup['rates'] as $rate) {
+//                    if($rate->method == request()->all()['shipping_method']) {
+//                        $order->shipping_method = $rate->method;
+//                        $order->shipping_title = $rate->method_title;
+//                        $order->shipping_description = $rate->method_description;
+//                        $order->shipping_amount = $rate->price;
+//                        $order->base_shipping_amount = $rate->base_price;
+//                        break;
+//                    }
+//                }
+//            }
+//
+//            $this->orderRepository->collectTotals($order);
+//            $this->orderRepository->updateOrderStatus($order);
+//            session()->flash('success', trans('admin::app.sales.orders.order-update-success'));
+//        }
+
+        return redirect()->route($this->_config['redirect'], $id);
+    }
+
+    /**
+     * Edit's the premade resource of customer called
+     * Address.
+     *
+     * @return redirect
+     */
     public function update_shipping($id)
     {
 
@@ -144,8 +197,13 @@ class OrderController extends Controller
 
         $address = $this->orderAddressRepository->update(request()->all(), $id);
 
-        if($address)
+        if($address) {
+            $order = $this->orderRepository->findOrFail($id);
+
+            $this->orderRepository->updateOrderStatus($order);
+
             session()->flash('success', trans('admin::app.sales.orders.order-update-success'));
+        }
 
         return redirect()->route($this->_config['redirect'], $id);
     }
@@ -165,8 +223,26 @@ class OrderController extends Controller
 
         $payment = $this->orderPaymentRepository->update($data, $id);
 
-        if($payment)
+        if($payment) {
+            $shippingRateGroups = Shipping::getShippingMethods($id);
+
+            foreach ($shippingRateGroups as $rateGroup) {
+                foreach ($rateGroup['rates'] as $rate) {
+                    if($rate->method == request()->all()['shipping_method']) {
+                        $order->shipping_method = $rate->method;
+                        $order->shipping_title = $rate->method_title;
+                        $order->shipping_description = $rate->method_description;
+                        $order->shipping_amount = $rate->price;
+                        $order->base_shipping_amount = $rate->base_price;
+                        break;
+                    }
+                }
+            }
+
+            $this->orderRepository->collectTotals($order);
+            $this->orderRepository->updateOrderStatus($order);
             session()->flash('success', trans('admin::app.sales.orders.order-update-success'));
+        }
 
         return redirect()->route($this->_config['redirect'], $id);
     }

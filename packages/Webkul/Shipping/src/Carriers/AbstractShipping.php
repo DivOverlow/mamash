@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Config;
 abstract class AbstractShipping
 {
     abstract public function calculate();
+    abstract public function calculateOrder($orderId);
 
     /**
      * Checks if payment method is available

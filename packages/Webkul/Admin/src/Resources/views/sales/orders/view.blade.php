@@ -43,7 +43,7 @@
                                                 <a href="{{ route('admin.sales.orders.edit-payment', $order->id) }}">{{ trans('admin::app.sales.orders.payment-and-shipping') }}</a>
                                             </li>
                                             <li>
-                                                <a href="{{ route('admin.sales.orders.index') }}">{{ trans('admin::app.sales.orders.products-ordered') }}</a>
+                                                <a href="{{ route('admin.sales.orders.edit', $order->id) }}">{{ trans('admin::app.sales.orders.products-ordered') }}</a>
                                             </li>
                                         </ul>
                                     </div>
