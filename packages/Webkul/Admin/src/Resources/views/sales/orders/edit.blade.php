@@ -224,8 +224,9 @@
                                             <th>{{ __('admin::app.sales.orders.product-name') }}</th>
                                             <th>{{ __('admin::app.sales.orders.price') }}</th>
                                             <th>{{ __('admin::app.sales.orders.item-status') }}</th>
+                                            <th>{{ __('admin::app.sales.orders.qty') }}</th>
                                             <th>{{ __('admin::app.sales.orders.subtotal') }}</th>
-                                            <th>{{ __('admin::app.sales.orders.tax-percent') }}</th>
+{{--                                            <th>{{ __('admin::app.sales.orders.tax-percent') }}</th>--}}
                                             <th>{{ __('admin::app.sales.orders.tax-amount') }}</th>
                                             @if ($order->base_discount_amount > 0)
                                                 <th>{{ __('admin::app.sales.orders.discount-amount') }}</th>
@@ -281,9 +282,26 @@
                                                     </span>
                                                 </td>
 
+                                                    <td>
+                                                        @if( $item->qty_ordered > 0)
+                                                            <div class="control-group" :class="[errors.has('qty_order[items][{{ $item->id }}]') ? 'has-error' : '']">
+                                                                <input type="text" v-validate="'required|numeric|min:0'" class="control" id="qty_order[items][{{ $item->id }}]" name="qty_order[items][{{ $item->id }}]" value="{{ $item->qty_ordered }}" data-vv-as="&quot;{{ __('admin::app.sales.invoices.qty-to-invoice') }}&quot;"/>
+
+                                                                <span class="control-error" v-if="errors.has('qty_order[items][{{ $item->id }}]')">
+                                                                    @verbatim
+                                                                        {{ errors.first('qty_order[items][<?php echo $item->id ?>]') }}
+                                                                    @endverbatim
+                                                                </span>
+                                                            </div>
+                                                        @else
+                                                        -
+                                                        @endif
+                                                    </td>
+
+
                                                 <td>{{ core()->formatBasePrice($item->base_total) }}</td>
 
-                                                <td>{{ $item->tax_percent }}%</td>
+{{--                                                <td>{{ $item->tax_percent }}%</td>--}}
 
                                                 <td>{{ core()->formatBasePrice($item->base_tax_amount) }}</td>
 
@@ -399,51 +417,6 @@
                                         @endif
                                     @endif
                                 @endforeach
-{{--                                @if ($order->haveStockableItems())--}}
-{{--                                    <tr>--}}
-{{--                                        <td>{{ __('admin::app.sales.orders.shipping-handling') }}</td>--}}
-{{--                                        <td>-</td>--}}
-{{--                                        <td>{{ core()->formatBasePrice($order->base_shipping_amount) }}</td>--}}
-{{--                                    </tr>--}}
-{{--                                @endif--}}
-
-{{--                                @if ($order->base_discount_amount > 0)--}}
-{{--                                    <tr>--}}
-{{--                                        <td>{{ __('admin::app.sales.orders.discount') }}</td>--}}
-{{--                                        <td>-</td>--}}
-{{--                                        <td>{{ core()->formatBasePrice($order->base_discount_amount) }}</td>--}}
-{{--                                    </tr>--}}
-{{--                                @endif--}}
-
-{{--                                <tr class="border">--}}
-{{--                                    <td>{{ __('admin::app.sales.orders.tax') }}</td>--}}
-{{--                                    <td>-</td>--}}
-{{--                                    <td>{{ core()->formatBasePrice($order->base_tax_amount) }}</td>--}}
-{{--                                </tr>--}}
-
-{{--                                <tr class="bold">--}}
-{{--                                    <td>{{ __('admin::app.sales.orders.grand-total') }}</td>--}}
-{{--                                    <td>-</td>--}}
-{{--                                    <td>{{ core()->formatBasePrice($order->base_grand_total) }}</td>--}}
-{{--                                </tr>--}}
-
-{{--                                <tr class="bold">--}}
-{{--                                    <td>{{ __('admin::app.sales.orders.total-paid') }}</td>--}}
-{{--                                    <td>-</td>--}}
-{{--                                    <td>{{ core()->formatBasePrice($order->base_grand_total_invoiced) }}</td>--}}
-{{--                                </tr>--}}
-
-{{--                                <tr class="bold">--}}
-{{--                                    <td>{{ __('admin::app.sales.orders.total-refunded') }}</td>--}}
-{{--                                    <td>-</td>--}}
-{{--                                    <td>{{ core()->formatBasePrice($order->base_grand_total_refunded) }}</td>--}}
-{{--                                </tr>--}}
-
-{{--                                <tr class="bold">--}}
-{{--                                    <td>{{ __('admin::app.sales.orders.total-due') }}</td>--}}
-{{--                                    <td>-</td>--}}
-{{--                                    <td>{{ core()->formatBasePrice($order->base_total_due) }}</td>--}}
-{{--                                </tr>--}}
                             </table>
                         @endif
 
