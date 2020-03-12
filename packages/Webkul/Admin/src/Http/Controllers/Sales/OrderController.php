@@ -145,8 +145,46 @@ class OrderController extends Controller
      *
      * @return redirect
      */
-    public function update($id)
+    public function update($orderId)
     {
+
+        $order = $this->orderRepository->findOrFail($orderId);
+
+        $this->validate(request(), [
+            'qty_ordered.items.*' => 'required|numeric|min:0',
+        ]);
+
+        $haveProductToOrder = false;
+        $haveProductGift_id = 0;
+
+        $data = request()->all();
+
+        foreach ($data['qty_ordered']['items'] as $itemId => $qty) {
+            if ($qty) {
+                $haveProductToOrder = true;
+                break;
+            }
+        }
+
+        foreach ($data['product_id'] as $itemId => $id) {
+            if ($id) {
+                $haveProductGift_id = $id;
+                break;
+            }
+        }
+
+        if (! $haveProductToOrder && $haveProductGift_id) {
+            session()->flash('error', trans('admin::app.sales.orders.product-error'));
+
+            return redirect()->back();
+        }
+
+        foreach ($data['qty_ordered']['items'] as $itemId => $qty) {
+            if ($qty) {
+
+            }
+        }
+
 
 //        $data['method'] = request()->all()['payment_method'];
 //
@@ -175,7 +213,7 @@ class OrderController extends Controller
 //            session()->flash('success', trans('admin::app.sales.orders.order-update-success'));
 //        }
 
-        return redirect()->route($this->_config['redirect'], $id);
+        return redirect()->route($this->_config['redirect'], $orderId);
     }
 
     /**

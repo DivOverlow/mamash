@@ -10,6 +10,7 @@
 
     <?php
         $product_id = 0;
+        $orderItem_id = 0;
     ?>
     <div class="content full-page">
         <form method="POST" action="{{ route('admin.sales.orders.update', $order->increment_id) }}">
@@ -215,6 +216,10 @@
 
                     <accordian :title="'{{ __('admin::app.sales.orders.products-ordered') }}'" :active="true">
                         <div slot="body">
+                            <div class="form-container">
+                                @csrf()
+
+                                <input name="_method" type="hidden" value="PUT">
 
                             <div class="table">
                                 <table>
@@ -284,12 +289,12 @@
 
                                                     <td>
                                                         @if( $item->qty_ordered > 0)
-                                                            <div class="control-group" :class="[errors.has('qty_order[items][{{ $item->id }}]') ? 'has-error' : '']">
-                                                                <input type="text" v-validate="'required|numeric|min:0'" class="control" id="qty_order[items][{{ $item->id }}]" name="qty_order[items][{{ $item->id }}]" value="{{ $item->qty_ordered }}" data-vv-as="&quot;{{ __('admin::app.sales.invoices.qty-to-invoice') }}&quot;"/>
+                                                            <div class="control-group" :class="[errors.has('qty_ordered[items][{{ $item->id }}]') ? 'has-error' : '']">
+                                                                <input type="text" v-validate="'required|numeric|min:0'" class="control" id="qty_ordered[items][{{ $item->id }}]" name="qty_ordered[items][{{ $item->id }}]" value="{{ $item->qty_ordered }}"   data-vv-as="&quot;{{ __('admin::app.sales.invoices.qty-to-invoice') }}&quot;"/>
 
-                                                                <span class="control-error" v-if="errors.has('qty_order[items][{{ $item->id }}]')">
+                                                                <span class="control-error" v-if="errors.has('qty_ordered[items][{{ $item->id }}]')">
                                                                     @verbatim
-                                                                        {{ errors.first('qty_order[items][<?php echo $item->id ?>]') }}
+                                                                        {{ errors.first('qty_ordered[items][<?php echo $item->id ?>]') }}
                                                                     @endverbatim
                                                                 </span>
                                                             </div>
@@ -301,8 +306,6 @@
 
                                                 <td>{{ core()->formatBasePrice($item->base_total) }}</td>
 
-{{--                                                <td>{{ $item->tax_percent }}%</td>--}}
-
                                                 <td>{{ core()->formatBasePrice($item->base_tax_amount) }}</td>
 
                                                 @if ($order->base_discount_amount > 0)
@@ -312,7 +315,10 @@
                                                 <td>{{ core()->formatBasePrice($item->base_total + $item->base_tax_amount - $item->base_discount_amount) }}</td>
                                             </tr>
                                             @else
-                                                <?php $product_id = $item->product_id ?>
+                                                <?php
+                                                    $product_id = $item->product_id;
+                                                    $orderItem_id = $item->id;
+                                                ?>
                                             @endif
                                         @endforeach
                                 </table>
@@ -381,9 +387,8 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <span class="radio"><input type="radio" id="0" name="product_id" value="0"> <label for="0" class="radio-view"
-                                               @if ($product_id == 0) checked="checked" @endif
-                                            ></label></span>
+                                        <span class="radio"><input type="radio" id="0" name="product_id[{{$orderItem_id}}]" value="0"
+                                           @if ($product_id == 0) checked="checked" @endif > <label for="0" class="radio-view"></label></span>
                                     </td>
                                     <td colspan="2"><span class="{{ ($product_id == 0) ? 'bold' : '' }}"></span>{{ __('admin::app.sales.orders.not-gift') }}</td>
                                 </tr>
@@ -401,9 +406,9 @@
                                             <tr>
                                             @endif
                                                 <td>
-                                                    <span class="radio"><input type="radio" id="{{$product->id}}" name="product_id" value="{{$product->id}}"
+                                                    <span class="radio"><input type="radio" id="{{$product->id}}" name="product_id[{{$orderItem_id}}]" value="{{$product->id}}"
                                                        @if ($product_id == $product->id) checked="checked" @endif
-                                                        > <label for="{{$product->id}}" class="radio-view"></label></span>
+                                                        > <label for="{{$product->id}}" class="radio-view"></label> {{ core()->formatBasePrice($gift_product->action_amount) }}</span>
                                                 </td>
                                                 <td style="text-align: left;padding: 8px">
                                                     <a href="{{ url()->to('/').'/products/'.$product->url_key }}"><img
@@ -419,7 +424,7 @@
                                 @endforeach
                             </table>
                         @endif
-
+                            </div>
                         </div>
                     </accordian>
 
