@@ -572,7 +572,7 @@ return [
             'tax' => 'Налог',
             'discount' => 'Скидка',
             'price' => 'цена',
-            'disc-amount' => 'Сумма со скидкой',
+            'disc-amount' => 'Сумма скиди',
             'new-grand-total' => 'New Grand Total',
             'coupon' => 'Купон',
             'coupon-applied' => 'Купон применяется',

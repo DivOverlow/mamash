@@ -51,7 +51,7 @@ class OrderItemRepository extends Repository
 
         $totalInvoiced = $baseTotalInvoiced = 0;
         $taxInvoiced = $baseTaxInvoiced = 0;
-        
+
         $totalRefunded = $baseTotalRefunded = 0;
         $taxRefunded = $baseTaxRefunded = 0;
 
@@ -160,4 +160,78 @@ class OrderItemRepository extends Repository
 
         $orderedInventory->update(['qty' => $qty]);
     }
+
+    /**
+     * Calculates order items tax
+     *
+     * @return void
+     */
+    public function calculateItemsTax($orderItem)
+    {
+        if (! $orderItem)
+            return false;
+
+            $taxCategory = app('Webkul\Tax\Repositories\TaxCategoryRepository')->find($orderItem->product->tax_category_id);
+
+            if (! $taxCategory)
+            return $orderItem;
+
+            $order = $orderItem->order;
+
+            if ($orderItem->product->getTypeInstance()->isStockable()) {
+                $address = $order->shipping_address;
+            } else {
+                $address = $order->billing_address;
+            }
+
+            $taxRates = $taxCategory->tax_rates()->where([
+                'state' => $address->state,
+                'country' => $address->country,
+            ])->orderBy('tax_rate', 'desc')->get();
+
+            if (count( $taxRates) > 0) {
+                foreach ($taxRates as $rate) {
+                    $haveTaxRate = false;
+
+                    if (! $rate->is_zip) {
+                        if ($rate->zip_code == '*' || $rate->zip_code == $address->postcode) {
+                            $haveTaxRate = true;
+                        }
+                    } else {
+                        if ($address->postcode >= $rate->zip_from && $address->postcode <= $rate->zip_to) {
+                            $haveTaxRate = true;
+                        }
+                    }
+
+                    if ($haveTaxRate) {
+                        $orderItem->tax_percent = $rate->tax_rate;
+                        $orderItem->tax_amount = ($orderItem->total * $rate->tax_rate) / 100;
+                        $orderItem->base_tax_amount = ($orderItem->base_total * $rate->tax_rate) / 100;
+
+                        $orderItem->save();
+                        break;
+                    }
+                }
+            } else {
+                $orderItem->tax_percent = 0;
+                $orderItem->tax_amount = 0;
+                $orderItem->base_tax_amount = 0;
+
+                $orderItem->save();
+            }
+        return $orderItem;
+    }
+
+    /**
+     * Calculates order items discount
+     *
+     * @return void
+     */
+
+    public function calculateItemsOrder($orderItem)
+    {
+
+    }
+
+
 }

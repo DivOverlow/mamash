@@ -203,8 +203,7 @@ class ProductRepository extends Repository
                 });
 
                 return $qb->groupBy('product_flat.id');
-            })->paginate(isset($params['limit']) ? $params['limit'] : 8);
-//            })->paginate(isset($params['limit']) ? $params['limit'] : 9);
+            })->paginate(isset($params['limit']) ? $params['limit'] : 9);
 
         return $results;
     }
@@ -358,4 +357,51 @@ class ProductRepository extends Repository
                     ->orderBy('product_id', 'desc');
         })->get();
     }
+
+//    /**
+//     * Search products for grouped product association
+//     *
+//     * @param string $term
+//     * @return \Illuminate\Support\Collection
+//     */
+//    public function searchProductId($id)
+//    {
+//        return app(ProductFlatRepository::class)->scopeQuery(function($query) use($id) {
+//            $channel = request()->get('channel') ?: (core()->getCurrentChannelCode() ?: core()->getDefaultChannelCode());
+//
+//            $locale = request()->get('locale') ?: app()->getLocale();
+//
+//            return $query->distinct()
+//                    ->addSelect('product_flat.*')
+//                    ->addSelect('product_flat.product_id as id')
+//                    ->leftJoin('products', 'product_flat.product_id', '=', 'products.id')
+////                    ->where('products.type', 'simple')
+//                    ->where('product_flat.channel', $channel)
+//                    ->where('product_flat.locale', $locale)
+//                    ->where('product_id', $id);
+//        })->get();
+//    }
+    /**
+     * Retrive product from slug
+     *
+     * @param integer $id
+     * @return mixed
+     */
+    public function findByIdOrFail($id)
+    {
+        $product = app('Webkul\Product\Repositories\ProductFlatRepository')->findOneWhere([
+            'product_id' => $id,
+            'locale' => app()->getLocale(),
+            'channel' => core()->getCurrentChannelCode(),
+        ]);
+
+        if (! $product) {
+            throw (new ModelNotFoundException)->setModel(
+                get_class($this->model), $id
+            );
+        }
+
+        return $product;
+    }
+
 }

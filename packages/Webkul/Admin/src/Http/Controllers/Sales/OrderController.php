@@ -4,6 +4,7 @@ namespace Webkul\Admin\Http\Controllers\Sales;
 
 use Webkul\Admin\Http\Controllers\Controller;
 use Webkul\Payment\Facades\Payment;
+use Webkul\Sales\Repositories\OrderItemRepository;
 use Webkul\Sales\Repositories\OrderPaymentRepository;
 use Webkul\Shipping\Facades\Shipping;
 use Webkul\Sales\Repositories\OrderAddressRepository;
@@ -30,6 +31,7 @@ class OrderController extends Controller
      * @var array
      */
     protected $orderRepository;
+    protected $orderItemRepository;
     protected $orderAddressRepository;
     protected $orderPaymentRepository;
 
@@ -42,13 +44,16 @@ class OrderController extends Controller
      */
     public function __construct(OrderRepository $orderRepository,
                                 OrderAddressRepository $orderAddressRepository,
-                                OrderPaymentRepository $orderPaymentRepository)
+                                OrderPaymentRepository $orderPaymentRepository,
+                                OrderItemRepository $orderItemRepository
+                                )
     {
         $this->middleware('admin');
 
         $this->_config = request('_config');
 
         $this->orderRepository = $orderRepository;
+        $this->orderItemRepository = $orderItemRepository;
         $this->orderAddressRepository = $orderAddressRepository;
         $this->orderPaymentRepository = $orderPaymentRepository;
 
@@ -147,15 +152,13 @@ class OrderController extends Controller
      */
     public function update($orderId)
     {
-
-        $order = $this->orderRepository->findOrFail($orderId);
-
-        $this->validate(request(), [
+         $this->validate(request(), [
             'qty_ordered.items.*' => 'required|numeric|min:0',
         ]);
 
         $haveProductToOrder = false;
-        $haveProductGift_id = 0;
+        $productGift_id = 0;
+        $orderItem_id = 0;
 
         $data = request()->all();
 
@@ -167,51 +170,95 @@ class OrderController extends Controller
         }
 
         foreach ($data['product_id'] as $itemId => $id) {
+            $orderItem_id = $itemId;
             if ($id) {
-                $haveProductGift_id = $id;
+                $productGift_id = $id;
                 break;
             }
         }
 
-        if (! $haveProductToOrder && $haveProductGift_id) {
-            session()->flash('error', trans('admin::app.sales.orders.product-error'));
-
+        if (! $haveProductToOrder ) {
+                session()->flash('error', trans('admin::app.sales.orders.product-error'));
             return redirect()->back();
         }
 
+        $is_OrderModify = false;
+
         foreach ($data['qty_ordered']['items'] as $itemId => $qty) {
             if ($qty) {
+                $orderItem = $this->orderItemRepository->findOrFail($itemId);
+                if ($orderItem->qty_ordered != $qty) {
 
+
+                    $orderItem->total = core()->convertPrice($orderItem->price * $qty);
+                    $orderItem->base_total = $orderItem->price * $qty;
+                    $orderItem->total_weight = $orderItem->weight * $qty;
+                    $orderItem->discount_amount = $orderItem->discount_amount / $orderItem->qty_ordered * $qty;
+                    $orderItem->base_discount_amount = $orderItem->base_discount_amount / $orderItem->qty_ordered * $qty;
+                    $orderItem->qty_ordered = $qty;
+                    $orderItem->save();
+                    $this->orderItemRepository->calculateItemsTax($orderItem);
+                    $this->orderItemRepository->collectTotals($orderItem);
+                    $is_OrderModify = true;
+                }
+            }
+            else {
+                $this->orderItemRepository->delete($itemId);
+                $is_OrderModify = true;
             }
         }
 
+        if ($productGift_id) {
+            $product = app('Webkul\Product\Repositories\ProductRepository')->findByIdOrFail($productGift_id);
+            if ($orderItem_id) {
+                $orderItem = $this->orderItemRepository->findOrFail($orderItem_id);
+                if ($orderItem->product_id != $productGift_id) {
+                    // update Gift product
+                    $orderItem->sku = $product->sku;
+                    $orderItem->type = $product->type;
+                    $orderItem->name = $product->name;
+                    $orderItem->weight = $product->weight;
+                    $orderItem->total_weight = $product->weight;
+                    $orderItem->product_id = $productGift_id;
+                    $orderItem->save();
+                }
+            }
+            else {
+                // Add Gift product
+                $data = [];
+                $data['sku'] = $product->sku;
+                $data['type'] = $product->type;
+                $data['name'] = $product->name;
+                $data['weight'] = $product->weight;
+                $data['total_weight'] = $product->weight;
+                $data['qty_ordered'] = 1;
+                $data['qty_shipped'] = 0;
+                $data['qty_invoiced'] = 0;
+                $data['qty_canceled'] = 0;
+                $data['qty_refunded'] = 0;
+                $data['product_id'] = $productGift_id;
+                $data['product_type'] = 'Webkul\Product\Models\Product';
+                $data['order_id'] = $orderId;
+                $this->orderItemRepository->create($data);
+            }
+        }  else {
+            if ($orderItem_id) {
+                // delete Gift product
+                $this->orderItemRepository->delete($orderItem_id);
+            }
+        }
 
-//        $data['method'] = request()->all()['payment_method'];
-//
-//        $order = $this->orderRepository->findOrFail($id);
-//
-//        $payment = $this->orderPaymentRepository->update($data, $id);
-//
-//        if($payment) {
-//            $shippingRateGroups = Shipping::getShippingMethods($id);
-//
-//            foreach ($shippingRateGroups as $rateGroup) {
-//                foreach ($rateGroup['rates'] as $rate) {
-//                    if($rate->method == request()->all()['shipping_method']) {
-//                        $order->shipping_method = $rate->method;
-//                        $order->shipping_title = $rate->method_title;
-//                        $order->shipping_description = $rate->method_description;
-//                        $order->shipping_amount = $rate->price;
-//                        $order->base_shipping_amount = $rate->base_price;
-//                        break;
-//                    }
-//                }
-//            }
-//
-//            $this->orderRepository->collectTotals($order);
-//            $this->orderRepository->updateOrderStatus($order);
-//            session()->flash('success', trans('admin::app.sales.orders.order-update-success'));
-//        }
+        if ($is_OrderModify) {
+            $order = $this->orderRepository->calculateOrder($orderId);
+
+            $this->orderRepository->collectTotals($order);
+
+            if(isset($order->status) && $order->status == 'pending')
+                $this->orderRepository->updateOrderStatus($order);
+
+        }
+
+        session()->flash('success', trans('admin::app.sales.orders.order-update-success'));
 
         return redirect()->route($this->_config['redirect'], $orderId);
     }
@@ -238,7 +285,8 @@ class OrderController extends Controller
         if($address) {
             $order = $this->orderRepository->findOrFail($id);
 
-            $this->orderRepository->updateOrderStatus($order);
+            if($order->status == 'pending')
+                $this->orderRepository->updateOrderStatus($order);
 
             session()->flash('success', trans('admin::app.sales.orders.order-update-success'));
         }
@@ -278,7 +326,10 @@ class OrderController extends Controller
             }
 
             $this->orderRepository->collectTotals($order);
-            $this->orderRepository->updateOrderStatus($order);
+
+            if($order->status == 'pending')
+                $this->orderRepository->updateOrderStatus($order);
+
             session()->flash('success', trans('admin::app.sales.orders.order-update-success'));
         }
 

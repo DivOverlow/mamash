@@ -835,6 +835,7 @@ class Cart {
             'base_sub_total' => $data['base_sub_total'],
             'tax_amount' => $data['tax_total'],
             'base_tax_amount' => $data['base_tax_total'],
+            'coupon_code' => $data['coupon_code'],
             'discount_amount' => $data['discount_amount'],
             'base_discount_amount' => $data['base_discount_amount'],
             'billing_address' => array_except($data['billing_address'], ['id', 'cart_id']),

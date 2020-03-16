@@ -367,4 +367,62 @@ class OrderRepository extends Repository
 
         return $order;
     }
+
+    /**
+     * Calculates cart items tax
+     *
+     * @return void
+     */
+    public function calculateOrder($orderId)
+    {
+        $order = $this->findOrFail($orderId);
+
+        if (!$order)
+            return false;
+
+        $total_item_count = 0;
+        $total_qty_ordered = 0;
+
+        $grand_total = 0;
+        $base_grand_total = 0;
+        $sub_total = 0;
+        $base_sub_total = 0;
+
+        $discount_amount = 0;
+        $base_discount_amount = 0;
+
+        $tax_amount = 0;
+        $base_tax_amount = 0;
+
+        foreach ($order->items()->get() as $item ) {
+            if($item->price > 0)
+                $total_item_count ++;
+            $total_qty_ordered += $item->qty_ordered;
+            $grand_total += $item->total;
+            $base_grand_total += $item->base_total;
+            $sub_total += $item->total;
+            $base_sub_total += $item->base_total;
+            $discount_amount += $item->discount_amount;
+            $base_discount_amount += $item->base_discount_amount;
+
+            $tax_amount += $item->tax_amount;
+            $base_tax_amount += $item->base_tax_amount;
+        }
+
+        $order->total_item_count = $total_item_count;
+        $order->total_qty_ordered = $total_qty_ordered;
+        $order->grand_total = $grand_total - $discount_amount + $tax_amount;
+        $order->base_grand_total = $base_grand_total - $base_discount_amount + $base_tax_amount;
+        $order->sub_total = $sub_total;
+        $order->base_sub_total = $base_sub_total;
+        $order->discount_amount = $discount_amount;
+        $order->base_discount_amount = $base_discount_amount;
+        $order->tax_amount = $tax_amount;
+        $order->base_tax_amount = $base_tax_amount;
+        $order->save();
+
+        return $order;
+
+    }
+
 }

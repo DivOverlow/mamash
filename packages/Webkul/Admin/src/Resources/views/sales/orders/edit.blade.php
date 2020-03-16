@@ -375,6 +375,19 @@
                                     <td>-</td>
                                     <td>{{ core()->formatBasePrice($order->base_total_due) }}</td>
                                 </tr>
+                                @if ($order->coupon_code != null)
+                                    <tr>
+                                        <td> {{ __('shop::app.checkout.onepage.enter-coupon-code') }}</td>
+                                        <td>-</td>
+                                        <td>
+                                            {{$order->coupon_code}}
+{{--                                            <div class="control-group" style="width: 100%">--}}
+{{--                                                <input type="text" class="control" name="code" placeholder="{{ __('shop::app.checkout.onepage.enter-coupon-code') }}">--}}
+{{--                                            </div>--}}
+                                        </td>
+                                    </tr>
+                                @endif
+
                             </table>
                         <?php $gift_products = $giftRepository->getGiftsProduct(); ?>
                         @if (count($gift_products) > 0)

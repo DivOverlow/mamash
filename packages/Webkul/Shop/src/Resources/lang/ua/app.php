@@ -571,7 +571,7 @@ return [
             'tax' => 'Податок',
             'discount' => 'Знижка',
             'price' => 'ціна',
-            'disc-amount' => 'Сума зі знижкою',
+            'disc-amount' => 'Сума знижки',
             'new-grand-total' => 'New Grand Total',
             'coupon' => 'Купон',
             'coupon-applied' => 'Купон застосовано',
