@@ -43,7 +43,7 @@
                                                 <a href="{{ route('admin.sales.orders.edit-payment', $order->id) }}">{{ trans('admin::app.sales.orders.payment-and-shipping') }}</a>
                                             </li>
                                             <li>
-                                                <a href="{{ route('admin.sales.orders.edit', $order->id) }}">{{ trans('admin::app.sales.orders.products-ordered') }}</a>
+                                                    <a href="{{ route('admin.sales.orders.edit', $order->id) }}">{{ trans('admin::app.sales.orders.products-ordered') }}</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -399,6 +399,15 @@
                                         <td>-</td>
                                         <td>{{ core()->formatBasePrice($order->base_total_due) }}</td>
                                     </tr>
+                                    @if ($order->coupon_code != null)
+                                        <tr>
+                                            <td> {{ __('shop::app.checkout.onepage.enter-coupon-code') }}</td>
+                                            <td>-</td>
+                                            <td>
+                                                {{$order->coupon_code}}
+                                            </td>
+                                        </tr>
+                                    @endif
                                 </table>
 
                             </div>
