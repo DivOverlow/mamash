@@ -4,9 +4,9 @@
 @endsection
 @section('content-wrapper')
 
-<div class="auth-content w-full bg-cover relative" style="background-image: url('/themes/custom/assets/images/banner/bg_card.jpg'); min-height: 34rem;">
+<div class="auth-content w-full bg-cover relative" style="background-image: url('/themes/mamash/assets/images/banner/bg_card.jpg'); min-height: 34rem;">
 
-    <img src="/themes/custom/assets/images/banner/blooper.png" alt="blooper image" class="h-24 w-auto absolute right-0 bottom-0 mb-20 invisible sm:visible">
+    <img src="/themes/mamash/assets/images/banner/blooper.png" alt="blooper image" class="h-24 w-auto absolute right-0 bottom-0 mb-20 invisible sm:visible">
 
     <div class="main-container-wrapper flex flex-col justify-content-between sm:flex-row">
         <div class="w-full sm:w-1/2 py-4 pr-4">

@@ -13,7 +13,7 @@ const tailwindcss = require('tailwindcss');
  |
  */
 
-mix.postCss('resources/css/main.css', 'public/themes/custom/assets/css', [
+mix.postCss('resources/css/main.css', 'public/themes/mamash/assets/css', [
     require('tailwindcss'),
 ])
     .browserSync('mamash-old');
@@ -46,13 +46,13 @@ if (mix.inProduction()) {
     // var publicPath = 'packages/Webkul/Shop/publishable/assets';
     var publicPath = __dirname + '/';
 } else {
-    var publicPath = "public/themes/custom/assets";
+    var publicPath = "public/themes/mamash/assets";
 }
 
 mix.setPublicPath(publicPath).mergeManifest();
 mix.disableNotifications();
 
-mix.js([__dirname + "/resources/assets/js/app.js"], "public/themes/custom/assets/js/shop.js");
+mix.js([__dirname + "/resources/assets/js/app.js"], "public/themes/mamash/assets/js/shop.js");
     // .sass(__dirname + "/src/Resources/assets/sass/app.scss", "css/shop.css")
     // .options({
     //     processCssUrls: false

@@ -75,7 +75,7 @@
     width: 17px;
     height: 17px;
     display: inline-block;
-    background-image: url(/themes/custom/assets/images/history.png);
+    background-image: url(/themes/mamash/assets/images/history.png);
     background-position: top center;
     background-repeat: no-repeat;
 }
@@ -88,7 +88,7 @@
     width: 20px;
     height: 20px;
     display: inline-block;
-    background-image: url(/themes/custom/assets/images/leaving.png);
+    background-image: url(/themes/mamash/assets/images/leaving.png);
     background-position: top center;
     background-repeat: no-repeat;
 }
@@ -97,7 +97,7 @@
     width: 19px;
     height: 16px;
     display: inline-block;
-    background-image: url(/themes/custom/assets/images/mail.png);
+    background-image: url(/themes/mamash/assets/images/mail.png);
     background-position: top center;
     background-repeat: no-repeat;
 }
@@ -110,7 +110,7 @@
     width: 24px;
     height: 24px;
     display: inline-block;
-    background-image: url(/themes/custom/assets/images/address.png);
+    background-image: url(/themes/mamash/assets/images/address.png);
     background-position: top center;
     background-repeat: no-repeat;
 }
@@ -119,7 +119,7 @@
     width: 24px;
     height: 24px;
     display: inline-block;
-    background-image: url(/themes/custom/assets/images/profile.png);
+    background-image: url(/themes/mamash/assets/images/profile.png);
     background-position: top center;
     background-repeat: no-repeat;
 }
@@ -320,7 +320,7 @@
     width: 27px;
     height: 27px;
     display: inline-block;
-    background-image: url(/themes/custom/assets/images/user.png);
+    background-image: url(/themes/mamash/assets/images/user.png);
     background-position: top center;
     background-repeat: no-repeat;
 }
@@ -329,7 +329,7 @@
     width: 27px;
     height: 27px;
     display: inline-block;
-    background-image: url(/themes/custom/assets/images/shopping-bag.png);
+    background-image: url(/themes/mamash/assets/images/shopping-bag.png);
     background-position: top center;
     background-repeat: no-repeat;
 }
@@ -344,7 +344,7 @@
 
 .btn-primary,
 .button-decor {
-    background-image: url(/themes/custom/assets/images/button.png);
+    background-image: url(/themes/mamash/assets/images/button.png);
     background-position: top center;
     background-repeat: no-repeat;
     @apply .font-serif .text-white .text-center .cursor-pointer .outline-none .bg-cover .bg-center .inline-block;
@@ -355,7 +355,7 @@
 .button-decor:hover,
 .button-decor:focus {
     outline: none;
-    background-image: url(/themes/custom/assets/images/button-hover.png);
+    background-image: url(/themes/mamash/assets/images/button-hover.png);
     transition: 0.3s;
 }
 
@@ -377,17 +377,17 @@
     width: 215px;
     height: 33px;
     display: inline-block;
-    background-image: url(/themes/custom/assets/images/cards.png);
+    background-image: url(/themes/mamash/assets/images/cards.png);
     background-position: top center;
     background-repeat: no-repeat;
 }
 
 .bg-blooper {
-    background-image: url(/themes/custom/assets/images/banner/bg-blooper.png);
+    background-image: url(/themes/mamash/assets/images/banner/bg-blooper.png);
 }
 
 .bg-faq {
-    background-image: url(/themes/custom/assets/images/banner/bg-faq.jpg);
+    background-image: url(/themes/mamash/assets/images/banner/bg-faq.jpg);
 }
 
 .checkout-process .col-main ul.checkout-steps li .decorator {
@@ -399,11 +399,11 @@
 }
 
 .checkout-process .col-main ul.checkout-steps li .decorator.shipping {
-    background-image: url(/themes/custom/assets/images/shipping.png);
+    background-image: url(/themes/mamash/assets/images/shipping.png);
 }
 
 .checkout-process .col-main ul.checkout-steps li .decorator.payment {
-    background-image: url(/themes/custom/assets/images/payment.png);
+    background-image: url(/themes/mamash/assets/images/payment.png);
 }
 
 .checkout-process .col-main ul.checkout-steps li.completed {
@@ -902,7 +902,7 @@ section.product-detail div.layouter .form-container div.product-image-group div 
 
 
 /*.dropdown-right-icon {*/
-/*    background-image: url(/themes/custom/assets/images/icon-dropdown-left.svg')*/
+/*    background-image: url(/themes/mamash/assets/images/icon-dropdown-left.svg')*/
 /*    width: 8px;*/
 /*    height: 8px;*/
 /*    margin-left: auto;*/
@@ -933,25 +933,25 @@ section.product-detail div.layouter .form-container div.product-image-group div 
 
 
 /*.grid-view-icon {*/
-/*    background-image: url(/themes/custom/assets/images/icon-grid-view.svg')*/
+/*    background-image: url(/themes/mamash/assets/images/icon-grid-view.svg')*/
 /*    width: 24px;*/
 /*    height: 24px;*/
 /*}*/
 
 /*.list-view-icon {*/
-/*    background-image: url(/themes/custom/assets/images/icon-list-view.svg')*/
+/*    background-image: url(/themes/mamash/assets/images/icon-list-view.svg')*/
 /*    width: 24px;*/
 /*    height: 24px;*/
 /*}*/
 
 /*.whishlist-icon {*/
-/*    background-image: url(/themes/custom/assets/images/wishlist.svg')*/
+/*    background-image: url(/themes/mamash/assets/images/wishlist.svg')*/
 /*    width: 24px;*/
 /*    height: 24px;*/
 /*}*/
 
 /*.share-icon {*/
-/*    background-image: url(/themes/custom/assets/images/icon-share.svg')*/
+/*    background-image: url(/themes/mamash/assets/images/icon-share.svg')*/
 /*    width: 24px;*/
 /*    height: 24px;*/
 /*}*/
@@ -964,13 +964,13 @@ section.product-detail div.layouter .form-container div.product-image-group div 
 }
 
 .icon-arrow-down {
-    background-image: url('/themes/custom/assets/images/arrow-down.svg');
+    background-image: url('/themes/mamash/assets/images/arrow-down.svg');
     width: 16px;
     height: 16px;
 }
 
 .icon-arrow-up {
-    background-image: url('/themes/custom/assets/images/arrow-up.svg');
+    background-image: url('/themes/mamash/assets/images/arrow-up.svg');
     width: 16px;
     height: 16px;
 }
@@ -990,67 +990,67 @@ section.product-detail div.layouter .form-container div.product-image-group div 
 }
 
 /*.shipping-icon {*/
-/*    background-image: url(/themes/custom/assets/images/shipping.svg')*/
+/*    background-image: url(/themes/mamash/assets/images/shipping.svg')*/
 /*    width: 32px;*/
 /*    height: 32px;*/
 /*}*/
 
 .payment-icon {
-    background-image: url(/themes/custom/assets/images/payment-icon.png);
+    background-image: url(/themes/mamash/assets/images/payment-icon.png);
     width: 30px;
     height: 35px;
 }
 
 /*.cart-icon {*/
-/*    background-image: url("/themes/custom/assets/images/icon-cart.svg");*/
+/*    background-image: url("/themes/mamash/assets/images/icon-cart.svg");*/
 /*    width: 24px;*/
 /*    height: 24px;*/
 /*}*/
 
 /*.wishlist-icon {*/
-/*    background-image: url(/themes/custom/assets/images/wishlist.svg')*/
+/*    background-image: url(/themes/mamash/assets/images/wishlist.svg')*/
 /*    width: 32px;*/
 /*    height: 32px;*/
 /*}*/
 
 /*.expand-icon {*/
-/*    background-image: url("/themes/custom/assets/images/Expand-Light.svg");*/
+/*    background-image: url("/themes/mamash/assets/images/Expand-Light.svg");*/
 /*    width: 18px;*/
 /*    height: 18px;*/
 /*}*/
 
 /*.expand-on-icon {*/
-/*    background-image: url("/themes/custom/assets/images/Expand-Light-On.svg");*/
+/*    background-image: url("/themes/mamash/assets/images/Expand-Light-On.svg");*/
 /*    width: 18px;*/
 /*    height: 18px;*/
 /*}*/
 
 /*.icon-menu-close-adj {*/
-/*    background-image: url("/themes/custom/assets/images/cross-icon-adj.svg");*/
+/*    background-image: url("/themes/mamash/assets/images/cross-icon-adj.svg");*/
 /*    width: 32px;*/
 /*    height: 32px;*/
 /*}*/
 
 .icon-facebook {
-    background-image: url("/themes/custom/assets/images/facebook.svg");
+    background-image: url("/themes/mamash/assets/images/facebook.svg");
     width: 40px;
     height: 40px;
 }
 
 .icon-instagram {
-    background-image: url("/themes/custom/assets/images/instagram.svg");
+    background-image: url("/themes/mamash/assets/images/instagram.svg");
     width: 40px;
     height: 40px;
 }
 
 .icon-youtube {
-    background-image: url("/themes/custom/assets/images/youtube.svg");
+    background-image: url("/themes/mamash/assets/images/youtube.svg");
     width: 40px;
     height: 40px;
 }
 
 /*.icon-dropdown {*/
-/*    background-image: url("/themes/custom/assets/images/icon-dropdown.svg");*/
+/*    background-image: url("/themes/mamash/assets/images/icon-dropdown.svg");*/
 /*}*/
 
 
@@ -1072,7 +1072,7 @@ section.product-detail div.layouter .form-container div.product-image-group div 
 /*}*/
 
 /*.checkbox .checkbox-view {*/
-/*    background-image: url("/themes/custom/assets/images/Checkbox.svg");*/
+/*    background-image: url("/themes/mamash/assets/images/Checkbox.svg");*/
 /*    height: 24px;*/
 /*    width: 24px;*/
 /*    margin: 0;*/
@@ -1082,7 +1082,7 @@ section.product-detail div.layouter .form-container div.product-image-group div 
 /*}*/
 
 /*.checkbox input:checked + .checkbox-view {*/
-/*    background-image: url("/themes/custom/assets/images/Checkbox-Checked.svg");*/
+/*    background-image: url("/themes/mamash/assets/images/Checkbox-Checked.svg");*/
 /*}*/
 
 /*.checkbox input:disabled + .checkbox-view {*/
@@ -1121,12 +1121,12 @@ section.product-detail div.layouter .form-container div.product-image-group div 
 .main .category-container .responsive-layred-filter .filter-attributes .filter-attributes-item .filter-attributes-content ol.items li.item .checkbox .checkbox-view {
     height: 16px;
     width: 16px;
-    background-image: url(/themes/custom/assets/images/checkbox.svg?c3dbe347b49aaab5dc7e8332f51c9bf5);
+    background-image: url(/themes/mamash/assets/images/checkbox.svg?c3dbe347b49aaab5dc7e8332f51c9bf5);
 }
 
 .main .category-container .layered-filter-wrapper .filter-attributes .filter-attributes-item .filter-attributes-content ol.items li.item .checkbox input:checked + .checkbox-view,
 .main .category-container .responsive-layred-filter .filter-attributes .filter-attributes-item .filter-attributes-content ol.items li.item .checkbox input:checked + .checkbox-view {
-    background-image: url(/themes/custom/assets/images/checkbox-checked.svg?802912fd437c681ee53580c8b2635f94);
+    background-image: url(/themes/mamash/assets/images/checkbox-checked.svg?802912fd437c681ee53580c8b2635f94);
 }
 
 .main .category-container .layered-filter-wrapper .filter-attributes .filter-attributes-item .filter-attributes-content ol.items li.item .color-swatch,

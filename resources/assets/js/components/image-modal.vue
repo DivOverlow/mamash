@@ -88,7 +88,7 @@
         z-index: 50;
     }
     .modal-mask .modal-content {
-        background-image: url('/themes/custom/assets/images/banner/bg_card.jpg');
+        background-image: url('/themes/mamash/assets/images/banner/bg_card.jpg');
         z-index: 10;
         padding: 2em;
         height: 100%;

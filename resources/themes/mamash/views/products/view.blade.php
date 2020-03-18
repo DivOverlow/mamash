@@ -68,7 +68,7 @@
                     <input type="hidden" name="product_id" value="{{ $product->product_id }}">
 
                     <div class="w-full bg-cover h-full sm:h-132"
-                         style="background-image: url('/themes/custom/assets/images/banner/bg_card.jpg');">
+                         style="background-image: url('/themes/mamash/assets/images/banner/bg_card.jpg');">
 
                         <div class="main-container-wrapper flex flex-col sm:flex-row my-4">
                             <div class="w-full sm:w-1/2">
@@ -147,7 +147,7 @@
                         </div>
                         <div class="w-full h-140 sm:h-132 sm:w-1/2 relative bg-gray-dark-grey flex content-start sm:content-center flex-wrap h-140 sm:h-132">
                             <img  class="content-container h-10 sm:h-12 w-auto absolute inset-x-0 top-0 mx-auto sm:ml-12 my-8"
-                                src="/themes/custom/assets/images/logo.png"/>
+                                src="/themes/mamash/assets/images/logo.png"/>
                             <div
                                 class="text-white leading-none sm:ml-12 flex flex-row sm:flex-col block mx-auto mt-20 sm:mt-0">
                                 <div class="sm:mb-10">
@@ -160,7 +160,7 @@
                                 </div>
                             </div>
                             <div class="absolute object-contain inset-x-0 bottom-0"><img
-                                    src="/themes/custom/assets/images/banner/happy-girl.png" alt="banner image"
+                                    src="/themes/mamash/assets/images/banner/happy-girl.png" alt="banner image"
                                     class="max-w-sm mx-auto sm:ml-auto sm:mr-10 h-88 sm:h-112">
                             </div>
                         </div>

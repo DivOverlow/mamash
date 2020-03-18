@@ -8,8 +8,8 @@
     @inject ('templateRepository', 'Webkul\CMS\Repositories\TemplateRepository')
 
     <div class="auth-content w-full bg-cover h-full relative"
-         style="background-image: url('/themes/custom/assets/images/banner/bg_card.jpg');  min-height: 34rem;">
-        <img src="/themes/custom/assets/images/banner/blooper.png" alt="blooper image" class="h-24 w-auto absolute right-0 mt-20 invisible sm:visible">
+         style="background-image: url('/themes/mamash/assets/images/banner/bg_card.jpg');  min-height: 34rem;">
+        <img src="/themes/mamash/assets/images/banner/blooper.png" alt="blooper image" class="h-24 w-auto absolute right-0 mt-20 invisible sm:visible">
         <div class="main-container-wrapper flex flex-col justify-content-between sm:flex-row">
             <div class="w-full sm:w-1/2 py-4 pr-4">
                 {!! view_render_event('bagisto.shop.customers.login.before') !!}
