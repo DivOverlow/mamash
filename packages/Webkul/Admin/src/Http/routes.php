@@ -736,13 +736,13 @@ Route::group(['middleware' => ['web']], function () {
                 'view' => 'admin::settings.content.edit'
             ])->name('admin.content.edit');
 
-            Route::put('/content/edit/{id}', 'ContentController@update')->defaults('_config', [
+            Route::put('/content/edit/{id}', 'Webkul\Core\Http\Controllers\ContentController@update')->defaults('_config', [
                 'redirect' => 'admin.content.index'
             ])->name('admin.content.update');
 
-            Route::post('/content/delete/{id}', 'ContentController@destroy')->name('admin.content.delete');
+            Route::post('/content/delete/{id}', 'Webkul\Core\Http\Controllers\ContentController@destroy')->name('admin.content.delete');
 
-            Route::post('/content/masssdelete', 'ContentController@massDestroy')->defaults('_config', [
+            Route::post('/content/masssdelete', 'Webkul\Core\Http\Controllers\ContentController@massDestroy')->defaults('_config', [
                 'redirect' => 'admin.content.index'
             ])->name('admin.content.mass-delete');
 

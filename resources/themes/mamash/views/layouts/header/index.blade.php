@@ -73,6 +73,17 @@
         <div class="main-container-wrapper flex items-center flex-col sm:flex-row h-24">
             <div class="header-bottom w-full flex-grow lg:flex lg:items-center lg:w-full" id="header-bottom" style="display: none;">
                 @include('shop::layouts.header.nav-menu.navmenu')
+                @include('shop::partials.tool-bar')
+                @php
+                    $headerContent = app('Webkul\Core\Repositories\ContentRepository')->getAllContents();
+                @endphp
+
+                <content-header
+                    url="{{ url()->to('/') }}"
+                    :header-content="{{ json_encode($headerContent) }}"
+                    heading= "{{ __('velocity::app.menu-navbar.text-category') }}"
+                ></content-header>
+
             </div>
             <div class="w-40 lg:w-56 absolute inset-0 top-0 sm:relative h-12">
                 <ul class="logo-container w-40 lg:w-56 sm:mx-2 flex">

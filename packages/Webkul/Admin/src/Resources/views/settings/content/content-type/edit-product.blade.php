@@ -10,10 +10,10 @@
 
             <div class="control-group" :class="[errors.has('{{$locale}}[catalog_type]') ? 'has-error' : '']">
                 <label for="catalog_type" class="required">
-                    {{ __('velocity::app.admin.contents.content.catalog-type') }}</label>
+                    {{ __('admin::app.contents.content.catalog-type') }}</label>
 
-                <select class="control" v-validate="'required'" id="catalog_type" name="{{$locale}}[catalog_type]" v-model="catalog_type" data-vv-as="&quot;{{ __('velocity::app.admin.contents.content.catalog-type') }}&quot;" @change="loadCatalogType($event)">
-                    <option value="">{{ __('velocity::app.admin.contents.select') }}</option>
+                <select class="control" v-validate="'required'" id="catalog_type" name="{{$locale}}[catalog_type]" v-model="catalog_type" data-vv-as="&quot;{{ __('admin::app.contents.content.catalog-type') }}&quot;" @change="loadCatalogType($event)">
+                    <option value="">{{ __('admin::app.contents.select') }}</option>
 
                     @foreach (velocity()->getCatalogType() as $key => $catalog_type)
                         <option value="{{ $key }}" {{ $catalogType == $key ? 'selected' : '' }}>{{ $catalog_type }}</option>
@@ -26,9 +26,9 @@
             <div v-if="catalog_type == 'custom'">
                 <field-autocomplete
                     :fieldLabel="'{{ __('admin::app.catalog.attributes.options') }}'"
-                    :fieldPlaceholder="'{{ __('velocity::app.admin.contents.search-hint') }}'"
-                    :routePath="'{{ route('velocity.admin.content.search') }}'"
-                    :linkedResults='@json(app('Webkul\Velocity\Repositories\ContentRepository')->getProducts($content->id))'
+                    :fieldPlaceholder="'{{ __('admin::app.contents.search-hint') }}'"
+                    :routePath="'{{ route('admin.content.search') }}'"
+                    :linkedResults='@json(app('Webkul\Core\Repositories\ContentRepository')->getProducts($content->id))'
                 ></field-autocomplete>
             </div>
         </div>
@@ -68,7 +68,7 @@
                         </li>
 
                         <li v-if='! searched_results.length && search_field.length && ! is_searching'>
-                            {{ __('velocity::app.admin.contents.no-result-found') }}
+                            {{ __('admin::app.contents.no-result-found') }}
                         </li>
 
                         <li v-if="is_searching && search_field.length">

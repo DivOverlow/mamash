@@ -1,5 +1,13 @@
 <?php
-    use Webkul\Core\Core;
+use Webkul\Core\Core;
+use Webkul\Core\Velocity;
+
+if (! function_exists('velocity')) {
+        function velocity()
+        {
+            return app()->make(Velocity::class);
+        }
+    }
 
     if (! function_exists('core')) {
         function core()
