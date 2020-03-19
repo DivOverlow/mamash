@@ -169,6 +169,12 @@ return [
         'route' => 'admin.banners.index',
         'sort' => 8,
         'icon-class' => ''
+    ], [
+        'key' => 'settings.content',
+        'name' => 'admin::app.layouts.header-content',
+        'route' => 'admin.content.index',
+        'sort' => 9,
+        'icon-class' => ''
     ],[
         'key' => 'settings.taxes',
         'name' => 'admin::app.layouts.taxes',

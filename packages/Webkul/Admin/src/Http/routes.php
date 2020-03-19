@@ -668,7 +668,6 @@ Route::group(['middleware' => ['web']], function () {
                 'view' => 'admin::tax.tax-categories.index'
             ])->name('admin.tax-categories.index');
 
-
             // tax category routes
             Route::get('/tax-categories/create', 'Webkul\Tax\Http\Controllers\TaxCategoryController@show')->defaults('_config', [
                 'view' => 'admin::tax.tax-categories.create'
@@ -717,6 +716,37 @@ Route::group(['middleware' => ['web']], function () {
                 'redirect' => 'admin.tax-rates.index'
             ])->name('admin.tax-rates.import');
             //tax rate ends
+
+            // Content Pages Route
+            Route::get('/content', 'Webkul\Core\Http\Controllers\ContentController@index')->defaults('_config', [
+                'view' => 'admin::settings.content.index'
+            ])->name('admin.content.index');
+
+            Route::get('/content/search', 'Webkul\Core\Http\Controllers\ContentController@search')->name('admin.content.search');
+
+            Route::get('/content/create', 'Webkul\Core\Http\Controllers\ContentController@create')->defaults('_config',[
+                'view' => 'admin::settings.content.create'
+            ])->name('admin.content.create');
+
+            Route::post('/content/create', 'Webkul\Core\Http\Controllers\ContentController@store')->defaults('_config',[
+                'redirect' => 'admin.content.index'
+            ])->name('admin.content.store');
+
+            Route::get('/content/edit/{id}', 'Webkul\Core\Http\Controllers\ContentController@edit')->defaults('_config',[
+                'view' => 'admin::settings.content.edit'
+            ])->name('admin.content.edit');
+
+            Route::put('/content/edit/{id}', 'ContentController@update')->defaults('_config', [
+                'redirect' => 'admin.content.index'
+            ])->name('admin.content.update');
+
+            Route::post('/content/delete/{id}', 'ContentController@destroy')->name('admin.content.delete');
+
+            Route::post('/content/masssdelete', 'ContentController@massDestroy')->defaults('_config', [
+                'redirect' => 'admin.content.index'
+            ])->name('admin.content.mass-delete');
+
+            // End Content Pages Route
 
             //DataGrid Export
             Route::post('admin/export', 'Webkul\Admin\Http\Controllers\ExportController@export')->name('admin.datagrid.export');

@@ -76,7 +76,51 @@ return [
         'tax-rates' => 'Tax Rates',
         'promotion' => 'Promotions',
         'discount' => 'Discount',
-        'cms' => 'CMS'
+        'cms' => 'CMS',
+        'header-content' => 'Header Content',
+    ],
+    'contents' => [
+        'self' => 'Self',
+        'active' => 'Active',
+        'new-tab' => 'New Tab',
+        'inactive' => 'Inactive',
+        'title' => 'Content List',
+        'select' => '-- Select --',
+        'add-title' => 'Add Content',
+        'btn-add-content' => 'Add Content',
+        'save-btn-title' => 'Save Content',
+        'autocomplete' => '[Autocomplete]',
+        'no-result-found' => 'No record found.',
+        'search-hint' => 'Search product here...',
+        'mass-delete-success' => 'Selected content deleted successfully.',
+        'tab' => [
+            'page' => 'Page Setting',
+            'content' => 'Content Setting',
+            'meta_content' => 'Meta Data',
+        ],
+        'page' => [
+            'title' => 'Title',
+            'status' => 'Status',
+            'position' => 'Position',
+        ],
+        'content' => [
+            'content-type' => 'Content Type',
+            'custom-title' => 'Custom Title',
+            'category-slug' => 'Category Slug',
+            'link-target' => 'Page Link Target',
+            'custom-product' => 'Store Products',
+            'custom-heading' => 'Custom Heading',
+            'catalog-type' => 'Product Catalog Type',
+            'static-description' => 'Content Description',
+            'page-link' => 'Page Link [e.g. http://example.com/../../]',
+        ],
+        'datagrid' => [
+            'id' => 'Id',
+            'title' => 'Title',
+            'status' => 'Status',
+            'position' => 'Position',
+            'content-type' => 'Content Type',
+        ]
     ],
 
     'acl' => [

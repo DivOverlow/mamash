@@ -609,7 +609,7 @@
         padding: 3px 25px;
     }
 }
-@media(min-width: 768px){
+@media(min-width: 768px) and (max-width: 770px) {
     #header-bottom{
         display: flex !important;
     }
