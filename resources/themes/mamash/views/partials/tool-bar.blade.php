@@ -1,8 +1,8 @@
 @push('scripts')
 <script type="text/x-template" id="content-header-template">
     <div class="content-list right">
-        <ul type="none" class="no-margin">
-            <li v-for="(content, index) in headerContent" :key="index">
+        <ul type="none" class="no-margin nav">
+            <li v-for="(content, index) in headerContent" :key="index" class="first-menu-item">
                 <a
                     v-text="content.title"
                     :href="url+`/${content['page_link']}`"

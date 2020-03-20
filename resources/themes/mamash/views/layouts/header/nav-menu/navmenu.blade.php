@@ -9,9 +9,11 @@ foreach (app('Webkul\Category\Repositories\CategoryRepository')->getVisibleCateg
         array_push($categories, $category);
 }
 
+$headerContent = app('Webkul\Core\Repositories\ContentRepository')->getAllContents();
+
 ?>
 
-<category-nav categories='@json($categories)' url="{{url()->to('/')}}"></category-nav>
+<category-nav  :header-content="{{ json_encode($headerContent) }}" categories='@json($categories)' url="{{url()->to('/')}}"></category-nav>
 
 {!! view_render_event('bagisto.shop.layout.header.category.after') !!}
 
@@ -30,6 +32,16 @@ foreach (app('Webkul\Category\Repositories\CategoryRepository')->getVisibleCateg
                 :item="item"
                 :parent="index">
             </category-item>
+
+            <li v-for="(content, index) in headerContent" :key="index" class="first-menu-item">
+                <a
+                    v-text="content.title"
+                    :href="url+`/${content['page_link']}`"
+                    v-if="(content['content_type'] == 'link' || content['content_type'] == 'category')"
+                    :target="content['link_target'] ? '_blank' : '_self'">
+                </a>
+            </li>
+
         </ul>
 
     </script>
@@ -41,6 +53,13 @@ foreach (app('Webkul\Category\Repositories\CategoryRepository')->getVisibleCateg
 
             props: {
                 categories: {
+                    type: [Array, String, Object],
+                    required: false,
+                    default: (function () {
+                        return [];
+                    })
+                },
+                headerContent: {
                     type: [Array, String, Object],
                     required: false,
                     default: (function () {
