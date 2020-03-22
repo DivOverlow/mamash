@@ -2,12 +2,12 @@
 
 <div class="product-card max-w-md bg-orange-light border border-orange px-4 py-3 relative">
 
-    @inject ('productImageHelper', 'Webkul\Product\Helpers\ProductImage')
     @inject ('productRepository', 'Webkul\Product\Repositories\ProductRepository')
+    @inject ('productImageHelper', 'Webkul\Product\Helpers\ProductImage')
 
     <?php $productBaseImage = $productImageHelper->getProductBaseImage($product);
     $categoryCollection = null;
-    $product_categories = $productRepository->find($product->id);
+    $product_categories = $productRepository->find($product->product_id);
 
     if($product_categories) {
         foreach ($product_categories->categories as $category) {

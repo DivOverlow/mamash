@@ -45,7 +45,7 @@
     $categories = array_reverse($categories);
 
     $categoryCollection = null;
-    $product_categories = $productRepository->find($product->id);
+    $product_categories = $productRepository->find($product->product_id);
 
     if($product_categories) {
         foreach ($product_categories->categories()->get() as $category) {
