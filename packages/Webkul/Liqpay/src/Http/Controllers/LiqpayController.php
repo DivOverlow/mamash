@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
-use Liqpay as LiqPaySDK;
+use LiqPay as LiqPaySDK;
 use Webkul\Checkout\Facades\Cart;
 use Webkul\Sales\Models\Invoice;
 use Webkul\Sales\Models\Order;
