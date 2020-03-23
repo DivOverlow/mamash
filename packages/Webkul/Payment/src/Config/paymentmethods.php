@@ -27,5 +27,14 @@ return [
         'active' => true,
         'business_account' => 'test@webkul.com',
         'sort' => 3
+    ],
+
+    'liqpay' => [
+        'code' => 'liqpay',
+        'title' => 'LiqPay',
+        'description' => 'shop::app.checkout.onepage.liqpay-desc',
+        'class' => 'Webkul\Liqpay\Payment\Liqpay',
+        'active' => true,
+        'sort' => 4
     ]
 ];
