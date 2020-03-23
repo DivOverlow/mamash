@@ -550,6 +550,7 @@ return [
             'cash-desc' => 'Cash On Delivery',
             'money-desc' => 'Money Transfer',
             'paypal-desc' => 'Paypal Standard',
+            'liqpay-desc' => 'LiqPay Payment System',
             'free-desc' => 'This is a free shipping',
             'flat-desc' => 'This is a flat rate',
             'password' => 'Password',

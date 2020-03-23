@@ -12,7 +12,7 @@
             <span class="border-bottom"></span>
         </div>
 
-        <div class="max-w-sm lg:max-w-md w-full lg:w-1/3 pl-0 sm:pl-6 pb-0 sm:pb-6">
+        <div class="lg:max-w-md w-full lg:w-1/3 pl-0 sm:pl-6 pb-0 sm:pb-6">
 
             @foreach ($productUpSells as $up_sell_product)
 

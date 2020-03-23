@@ -555,6 +555,7 @@ return [
             'cash-desc' => 'Оплата при доставці',
             'money-desc' => 'Грошовий переказ',
             'paypal-desc' => 'Paypal Standard',
+            'liqpay-desc' => 'LiqPay платыжна система',
             'free-desc' => 'Це безкоштовна доставка',
             'flat-desc' => 'Це єдина ставка',
             'password' => 'Пароль',

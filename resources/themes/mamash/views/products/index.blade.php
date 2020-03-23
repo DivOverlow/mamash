@@ -123,7 +123,7 @@
                                 @foreach ($products as $productFlat)
                                     @if ($loop->index == 0)
 
-                                        <div class="max-w-sm lg:max-w-md w-full lg:w-1/3 bg-gray-dark text-xs mb-6">
+                                        <div class="md:max-w-sm lg:max-w-md w-full lg:w-1/3 bg-gray-dark text-xs mb-6">
                                                 <div class="hidden p-10 sm:block">
                                                     <?php
                                                     $categories = [];
@@ -197,7 +197,7 @@
                                                     $action_amount = $gift_products[$gift_index]->action_amount;
                                                     $gift_index++;
                                                 ?>
-                                                    <div class="max-w-sm lg:max-w-md w-full lg:w-1/3 my-3 sm:my-0">
+                                                    <div class="md:max-w-sm lg:max-w-md w-full lg:w-1/3 my-3 sm:my-0">
                                                       @include ('shop::products.list.gift', ['product' => $product, 'evaluation' => $action_amount, 'class' => 'medium' ])
 
                                                     @if (($gift_index < count($gift_products)) && (count($products) - $loop->index) < 3)
@@ -218,7 +218,7 @@
                                             @endif
                                     @endif
 
-                                    <div class="max-w-sm lg:max-w-md w-full lg:w-1/3 pl-0 sm:pl-6 pb-0 sm:pb-6">
+                                    <div class="md:max-w-sm lg:max-w-md w-full lg:w-1/3 pl-0 sm:pl-6 pb-0 sm:pb-6">
                                         @include ('shop::products.list.card', ['product' => $productFlat])
                                     </div>
 
@@ -246,7 +246,7 @@
                         @else
                             <div class="product-list">
                                 @foreach ($products as $productFlat)
-                                    <div class="max-w-sm lg:max-w-md w-full lg:w-1/3 bg-gray-dark text-xs">
+                                    <div class="md:max-w-sm lg:max-w-md w-full lg:w-1/3 bg-gray-dark text-xs">
                                                         <div class="hidden p-10 sm:block">
                                                             <?php
                                                             $categories = [];

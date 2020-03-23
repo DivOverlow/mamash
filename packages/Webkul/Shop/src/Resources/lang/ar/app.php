@@ -1,4 +1,4 @@
-<?php
+shop::app.checkout.onepage.liqpay-desc<?php
 
 return [
     'layouts' => [

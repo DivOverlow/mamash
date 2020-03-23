@@ -556,6 +556,7 @@ return [
             'cash-desc' => 'Оплата при доставке',
             'money-desc' => 'Денежный перевод',
             'paypal-desc' => 'Paypal Standard',
+            'liqpay-desc' => 'LiqPay платежная система',
             'free-desc' => 'Это бесплатная доставка',
             'flat-desc' => 'Это фиксированная ставка',
             'password' => 'Пароль',
