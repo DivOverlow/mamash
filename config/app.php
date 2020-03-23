@@ -242,6 +242,7 @@ return [
         Webkul\Shipping\Providers\ShippingServiceProvider::class,
         Webkul\Payment\Providers\PaymentServiceProvider::class,
         Webkul\Paypal\Providers\PaypalServiceProvider::class,
+        Webkul\Liqpay\Providers\LiqpayServiceProvider::class,
         Webkul\Sales\Providers\SalesServiceProvider::class,
         Webkul\Tax\Providers\TaxServiceProvider::class,
         Webkul\API\Providers\APIServiceProvider::class,
