@@ -487,36 +487,6 @@
     cursor: pointer
 }
 
-
-@-webkit-keyframes flyout {
-    0% {
-        -webkit-transform: translateX(28rem);
-        transform: translateX(28rem);
-        opacity: 0
-    }
-    to {
-        -webkit-transform: translateX(0);
-        transform: translateX(0);
-        opacity: 1
-    }
-}
-
-@keyframes flyout {
-    0% {
-        -webkit-transform: translateX(28rem);
-        transform: translateX(28rem);
-        opacity: 0
-    }
-    to {
-        -webkit-transform: translateX(0);
-        transform: translateX(0);
-        opacity: 1
-    }
-}
-
-
-
-
 @-webkit-keyframes jelly {
     0% {
         -webkit-transform: translateY(0) scale(.7);
@@ -1446,7 +1416,7 @@ modal {
     display: block
 }
 
-.account-layout .modal-container {
+.modal-container {
     background: #fff;
     top: 100px;
     width: 600px;
@@ -1466,23 +1436,7 @@ modal {
     max-height: 80%
 }
 
-.cart-dropdown-container .modal-container {
-    background: #fff;
-    position: fixed;
-    -webkit-box-shadow: 0 15px 25px 0 rgba(0, 0, 0, .03), 0 20px 45px 5px rgba(0, 0, 0, .2);
-    box-shadow: 0 15px 25px 0 rgba(0, 0, 0, .03), 0 20px 45px 5px rgba(0, 0, 0, .2);
-    -webkit-animation: fade-in-white .3s ease-in-out;
-    animation: fade-in-white .3s ease-in-out;
-    -webkit-animation: flyout .5s cubic-bezier(0.3, 0.5, 0.8, 1.0);
-    animation: flyout .5s cubic-bezier(0.3, 0.5, 0.8, 1.0);
-    /*transform: translateZ(0);*/
-    /*transition: right .5s ease-in-out;*/
-
-    @apply  .inset-y-0 .right-0 .max-w-md .w-full .z-20;
-}
-
-
-.account-layout .modal-container .modal-header {
+.modal-container .modal-header {
     padding: 20px
 }
 
@@ -1493,51 +1447,34 @@ modal {
     margin: 0
 }
 
-.account-layout .modal-container .modal-header .icon {
+.modal-container .modal-header .icon {
     float: right;
     cursor: pointer;
 }
 
-.account-layout .modal-container .modal-body {
+.modal-container .modal-body {
     padding: 20px
 }
-
-.cart-dropdown-container .modal-container .modal-header .icon {
-    cursor: pointer;
-    @apply .absolute .top-0 .bottom-0 .left-0 .px-4 .py-4 .m-1;
-}
-
-/*.cart-dropdown-container .modal-container .modal-body {*/
-/*    height: 100%;*/
-/*}*/
-
-/*.cart-dropdown-container .modal-container .modal-body .cart-content {*/
-/*    overflow-y: auto;*/
-/*    max-height: 290px;*/
-/*}*/
-
-
-
 
 .modal-container .modal-body .control-group .control {
     width: 100%
 }
 
-.cart-dropdown-container .modal-container {
+.card-modal-container {
     height: 100vh; /* Use vh as a fallback for browsers that do not support Custom Properties */
     height: calc(var(--vh, 1vh) * 100);
     margin-top: calc(var(--vh, 1vh) * 100 - 100vh);
 }
 
-.cart-dropdown-container .cart-content {
+.card-modal-container .cart-content {
     max-height: calc(var(--vh, 1vh) * 100 * 0.35);
 }
 
 @media only screen and (max-width: 770px) {
-    .cart-dropdown-container .modal-content {
+    .card-modal-container .modal-content {
         max-width: 100%;
     }
-    .account-layout .modal-container {
+    .modal-container {
         max-width: 80%;
         left: 10%;
         margin-left: 0
