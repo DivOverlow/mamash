@@ -40,7 +40,8 @@
         }
     ?>
 
-    <div class="dropdown-toggle flex relative w-12 inline-block" @click="openCardModal">
+    <div class="dropdown-toggle flex relative w-12 inline-block"  @click="showModal('deleteCart')">
+{{--    <div class="dropdown-toggle flex relative w-12 inline-block" @click="openCardModal">--}}
         <a class="cart-link z-10 w-full" href="{{ route('shop.checkout.cart.index') }}" title="{{ __('shop::app.header.cart') }}">
             <span class="cart-icon"></span>
         </a>
@@ -113,7 +114,8 @@
     </eclipse-modal>
     @endif
 
-    <card-modal message="{{session("showCardModal") }}" @close="closeCardModal">
+{{--    <card-modal message="{{session("showCardModal") }}" @close="closeCardModal">--}}
+    <modal message="{{session("showCardModal") }}" id="deleteCart" :is-open="modalIds.deleteCart">
         <div slot="header">
             <div class="dropdown-header bg-gray-snow h-20 flex content-center flex-wrap">
                 <p class="heading w-full font-medium text-center text-gray-dark text-xl uppercase">
@@ -307,7 +309,7 @@
             </div>
 
         </div>
-    </card-modal>
+    </modal>
 
     <?php
         if (session()->has('showCardModal')) {
