@@ -1468,7 +1468,7 @@ modal {
 
 .cart-dropdown-container .modal-container {
     background: #fff;
-    position: absolute;
+    position: fixed;
     -webkit-box-shadow: 0 15px 25px 0 rgba(0, 0, 0, .03), 0 20px 45px 5px rgba(0, 0, 0, .2);
     box-shadow: 0 15px 25px 0 rgba(0, 0, 0, .03), 0 20px 45px 5px rgba(0, 0, 0, .2);
     -webkit-animation: fade-in-white .3s ease-in-out;
