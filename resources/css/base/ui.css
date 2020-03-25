@@ -1391,7 +1391,7 @@ dropdown-list
     padding: 20px
 }
 
-modal {
+modal, card-modal, eclipse-modal {
     display: none
 }
 
