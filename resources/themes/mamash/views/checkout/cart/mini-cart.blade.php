@@ -115,7 +115,7 @@ $premium_counter = 0;
 
     <card-modal message="{{session("showCardModal") }}" @close="closeCardModal">
         <div slot="header">
-            <div class="dropdown-header bg-gray-snow h-20 flex content-center flex-wrap">
+            <div class="dropdown-header bg-gray-snow h-16 sm:h-20 flex content-center flex-wrap">
                 <p class="heading w-full font-medium text-center text-gray-dark text-xl uppercase">
                     {{ __('shop::app.checkout.cart.title') }}
                 </p>
