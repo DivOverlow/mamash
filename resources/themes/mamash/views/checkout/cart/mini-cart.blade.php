@@ -115,7 +115,7 @@ $premium_counter = 0;
 
     <card-modal message="{{session("showCardModal") }}" @close="closeCardModal">
         <div slot="header">
-            <div class="dropdown-header bg-gray-snow h-16 sm:h-20 flex content-center flex-wrap">
+            <div class="dropdown-header bg-gray-snow h-20 flex content-center flex-wrap">
                 <p class="heading w-full font-medium text-center text-gray-dark text-xl uppercase">
                     {{ __('shop::app.checkout.cart.title') }}
                 </p>
@@ -206,7 +206,7 @@ $premium_counter = 0;
                                     ?>
 
                                     @if (session()->get('gift_product_id') == $product->product_id)
-                                        <div class="w-full flex flex-row items-center justify-between text-left py-2 border-t-2 border-orange-500 rounded-b shadow-md">
+                                        <div class="w-full flex flex-row items-center justify-between text-left py-2 border-t-2 border-orange-500 rounded-b shadow-md mb-10 sm:mb-0">
                                             <div class="item-image h-28 w-1/3 flex items-center justify-end">
                                                 <a href="{{ url()->to('/').'/products/'.$product->url_key }}"><img  class="object-scale-down h-24 w-auto"
                                                                                                                     src="{{ $productBaseImage['small_image_url'] }}"/></a>
@@ -255,7 +255,7 @@ $premium_counter = 0;
                                         @php
                                             $productBaseImage = $productImageHelper->getProductBaseImage($product);
                                         @endphp
-                                        <div class="w-full flex flex-row justify-between items-center text-left py-2">
+                                        <div class="w-full flex flex-row justify-between items-center text-left py-2 mb-10">
                                             <div class="item-image h-28 w-1/2 flex items-center justify-center">
                                                 <a href="{{ url()->to('/').'/products/'.$product->url_key }}"><img  class="object-scale-down h-24 w-auto"
                                                                                                                     src="{{ $productBaseImage['small_image_url'] }}"/></a>
