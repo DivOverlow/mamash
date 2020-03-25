@@ -10,3 +10,11 @@ composer install --no-dev
 3. php artisan key:generate
 
 в терминале npm install
+
+
+Админ базы данных. 
+
+MySql
+root
+qwerty67
+http://185.69.153.29/phpmyadmin/index.php
