@@ -1,0 +1,24 @@
+version: "3.3"
+services:
+    php:
+        #image: php:7.2-apache
+        build: ./php
+        container_name: mamash
+        working_dir: /var/www/html
+        networks:
+            - proxy
+        dns: 172.101.10.250
+        environment:
+            - VIRTUAL_HOST=mamash.divo
+        external_links:
+            - "divo-mysql:mysql"
+            - "divo-mail:mail"
+        volumes:
+            - ../:/var/www/html
+            - ./server/demo.conf:/etc/apache2/sites-available/000-default.conf
+            - ./server/rewrite.load:/etc/apache2/mods-enabled/rewrite.load
+            
+networks:
+  proxy:
+    external:
+      name: global_proxy
