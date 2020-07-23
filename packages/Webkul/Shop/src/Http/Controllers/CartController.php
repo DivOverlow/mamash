@@ -5,6 +5,7 @@ namespace Webkul\Shop\Http\Controllers;
 use Webkul\Customer\Repositories\WishlistRepository;
 use Webkul\Product\Repositories\ProductRepository;
 use Cart;
+use Webkul\Discount\Helpers\Cart\CouponAbleRule as Coupon;
 
 /**
  * Cart controller for the customer and guest users for adding and
@@ -38,6 +39,12 @@ class CartController extends Controller
     protected $productRepository;
 
     /**
+     * CouponAbleRule instance object
+     *
+     */
+    protected $coupon;
+
+    /**
      * Create a new controller instance.
      *
      * @param  \Webkul\Customer\Repositories\CartItemRepository $wishlistRepository
@@ -45,6 +52,7 @@ class CartController extends Controller
      * @return void
      */
     public function __construct(
+        Coupon $coupon,
         WishlistRepository $wishlistRepository,
         ProductRepository $productRepository
     )
@@ -56,6 +64,8 @@ class CartController extends Controller
         $this->productRepository = $productRepository;
 
         $this->_config = request('_config');
+
+        $this->coupon = $coupon;
     }
 
     /**
@@ -290,7 +300,8 @@ class CartController extends Controller
         $couponCode = request()->get('code');
 
         try {
-            if (strlen($couponCode)) {
+            if (strlen($couponCode) && $this->coupon->apply($couponCode)) {
+
                 Cart::setCouponCode($couponCode)->collectTotals();
 
                 if (Cart::getCart()->coupon_code == $couponCode) {
@@ -320,6 +331,7 @@ class CartController extends Controller
      */
     public function removeCoupon()
     {
+        $this->coupon->remove();
         Cart::removeCouponCode()->collectTotals();
 
         return response()->json([
