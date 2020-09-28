@@ -4,8 +4,15 @@
     </IfModule>
 
     RewriteEngine On
-
+    
+    #RewriteCond %{HTTPS} off
+    #RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI}
+    
     # Handle Authorization Header
+    AuthType Basic
+    AuthName "Restricted Content"
+    AuthUserFile /etc/httpd//.htpasswd
+    Require valid-user
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
