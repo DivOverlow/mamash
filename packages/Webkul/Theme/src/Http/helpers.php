@@ -10,7 +10,7 @@ if (! function_exists('themes')) {
 }
 
 if (! function_exists('bagisto_asset')) {
-    function bagisto_asset($path, $secure = null)
+    function bagisto_asset($path, $secure = true)
     {
         return themes()->url($path, $secure);
     }
