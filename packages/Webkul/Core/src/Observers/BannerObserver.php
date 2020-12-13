@@ -4,16 +4,16 @@ namespace Webkul\Core\Observers;
 
 use Illuminate\Support\Facades\Storage;
 
-class SliderObserver
+class BannerObserver
 {
     /**
-     * Handle the Slider "deleted" event.
+     * Handle the Banner "deleted" event.
      *
-     * @param  Slider $slider
+     * @param  Banner $banner
      * @return void
      */
-    public function deleted($slider)
+    public function deleted($banner)
     {
-        Storage::delete($slider->path);
+        Storage::delete($banner->path);
     }
 }

@@ -1,9 +1,11 @@
+/app/Providers/AppServiceProvider.php
 /node_modules
 /nbproject
 /public/hot
 /public/installer
 /public/vendor
 /public/storage
+/public/.htaccess
 /storage/*.key
 /vendor
 /.idea
@@ -18,3 +20,6 @@ yarn-error.log
 composer.lock
 package-lock.json
 yarn.lock
+.htaccess
+
+/packages/Webkul/Theme/src/Http/helpers.php

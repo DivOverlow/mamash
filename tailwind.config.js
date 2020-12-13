@@ -1,18 +1,13 @@
 module.exports = {
     important: true,
+    darkMode: false, // or 'media' or 'class'
     theme: {
-        screens: {
-            sm: '640px',
-            md: '768px',
-            lg: '1024px',
-            xl: '1280px',
-        },
-        stroke: theme => ({
-         // current: 'currentColor',
-         white: theme('colors.white'),
-         gray : theme('colors.text-gray-dark'),
-         // orange: theme('colors.text-yellow'),
-       }),
+       //  stroke: theme => ({
+       //   // current: 'currentColor',
+       //   white: theme('colors.white'),
+       //   gray : theme('colors.text-gray-dark'),
+       //   // orange: theme('colors.text-yellow'),
+       // }),
 
         fontFamily: {
             sans: [
@@ -33,13 +28,13 @@ module.exports = {
             '6xl': '4rem',
             '7xl': '5rem',
         },
-
-        borderWidth: {
-            default: '1px',
-            '0': '0',
-            '2': '2px',
-            '4': '4px',
-        },
+        //
+        // borderWidth: {
+        //     default: '1px',
+        //     '0': '0',
+        //     '2': '2px',
+        //     '4': '4px',
+        // },
         height: {
             px: '1px',
             '0': '0',
@@ -98,7 +93,24 @@ module.exports = {
             spacing: {
                 '96': '24rem',
                 '128': '32rem',
-            }
+            },
+        },
+    },
+    purge: {
+        content: [
+            './app/**/*.php',
+            './resources/**/*.html',
+            './resources/**/*.js',
+            './resources/**/*.jsx',
+            './resources/**/*.ts',
+            './resources/**/*.tsx',
+            './resources/**/*.php',
+            './resources/**/*.vue',
+            './resources/**/*.twig',
+        ],
+        options: {
+            defaultExtractor: content => content.match(/[\w-/.:]+(?<!:)/g) || [],
+            whitelistPatterns: [/-active$/, /-enter$/, /-leave-to$/, /show$/],
         },
     },
     variants: {

@@ -1062,12 +1062,11 @@ dropdown-list
 }
 
 .control-group {
-    /*@apply .font-serif .text-xl .w-full .relative .block .my-4;*/
-    @apply .font-serif .w-full .relative .block .my-2;
+    @apply font-serif w-full relative block my-2;
 }
 
 .control-group label {
-    /*@apply  .inline-flex;*/
+    /*@apply  inline-flex;*/
 }
 
 .control-group label.required:after {
@@ -1083,7 +1082,7 @@ dropdown-list
 }
 
 .control-group .control {
-    @apply  .w-full .px-3 .block;
+    @apply  w-full px-3 block;
     /*-webkit-transition: .2s cubic-bezier(.4, 0, .2, 1);*/
     /*transition: .2s cubic-bezier(.4, 0, .2, 1);*/
     /*width: available;*/
@@ -1123,7 +1122,7 @@ dropdown-list
 }
 
 .control-group .control-error {
-    @apply .text-sm;
+    @apply text-sm;
     display: none;
     color: #ff5656;
     margin-top: 5px
@@ -1275,11 +1274,11 @@ dropdown-list
     margin: 0 2px;
     text-align: center;
     display: block;
-    @apply .font-serif .font-semibold .text-lg .text-gray-cloud .uppercase;
+    @apply font-serif font-semibold text-lg text-gray-cloud uppercase;
 }
 
 .tabs ul li.active a {
-    @apply .text-chocolate .border-b-2 .border-chocolate;
+    @apply text-chocolate border-b-2 border-chocolate;
 }
 
 .accordian, accordian {
@@ -1293,7 +1292,9 @@ dropdown-list
     padding: 20px 15px;
     cursor: pointer;
     margin-top: -1px;
-    @apply .text-gray-dark .uppercase .border-t .border-b .border-gray-snow;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    @apply text-gray-dark uppercase border-gray-snow;
 }
 
 .accordian .accordian-header .expand-icon, .accordian div[slot*=header] .expand-icon, accordian .accordian-header .expand-icon, accordian div[slot*=header] .expand-icon {
@@ -1611,18 +1612,18 @@ modal, card-modal, eclipse-modal {
 }
 
 .mat-label {
-    @apply .text-base .text-gray-silver .block .uppercase;
+    @apply text-base text-gray-silver block uppercase;
     transform: translateY(25px);
     transition: all 0.5s;
 }
 
 .mat-input {
-    @apply .w-full .text-lg .relative .bg-transparent .border-none;
+    @apply w-full text-lg relative bg-transparent border-none;
     outline: none;
 }
 
 .mat-div {
-    @apply .pt-1 .relative;
+    @apply pt-1 relative;
 }
 
 .mat-div:after, .mat-div:before {
@@ -1651,6 +1652,6 @@ modal, card-modal, eclipse-modal {
 }
 
 .is-completed .mat-label {
-    @apply .text-sm;
+    @apply text-sm;
     transform: translateY(0);
 }
