@@ -115,5 +115,6 @@ module.exports = {
     },
     variants: {
         width: ['responsive', 'focus'],
+        transitionProperty: ['responsive', 'motion-safe', 'motion-reduce'],
     },
 }
