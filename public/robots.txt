@@ -1,2 +1,8 @@
 User-agent: *
-Disallow:
+Disallow: /*checkout/
+Disallow: /*?product_filter=
+Disallow: /*admin/
+
+Host: https://mamash.ua/
+Sitemap: https://mamash.ua/sitemap.xml
+

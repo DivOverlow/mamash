@@ -10,3 +10,13 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+/* Sitemap */
+
+// Route::get('/sitemap', 'SitemapController@index');
+
+// Route::get('/sitemap/posts', 'SitemapController@posts');
+
+// Route::get('/sitemap/categories', 'SitemapController@categories');
+
+// Route::get('/sitemap/tags', 'SitemapController@tags');
