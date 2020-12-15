@@ -1,8 +1,10 @@
 <?php
-
+ Route::get('sitemap', 'Webkul\API\Http\Controllers\Shop\SitemapController@index');
 Route::group(['prefix' => 'api'], function ($router) {
 
     Route::group(['namespace' => 'Webkul\API\Http\Controllers\Shop', 'middleware' => ['locale', 'theme', 'currency']], function ($router) {
+      
+  
         //Currency and Locale switcher
         Route::get('switch-currency', 'CoreController@switchCurrency');
 
@@ -262,6 +264,13 @@ Route::group(['prefix' => 'api'], function ($router) {
             Route::post('save-payment', 'CheckoutController@savePayment');
 
             Route::post('save-order', 'CheckoutController@saveOrder');
+            
         });
+
+        
     });
+    
+  
 });
+
+

@@ -9,7 +9,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="content-language" content="{{ app()->getLocale() }}">
+<<<<<<< HEAD
+    @foreach (core()->getCurrentChannel()->locales as $locale)
+  
+    <link rel="alternate" hreflang="{{$locale->code}}" href="{{ URL::current() }}?locale={{ $locale->code }}">
+   
+ 
+    @endforeach
+<link rel="canonical" href="{{ URL::current() }}">
+{{--    <link rel="stylesheet" href="{{ bagisto_asset('css/shop.css') }}">--}}
+{{--    <link rel="stylesheet" href="{{ asset('vendor/webkul/ui/assets/css/ui.css') }}">--}}
+=======
 
+>>>>>>> 5f122811015c1ca6841f21b2c33a493b375631ff
     <link rel="stylesheet" href="{{ bagisto_asset('css/main.css') }}">
 
     @if ($favicon = core()->getCurrentChannel()->favicon_url)

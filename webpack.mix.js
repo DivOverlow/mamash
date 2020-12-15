@@ -1,4 +1,3 @@
-
 const mix = require('laravel-mix');
 const tailwindcss = require('tailwindcss');
 //
@@ -14,8 +13,8 @@ const tailwindcss = require('tailwindcss');
  */
 
 mix.postCss('resources/css/main.css', 'public/themes/mamash/assets/css', [
-    require('tailwindcss'),
-])
+        require('tailwindcss'),
+    ])
     .browserSync('mamash-old');
 
 
@@ -53,10 +52,10 @@ mix.setPublicPath(publicPath).mergeManifest();
 mix.disableNotifications();
 
 mix.js([__dirname + "/resources/assets/js/app.js"], "public/themes/mamash/assets/js/shop.js");
-    // .sass(__dirname + "/src/Resources/assets/sass/app.scss", "css/shop.css")
-    // .options({
-    //     processCssUrls: false
-    // });
+// .sass(__dirname + "/src/Resources/assets/sass/app.scss", "css/shop.css")
+// .options({
+//     processCssUrls: false
+// });
 
 if (mix.inProduction()) {
     mix.version();
