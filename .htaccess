@@ -1,7 +1,7 @@
-#AuthType Basic
-#AuthName "Restricted Content"
-#AuthUserFile /etc/httpd/.htpasswd
-#Require valid-user
+AuthType Basic
+AuthName "Restricted Content"
+AuthUserFile /etc/httpd/.htpasswd
+Require valid-user
 
 #AddDefaultCharset UTF-8
 RewriteEngine On
