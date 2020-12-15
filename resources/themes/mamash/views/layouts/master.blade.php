@@ -11,8 +11,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="content-language" content="{{ app()->getLocale() }}">
 
-{{--    <link rel="stylesheet" href="{{ bagisto_asset('css/shop.css') }}">--}}
-{{--    <link rel="stylesheet" href="{{ asset('vendor/webkul/ui/assets/css/ui.css') }}">--}}
     <link rel="stylesheet" href="{{ bagisto_asset('css/main.css') }}">
 
     @if ($favicon = core()->getCurrentChannel()->favicon_url)
@@ -73,7 +71,7 @@
 
         @if (core()->getConfigData('general.content.footer.footer_toggle'))
 
-            <div class="footer absolute mt-0 sm:-mt-10 pt-0 sm:pt-1 px-10">
+            <div class="footer">
                 <p>
                     @if (core()->getConfigData('general.content.footer.footer_content'))
                         {{ core()->getConfigData('general.content.footer.footer_content') }}
@@ -126,17 +124,10 @@
 
     @stack('scripts')
 
+
     {!! view_render_event('bagisto.shop.layout.body.after') !!}
 
     <div class="modal-overlay"></div>
-
-
-{{--    <script>--}}
-{{--        (function(w,d,u){--}}
-{{--            var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/60000|0);--}}
-{{--            var h=d.getElementsByTagName('script')[0];h.parentNode.insertBefore(s,h);--}}
-{{--        })(window,document,'https://cdn.bitrix24.ua/b12349765/crm/site_button/loader_2_80wt05.js%27);--}}
-{{--    </script>--}}
 
 </body>
 

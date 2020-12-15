@@ -69,6 +69,7 @@ module.exports = {
 
         extend: {
             colors: {
+                'brownish-pink': '#C49C78',
                 'gray-grey': '#242424',
                 'gray-dark': '#212121',
                 'gray-dark-light': '#2f2f2f',
@@ -94,6 +95,10 @@ module.exports = {
                 '96': '24rem',
                 '128': '32rem',
             },
+            transitionProperty: {
+                'height': 'height',
+                'spacing': 'margin, padding',
+            },
         },
     },
     purge: {
@@ -115,6 +120,5 @@ module.exports = {
     },
     variants: {
         width: ['responsive', 'focus'],
-        transitionProperty: ['responsive', 'motion-safe', 'motion-reduce'],
     },
 }
