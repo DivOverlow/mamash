@@ -2,7 +2,6 @@
 <html lang="{{ app()->getLocale() }}">
 
 <head>
-
     <title>@yield('page_title')</title>
 
     <meta charset="UTF-8">
@@ -32,7 +31,6 @@
     {!! view_render_event('bagisto.shop.layout.head') !!}
 
 </head>
-
 
 <body @if (core()->getCurrentLocale()->direction == 'rtl') class="rtl" @endif style="scroll-behavior: smooth;">
 
@@ -123,7 +121,6 @@
     </script>
 
     @stack('scripts')
-
 
     {!! view_render_event('bagisto.shop.layout.body.after') !!}
 
