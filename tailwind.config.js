@@ -103,9 +103,9 @@ module.exports = {
                 'bg-coral': '#DBB1A1', //bg you skin uniquire
                 'bg-black-red': '#DBB1A1', //bg menu
                 'bg-rybi': '#BE3248', // bg btn cart 
-                'bg-brown': '#7B645C' // bg cart block
-                'bg-alert': '#F2E6DB' //bg alert
-                'gold': '#C49C78' // text gold
+                'bg-brown': '#7B645C', // bg cart block
+                'bg-alert': '#F2E6DB', //bg alert
+                'gold': '#C49C78', // text gold
                 
                  },
             spacing: {
