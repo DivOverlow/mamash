@@ -1,18 +1,13 @@
 module.exports = {
     important: true,
+    darkMode: false, // or 'media' or 'class'
     theme: {
-        screens: {
-            sm: '640px',
-            md: '768px',
-            lg: '1024px',
-            xl: '1280px',
-        },
-        stroke: theme => ({
-         // current: 'currentColor',
-         white: theme('colors.white'),
-         gray : theme('colors.text-gray-dark'),
-         // orange: theme('colors.text-yellow'),
-       }),
+        //  stroke: theme => ({
+        //   // current: 'currentColor',
+        //   white: theme('colors.white'),
+        //   gray : theme('colors.text-gray-dark'),
+        //   // orange: theme('colors.text-yellow'),
+        // }),
 
         fontFamily: {
             sans: [
@@ -33,13 +28,13 @@ module.exports = {
             '6xl': '4rem',
             '7xl': '5rem',
         },
-
-        borderWidth: {
-            default: '1px',
-            '0': '0',
-            '2': '2px',
-            '4': '4px',
-        },
+        //
+        // borderWidth: {
+        //     default: '1px',
+        //     '0': '0',
+        //     '2': '2px',
+        //     '4': '4px',
+        // },
         height: {
             px: '1px',
             '0': '0',
@@ -74,6 +69,7 @@ module.exports = {
 
         extend: {
             colors: {
+                'brownish-pink': '#C49C78',
                 'gray-grey': '#242424',
                 'gray-dark': '#212121',
                 'gray-dark-light': '#2f2f2f',
@@ -94,24 +90,32 @@ module.exports = {
                 'orange-orange': "#eba057",
                 scarlet: '#f91154',
                 'semi-75': 'rgba(0, 0, 0, 0.75)',
-                //new color in desine
-                'bg-head': '#0F0F0F',
-                'bg-color': '#E5E5E5',
-                'bg-tan': '#D3BDAA', // category bg
-                'bg-bisque': '#EAE0D6', // bg its you section 
-                'bg-pech': '#D9B5A5', //bg its you section image block
-                'bg-coral': '#DBB1A1', //bg you skin uniquire
-                'bg-black-red': '#DBB1A1', //bg menu
-                'bg-rybi': '#BE3248', // bg btn cart 
-                'bg-brown': '#7B645C', // bg cart block
-                'bg-alert': '#F2E6DB', //bg alert
-                'gold': '#C49C78', // text gold
-                
-                 },
+            },
             spacing: {
                 '96': '24rem',
                 '128': '32rem',
-            }
+            },
+            transitionProperty: {
+                'height': 'height',
+                'spacing': 'margin, padding',
+            },
+        },
+    },
+    purge: {
+        content: [
+            './app/**/*.php',
+            './resources/**/*.html',
+            './resources/**/*.js',
+            './resources/**/*.jsx',
+            './resources/**/*.ts',
+            './resources/**/*.tsx',
+            './resources/**/*.php',
+            './resources/**/*.vue',
+            './resources/**/*.twig',
+        ],
+        options: {
+            defaultExtractor: content => content.match(/[\w-/.:]+(?<!:)/g) || [],
+            whitelistPatterns: [/-active$/, /-enter$/, /-leave-to$/, /show$/],
         },
     },
     variants: {
