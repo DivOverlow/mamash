@@ -18,5 +18,4 @@ yarn-error.log
 composer.lock
 package-lock.json
 yarn.lock
-.htaccess
 test.txt

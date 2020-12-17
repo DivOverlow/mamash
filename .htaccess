@@ -7,3 +7,6 @@ Require valid-user
 RewriteEngine On
 RewriteCond %{REQUEST_URI} !^public
 RewriteRule ^(.*)$ public/$1 [L]
+# 301
+RewriteCond %{HTTP_HOST} ^mamash\.ua$ [NC]
+RewriteRule ^(.*)$ http://www.mamash.ua/$1 [R=301,L]
