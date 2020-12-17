@@ -28,18 +28,8 @@
                         </div>
                     </div>
                     <div class="flex justify-end">
-                        @if(core()->getConfigData('customer.settings.newsletter.subscription'))
-                            <span class="list-heading">{{ __('shop::app.footer.subscribe-newsletter') }}</span>
-                            <div class="form-container">
-                                <form action="{{ route('shop.subscribe') }}">
-                                    <div class="control-group" :class="[errors.has('subscriber_email') ? 'has-error' : '']">
-                                        <input type="email" class="control subscribe-field" name="subscriber_email" placeholder="Email Address" required><br/>
-
-                                        <button class="btn btn-md btn-primary">{{ __('shop::app.subscription.subscribe') }}</button>
-                                    </div>
-                                </form>
-                            </div>
-                        @endif
+                        <div class="mt-2 text-brownish-pink hover:text-gray-500"><a href="@php echo route('shop.cms.page', 'about-us') @endphp">Політика конфіденційності</a></div>
+                        <p>Copyright 2017 Mamash Organic All Rights Reserved</p>
                     </div>
             </div>
         </div>
