@@ -90,6 +90,18 @@ module.exports = {
                 'orange-orange': "#eba057",
                 scarlet: '#f91154',
                 'semi-75': 'rgba(0, 0, 0, 0.75)',
+                //new color in desine
+                'gray-black': '#0F0F0F',
+                'platinum': '#E5E5E5',
+                'pale-sand': '#D3BDAA', // category bg
+                'perl-white': '#EAE0D6', // bg its you section 
+                'lite-pale-sand': '#D9B5A5', //bg its you section image block
+                'pale-chestnut': '#DBB1A1', //bg you skin uniquire
+                'black-red': '#DBB1A1', //bg menu
+                'lite-crimsont-red': '#BE3248', // bg btn cart 
+                'dark-brown': '#7B645C', // bg cart block
+                'white-antique': '#F2E6DB', //bg alert
+                'brownish-pink': '#C49C78', // text gold
             },
             spacing: {
                 '96': '24rem',
